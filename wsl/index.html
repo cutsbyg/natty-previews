@@ -693,7 +693,19 @@ h2 em{font-style:normal;color:var(--brand-deep)}
    is 69.1% and the phone crop's is 14.9%). A rectangle that cannot hold the headline counts
    as no rectangle (§1a step 10), so the panel comes off the photograph and takes the slab. */
 @media(max-width:1023px){
-  .hero__media{aspect-ratio:2000/860}
+  /* §1.0b-H — THE MEDIA BOX IS A WRAPPER IN BAND MODE, NOT A FRAME.
+     This tier flows the panel BELOW the photograph, but .hero__media kept
+     `aspect-ratio:2000/860` + `overflow:hidden` from the desktop tier — a 185px-tall box at
+     431px wide. The panel is a CHILD of it (§1.0b-G1), so the whole 400-500px band was CLIPPED
+     AWAY: every probe reported a healthy panel with correct geometry, and no screenshot ever
+     showed it. Grady saw a hero photo running straight into the marquee at ~640px and told me
+     three times the founder section was missing; I kept testing phone widths, where the <=430
+     tier already had this fix, and kept "failing to reproduce" it.
+     The picture carries the ratio; the box grows to hold photo + band. */
+  .hero__media{aspect-ratio:auto;height:auto;overflow:visible;position:relative}
+  .hero__media > picture{display:block;position:relative;aspect-ratio:2000/860}
+  .hero__media picture img{position:static;display:block;width:100%;height:auto;
+    aspect-ratio:2000/860;object-fit:cover}
   .glass{position:static;width:auto;min-height:0;border-radius:0;
     /* NOT `auto` for the face column. `auto` sizes to the img's intrinsic 310px and starves
        the 1fr words column to 0px — the headline then measured 351px of overflow in a 79px
@@ -1319,6 +1331,38 @@ section[id],footer[id]{scroll-margin-top:5.5rem}
    the box around an unchanged file.
    Desktop ratio >= viewport_width / (0.70 * viewport_height). At 1920x1080 that is 2.54.
    ========================================================================= */
+
+
+/* ============================================================================
+   §2.0c — NO HORIZONTAL SCROLL ROWS ON A PHONE. LAST BLOCK, ON PURPOSE.
+   Grady, 2026-08-17, reversing the swipe rows added the same day: "you've added
+   sections for the mobile sites where you have to scroll to the right to see all
+   of them, like for projects, reviews and awards — don't do this. Just make the
+   text smaller and more concise, and put the text underneath the content photos
+   so it's all visible on one page with no extra scroll."
+   The swipe row traded VERTICAL scroll for HIDDEN CONTENT: everything past the
+   first card-and-a-bit is invisible until you think to swipe sideways, and most
+   people never do. Two-up grid instead — every card on screen at once, caption
+   UNDER its photograph, type sized down rather than content hidden.
+   The saving is real: two columns halves the rows, which is most of what the
+   swipe row was buying, without hiding anything.
+   ========================================================================= */
+@media(max-width:900px){
+  .mz,.revs__grid{
+    display:grid !important;grid-template-columns:1fr 1fr;gap:.6rem;
+    overflow-x:visible;overflow-y:visible;scroll-snap-type:none;padding-bottom:0}
+  .mz>.pj,.revs__grid>.rev{flex:none !important;width:auto !important;scroll-snap-align:none;
+    /* min-width:0 — a grid item's default `min-width:auto` refuses to shrink below its
+       CONTENT, so at 360-375 two cards plus the gap measured wider than the screen and
+       the document grew a horizontal scrollbar. Caught by herocheck at 360 only: at 390
+       the same layout fits, which is why a single-width check would have shipped it. */
+    min-width:0}
+  .pj__bar{position:static;background:none;padding:.4rem .1rem 0}
+  .pj__bar b{font-size:.78rem;line-height:1.15}
+  .pj__bar span,.pj__go{font-size:.7rem}
+  .rev p{font-size:.82rem;line-height:1.4}
+  .rev cite{font-size:.7rem}
+}
 
 </style>
 <!-- §11.3 first-party analytics. Same origin, no cookies, no IP, no consent banner.

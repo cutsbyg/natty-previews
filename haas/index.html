@@ -1198,6 +1198,39 @@ fieldset.f legend{margin-bottom:.2rem}
    Desktop ratio >= viewport_width / (0.70 * viewport_height). At 1920x1080 that is 2.54.
    ========================================================================= */
 
+
+/* ============================================================================
+   §2.0c — NO HORIZONTAL SCROLL ROWS ON A PHONE. LAST BLOCK, ON PURPOSE.
+   Grady, 2026-08-17, reversing the swipe rows added the same day: "you've added
+   sections for the mobile sites where you have to scroll to the right to see all
+   of them, like for projects, reviews and awards — don't do this. Just make the
+   text smaller and more concise, and put the text underneath the content photos
+   so it's all visible on one page with no extra scroll."
+   The swipe row traded VERTICAL scroll for HIDDEN CONTENT: everything past the
+   first card-and-a-bit is invisible until you think to swipe sideways, and most
+   people never do. Two-up grid instead — every card on screen at once, caption
+   UNDER its photograph, type sized down rather than content hidden.
+   The saving is real: two columns halves the rows, which is most of what the
+   swipe row was buying, without hiding anything.
+   ========================================================================= */
+@media(max-width:900px){
+  .mz,.revs__grid,.award__row{
+    display:grid !important;grid-template-columns:1fr 1fr;gap:.6rem;
+    overflow-x:visible;overflow-y:visible;scroll-snap-type:none;padding-bottom:0}
+  .mz>.pj,.revs__grid>.rev,.award__row>.artifact{flex:none !important;width:auto !important;scroll-snap-align:none;
+    /* min-width:0 — a grid item's default `min-width:auto` refuses to shrink below its
+       CONTENT, so at 360-375 two cards plus the gap measured wider than the screen and
+       the document grew a horizontal scrollbar. Caught by herocheck at 360 only: at 390
+       the same layout fits, which is why a single-width check would have shipped it. */
+    min-width:0}
+  /* caption under the photo, not over it, and sized down to pay for the second column */
+  .pj__bar{position:static;background:none;padding:.4rem .1rem 0}
+  .pj__bar b{font-size:.78rem;line-height:1.15}
+  .pj__bar span,.pj__go{font-size:.7rem}
+  .rev p{font-size:.82rem;line-height:1.4}
+  .rev cite{font-size:.7rem}
+}
+
 </style>
 <!-- §11.3 first-party analytics. Same origin, no cookies, no IP, no consent banner.
      Served by analytics/server.js; harmlessly absent when the folder is opened directly. -->

@@ -736,7 +736,13 @@ h1,h2,h3{font-family:var(--disp);font-weight:900;line-height:.86;letter-spacing:
      point given to the portrait was taken by the headline overflowing its own track and
      landing on his shoulder instead. With the floor removed the track is exactly
      100% - <portrait>, and the headline (sized in cqw below) fits whatever is left. */
-  .hero__panel{grid-template-columns:minmax(0,1fr) clamp(8rem,46%,48vw);gap:.7rem;align-items:center}
+    /* §1.0b-F — swept 40/44/48/52/56 against the right edge of EVERY element in the words
+     column, not just the headline. The binding constraint is `.hero__rate` (the stars and
+     "4.6 on Google"), which the photograph covered at 48% and above — the headline was still
+     clear there, so a headline-only sweep passed a build that visibly clipped the rating.
+     Sweep against every text node, not the biggest one. 44% is the largest with zero overlap
+     at 360, 375, 390 and 430. */
+  .hero__panel{grid-template-columns:minmax(0,1fr) clamp(9rem,44%,44vw);gap:.6rem;align-items:center}
   .hero__fig img{border:0;box-shadow:none}
   /* 1.25rem was sized for the floating card. In a full-width band the headline is the headline
      again — §1a's "h1 >= 2x the next-largest type in the panel" with room to honour it. */
@@ -824,6 +830,33 @@ h1,h2,h3{font-family:var(--disp);font-weight:900;line-height:.86;letter-spacing:
     background-size:64px 64px;
     border-color:transparent;box-shadow:none}
   .hero__panel:hover .hero__fig img{transform:none}
+}
+
+
+/* ============================================================================
+   §2.0c — NO HORIZONTAL SCROLL ROWS ON A PHONE. LAST BLOCK, ON PURPOSE.
+   Grady, 2026-08-17, reversing the swipe rows added the same day: "you've added
+   sections for the mobile sites where you have to scroll to the right to see all
+   of them, like for projects, reviews and awards — don't do this. Just make the
+   text smaller and more concise, and put the text underneath the content photos
+   so it's all visible on one page with no extra scroll."
+   The swipe row traded VERTICAL scroll for HIDDEN CONTENT: everything past the
+   first card-and-a-bit is invisible until you think to swipe sideways, and most
+   people never do. Two-up grid instead — every card on screen at once, caption
+   UNDER its photograph, type sized down rather than content hidden.
+   The saving is real: two columns halves the rows, which is most of what the
+   swipe row was buying, without hiding anything.
+   ========================================================================= */
+@media(max-width:900px){
+  .row{
+    display:grid !important;grid-template-columns:1fr 1fr;gap:.6rem;
+    overflow-x:visible;overflow-y:visible;scroll-snap-type:none;padding-bottom:0}
+  .row>.card,.card{flex:none !important;width:auto !important;scroll-snap-align:none}
+  .card__cap{position:static;background:none;padding:.4rem .1rem 0;color:inherit}
+  .card--flag .card__cap{position:static;background:none}
+  .card__t{font-size:.78rem;line-height:1.15}
+  .card__m{font-size:.7rem}
+  .card--flag{grid-column:span 2}
 }
 
 </style>
