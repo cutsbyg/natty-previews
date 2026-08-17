@@ -839,9 +839,9 @@ section[id],footer[id]{scroll-margin-top:5.5rem}
      only screen most people see. Sized just under the headline's own height (4 authored lines
      x .84 leading against the same vw the headline uses, at ~90%) so he reads as beside the
      words rather than over them. */
-  .hero__cut{display:flex;position:static;width:auto;height:min(27vw,190px);
-    align-self:start;margin-top:.15rem;right:auto;top:auto;bottom:auto}
-  .hero__cut img{height:100%;width:auto}
+  /* the <=820 .hero__cut rule is DELETED. The <=900 block later in this file overrode every
+     property it declared, so it did nothing except make the cascade harder to read — and its
+     `height:min(27vw,190px)` is the shape of the very pixel cap §1.0b-F bans. */
   /* The words stay CENTRED in their own column (§1a.11), which is what they were before the
      owner came back. Dustin is not a reason to left-align the panel — he fits in the space
      the centred block already leaves, he does not take the block's alignment with him. */
@@ -1021,7 +1021,7 @@ fieldset.f legend{margin-bottom:.2rem}
      headline's right edge at 360-600, and 42% is the first value where the words column can no
      longer hold "DELIVERING" at 360px (overflow 3px, and 16px at 46%). 38% is the largest he
      can be at the width he has without pushing the headline into him. */
-  .hero__cut{position:static;flex:0 0 auto;width:clamp(120px,40%,300px);max-width:none;
+  .hero__cut{position:static;flex:0 0 auto;width:clamp(120px,40%,380px);max-width:none;
     height:auto;align-self:center;margin:0}
   .hero__cut img{width:100%;height:auto;
     mask-image:linear-gradient(to bottom,#000 84%,transparent 99%);
@@ -1114,6 +1114,32 @@ fieldset.f legend{margin-bottom:.2rem}
   .glass .btn{order:5;margin-top:.55rem}
   .hero__tel{order:6;margin-top:.35rem}    /* §8 — the button is loudest, the phone follows it */
   .hero__words{gap:.3rem}
+}
+
+
+/* ============================================================================
+   §1.0b-M — NO HOVER STATE SURVIVES ON A TOUCH SCREEN. LAST BLOCK, ON PURPOSE.
+   Grady, 2026-08-16, with a photo of the Double B hero: "when you scroll the top
+   section gets really dark."
+   `.glass:hover` was written for the GLASS CARD, where darkening the scrim on
+   hover is the right feel. Two things make it a bug on a phone:
+     1. iOS applies :hover on tap and LEAVES IT ON until you tap something else,
+        so a hover style is a PERMANENT state on a touch device, not a transient one.
+     2. `:focus-within` fires the moment the tap lands on the phone link or the
+        button inside the panel — which is the whole point of the panel.
+   And `.glass:hover` is specificity (0,2,0) against the band's (0,1,0), so it
+   beat the white ground and painted the dark card scrim back over it.
+   `@media (hover:none)` is the correct guard, not a width: it asks whether the
+   DEVICE can hover, so it also covers touch laptops and misses nothing at 900px.
+   ========================================================================= */
+@media (hover:none){
+  .glass:hover,.glass:focus-within{
+    background:
+      repeating-linear-gradient(to right,transparent 0 63px,rgba(var(--brand-rgb),.18) 63px 64px),
+      repeating-linear-gradient(to bottom,transparent 0 63px,rgba(var(--brand-rgb),.18) 63px 64px),
+      var(--paper);
+    border-color:transparent;box-shadow:none}
+  .glass:hover .hero__cut img{transform:none}
 }
 
 </style>
