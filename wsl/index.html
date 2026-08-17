@@ -877,7 +877,11 @@ h2 em{font-style:normal;color:var(--brand-deep)}
   border:2px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:.3rem .7rem;
   transition:transform .18s var(--ease),box-shadow .18s var(--ease)}
 .stat:hover,.stat:focus-within{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
-@media(max-width:820px){.stats{gap:.45rem;padding:.6rem .9rem}.stat{padding:.2rem .55rem}}
+/* §1.7 wants ONE ROW. Four blocks cannot hold one row at 390 — flex-wrap gave them THREE
+   ragged rows, 192px. A 2x2 grid is two even rows, 139px, and it is what Haas already does. */
+@media(max-width:820px){
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;padding:.6rem .9rem}
+  .stat{padding:.2rem .55rem}}
 .stat .n{color:var(--brand-deep);font-weight:900;font-size:clamp(1.1rem,2vw,1.5rem);font-variant-numeric:tabular-nums}
 .stat .l{font-size:.74rem;color:var(--ink-60)}
 
@@ -1140,6 +1144,29 @@ section[id],footer[id]{scroll-margin-top:5.5rem}
   .revs__rate .lnk{min-height:44px;display:inline-flex;align-items:center}
   .nav__brand{min-height:44px}
   .tel-big{min-height:44px}
+
+  /* --- SWIPE ROWS (§0r). This is the lever that pays. A phone has no vertical room and
+     unlimited horizontal room, so the sets that were STACKING become ONE row you swipe:
+     eight project tiles were four stacked pairs, three reviews were three stacked cards.
+     The overflow lives on the ROW'S OWN CONTAINER, never on the page — both rows sit inside
+     .in, already inset by the band padding, so a 76%-wide child cannot reach the viewport
+     edge and the document never gets a horizontal scrollbar.
+     Native overflow, no JS: touch drag, trackpad swipe, shift+wheel and keyboard all work.
+     Each child is a whole card, so every tap target is the card, far past 44px.
+     padding-bottom clears the 8px hard shadow — `overflow-x:auto` forces overflow-y to
+     `auto` too, so without it the shadow gives each row its own vertical scrollbar. */
+  .mz,.revs__grid{
+    display:flex;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;
+    scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding-bottom:.85rem}
+  .mz>.pj,.revs__grid>.rev{flex:0 0 auto;scroll-snap-align:start}
+  .mz>.pj{width:76%}          /* the next card peeks, which is what says "this swipes" */
+  .revs__grid>.rev{width:84%}
+
+  /* §0r — .cta__edge is DECORATION between the CTA and the form: a third of a screen of
+     screened porch, and the work band already shows eight better interiors. It is the last
+     thing standing between a decided visitor and the form. Phone only; on desktop it sits
+     beside the number and costs no vertical scroll. */
+  .cta__edge{display:none}
 }
 
 /* ================= §8.15 — ≤430: THE PHONE HERO.
@@ -1549,7 +1576,11 @@ section[id],footer[id]{scroll-margin-top:5.5rem}
     <div class="band__head">
       <div>
         <p class="kicker rv">CENTRAL PENNSYLVANIA</p>
-        <h2 class="rv d1">WHAT IT LOOKS<br>LIKE INSIDE<em>.</em></h2>
+        <!-- §2.8a — a heading is a LABEL, not a sentence. READ THE BAND: all eight tiles are
+             rooms inside finished custom homes (great room, dining and living, outdoor room,
+             two kitchens, cabinetry, fireplace, bar). The lede already says "one room from
+             each finished job", so the label is the place, not the sentence about it. -->
+        <h2 class="rv d1">INSIDE THE HOMES<em>.</em></h2>
       </div>
       <p class="lede rv d2">Custom homes designed and built in-house. One room from each finished job.</p>
     </div>
@@ -1655,7 +1686,10 @@ section[id],footer[id]{scroll-margin-top:5.5rem}
 
     <div class="who__text">
       <p class="kicker rv">NEW BLOOMFIELD, PENNSYLVANIA</p>
-      <h2 class="rv d1">MEET THE<br>TEAM<em>.</em></h2>
+      <!-- §2.8a label. The band is Josh (the quote is a customer talking about him, the body
+           is his succession) AND the nine people in the office listed beside the photo.
+           "Meet the team" is an instruction to the reader and names neither. -->
+      <h2 class="rv d1">JOSH AND THE OFFICE<em>.</em></h2>
       <blockquote class="who__quote rv d2">
         &ldquo;We had a plumbing issue about a year after our build. Within a few minutes my phone rings —
         it was Josh, asking if he could come out around 7:00am, on a Saturday, to fix it.&rdquo;
@@ -1687,7 +1721,11 @@ section[id],footer[id]{scroll-margin-top:5.5rem}
     <div class="revs__head">
       <div>
         <p class="kicker rv">WHAT THE OWNERS SAY</p>
-        <h2 class="rv d1">THIRTY-FIVE YEARS<br>OF BUILDING HERE<em>.</em></h2>
+        <!-- §2.8a — three customer reviews and a link to the rest: the label is "Reviews".
+             The thirty-five years are NOT lost with the sentence: they are stated in the
+             founder band body ("for more than 35 years") and again in the stats row
+             ("35+ / Years building in Perry County"), both verified above. -->
+        <h2 class="rv d1">REVIEWS<em>.</em></h2>
       </div>
       <p class="revs__rate rv d2">
         <span><a class="lnk" href="https://www.google.com/maps/search/?api=1&amp;query=WSL+Incorporated+New+Bloomfield+PA" target="_blank" rel="noopener">39 reviews on Google →</a></span>
@@ -1725,7 +1763,7 @@ section[id],footer[id]{scroll-margin-top:5.5rem}
     <div class="band__head">
       <div>
         <p class="kicker rv">BEFORE YOU CALL</p>
-        <h2 class="rv d1">THE QUESTIONS<br>WE GET ASKED<em>.</em></h2>
+        <h2 class="rv d1">QUESTIONS<em>.</em></h2>
       </div>
       <p class="lede rv d2">Straight answers on cost, schedule and what design-build means.</p>
     </div>
