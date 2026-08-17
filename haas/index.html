@@ -1093,6 +1093,22 @@ fieldset.f legend{margin-bottom:.2rem}
     font-size:clamp(1.75rem,7.4vw,3rem);line-height:.9;letter-spacing:-.02em;
     margin:0 0 .5rem;text-wrap:balance}
   .hero h1 em{color:var(--brand)}
+
+  /* §1a.16 + §1.0b-H — THE FLY-THROUGH IS SCOPED TO THE PHOTOGRAPH, NOT THE WRAPPER.
+     `.hero__fly` and `.hero__film` are `position:absolute; inset:0` inside .hero__media —
+     which since §1.0b-H is a WRAPPER holding the picture AND the text band. The hotspot
+     therefore measured 63->617 against a photo of 63->270: every tap in the band, including
+     on the phone number and the button, armed the fly-through.
+     The ratio pins it to exactly the picture's box, and it must equal the SERVED phone crop
+     (§1.0b-G1) or the film lands off the still it is supposed to continue from. */
+  .hero__fly,.hero__film{top:0;left:0;right:auto;bottom:auto;
+    width:100%;height:auto;aspect-ratio:2100/1115}
+  /* `.hero.flying .glass{transform:scale(.8)}` shrinks the panel out of the way so the film
+     owns the frame — correct when the panel is a CARD ON the photograph. Since §1.0b-H the
+     panel is a SECTION BESIDE it, so scaling it just detaches a white card from its own
+     section and shows the hero's dark ground through the gap. The film never overlaps it
+     now, so there is nothing to get out of the way of. */
+  .hero.flying .glass{transform:none}
   .hero__support{order:3}
   .hero__rate{order:4}
   .glass .btn{order:5;margin-top:.55rem}
