@@ -1120,6 +1120,17 @@ h1,h2,h3,.glass__h1,.cta__big{text-transform:uppercase}
   .rev cite,.rev__n{font-size:.72rem}
 }
 
+
+/* §3.3 — the measured type register. Double B was the outlier: h2 at 800 where the other three
+   are 900, and a mixed-case button where the others are caps. Every blind rebuild copied the
+   800 from nothing, because the weight had never been written down — five blockers from one
+   unwritten number. */
+/* `.band h2` is (0,1,1) and beat a bare `h2` (0,0,1) — the same specificity trap this file
+   already documents once for .cta__big. Match the specificity or the rule is decoration. */
+.band h2{font-weight:900}
+.btn{font-weight:800;text-transform:uppercase}
+.revs .rev p,.revs blockquote.rev p,.revs .rev{font-weight:700}
+
 </style>
 </head>
 <body>
