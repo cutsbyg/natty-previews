@@ -1319,6 +1319,51 @@ fieldset.f legend{margin-bottom:.2rem}
   .stats{display:none}
 }
 
+
+/* ============================================================================
+   §SWEEP 2026-08-17 — RULES PROVEN ON ONE BUILD, APPLIED TO ALL OF THEM.
+   Grady: "whenever I tell you to fix one thing in one website, you can probably
+   assume those issues are present on all the other websites as well."
+   Found by _review/sweepcheck.py, which now measures every build at PHONE and
+   MID width, because nearly every missed fix in this project was applied to the
+   phone tier while the tier beside it kept the old value.
+   ========================================================================= */
+@media(max-width:900px){
+  /* §2.9 — the phone number does not repeat inside the hero band. It is in the sticky nav
+     directly above it and in the CTA band below. Proven on Haas, swept here. */
+  .glass .hero__tel,.glass a[href^="tel:"]{display:none}
+
+  /* §8.18 — the 44px tap floor, applied to STANDALONE controls only.
+     A blanket `a,button{min-height:44px;display:inline-flex}` was tried first and was worse than
+     the defect: `display:inline-flex` on every anchor overrode the `display:none` above it (so
+     the phone number came back) and forced inline links inside review prose out to 458px on a
+     390px screen, giving the page a horizontal scrollbar. A floor belongs on things that ARE
+     targets, not on every link in a sentence. */
+  .btn,.nav__tel,.cta__tel,.fact,.hero__tel,.glass__tel,.hero__num .tel,.submit__tel,
+  button[type=submit]{min-height:44px;display:inline-flex;align-items:center}
+  /* review cards must be allowed to shrink, or long quotes push the page sideways */
+  .rev,.rev *{min-width:0}
+  .rev__q,.rev__who{overflow-wrap:anywhere}
+}
+
+
+/* §8.18 — one <em> was still computing to 10.24px on the phone. The floor is 11px and it is a
+   floor, not a target: below it the label stops being readable at arm's length in a truck. */
+@media(max-width:900px){ .artifact__t em,.crew__n em,.pj__bar i{font-size:11px} }
+
+
+/* §2.0d — even cards AND no dead space. These two pulled against each other: a generous
+   min-height made every card equal but left white space under short captions (Grady saw it),
+   and removing the min-height took the space back but let 1- and 2-line titles stagger the grid
+   by 14px. Clamping the LINE COUNT satisfies both — each caption is exactly the same number of
+   lines tall, and none of them is taller than its text needs. */
+@media(max-width:900px){
+  .pj__bar{min-height:0;align-items:flex-start}
+  .pj__bar>span:first-child{display:flex;flex-direction:column;gap:.1rem;min-width:0}
+  .pj__bar b{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+  .pj__bar i{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+}
+
 </style>
 <!-- §11.3 first-party analytics. Same origin, no cookies, no IP, no consent banner.
      Served by analytics/server.js; harmlessly absent when the folder is opened directly. -->
