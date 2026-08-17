@@ -1705,7 +1705,8 @@ section[id],div[id],footer[id]{scroll-margin-top:5.5rem}
     if (href.indexOf('tel:') === 0) return post({ kind: 'Call', device: device, label: a.className });
     if (/maps\.google|google\.[a-z.]+\/maps/.test(href)) return post({ kind: 'Directions', device: device });
     if (a.closest('#work')) return post({ kind: 'Work viewed', device: device, label: label(a) });
-    // §1a.16 — the hero fly-through counts as viewing work; it IS the flagship project
+    // §2.9c — the hero fly-through counts as viewing the equipment. NOT "the flagship project":
+    //   Double B is a DEALER, and builder vocabulary in a comment is how it creeps back into copy.
     if (a.closest('.hero__fly'))
       return post({ kind: 'Work viewed', device: device, label: 'flythrough' });
     if (href.indexOf('mailto:') === 0 || a.classList.contains('btn') || /contact/i.test(href))
