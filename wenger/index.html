@@ -859,6 +859,16 @@ h1,h2,h3{font-family:var(--disp);font-weight:900;line-height:.86;letter-spacing:
   .card--flag{grid-column:span 2}
 }
 
+
+/* §9.2 — THE FLOOR POP IS DELETED, EVERY WIDTH (2026-08-17, Grady: "you can get rid of the
+   floor pop on the flooring on the Wenger website").
+   It was a real cut-out of the floor lifted on :hover. Three things killed it: a phone has no
+   hover so it never fired there; its rect is a percentage of the DESKTOP crop, so on any other
+   crop it lifts the wrong pixels (that was the mobile "glitch" that slid down the page); and it
+   asks the visitor to discover an interaction that pays them nothing. The photograph is the
+   proof; it does not need to move. */
+.hero__lift,.hero__floorhit{display:none !important}
+
 </style>
 
 </head>
