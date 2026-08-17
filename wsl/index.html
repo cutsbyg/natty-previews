@@ -617,7 +617,16 @@ h2 em{font-style:normal;color:var(--brand-deep)}
   padding:.95vw 1.05vw;                                            /* §1a.6 vw, never rem */
   overflow:hidden;                                                 /* §1a.12 the panel CLIPS */
   transition:background .25s var(--ease),border-color .25s var(--ease),transform .3s var(--ease)}
-.glass:hover,.glass:focus-within{background:rgba(20,12,13,.42);border-color:rgba(255,255,255,.36)}
+/* §1.0b-M — THE PANEL'S GROUND NEVER CHANGES ON HOVER OR FOCUS, ON ANY DEVICE.
+   Darkening the scrim on hover was written for a glass card on a photograph. It has two
+   failure modes and BOTH shipped: on touch, iOS leaves :hover on after a tap and
+   :focus-within fires when the thumb lands on the phone link, so the state is permanent;
+   on a mouse it fires every time the pointer crosses the panel, and once the panel became
+   a WHITE band the dark scrim made the ink text unreadable.
+   An earlier fix guarded only `@media(hover:none)` — which is the touch case ONLY, so on a
+   desktop it never applied at all. The ground is now simply never touched. Hover may still
+   move a border or a shadow; it may not repaint what text sits on. */
+.glass:hover,.glass:focus-within{border-color:rgba(255,255,255,.36)}
 
 /* §1a.11 — each column centres in its own column; the words centre as one stack */
 .hero__words{min-width:0;text-align:center;align-self:center}
@@ -1263,6 +1272,26 @@ section[id],footer[id]{scroll-margin-top:5.5rem}
     border-color:transparent;box-shadow:none}
   .glass:hover .hero__cut img{transform:none}
 }
+
+/* ============================================================================
+   §1.0b-O — THE HERO HAS A MAXIMUM VERTICAL HEIGHT: ~70% OF THE VIEWPORT.
+   Grady, 2026-08-16: "the front hero image should have a maximum vertical height
+   limit, and that is the height limit on WSL, and that is the height limit on
+   Haas... every website in the future ever."
+   MEASURED: at 2.599 the hero lands at 62-68% of the viewport. That IS the limit he
+   is describing — it was never written down, so it held only as a side effect of the
+   ratio, and the moment Double B moved to 2.102 for a taller photograph the hero grew
+   to 76% and then 85% of the screen with nothing checking.
+   🛑 THE CAP IS ENFORCED BY THE CROP'S RATIO, NEVER BY `max-height`. A max-height on a
+   fixed-ratio box changes the BOX ratio without changing the FILE, so object-fit
+   silently re-crops the photograph — herocheck caught exactly that when this was first
+   written as `max-height:70vh` (box 2.939 vs file 2.599 on Haas). The height limit and
+   "never cut the subject" (§1.0b-N) are satisfied together only by choosing a crop
+   whose ratio yields <=70vh at the widths you ship. If the subject cannot survive that
+   ratio, EXTEND THE GROUND (outpaint sky/foreground) to widen the frame — never squeeze
+   the box around an unchanged file.
+   Desktop ratio >= viewport_width / (0.70 * viewport_height). At 1920x1080 that is 2.54.
+   ========================================================================= */
 
 </style>
 <!-- §11.3 first-party analytics. Same origin, no cookies, no IP, no consent banner.
