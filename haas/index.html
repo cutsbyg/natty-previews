@@ -345,7 +345,6 @@ h2 em{font-style:normal;color:var(--brand)}
 .hero__cut img{height:96%;width:auto;max-width:100%;object-fit:contain;
   mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
   -webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
-  filter:drop-shadow(0 10px 18px rgba(0,0,0,.45)) drop-shadow(0 2px 3px rgba(0,0,0,.5));
   transition:transform .3s var(--ease)}
 .hero__cut:hover img,.hero__cut:focus-visible img{transform:translateY(-4px)}
 
@@ -393,7 +392,11 @@ h2 em{font-style:normal;color:var(--brand)}
      "BUILDING" clipped to "BUILDIN". The panel is a container (§1a.2), so cqw tracks the
      rect the type actually lives in and cannot outgrow it. Below 861 the phone tier governs. */
   .hero h1{font-size:min(5rem,8.1cqw);line-height:.84;margin-bottom:0}
-  .hero__cut{display:none}
+  /* §1.0b-F — the owner is NEVER display:none. This line hid him from 861 to 1365, i.e. every
+     tablet and every small laptop, while the grid above still reserved a 26% column for him —
+     so the panel carried a dead gutter and the face was gone. It was written when this tier
+     was a full-bleed brand bar with no room; §1.0b-G made it a 56% bubble WITH the column.
+     The rule outlived the layout that justified it. He inherits the base absolute rect. */
   .hero__support{font-size:.74rem;margin:.7rem 0 0}
   /* §1a.6's vw sizing is for the measured rect. Once the panel is a flowed band the same
      coefficients collapse to a 2px button pad and a 3px gap, and the phone lands on the
@@ -848,7 +851,7 @@ section[id],footer[id]{scroll-margin-top:5.5rem}
   .hero__support{margin-top:.5rem}
   .hero__rate{margin-top:.55rem}
   .hero__row{margin-top:.7rem;gap:.7rem}
-  .glass{padding-top:1.15rem;padding-bottom:1.15rem}
+  .glass{padding-top:.9rem;padding-bottom:.9rem}
 
   /* --- deletions. The cue tells people to do the one thing they already know to do, and the
      marquee is a boundary marker on a page that no longer needs one — its 1px border-block
@@ -1007,10 +1010,19 @@ fieldset.f legend{margin-bottom:.2rem}
     min-height:44px;display:inline-flex;align-items:center;   /* §8.18 */
     box-shadow:3px 3px 0 var(--ink)}
 
-  /* §1a step 12 — the owner stays on the first screen. In the card he is a small figure at
-     its right edge, not the 190px block the slab tier gives him. */
-  .hero__cut{position:static;flex:0 0 auto;width:19%;max-width:64px;height:auto;
-    align-self:flex-end;margin:0}
+  /* §1.0b-F — the owner is a SIZED COLUMN of the band, not a leftover.
+     `max-width:64px` was written for the floating CARD, whose whole width was ~55% of a phone
+     screen; 64px was a fair share of that. §1.0b-G3 turned the card into a full-width band and
+     the cap came with it, so the face froze at 64x83 from 360 all the way to 820 — identical at
+     every width, stranded bottom-right, with 45% of the band empty beside it.
+     A percentage with a floor and a ceiling scales with whatever container it lands in; a
+     hard pixel cap only ever fits the container it was measured against.
+     38% is not a taste value, it is the measured ceiling: swept 34/38/42/46/50 against the
+     headline's right edge at 360-600, and 42% is the first value where the words column can no
+     longer hold "DELIVERING" at 360px (overflow 3px, and 16px at 46%). 38% is the largest he
+     can be at the width he has without pushing the headline into him. */
+  .hero__cut{position:static;flex:0 0 auto;width:clamp(120px,40%,300px);max-width:none;
+    height:auto;align-self:center;margin:0}
   .hero__cut img{width:100%;height:auto;
     mask-image:linear-gradient(to bottom,#000 84%,transparent 99%);
     -webkit-mask-image:linear-gradient(to bottom,#000 84%,transparent 99%)}
@@ -1042,7 +1054,7 @@ fieldset.f legend{margin-bottom:.2rem}
     width:auto;max-width:none;min-height:0;
     border:0;border-radius:0;box-shadow:none;
     -webkit-backdrop-filter:none;backdrop-filter:none;
-    padding:1.15rem clamp(1rem,4vw,1.6rem) 1.35rem;
+    padding:.85rem clamp(1rem,4vw,1.6rem) .9rem;
     background:
       repeating-linear-gradient(to right,transparent 0 63px,rgba(var(--brand-rgb),.18) 63px 64px),
       repeating-linear-gradient(to bottom,transparent 0 63px,rgba(var(--brand-rgb),.18) 63px 64px),
@@ -1070,11 +1082,21 @@ fieldset.f legend{margin-bottom:.2rem}
    band there is room, and the name is already in the nav directly above.
    ========================================================================= */
 @media(max-width:900px){
-  .hero__name{display:none}
-  .hero h1{display:block;color:var(--ink);text-shadow:none;
+  /* §1c.4 — THE COMPANY NAME SITS DIRECTLY ABOVE THE SLOGAN. Grady, 2026-08-16: "right before
+     their slogan should be their company name and not their phone number. The phone number can
+     come later." So the name is an EYEBROW over the headline, not a replacement for it (§1c.3)
+     and not the phone number. Order: name, slogan, trades, rating, button, phone. */
+  .hero__name{display:block;order:1;color:var(--brand);text-shadow:none;
+    font:800 .78rem/1 var(--disp);letter-spacing:.16em;text-transform:uppercase;
+    margin:0 0 .5rem}
+  .hero h1{display:block;order:2;color:var(--ink);text-shadow:none;
     font-size:clamp(1.75rem,7.4vw,3rem);line-height:.9;letter-spacing:-.02em;
     margin:0 0 .5rem;text-wrap:balance}
   .hero h1 em{color:var(--brand)}
+  .hero__support{order:3}
+  .hero__rate{order:4}
+  .glass .btn{order:5;margin-top:.55rem}
+  .hero__tel{order:6;margin-top:.35rem}    /* §8 — the button is loudest, the phone follows it */
   .hero__words{gap:.3rem}
 }
 
