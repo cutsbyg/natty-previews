@@ -1443,6 +1443,32 @@ section[id],footer[id]{scroll-margin-top:5.5rem}
   .hero__cut{width:100%;max-width:none;min-width:0}
 }
 
+
+/* ============================================================================
+   §1.0b-Q — THE HERO PANEL HOLDS EXACTLY SIX THINGS, AND A PHONE NUMBER IS NOT
+   ONE OF THEM. EVERY BUILD, EVERY WIDTH. (2026-08-17)
+   Grady: "The founder section should be the name of their company, then their
+   slogan, then what they do, then the reviews, then the start-your-project
+   button, then a picture of the founder. And that's it. There shouldn't be a
+   phone number... Everything I'm saying is something I need you to tweak for
+   the blueprint."
+     1 company name (eyebrow)  2 slogan (h1)  3 what they do + where
+     4 rating  5 ONE button  6 the founder's photograph
+   🛑 NO WIDTH SCOPE. This was written once as `@media(max-width:900px)` and the
+   number stayed visible from 901 up — the FOURTH time in this project that a
+   rule was applied to the phone tier and left everywhere else. Grady browses in
+   a ~600px window and on desktop; a hero rule that only holds on phones is not
+   a rule, it is a coincidence.
+   The number is in the sticky nav above and the CTA band below (§2.9).
+   ========================================================================= */
+.glass .hero__tel,.glass a[href^="tel:"]{display:none !important}
+
+/* §2.a — THE MOVING BANNER RUNS ON THE PHONE TOO. It was deleted below 900 back when the hero
+   was a floating card and the band beneath it needed the room. The hero is a stacked section
+   now, the marquee is the transition out of it, and without it the photograph runs straight
+   into the next band. Grady: "why does the Haas website not have a moving banner anymore?" */
+@media(max-width:900px){ .marquee{display:flex} }
+
 </style>
 <!-- §11.3 first-party analytics. Same origin, no cookies, no IP, no consent banner.
      Served by analytics/server.js; harmlessly absent when the folder is opened directly. -->

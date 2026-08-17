@@ -1070,6 +1070,44 @@ h1,h2,h3,.glass__h1,.cta__big{text-transform:uppercase}
   .rev__q,.rev__who{overflow-wrap:anywhere}
 }
 
+
+/* ============================================================================
+   §1.0b-Q — THE HERO PANEL HOLDS EXACTLY SIX THINGS, AND A PHONE NUMBER IS NOT
+   ONE OF THEM. EVERY BUILD, EVERY WIDTH. (2026-08-17)
+   Grady: "The founder section should be the name of their company, then their
+   slogan, then what they do, then the reviews, then the start-your-project
+   button, then a picture of the founder. And that's it. There shouldn't be a
+   phone number... Everything I'm saying is something I need you to tweak for
+   the blueprint."
+     1 company name (eyebrow)  2 slogan (h1)  3 what they do + where
+     4 rating  5 ONE button  6 the founder's photograph
+   🛑 NO WIDTH SCOPE. This was written once as `@media(max-width:900px)` and the
+   number stayed visible from 901 up — the FOURTH time in this project that a
+   rule was applied to the phone tier and left everywhere else. Grady browses in
+   a ~600px window and on desktop; a hero rule that only holds on phones is not
+   a rule, it is a coincidence.
+   The number is in the sticky nav above and the CTA band below (§2.9).
+   ========================================================================= */
+.glass .glass__tel,.glass a[href^="tel:"]{display:none !important}
+
+/* §2.a — THE MOVING BANNER RUNS ON THE PHONE TOO. It was deleted below 900 back when the hero
+   was a floating card and the band beneath it needed the room. The hero is a stacked section
+   now, the marquee is the transition out of it, and without it the photograph runs straight
+   into the next band. Grady: "why does the Haas website not have a moving banner anymore?" */
+@media(max-width:900px){ .marquee{display:flex} }
+
+
+/* §1c — the authored break puts "in" with "cattle handling", not stranded at the end of line one.
+   Five lines with a one-word line is the shape a wrong break makes (§1c.3: a slogan breaks at
+   its own sense, never wherever the box runs out).
+   §8 — the button aligns with the text column it belongs to, not to the panel's own edge. */
+@media(max-width:900px){
+  .glass__row{align-items:flex-start}
+  .glass .btn{align-self:flex-start;margin-left:0}
+  .glass__words{align-items:flex-start;text-align:left}
+  .glass__h1,.glass__sub,.glass__rate,.glass__name{text-align:left}
+}
+
 </style>
 </head>
 <body>
@@ -1129,7 +1167,7 @@ h1,h2,h3,.glass__h1,.cta__big{text-transform:uppercase}
              dealer for. Grady, 2026-08-17: "that's on Arrowquip's official website, that's the
              slogan that they have, and so because we use slogans, that's a slogan we're gonna
              use." Set in caps like every other heading (§2.8a). -->
-        <h1 class="glass__h1">A new era in <br>cattle handling <br>is here<em>.</em></h1>
+        <h1 class="glass__h1">A new era <br>in cattle handling <br>is here<em>.</em></h1>
         <p class="glass__sub">Chutes · Alleys · Tubs · Panels &amp; Gates<br>Pennsylvania · New York · New Jersey</p>
         <div class="glass__row">
           <a class="btn" href="#submit">Get pricing</a>
