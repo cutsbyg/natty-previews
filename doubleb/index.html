@@ -1036,6 +1036,13 @@ section[id],div[id],footer[id]{scroll-margin-top:5.5rem}
    Desktop ratio >= viewport_width / (0.70 * viewport_height). At 1920x1080 that is 2.54.
    ========================================================================= */
 
+
+/* §2.8a — EVERY HEADING IS ALL CAPS, on every build. Grady, 2026-08-17: "every single header
+   should always be in full all caps." Double B was the one build still setting them in sentence
+   case, which is why its headings read quieter than the other three. */
+h1,h2,h3,.glass__h1,.cta__big{text-transform:uppercase}
+.glass__h1{text-transform:uppercase;letter-spacing:-.02em}
+
 </style>
 </head>
 <body>
@@ -1091,7 +1098,11 @@ section[id],div[id],footer[id]{scroll-margin-top:5.5rem}
              products, so the headline does not need to. -->
         <!-- §1c.4 — the company name sits directly above the slogan (phone tier). -->
         <span class="glass__name" aria-hidden="true">DOUBLE B FARM SUPPLY</span>
-        <h1 class="glass__h1">We set <br>it up.</h1>
+        <!-- §1c — the slogan is ARROWQUIP'S OWN, from the manufacturer Double B is an authorised
+             dealer for. Grady, 2026-08-17: "that's on Arrowquip's official website, that's the
+             slogan that they have, and so because we use slogans, that's a slogan we're gonna
+             use." Set in caps like every other heading (§2.8a). -->
+        <h1 class="glass__h1">A new era in <br>cattle handling <br>is here<em>.</em></h1>
         <p class="glass__sub">Chutes · Alleys · Tubs · Panels &amp; Gates<br>Pennsylvania · New York · New Jersey</p>
         <div class="glass__row">
           <a class="btn" href="#submit">Get pricing</a>
