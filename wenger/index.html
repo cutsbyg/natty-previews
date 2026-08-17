@@ -803,7 +803,17 @@ h1,h2,h3{font-family:var(--disp);font-weight:900;line-height:.86;letter-spacing:
   .lede{margin-bottom:1.4rem}
   .people{gap:1.4rem}
   .people__meta{gap:1.1rem}.people__meta b{font-size:1.45rem}
-  .steps,.rev{grid-template-columns:1fr;gap:.8rem}
+  .steps{grid-template-columns:1fr;gap:.8rem}
+  /* §2.4c — reviews are TWO ACROSS and short. One per row made each card 934px tall — a whole
+     screen for one quote. Haas and WSL already did this; Wenger was missed because here `.rev`
+     is the CONTAINER and `.rev__c` is the card, so a class-name-based sweep looked at the wrong
+     element. Rules travel by ROLE, not by class name. */
+  .rev{grid-template-columns:1fr 1fr;gap:.55rem}
+  .rev__c{padding:.7rem .75rem;box-shadow:5px 5px 0 var(--ink);border-width:2px}
+  .rev__s{font-size:.95rem;margin-bottom:.35rem}
+  .rev__q{font-size:.78rem;line-height:1.35;margin-bottom:.45rem}
+  .rev__n{font-size:.72rem}
+  .rev__c:nth-child(3){grid-column:1 / -1}
   .step{padding:1.1rem}.step b{font-size:2.1rem}
   .rev__c{padding:1.6rem}
   .faq summary{font-size:1.08rem}

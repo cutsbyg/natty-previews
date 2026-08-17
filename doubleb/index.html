@@ -1108,6 +1108,18 @@ h1,h2,h3,.glass__h1,.cta__big{text-transform:uppercase}
   .glass__h1,.glass__sub,.glass__rate,.glass__name{text-align:left}
 }
 
+
+/* §2.4c — reviews are TWO ACROSS and short, on every build. Double B was stacking them one per
+   row, which is a whole screen per quote. The odd third spans so there is no orphan; nothing is
+   deleted and nothing is truncated (a forced square cut a real quote mid-sentence once). */
+@media(max-width:900px){
+  .revs{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+  .revs>.rev{padding:.7rem .75rem;box-shadow:5px 5px 0 var(--ink)}
+  .revs>.rev:nth-child(3){grid-column:1 / -1}
+  .rev p,.rev blockquote{font-size:.78rem;line-height:1.35}
+  .rev cite,.rev__n{font-size:.72rem}
+}
+
 </style>
 </head>
 <body>
