@@ -1227,8 +1227,47 @@ fieldset.f legend{margin-bottom:.2rem}
   .pj__bar{position:static;background:none;padding:.4rem .1rem 0}
   .pj__bar b{font-size:.78rem;line-height:1.15}
   .pj__bar span,.pj__go{font-size:.7rem}
-  .rev p{font-size:.82rem;line-height:1.4}
-  .rev cite{font-size:.7rem}
+  .rev p{font-size:.8rem;line-height:1.35}
+  .rev cite{font-size:.68rem}
+  /* §0r — two across, and the third spans so there is no orphan on the last row. NOT squared
+     and NOT clipped: forcing 1/1 with overflow:hidden cut a real customer's quote mid-sentence
+     on WSL, and trimming someone's words to tidy a grid is the wrong trade. */
+  .rev{padding:.7rem .75rem;box-shadow:5px 5px 0 var(--ink);border-width:2px}
+  .revs__grid>.rev:nth-child(3){grid-column:1 / -1}
+}
+
+
+/* ============================================================================
+   §2.0d — THE TWO-UP GRID IS EVEN, AND ITS CAPTIONS HAVE A GROUND. ALL BUILDS.
+   Grady, 2026-08-17: "the project section is uneven, and there's no white
+   background on mobile... Whenever I tell you to fix one thing in one website,
+   you can probably assume those issues are present on all the other websites."
+   He is right, and that is now the rule: THE BUILDS ARE ONE RECIPE. A defect
+   found in one is a defect in all of them until measured otherwise.
+   Two defects, both introduced by moving the caption out from over the photo:
+     1. the caption lost the only surface it had, leaving light text on a brand
+        ground — `background:none` is never right for text that used to sit on
+        a scrim;
+     2. card heights ran 262/164/164/147/147/179 because the photos had no
+        common ratio and the flagship kept its desktop size, so no row lined up.
+   Fixed by giving the photo ONE ratio and letting every card stretch.
+   ========================================================================= */
+@media(max-width:900px){
+  .pj__bar{position:static;background:var(--white);color:var(--ink);padding:.45rem .55rem}
+  /* one ratio for every photo, so every row lines up */
+  .mz>.pj .pj__ph{aspect-ratio:4/3;height:auto}
+  /* the flagship stops being special on a phone — it was the 262px outlier */
+  .mz>.pj{align-self:stretch;height:100%;display:flex;flex-direction:column}
+  /* the flagship stops spanning two columns on a phone. Measured 358x315 against 174x194 for
+     everything else — one card twice the size of its neighbours is the "uneven" Grady saw. */
+  .mz>.pj[data-tier="flagship"]{grid-column:span 1}
+  /* and the caption gets a FIXED height. Bars measured 46 / 63 / 78px because titles wrap to
+     one, two or three lines, so even identical photos produced ragged cards. Two lines for the
+     title, one for the sub, clamped — the text still reads, the grid stops staggering. */
+  .pj__bar{min-height:4.2rem;align-items:flex-start}
+  .pj__bar b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .pj__bar i{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+  .mz>.pj .pj__ph img{width:100%;height:100%;object-fit:cover}
 }
 
 </style>
