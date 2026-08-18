@@ -812,10 +812,16 @@ h2 em{font-style:normal;color:var(--brand-deep)}
    12 columns so the set TILES EXACTLY: 2 flagships at span 6 fill row one, 6 majors at
    span 4 fill rows two and three. No orphan tile in a half-empty row (§2.2, §3.4). */
 .mz{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut)}
-.pj{position:relative;display:block;grid-column:span 4;border:3px solid var(--ink);
+/* §2.0d — the work grid must DIVIDE EVENLY. These spanned 4 of 12 (three per row), so with
+   two flagships filling the first row six cards landed 2 + 3 + 1 and the last one sat alone
+   beside a screen of empty ground. Span 3 (four per row) gives 2 + 4, which is what Haas
+   already did — the two builds had different numbers for the same rule. */
+.pj{position:relative;display:block;grid-column:span 3;border:3px solid var(--ink);
   box-shadow:6px 6px 0 var(--ink);background:var(--ink);
   transition:transform .22s var(--ease),box-shadow .22s var(--ease),opacity .25s}
 .pj[data-tier="flagship"]{grid-column:span 6}
+/* an odd last card fills the row rather than sitting alone */
+.pj:last-child:nth-child(4n+1){grid-column:span 12}
 .pj:hover,.pj:focus-visible{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
 .pj__ph{position:relative;aspect-ratio:3/2;overflow:hidden}      /* photos pre-cropped to 3:2 */
 .pj__ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s var(--ease)}
@@ -1469,6 +1475,36 @@ section[id],footer[id]{scroll-margin-top:5.5rem}
    into the next band. Grady: "why does the Haas website not have a moving banner anymore?" */
 @media(max-width:900px){ .marquee{display:flex} }
 
+
+/* ============================================================================
+   §1.1 — THE STATS BAND NEVER SHIPS. NO WIDTH SCOPE. (2026-08-18)
+   It was deleted on the phone and left on the desktop of all three builds — the
+   same "fixed the phone tier, left the rest" error that has produced most of the
+   "you didn't fix it" in this project. §1 already said `stats` is not spine; the
+   deletion just never applied everywhere.
+   Every number in it is stated in words elsewhere on the page.
+   ========================================================================= */
+.stats,.stat,.who__facts{display:none !important}
+
+
+/* ============================================================================
+   §2.0d — THE PROJECT CARD IS ONE SHAPE. NO WIDTH SCOPE. (2026-08-18)
+   The caption clamp was written inside `@media(max-width:900px)`, so on DESKTOP
+   titles still wrapped to one, two or three lines. Three consequences, all in
+   Grady's screenshot: cards in a row ended at different heights, the white
+   caption bar overflowed the card's own box, and the hard offset shadow — drawn
+   on the box — was left behind it as a detached dark bar.
+   Nothing about "a card is one shape" is about viewport width, so it carries no
+   media query. (§0: if you cannot say why a rule stops applying at 901px, it
+   does not belong in a media query.)
+   ========================================================================= */
+.mz>.pj{display:flex;flex-direction:column;overflow:hidden}
+.mz>.pj .pj__ph{flex:none}
+.pj__bar{margin-top:auto;align-items:flex-start;min-height:0}
+.pj__bar>span:first-child{display:flex;flex-direction:column;gap:.1rem;min-width:0}
+.pj__bar b{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.pj__bar i{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+
 </style>
 <!-- §11.3 first-party analytics. Same origin, no cookies, no IP, no consent banner.
      Served by analytics/server.js; harmlessly absent when the folder is opened directly. -->
@@ -1984,10 +2020,10 @@ section[id],footer[id]{scroll-margin-top:5.5rem}
        handicap accessibility, residential remodeling, commercial, lots and home plans. -->
   <div class="lead" id="submit">
     <div class="lead__in">
-      <p class="kicker">TELL US ABOUT THE PROJECT</p>
-      <h2 class="lead__h">SUBMIT A PROJECT<em>.</em></h2>
-      <p class="lead__lede">The more you can tell us up front, the better the first conversation
-        goes. Photos help more than anything.</p>
+      <!-- §2.9 — the second "SUBMIT A PROJECT" heading is DELETED. The CTA band directly
+           above already says it, in bigger type, with the button. An eyebrow, a repeat
+           heading and a lede in front of the form is three lines of fluff between the
+           visitor and the first field. -->
 
       <form class="lead__form" method="post" action="/api/lead" enctype="multipart/form-data">
         <div class="f f--half">

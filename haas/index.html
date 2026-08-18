@@ -1722,6 +1722,36 @@ h1,h2,h3,.kicker,.btn,.nav__brand,.nav__tel b,.mq,.tel-big,.stat .n,.lead__h,.fa
 p,li,cite,blockquote,.lede,.rev p,.who__quote cite,.nav-link,.crew__n em,.artifact__t em,
 label,input,select,textarea,.pj__bar i,.hero__support,.hero__rate-t{font-family:var(--body)}
 
+
+/* ============================================================================
+   §1.1 — THE STATS BAND NEVER SHIPS. NO WIDTH SCOPE. (2026-08-18)
+   It was deleted on the phone and left on the desktop of all three builds — the
+   same "fixed the phone tier, left the rest" error that has produced most of the
+   "you didn't fix it" in this project. §1 already said `stats` is not spine; the
+   deletion just never applied everywhere.
+   Every number in it is stated in words elsewhere on the page.
+   ========================================================================= */
+.stats,.stat,.who__facts{display:none !important}
+
+
+/* ============================================================================
+   §2.0d — THE PROJECT CARD IS ONE SHAPE. NO WIDTH SCOPE. (2026-08-18)
+   The caption clamp was written inside `@media(max-width:900px)`, so on DESKTOP
+   titles still wrapped to one, two or three lines. Three consequences, all in
+   Grady's screenshot: cards in a row ended at different heights, the white
+   caption bar overflowed the card's own box, and the hard offset shadow — drawn
+   on the box — was left behind it as a detached dark bar.
+   Nothing about "a card is one shape" is about viewport width, so it carries no
+   media query. (§0: if you cannot say why a rule stops applying at 901px, it
+   does not belong in a media query.)
+   ========================================================================= */
+.mz>.pj{display:flex;flex-direction:column;overflow:hidden}
+.mz>.pj .pj__ph{flex:none}
+.pj__bar{margin-top:auto;align-items:flex-start;min-height:0}
+.pj__bar>span:first-child{display:flex;flex-direction:column;gap:.1rem;min-width:0}
+.pj__bar b{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.pj__bar i{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+
 </style>
 <!-- §11.3 first-party analytics. Same origin, no cookies, no IP, no consent banner.
      Served by analytics/server.js; harmlessly absent when the folder is opened directly. -->
@@ -2229,10 +2259,10 @@ label,input,select,textarea,.pj__bar i,.hero__support,.hero__rate-t{font-family:
        would put two papers or three blues together and break the §3.2a alternation. -->
   <div class="lead" id="submit">
     <div class="lead__in">
-      <p class="kicker" style="color:#cfe0f0">TELL US ABOUT THE JOB</p>
-      <h2 class="lead__h">SUBMIT A PROJECT<em>.</em></h2>
-      <p class="lead__lede">The more you can tell us up front, the better the first conversation goes.
-        Photos help more than anything.</p>
+      <!-- §2.9 — the second "SUBMIT A PROJECT" heading is DELETED. The CTA band directly
+           above already says it, in bigger type, with the button. An eyebrow, a repeat
+           heading and a lede in front of the form is three lines of fluff between the
+           visitor and the first field. -->
 
       <form class="lead__form" method="post" action="/api/lead" enctype="multipart/form-data">
         <div class="f f--half">
