@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Encore Roofing, LLC — Roofs, repairs and gutters in Perry County, PA</title>
+<meta name="description" content="Encore Roofing, LLC of Newport, PA. Roof replacement, repairs, siding, windows and gutters across Perry, Cumberland and Dauphin counties. 4.9 on Google. Call (717) 979-1975.">
+
+<!-- §9 — the LCP image is discoverable in the HTML and never lazy. -->
+<link rel="preload" as="image" href="img/hero-wide.webp?v=1" media="(min-width:901px)" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-phone.webp?v=1" media="(max-width:900px)" fetchpriority="high">
+
+<!-- §3.3 — TWO families, one job each. Archivo carries display, Inter carries body. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="css/site.css?v=1">
+</head>
+<body>
+<a class="skip" href="#work">Skip to the projects</a>
+<div id="rail" aria-hidden="true"></div>
+
+<!-- ═════ NAV (§10) ═════ -->
+<header class="nav">
+  <div class="nav__in">
+    <a class="brandmark" href="#top" aria-label="Encore Roofing, home">
+      <img src="img/logo.png?v=1" width="260" height="238" alt="Encore Roofing">
+      <b>ENCORE<span class="wm"> ROOFING</span></b>
+    </a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#work">Projects</a>
+      <a href="#scott">Scott</a>
+      <a href="#reviews">Reviews</a>
+    </nav>
+    <a class="nav__tel" href="tel:+17179791975" aria-label="Call 7 1 7. 9 7 9. 1 9 7 5">(717)&nbsp;979-1975</a>
+  </div>
+</header>
+
+<!-- ═════ HERO (§1a, §1.0b) ═════
+     THE PANEL IS A CHILD OF .hero__media AT EVERY WIDTH (§1.0b-G1). Above 900 it is the glass
+     bubble ON the photograph, left, in the lawn. At 900 and below .hero__media becomes a plain
+     wrapper — aspect-ratio:auto, overflow:visible — the <picture> carries the ratio, and the
+     panel is a full-bleed paper SECTION under the photo (§1.0b-H). Ratios declared here are the
+     ratio of the file actually served at that width (§1.0b-G1): 2.6 wide, 1.5 phone.
+     The panel holds exactly six things (§1.0b-Q): the name, the slogan, what+where, the rating,
+     ONE button, and Scott. No phone number — it is in the nav above and the CTA below. -->
+<section class="hero" id="top" aria-label="Encore Roofing">
+  <div class="hero__media">
+    <!-- §9.3 THE LOOPING HERO FILM — the one place `loop` is allowed, and only because all
+         seven conditions hold: hero only · ping-pong seam measured at 5.2/255 mean abs diff
+         between the first and last frame · 6.000s · 990KB h264, no audio track · autoplay muted
+         loop playsinline (without muted+playsinline iOS refuses and paints a black box) ·
+         poster IS the approved hero still so the first paint is the photograph and the still
+         is the fallback if the video never loads · and reduced-motion hides it entirely.
+         The film was generated FROM this still, so it is the same frame moving. It is 16:9
+         because Kling rejects 2.6; `object-fit:cover` crops it into the hero box, and the
+         STILL — not the film — is what §1.0b-G1 measures. -->
+    <video class="hero__film" autoplay muted loop playsinline preload="none"
+           poster="img/hero-poster.jpg?v=1" width="1600" height="900" aria-hidden="true">
+      <source src="img/hero-loop.mp4?v=1" type="video/mp4">
+    </video>
+
+    <picture class="hero__pic">
+      <source media="(max-width:900px)" type="image/webp" srcset="img/hero-phone.webp?v=1" width="1500" height="1000">
+      <source media="(max-width:900px)" srcset="img/hero-phone.jpg?v=1" width="1500" height="1000">
+      <source type="image/webp" srcset="img/hero-wide.webp?v=1" width="2600" height="1000">
+      <img src="img/hero-wide.jpg?v=1" width="2600" height="1000" fetchpriority="high"
+           alt="A drone view of the Encore Roofing crew laying shingle across a large charcoal roof, with the mown lawn and tree line beside the house">
+    </picture>
+
+    <div class="glass hero__panel">
+      <div class="hero__words">
+        <span class="eyebrow">Encore Roofing, LLC</span>
+        <h1>Quality you can trust</h1>
+        <p class="sup">NEW ROOFS &middot; REPAIRS &middot; GUTTERS<br>PERRY, CUMBERLAND &amp; DAUPHIN COUNTIES</p>
+        <p class="rate"><span class="stars" aria-hidden="true">★★★★★</span><span>4.9 on Google</span></p>
+        <p class="hero__act"><a class="btn" href="#submit">Start your project</a></p>
+      </div>
+      <div class="hero__cut">
+        <img src="img/scott-cut.png?v=1" width="899" height="1107"
+             alt="Scott Boreman of Encore Roofing, in an Encore Roofing shirt">
+      </div>
+    </div>
+
+    <a class="cue" href="#work" aria-label="See the projects">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="3" aria-hidden="true"><path d="M5 8l7 8 7-8"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ═════ MARQUEE (§2) — paper chrome, not counted in the alternation ═════ -->
+<div class="marquee" aria-hidden="true">
+  <ul class="mq">
+    <li>Newport</li><li class="d">◆</li>
+    <li>Marysville</li><li class="d">◆</li>
+    <li>Carlisle</li><li class="d">◆</li>
+    <li>Camp Hill</li><li class="d">◆</li>
+    <li>Mechanicsburg</li><li class="d">◆</li>
+    <li>Harrisburg</li><li class="d">◆</li>
+    <li>New Cumberland</li><li class="d">◆</li>
+    <li>Perry County</li><li class="d">◆</li>
+    <li>Cumberland County</li><li class="d">◆</li>
+    <li>Dauphin County</li><li class="d">◆</li>
+    <li>Quality you can trust</li><li class="d">◆</li>
+  </ul>
+</div>
+
+<!-- ═════ WORK (brand) (§4) ═════ -->
+<section id="work" class="band g-brand">
+  <div class="wrap">
+    <p class="kick">Perry, Cumberland &amp; Dauphin counties</p>
+    <h2>Recent roofs</h2>
+    <div class="grid">
+      <a class="pj" href="https://www.facebook.com/photo.php?fbid=1617168430414128&amp;set=pb.100063629588031.-2207520000&amp;type=3"
+         target="_blank" rel="noopener">
+        <span class="pj__ph"><img src="img/job-colonial.jpg?v=1" width="1200" height="800"
+             alt="A three-storey brick colonial stripped to the deck with two Encore roofers laying felt across it"></span>
+        <span class="pj__bar"><b>The brick colonial</b><i>Tear-off and re-deck &middot; May 2026</i></span>
+      </a>
+      <a class="pj" href="https://www.facebook.com/photo.php?fbid=1617168400414131&amp;set=pb.100063629588031.-2207520000&amp;type=3"
+         target="_blank" rel="noopener">
+        <span class="pj__ph"><img src="img/job-skylight.jpg?v=1" width="1200" height="800"
+             alt="A cream sided house being re-roofed by Encore Roofing, with a skylight and new pipe boots set into the deck"></span>
+        <span class="pj__bar"><b>The house with the skylight</b><i>Re-roof and pipe boots &middot; May 2026</i></span>
+      </a>
+      <a class="pj" href="https://www.facebook.com/photo.php?fbid=395746690485444&amp;set=pb.100063629588031.-2207520000&amp;type=3"
+         target="_blank" rel="noopener">
+        <span class="pj__ph"><img src="img/job-dormers.jpg?v=1" width="720" height="480"
+             alt="A stone and siding house with three dormers and a finished grey roof by Encore Roofing"></span>
+        <span class="pj__bar"><b>The house with three dormers</b><i>Full replacement &middot; July 2012</i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ THE PEOPLE (paper) (§3) ═════ -->
+<section id="scott" class="band g-paper">
+  <div class="wrap">
+    <p class="kick">Newport, Pennsylvania</p>
+    <h2>Scott and the crew</h2>
+    <div class="two">
+      <figure class="fig">
+        <span class="frame"><img src="img/crew-at-work.jpg?v=1" width="1600" height="1047"
+             alt="Two Encore Roofing men working either side of a dormer with the felt down and batten strips laid"></span>
+        <figcaption>Our men on a tear-off, May 2026. Photographed on the job, not staged.</figcaption>
+      </figure>
+      <div class="two__t">
+        <p>Scott Boreman runs Encore Roofing out of Newport. We put on new roofs, patch the ones
+           that can be patched, and hang gutters, siding and windows &mdash; houses only, right
+           across Perry, Cumberland and Dauphin counties.</p>
+        <p class="sec">You get the same phone number for the estimate, for the job, and for anything after it.</p>
+        <ul class="facts">
+          <li><b>Scott's number</b><a href="tel:+17179791975" aria-label="Call 7 1 7. 9 7 9. 1 9 7 5">(717) 979-1975</a></li>
+          <li><b>We answer</b><span>7am to 10pm, every day</span></li>
+          <li><b>Find us</b><a href="https://www.facebook.com/EncoreRoofing" target="_blank" rel="noopener">Encore Roofing on Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ BEFORE / AFTER — earned extra #1 (brand) (§9.2b) ═════
+     A genuine pair, both frames off their own 2026-04-23 post, matched on eight fixed features:
+     the yellow outbuilding and its white stair, the two white tanks, the timber jump-rails, the
+     red pickup, the trailer, the stop sign, the utility pole and guy-wire, and the concrete walk.
+     It opens at 100% — the finished side — and sways once to teach the gesture. -->
+<section id="transform" class="band g-brand">
+  <div class="wrap">
+    <p class="kick">One roof, one day</p>
+    <h2>Before and after</h2>
+    <figure class="ba" style="--ba:0%">
+      <div class="ba__win">
+        <img class="ba__a" src="img/ba-after.jpg?v=1" width="1200" height="900"
+             alt="The same roof stripped and dried in with black synthetic underlayment, ready for shingle">
+        <span class="ba__clip"><img src="img/ba-before.jpg?v=1" width="1200" height="900"
+             alt="The old weathered roof before Encore Roofing stripped it, with hoses and tools lying across it"></span>
+        <span class="ba__line" aria-hidden="true"></span>
+        <input class="ba__range" type="range" min="0" max="100" value="0"
+               aria-label="Drag right to reveal the roof before we started" aria-valuenow="0">
+        <span class="ba__tag l">Before</span>
+        <span class="ba__tag r">After</span>
+      </div>
+      <figcaption class="ba__cap">Drag the handle. The black is the underlayment that goes under
+        the shingle, not the finished roof. Posted April 2026.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═════ REVIEWS + FAQ (paper) (§6) ═════ -->
+<section id="reviews" class="band g-paper">
+  <div class="wrap">
+    <p class="kick">What the owners say</p>
+    <h2>138 Google reviews</h2>
+    <div class="revs">
+      <article class="rev">
+        <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+        <blockquote>We had the best experience with Encore roofing. Great communication and they
+          did a job. Would highly recommend.</blockquote>
+        <cite>Shelly Corbliss</cite>
+      </article>
+      <article class="rev">
+        <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+        <blockquote>They did a great job on my roof last spring. Very friendly crew. Job was always
+          clean and the roof looks great. I highly recommend them.</blockquote>
+        <cite>Wendy Howell</cite>
+      </article>
+      <article class="rev">
+        <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+        <blockquote>From the estimate stage to my finished new roof, Encore Roofing, LLC did an
+          outstanding job. You can't beat the prices or the quality of work.</blockquote>
+        <cite>Adam Briggs</cite>
+      </article>
+      <article class="rev">
+        <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+        <blockquote>Very happy with the pricing and service Encore roofing provided. They showed up
+          and got the job done in a timely manner also! Would highly recommend them!!!</blockquote>
+        <cite>Michelle Carr</cite>
+      </article>
+    </div>
+    <p class="count"><a href="https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867"
+       target="_blank" rel="noopener">Read all 138 on Google →</a></p>
+
+    <!-- FAQ (spine). Four questions, every answer a fact off their own pages. The questions we
+         cannot answer yet — warranty, manufacturer certification, PA registration — are the ones
+         buyers search for, and not one of them ships until Scott answers it. -->
+    <div class="faq" id="faq">
+      <p class="kick">Before you call</p>
+      <h3>Questions we get asked</h3>
+      <div class="faq__list">
+        <details name="faq" open>
+          <summary>Do you repair roofs, or only replace them?</summary>
+          <p>Both. We do repairs, full replacements, and storm and wind damage &mdash; and we hang
+            gutters, siding and windows too.</p>
+        </details>
+        <details name="faq">
+          <summary>What goes on a full replacement?</summary>
+          <p>Architectural shingle. We also do roof ventilation and roof inspections, so if the
+            problem turns out to be venting rather than shingle, we will tell you that.</p>
+        </details>
+        <details name="faq">
+          <summary>Do you do commercial roofs?</summary>
+          <p>No. Residential services only &mdash; houses, not warehouses.</p>
+        </details>
+        <details name="faq">
+          <summary>What areas do you cover?</summary>
+          <p>We work out of Newport and cover Perry, Cumberland and Dauphin counties. Marysville,
+            Carlisle, Camp Hill, Mechanicsburg, New Cumberland and Harrisburg are all regular runs,
+            so if you are near any of them, call and ask.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ CTA + SUBMIT A PROJECT (brand) (§8, §1.0d, §0z) ═════
+     §0z: the form is the loudest thing in this band and the phone sits beneath it. -->
+<section id="submit" class="band g-brand cta">
+  <div class="wrap">
+    <p class="kick">Talk to Scott</p>
+    <h2>Send Scott the job</h2>
+    <form id="quote" action="/api/lead" method="post" enctype="multipart/form-data">
+      <p class="lede">Photographs of the roof help more than anything you can type. We answer the
+        phone from 7am to 10pm, every day of the week.</p>
+      <div class="fgrid">
+        <p><label for="q-name">Your name</label><input id="q-name" name="name" autocomplete="name" required></p>
+        <p><label for="q-tel">Phone</label><input id="q-tel" name="phone" type="tel" autocomplete="tel" required></p>
+        <p><label for="q-mail">Email</label><input id="q-mail" name="email" type="email" autocomplete="email"></p>
+        <p><label for="q-prop">Property</label>
+          <select id="q-prop" name="property">
+            <option>House</option><option>Garage or outbuilding</option><option>Other</option>
+          </select></p>
+        <p class="full"><label for="q-addr">Job site address</label>
+          <input id="q-addr" name="address" autocomplete="street-address"></p>
+        <p class="full"><label for="q-photo">Photos of the roof</label>
+          <input id="q-photo" name="photos" type="file" accept="image/*" multiple></p>
+      </div>
+      <fieldset>
+        <legend>What do you need done?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="job" value="Full replacement"><span>Full replacement</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Repair"><span>Repair</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Storm damage"><span>Storm damage</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Inspection"><span>Inspection</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Gutters"><span>Gutters</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Siding"><span>Siding</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Windows"><span>Windows</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Not sure yet"><span>Not sure yet</span></label>
+        </div>
+      </fieldset>
+      <div class="fgrid">
+        <p><label for="q-heard">How did you hear about us?</label>
+          <select id="q-heard" name="heard">
+            <option>Google</option><option>Facebook</option><option>A neighbour</option>
+            <option>Saw the yard sign</option><option>Saw the truck</option><option>Other</option>
+          </select></p>
+        <p><label for="q-when">When do you need it?</label>
+          <select id="q-when" name="when">
+            <option>Not sure yet</option><option>It is leaking now</option>
+            <option>Within a month</option><option>This year</option>
+          </select></p>
+        <p class="full"><label for="q-notes">Anything else</label>
+          <textarea id="q-notes" name="notes" rows="3"></textarea></p>
+      </div>
+      <p class="send"><button class="btn btn--go" type="submit">Send it to Scott</button></p>
+      <p class="note" id="q-msg" role="status"></p>
+    </form>
+    <p class="ratherbig">Rather talk?
+      <a class="bigtel" href="tel:+17179791975" aria-label="Call 7 1 7. 9 7 9. 1 9 7 5">(717) 979-1975</a></p>
+  </div>
+</section>
+
+<!-- ═════ FOOTER (paper, flat) (§9) ═════ -->
+<footer class="foot g-paper">
+  <div class="wrap">
+    <div class="foot__top">
+      <span class="foot__plate"><img src="img/logo.png?v=1" width="260" height="238" alt="Encore Roofing"></span>
+      <b>ENCORE ROOFING, LLC</b>
+    </div>
+    <div class="fcols">
+      <div><h4>Where we work</h4>
+        <ul><li>Newport</li><li>Marysville</li><li>Carlisle</li><li>Camp Hill</li>
+            <li>Mechanicsburg</li><li>Harrisburg</li><li>New Cumberland</li>
+            <li>Perry, Cumberland &amp; Dauphin counties</li></ul></div>
+      <div><h4>What we do</h4>
+        <ul><li>Roof replacement</li><li>Roof repairs</li><li>Storm &amp; wind damage</li>
+            <li>Roof inspection &amp; ventilation</li><li>Gutters</li><li>Siding</li>
+            <li>Windows</li><li>Residential only</li></ul></div>
+      <div><h4>Reach us</h4>
+        <ul><li>7am to 10pm, every day</li>
+            <li><a href="tel:+17179791975" aria-label="Call 7 1 7. 9 7 9. 1 9 7 5">(717) 979-1975</a></li>
+            <li><a href="mailto:encoreroofing1@gmail.com">encoreroofing1@gmail.com</a></li>
+            <li><a href="https://www.facebook.com/EncoreRoofing" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867" target="_blank" rel="noopener">Google profile</a></li></ul></div>
+    </div>
+    <p class="fslogan">Quality you can trust</p>
+    <p class="legal">
+      <span>© 2026 Encore Roofing, LLC · Newport, Pennsylvania</span>
+      <a class="foot__adm" href="/admin">Owner login</a>
+    </p>
+  </div>
+</footer>
+
+<!-- §9 — the full LocalBusiness record, typed RoofingContractor. streetAddress is deliberately
+     absent: the registered address is a private house (GAPS §5). geo is the pin off their own
+     Google profile, the same URL linked in the reviews band and the footer. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"RoofingContractor",
+ "@id":"https://encoreroofingllc.com/#business",
+ "name":"Encore Roofing, LLC","url":"https://encoreroofingllc.com/",
+ "telephone":"+1-717-979-1975","email":"encoreroofing1@gmail.com",
+ "address":{"@type":"PostalAddress","addressLocality":"Newport","addressRegion":"PA","postalCode":"17074","addressCountry":"US"},
+ "geo":{"@type":"GeoCoordinates","latitude":40.4621747,"longitude":-77.1992867},
+ "areaServed":["Newport, PA","Marysville, PA","Carlisle, PA","Camp Hill, PA","Mechanicsburg, PA","Harrisburg, PA","New Cumberland, PA","Perry County, PA","Cumberland County, PA","Dauphin County, PA"],
+ "openingHours":"Mo-Su 07:00-22:00",
+ "slogan":"Quality you can trust",
+ "founder":{"@type":"Person","name":"Scott Boreman"},
+ "sameAs":["https://www.facebook.com/EncoreRoofing",
+   "https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Do you repair roofs, or only replace them?","acceptedAnswer":{"@type":"Answer","text":"Both. We do repairs, full replacements, and storm and wind damage — and we hang gutters, siding and windows too."}},
+{"@type":"Question","name":"What goes on a full replacement?","acceptedAnswer":{"@type":"Answer","text":"Architectural shingle. We also do roof ventilation and roof inspections, so if the problem turns out to be venting rather than shingle, we will tell you that."}},
+{"@type":"Question","name":"Do you do commercial roofs?","acceptedAnswer":{"@type":"Answer","text":"No. Residential services only — houses, not warehouses."}},
+{"@type":"Question","name":"What areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We work out of Newport and cover Perry, Cumberland and Dauphin counties. Marysville, Carlisle, Camp Hill, Mechanicsburg, New Cumberland and Harrisburg are all regular runs, so if you are near any of them, call and ask."}}]}
+</script>
+<script defer src="js/site.js?v=1"></script>
+<script defer src="./a.js"></script>
+</body>
+</html>
