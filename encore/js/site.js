@@ -79,6 +79,20 @@
       .then(function () { if (!hinted) ba.classList.add('is-hinting'); });
   })();
 
+  /* ---- §9.3 the hero film: NUDGE IT, THEN GIVE UP QUIETLY ---------------
+     The attributes alone are not enough on a phone. iOS refuses autoplay in Low Power Mode,
+     and some Android data-saver modes refuse it too. play() returns a promise that REJECTS in
+     those cases — unhandled, that is a console error on every affected visit and nothing else.
+     So: ask once, and if the answer is no, remove the film and let the poster stand. That is
+     condition 6 doing its job, not a failure. Never show the visitor a paused black box. */
+  (function () {
+    var v = document.querySelector('.hero__film');
+    if (!v) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.remove(); return; }
+    var p = v.play();
+    if (p && p.catch) p.catch(function () { v.remove(); });
+  })();
+
   /* ---- §1.0d the form: validation runs, and it says what happened ------- */
   (function () {
     var f = document.getElementById('quote'), msg = document.getElementById('q-msg');

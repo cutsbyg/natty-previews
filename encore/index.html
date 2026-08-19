@@ -56,9 +56,14 @@
          The film was generated FROM this still, so it is the same frame moving. It is 16:9
          because Kling rejects 2.6; `object-fit:cover` crops it into the hero box, and the
          STILL — not the film — is what §1.0b-G1 measures. -->
-    <video class="hero__film" autoplay muted loop playsinline preload="none"
-           poster="img/hero-poster.jpg?v=1" width="1600" height="900" aria-hidden="true">
-      <source src="img/hero-loop.mp4?v=1" type="video/mp4">
+    <!-- 🛑 preload MUST NOT be "none". It shipped that way once and the film never played on
+         an iPhone: iOS Safari will not autoplay a video it was told not to buffer, while
+         Chromium ignores preload for an autoplaying muted video and plays it anyway. So every
+         desktop check passed and the phone — which is most of the traffic — got a still.
+         `preload="auto"` is a 990KB fetch and it is the point of the band. -->
+    <video class="hero__film" autoplay muted loop playsinline preload="auto"
+           poster="img/hero-poster.jpg?v=2" width="1600" height="900" aria-hidden="true">
+      <source src="img/hero-loop.mp4?v=2" type="video/mp4">
     </video>
 
     <picture class="hero__pic">
