@@ -104,11 +104,15 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
    film down over the text. It is pinned to the TOP and takes the served plate's ratio, which
    is the picture's own box exactly. `inset:0` is correct only above 901, where .hero__media
    IS the photograph — so that value lives in the min-width block, not here. */
+/* 🛑 THE FILM MUST PAINT ABOVE THE STILL. It shipped at z-index:0 with the <picture> also
+   at 0 and LATER in the DOM — so the opaque still painted over the film at every width.
+   The video measured paused:false in every check while not one of its pixels was visible:
+   `paused` is playback state, not paint order. Pixel-diff two screenshots to verify a film. */
 .hero__film{position:absolute;top:0;left:0;width:100%;height:auto;
   aspect-ratio:1500/1000;object-fit:cover;
-  display:block;z-index:0;pointer-events:none}
+  display:block;z-index:1;pointer-events:none}
 .hero__pic{position:relative;z-index:0}
-.hero__panel{position:relative;z-index:1}
+.hero__panel{position:relative;z-index:2}
 
 .hero__panel{
   position:static;width:100%;
