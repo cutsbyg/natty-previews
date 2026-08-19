@@ -183,6 +183,8 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
 .fig figcaption{margin-top:.5rem;font:400 clamp(.8rem,2.2vw,.92rem)/1.4 var(--body);
   color:var(--ink-60)}
 .two__t p{max-width:52ch;font-size:1rem;line-height:1.55;margin:0}
+.scott__line{font:600 .92rem/1.5 var(--body);color:var(--ink-60)}
+.scott__line a{font-weight:700;text-underline-offset:3px}
 .two__t a{font-weight:700;text-underline-offset:3px}
 .sec{display:none}
 .facts{list-style:none;margin:.8rem 0 0;padding:.5rem 0 0;border-top:1px solid var(--rule);
@@ -401,7 +403,13 @@ p.frun a{font-weight:700;text-underline-offset:3px}
   .pj:first-child .pj__ph{aspect-ratio:3/2}
   .revs{grid-template-columns:repeat(4,1fr)}
   .faq__list{display:grid;grid-template-columns:1fr 1fr;gap:0 2rem;align-items:start}
-  .two{grid-template-columns:.72fr 1fr;gap:clamp(1.6rem,3.4vw,2.6rem);align-items:start}
+  /* the section is now a photograph with one contact line — the old .72fr/1fr split was
+     sized for a paragraph column that no longer exists (pictures, then headings, then
+     nothing), and it left the line floating in an empty half-band. Image-led instead:
+     the photo carries the band, the line sits under it beside the caption. */
+  .two{grid-template-columns:minmax(0,52rem);justify-content:center;
+    gap:.4rem;align-items:start}
+  .two__t{text-align:right}   /* under the caption row, right-aligned against the photo edge */
   .fgrid{grid-template-columns:1fr 1fr}
   .opts{grid-template-columns:repeat(4,1fr)}
   .fcols{grid-template-columns:repeat(3,1fr);gap:2rem}
