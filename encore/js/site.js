@@ -93,6 +93,47 @@
     if (p && p.catch) p.catch(function () { v.remove(); });
   })();
 
+  /* ---- STICKY MOBILE CTA -------------------------------------------------
+     Two observers, because the bar has two jobs and they are not the same job:
+       1. APPEAR once the hero is gone. Not a scroll-px threshold — a pixel count is
+          wrong on every viewport it was not measured on, and the hero's height differs
+          by tier here (1.5 phone plate vs 2.6 wide).
+       2. HIDE once the real form is on screen. This is the one that matters. The best
+          documented test of this pattern found a sticky button that merely SCROLLED TO
+          the form produced no significant lift — so a bar still shouting "free estimate"
+          while the estimate form is right there is pure competition with itself.
+     Plus a keyboard guard: iOS `position:fixed` does NOT respect the on-screen keyboard,
+     so the bar floats over the very inputs it sent them to. It is hidden while any field
+     in the form has focus — where it is useless anyway. -------------------------------- */
+  (function () {
+    var bar = document.getElementById('stick');
+    if (!bar || !('IntersectionObserver' in window)) return;
+    var hero = document.querySelector('.hero'),
+        form = document.getElementById('submit');
+    if (!hero || !form) return;
+
+    bar.hidden = false;               // it exists in the HTML; reveal it to layout only now
+    var pastHero = false, atForm = false, typing = false;
+    function apply() { bar.classList.toggle('on', pastHero && !atForm && !typing); }
+
+    new IntersectionObserver(function (es) {
+      pastHero = !es[0].isIntersecting; apply();
+    }, {threshold: 0}).observe(hero);
+
+    // 25%: enough of the form on screen that it owns the moment
+    new IntersectionObserver(function (es) {
+      atForm = es[0].isIntersecting;
+      // scrolling does not blur a focused input on touch, so a visitor who tapped a
+      // field and then scrolled back up would lose the bar forever. Off-screen form
+      // means the keyboard moment is over regardless of where focus is.
+      if (!atForm) typing = false;
+      apply();
+    }, {threshold: 0.25}).observe(form);
+
+    form.addEventListener('focusin',  function () { typing = true;  apply(); });
+    form.addEventListener('focusout', function () { typing = false; apply(); });
+  })();
+
   /* ---- §1.0d the form: validation runs, and it says what happened ------- */
   (function () {
     var f = document.getElementById('quote'), msg = document.getElementById('q-msg');

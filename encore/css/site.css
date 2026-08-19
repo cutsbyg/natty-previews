@@ -20,7 +20,7 @@
   --body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
   --wrap:78rem;
   --hs:6px 6px 0 var(--ink);  /* the house hard offset shadow: equal offsets, zero blur */
-  --pad:clamp(1.5rem,4.2vw,1.75rem);
+  --pad:clamp(1.05rem,3vw,1.75rem);   /* height purge 2026-08-18: 8 bands pay this twice */
   --gut:clamp(.75rem,1.6vw,1.25rem);
 }
 @property --ba{syntax:'<percentage>';inherits:true;initial-value:0%}
@@ -62,9 +62,9 @@ a{color:inherit}
 .g-brand a{color:#fff}
 .g-brand .kick{color:#fff;opacity:.86}
 .kick{font:600 .74rem/1.4 var(--disp);letter-spacing:.16em;text-transform:uppercase;
-  color:var(--brand);margin:0 0 .5rem}
+  color:var(--brand);margin:0 0 .25rem}
 h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-height:.9;
-  margin:0 0 clamp(.5rem,1.4vw,.85rem)}
+  margin:0 0 clamp(.4rem,1.1vw,.7rem)}
 .lede{font:400 1.125rem/1.5 var(--body);max-width:34ch}
 
 /* ---- §10 NAV ------------------------------------------------------------ */
@@ -167,6 +167,10 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
 .pj__bar b,.pj__bar i{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;
   overflow:hidden}
 .pj__bar b{font-size:clamp(.92rem,1.4vw,1.35rem);font-weight:700;line-height:1.2}
+/* titles get TWO lines — at one, "The house with the skylight" clamps to "The house
+   with the…" in the 2-across phone row, which reads as broken. Placed AFTER the shared
+   clamp rule: same specificity, so source order is the whole mechanism here. */
+.pj__bar b{-webkit-line-clamp:2}
 .pj__bar i{font:400 clamp(.72rem,1.1vw,.82rem)/1.3 var(--body);font-style:normal;
   color:var(--ink-60)}
 
@@ -174,12 +178,15 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
 .two{display:grid;gap:clamp(1.2rem,3vw,2rem);align-items:start}
 .fig{margin:0}
 .frame{display:block;box-shadow:var(--hs);transition:transform .2s,box-shadow .2s}
+.frame img{aspect-ratio:2/1;object-fit:cover;object-position:50% 38%}
 .fig:hover .frame{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
 .fig figcaption{margin-top:.5rem;font:400 clamp(.8rem,2.2vw,.92rem)/1.4 var(--body);
   color:var(--ink-60)}
-.two__t p{max-width:52ch}
+.two__t p{max-width:52ch;font-size:1rem;line-height:1.55;margin:0}
+.two__t a{font-weight:700;text-underline-offset:3px}
 .sec{display:none}
-.facts{list-style:none;margin:1.2rem 0 0;padding:0;border-top:1px solid var(--rule)}
+.facts{list-style:none;margin:.8rem 0 0;padding:.5rem 0 0;border-top:1px solid var(--rule);
+  display:flex;flex-wrap:wrap;gap:.1rem 1.6rem}
 .facts li{display:flex;flex-wrap:wrap;gap:.2rem 1rem;align-items:center;
   padding:.55rem 0;border-bottom:1px solid var(--rule);min-height:44px}
 .facts b{font:600 .74rem/1.4 var(--disp);letter-spacing:.16em;text-transform:uppercase;
@@ -190,7 +197,7 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
 
 /* ---- §9.2b BEFORE / AFTER ----------------------------------------------- */
 .ba{margin:0}
-.ba__win{position:relative;aspect-ratio:3/2;box-shadow:var(--hs);
+.ba__win{position:relative;aspect-ratio:16/9;box-shadow:var(--hs);
   max-width:52rem;margin-inline:auto}
 .ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   object-position:50% 50%}
@@ -221,7 +228,8 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
 /* ---- §6 REVIEWS + FAQ --------------------------------------------------- */
 /* §2.4c — TWO ACROSS, always, sized to content. Never one per row. */
 .revs{display:grid;grid-template-columns:1fr 1fr;gap:var(--gut)}
-.rev{min-width:0;background:#fff;padding:clamp(.7rem,2vw,1.35rem);box-shadow:var(--hs);
+.rev{min-width:0;background:#fff;padding:clamp(.55rem,1.4vw,1.35rem);box-shadow:var(--hs);
+  font-size:.88rem;
   transition:transform .2s,box-shadow .2s}
 .rev:hover{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
 .rev .stars{margin:0 0 .4rem;color:var(--star);font-size:clamp(.98rem,2.7vw,1.6rem);
@@ -229,12 +237,12 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
 .rev blockquote{margin:0 0 .4rem;font:700 clamp(.8rem,2.3vw,1.12rem)/1.35 var(--body)}
 .rev cite{font:400 clamp(.75rem,2vw,1.05rem)/1.2 var(--body);font-style:normal;
   color:var(--ink-60)}
-.count{margin:.5rem 0 0}
+.count{margin:.2rem 0 0}
 .count a{display:inline-flex;align-items:center;min-height:44px;
   font:700 1.02rem/1 var(--body);text-underline-offset:4px}
 .count a:hover{color:var(--brand)}
 
-.faq{margin-top:clamp(1rem,2.8vw,1.5rem);padding-top:clamp(1rem,2.5vw,1.4rem);
+.faq{margin-top:clamp(.7rem,2vw,1.1rem);padding-top:clamp(.7rem,1.8vw,1rem);
   border-top:1px solid var(--rule)}
 .faq h3{font-size:clamp(1.3rem,4.2vw,2rem);font-weight:900;text-transform:uppercase;
   margin:0 0 .6rem}
@@ -247,13 +255,13 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
   color:var(--brand)}
 .faq details[open] summary::after{content:"–"}
 .faq summary:hover{color:var(--brand)}
-.faq details p{margin:0 0 .7rem;max-width:60ch;font-size:1.125rem;color:var(--ink-60)}
+.faq details p{margin:0 0 .6rem;max-width:60ch;font-size:1rem;color:var(--ink-60)}
 
 /* ---- §8 CTA + SUBMIT A PROJECT ------------------------------------------ */
 /* §0z — the form is the loudest thing here; the phone follows it. */
-.cta .lede{max-width:46ch;margin-bottom:1.4rem}
+.cta .lede{max-width:46ch;margin-bottom:.9rem}
 #quote{margin:0}
-.fgrid{display:grid;grid-template-columns:1fr;gap:.9rem}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem .6rem}
 .fgrid p{margin:0}
 .fgrid .full{grid-column:1 / -1}
 label,legend{display:block;font:600 .74rem/1.4 var(--disp);letter-spacing:.16em;
@@ -268,41 +276,47 @@ fieldset{margin:1.4rem 0;padding:0;border:0}
 legend{padding:0}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
 /* §8.18 — the WHOLE ROW is the tap target, not the 20px box. */
-.opt{display:flex;align-items:center;gap:.6rem;min-height:48px;padding:0 .7rem;
+.opt{display:flex;align-items:center;gap:.6rem;min-height:44px;padding:0 .7rem;
   background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);cursor:pointer;
   font:400 .95rem/1.25 var(--body);letter-spacing:0;text-transform:none;color:#fff;
   margin:0;transition:background .15s}
 .opt:hover,.opt:focus-within{background:rgba(255,255,255,.2)}
 .opt input{width:20px;height:20px;min-height:20px;flex:none;accent-color:var(--brand);
   -webkit-appearance:auto;appearance:auto;padding:0}
-.send{margin:1.4rem 0 0}
+.send{margin:1rem 0 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.nb{margin:.7rem 0 0}
 .btn--go{min-height:56px;background:#fff;color:var(--brand);
   font-size:clamp(1rem,2.8vw,1.25rem);box-shadow:8px 8px 0 var(--ink)}
 .btn--go:hover,.btn--go:focus-visible{box-shadow:3px 3px 0 var(--ink)}
 .note{margin:.7rem 0 0;font:600 1rem/1.4 var(--body)}
-.ratherbig{margin:1.4rem 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem;
+.ratherbig{margin:0;display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.5rem;
   font:400 1.125rem/1.3 var(--body)}
+.send .bigtel{font-size:1.15rem}
 .bigtel{font:800 clamp(1.7rem,5.4vw,2.6rem)/1 var(--disp);text-decoration:none;
   white-space:nowrap;letter-spacing:-.01em;border-bottom:3px solid #fff;
   transition:opacity .15s}
 .bigtel:hover{opacity:.82}
 
 /* ---- §9 FOOTER — a designed band, flat ground, three type sizes ---------- */
-.foot{padding:var(--pad) 0 2rem}
-.foot__top{display:flex;align-items:center;gap:.8rem;margin-bottom:clamp(1.4rem,4vw,2rem)}
+.foot{padding:var(--pad) 0 calc(1rem + 64px)}  /* 64px: the sticky bar shows over the footer */
+.foot__top{display:flex;align-items:center;gap:.8rem;margin-bottom:clamp(.9rem,2.6vw,1.6rem)}
 .foot__plate{display:inline-flex;padding:.5rem;background:var(--brand);border-radius:2px}
-.foot__plate img{width:64px;height:auto}
+.foot__plate img{width:44px;height:auto}
 .foot__top b{font:900 clamp(1.3rem,3.6vw,1.9rem)/1 var(--disp);letter-spacing:-.01em}
-.fcols{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem 1.4rem}
+.fcols{display:grid;grid-template-columns:1fr;gap:.55rem}
+p.frun{margin:0;font-size:.9rem;line-height:1.55;color:var(--ink-60)}
+p.frun b{font:600 .72rem/1 var(--disp);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);margin-right:.4rem}
+p.frun a{font-weight:700;text-underline-offset:3px}
 .fcols h4{font:600 .74rem/1.4 var(--disp);letter-spacing:.16em;text-transform:uppercase;
   color:var(--ink-60);margin:0 0 .5rem}
 .fcols ul{list-style:none;margin:0;padding:0}
 .fcols li{font:400 1.02rem/1.55 var(--body)}
 .fcols a{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:3px}
 .fcols a:hover{color:var(--brand)}
-.fslogan{font:900 clamp(1.9rem,6.4vw,3.2rem)/.95 var(--disp);text-transform:uppercase;
+.fslogan{font:900 clamp(1.4rem,4.6vw,2.6rem)/.95 var(--disp);text-transform:uppercase;
   letter-spacing:-.02em;margin:clamp(1.6rem,4vw,2.4rem) 0 1rem;max-width:20ch}
-.legal{display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;align-items:center;margin:0;
+.legal{display:flex;flex-wrap:wrap;gap:.3rem .5rem;align-items:center;margin:0;font-size:.78rem;
   padding-top:1rem;border-top:1px solid var(--rule);
   font:400 .82rem/1.5 var(--body);color:var(--ink-60)}
 .foot__adm{color:var(--ink-30);text-decoration:none}
@@ -411,3 +425,52 @@ legend{padding:0}
     transition-duration:.001ms!important}
   .ba.is-hinting{animation:none}
 }
+
+/* ============================================================================
+   STICKY MOBILE CTA — phone/band tier only, never on the desktop bubble.
+   Height budget is the whole argument. On a 390x844 iPhone, Safari's SMALL
+   viewport (toolbars expanded) is ~664 CSS px, not 844. A 56px nav plus this
+   bar plus a 34px home-indicator inset is ~22% of the usable screen. 56px is
+   therefore a ceiling, not a starting point — nothing here gets taller.
+   ============================================================================ */
+.stick{position:fixed;left:0;right:0;bottom:0;z-index:70;
+  display:flex;gap:.5rem;align-items:stretch;
+  padding:.5rem var(--gut);
+  /* 🛑 max() IS LOAD-BEARING. iOS Safari returns 0 for env(safe-area-inset-bottom)
+     when the toolbar is hidden, so a bar padded with the raw value jumps 34px
+     mid-scroll and can land under the home indicator. The max() floors it. */
+  padding-bottom:max(.5rem,env(safe-area-inset-bottom));
+  background:rgba(247,244,239,.94);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-top:1px solid var(--rule);
+  box-shadow:0 -6px 24px rgba(0,0,0,.14);
+  /* hidden by TRANSFORM, never by layout — a bar that appears by changing layout
+     counts against CLS; a transform does not. */
+  transform:translateY(110%);opacity:0;
+  transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .3s}
+.stick.on{transform:translateY(0);opacity:1}
+.stick__b{display:flex;align-items:center;justify-content:center;gap:.4rem;
+  min-height:48px;border-radius:10px;text-decoration:none;
+  font:800 .95rem/1 var(--disp);letter-spacing:.03em;text-transform:uppercase;
+  transition:transform .15s,box-shadow .15s}
+.stick__b:active{transform:translateY(2px)}
+/* the tel: link is the SMALLER half on purpose: it is the higher-intent action but
+   the narrower audience — nobody phones a roofer at 9pm. */
+.stick__b--tel{flex:0 0 38%;background:#fff;color:var(--brand);
+  border:2px solid var(--brand);box-shadow:3px 3px 0 var(--ink)}
+.stick__b--cta{flex:1 1 auto;background:var(--brand);color:#fff;
+  box-shadow:3px 3px 0 var(--ink)}
+/* WCAG 2.2 SC 2.4.11 Focus Not Obscured: a sticky bar covering a focused field is
+   a failure. This keeps a focused input clear of the bar when it scrolls into view. */
+html{scroll-padding-bottom:96px}
+
+@media (min-width:901px){
+  /* the bubble tier has the panel's own button on screen one; a bar here is noise */
+  .stick{display:none}
+  html{scroll-padding-bottom:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .stick{transition:none}
+}
+
+.kick__a{text-decoration:underline;text-underline-offset:3px;letter-spacing:.16em}

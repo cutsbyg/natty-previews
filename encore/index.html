@@ -149,18 +149,15 @@
       <figure class="fig">
         <span class="frame"><img src="img/crew-at-work.jpg?v=1" width="1600" height="1047"
              alt="Two Encore Roofing men working either side of a dormer with the felt down and batten strips laid"></span>
-        <figcaption>Our men on a tear-off, May 2026. Photographed on the job, not staged.</figcaption>
+        <figcaption>Our men on a tear-off, May 2026 &mdash; on the job, not staged.</figcaption>
       </figure>
       <div class="two__t">
-        <p>Scott Boreman runs Encore Roofing out of Newport. We put on new roofs, patch the ones
-           that can be patched, and hang gutters, siding and windows &mdash; houses only, right
-           across Perry, Cumberland and Dauphin counties.</p>
-        <p class="sec">You get the same phone number for the estimate, for the job, and for anything after it.</p>
-        <ul class="facts">
-          <li><b>Scott's number</b><a href="tel:+17179791975" aria-label="Call 7 1 7. 9 7 9. 1 9 7 5">(717) 979-1975</a></li>
-          <li><b>We answer</b><span>7am to 10pm, every day</span></li>
-          <li><b>Find us</b><a href="https://www.facebook.com/EncoreRoofing" target="_blank" rel="noopener">Encore Roofing on Facebook</a></li>
-        </ul>
+        <p>Scott Boreman runs Encore Roofing out of Newport. New roofs, repairs, gutters, siding
+           and windows &mdash; houses only, across Perry, Cumberland and Dauphin counties.
+           <a href="tel:+17179791975" aria-label="Call 7 1 7. 9 7 9. 1 9 7 5">(717)&nbsp;979-1975</a>
+           answers 7am to 10pm, every day &mdash; the same number for the estimate, the job, and
+           anything after it. <a href="https://www.facebook.com/EncoreRoofing" target="_blank"
+           rel="noopener">Find us on Facebook</a>.</p>
       </div>
     </div>
   </div>
@@ -187,8 +184,7 @@
         <span class="ba__tag l">Before</span>
         <span class="ba__tag r">After</span>
       </div>
-      <figcaption class="ba__cap">Drag the handle. The black is the underlayment that goes under
-        the shingle, not the finished roof. Posted April 2026.</figcaption>
+      <figcaption class="ba__cap">The black is the underlayment, not the finished roof. Posted April 2026.</figcaption>
     </figure>
   </div>
 </section>
@@ -196,7 +192,9 @@
 <!-- ═════ REVIEWS + FAQ (paper) (§6) ═════ -->
 <section id="reviews" class="band g-paper">
   <div class="wrap">
-    <p class="kick">What the owners say</p>
+    <p class="kick">What the owners say &middot; <a class="kick__a"
+       href="https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867"
+       target="_blank" rel="noopener">read all 138 on Google →</a></p>
     <h2>138 Google reviews</h2>
     <div class="revs">
       <article class="rev">
@@ -224,8 +222,6 @@
         <cite>Michelle Carr</cite>
       </article>
     </div>
-    <p class="count"><a href="https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867"
-       target="_blank" rel="noopener">Read all 138 on Google →</a></p>
 
     <!-- FAQ (spine). Four questions, every answer a fact off their own pages. The questions we
          cannot answer yet — warranty, manufacturer certification, PA registration — are the ones
@@ -234,7 +230,7 @@
       <p class="kick">Before you call</p>
       <h3>Questions we get asked</h3>
       <div class="faq__list">
-        <details name="faq" open>
+        <details name="faq">
           <summary>Do you repair roofs, or only replace them?</summary>
           <p>Both. We do repairs, full replacements, and storm and wind damage &mdash; and we hang
             gutters, siding and windows too.</p>
@@ -266,20 +262,19 @@
     <p class="kick">Talk to Scott</p>
     <h2>Send Scott the job</h2>
     <form id="quote" action="/api/lead" method="post" enctype="multipart/form-data">
-      <p class="lede">Photographs of the roof help more than anything you can type. We answer the
-        phone from 7am to 10pm, every day of the week.</p>
       <div class="fgrid">
         <p><label for="q-name">Your name</label><input id="q-name" name="name" autocomplete="name" required></p>
         <p><label for="q-tel">Phone</label><input id="q-tel" name="phone" type="tel" autocomplete="tel" required></p>
         <p><label for="q-mail">Email</label><input id="q-mail" name="email" type="email" autocomplete="email"></p>
-        <p><label for="q-prop">Property</label>
-          <select id="q-prop" name="property">
-            <option>House</option><option>Garage or outbuilding</option><option>Other</option>
-          </select></p>
-        <p class="full"><label for="q-addr">Job site address</label>
+        <p><label for="q-addr">Job site address</label>
           <input id="q-addr" name="address" autocomplete="street-address"></p>
-        <p class="full"><label for="q-photo">Photos of the roof</label>
+        <p><label for="q-photo">Photos help more than words</label>
           <input id="q-photo" name="photos" type="file" accept="image/*" multiple></p>
+        <p><label for="q-when">When do you need it?</label>
+          <select id="q-when" name="when">
+            <option>Not sure yet</option><option>It is leaking now</option>
+            <option>Within a month</option><option>This year</option>
+          </select></p>
       </div>
       <fieldset>
         <legend>What do you need done?</legend>
@@ -294,25 +289,13 @@
           <label class="opt"><input type="checkbox" name="job" value="Not sure yet"><span>Not sure yet</span></label>
         </div>
       </fieldset>
-      <div class="fgrid">
-        <p><label for="q-heard">How did you hear about us?</label>
-          <select id="q-heard" name="heard">
-            <option>Google</option><option>Facebook</option><option>A neighbour</option>
-            <option>Saw the yard sign</option><option>Saw the truck</option><option>Other</option>
-          </select></p>
-        <p><label for="q-when">When do you need it?</label>
-          <select id="q-when" name="when">
-            <option>Not sure yet</option><option>It is leaking now</option>
-            <option>Within a month</option><option>This year</option>
-          </select></p>
-        <p class="full"><label for="q-notes">Anything else</label>
-          <textarea id="q-notes" name="notes" rows="3"></textarea></p>
-      </div>
-      <p class="send"><button class="btn btn--go" type="submit">Send it to Scott</button></p>
+      <p class="full nb"><label for="q-notes">Anything else</label>
+        <textarea id="q-notes" name="notes" rows="2"></textarea></p>
+      <p class="send"><button class="btn btn--go" type="submit">Send it to Scott</button>
+        <span class="ratherbig">or call
+        <a class="bigtel" href="tel:+17179791975" aria-label="Call 7 1 7. 9 7 9. 1 9 7 5">(717)&nbsp;979-1975</a></span></p>
       <p class="note" id="q-msg" role="status"></p>
     </form>
-    <p class="ratherbig">Rather talk?
-      <a class="bigtel" href="tel:+17179791975" aria-label="Call 7 1 7. 9 7 9. 1 9 7 5">(717) 979-1975</a></p>
   </div>
 </section>
 
@@ -324,26 +307,19 @@
       <b>ENCORE ROOFING, LLC</b>
     </div>
     <div class="fcols">
-      <div><h4>Where we work</h4>
-        <ul><li>Newport</li><li>Marysville</li><li>Carlisle</li><li>Camp Hill</li>
-            <li>Mechanicsburg</li><li>Harrisburg</li><li>New Cumberland</li>
-            <li>Perry, Cumberland &amp; Dauphin counties</li></ul></div>
-      <div><h4>What we do</h4>
-        <ul><li>Roof replacement</li><li>Roof repairs</li><li>Storm &amp; wind damage</li>
-            <li>Roof inspection &amp; ventilation</li><li>Gutters</li><li>Siding</li>
-            <li>Windows</li><li>Residential only</li></ul></div>
-      <div><h4>Reach us</h4>
-        <ul><li>7am to 10pm, every day</li>
-            <li><a href="tel:+17179791975" aria-label="Call 7 1 7. 9 7 9. 1 9 7 5">(717) 979-1975</a></li>
-            <li><a href="mailto:encoreroofing1@gmail.com">encoreroofing1@gmail.com</a></li>
-            <li><a href="https://www.facebook.com/EncoreRoofing" target="_blank" rel="noopener">Facebook</a></li>
-            <li><a href="https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867" target="_blank" rel="noopener">Google profile</a></li></ul></div>
+      <p class="frun"><b>Where we work</b> Newport &middot; Marysville &middot; Carlisle &middot; Camp Hill &middot;
+         Mechanicsburg &middot; Harrisburg &middot; New Cumberland &middot; Perry, Cumberland &amp; Dauphin counties</p>
+      <p class="frun"><b>What we do</b> Roof replacement &middot; Roof repairs &middot; Storm &amp; wind damage &middot;
+         Inspection &amp; ventilation &middot; Gutters &middot; Siding &middot; Windows &middot; Residential only</p>
+      <p class="frun"><b>Reach us</b> 7am to 10pm, every day &middot;
+         <a href="tel:+17179791975" aria-label="Call 7 1 7. 9 7 9. 1 9 7 5">(717)&nbsp;979-1975</a> &middot;
+         <a href="mailto:encoreroofing1@gmail.com">encoreroofing1@gmail.com</a> &middot;
+         <a href="https://www.facebook.com/EncoreRoofing" target="_blank" rel="noopener">Facebook</a> &middot;
+         <a href="https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867" target="_blank" rel="noopener">Google profile</a></p>
     </div>
     <p class="fslogan">Quality you can trust</p>
-    <p class="legal">
-      <span>© 2026 Encore Roofing, LLC · Newport, Pennsylvania</span>
-      <a class="foot__adm" href="/admin">Owner login</a>
-    </p>
+    <p class="legal"><span>© 2026 Encore Roofing, LLC · Newport, PA</span> ·
+      <a class="foot__adm" href="/admin">Owner login</a></p>
   </div>
 </footer>
 
@@ -371,6 +347,27 @@
 {"@type":"Question","name":"Do you do commercial roofs?","acceptedAnswer":{"@type":"Answer","text":"No. Residential services only — houses, not warehouses."}},
 {"@type":"Question","name":"What areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We work out of Newport and cover Perry, Cumberland and Dauphin counties. Marysville, Carlisle, Camp Hill, Mechanicsburg, New Cumberland and Harrisburg are all regular runs, so if you are near any of them, call and ask."}}]}
 </script>
+<!-- ===================== STICKY MOBILE CTA (phone/band tier only) =====================
+     Evidence, honestly: across 33 measured A/B tests sticky mobile CTAs win ~29% of the time
+     and LOSE ~18%. Every mobile winner was bottom-positioned; top-positioned won 13%. So this
+     is a bottom bar, and it is a bet, not a certainty. It exists because the form on this page
+     sits ~4 screens down and a decided visitor should never have to hunt for the action.
+
+     THE FINDING THAT SHAPED IT: in the best-documented test, a sticky button that merely
+     SCROLLED TO THE FORM produced no significant lift — only bringing the action itself to the
+     user won. So `tel:` is the strong half of this bar and the estimate button is the weak
+     half. Both ship, because a homeowner comparing roofers at 9pm will not phone anyone.
+
+     It is IN THE INITIAL HTML, hidden by transform — not injected by JS after paint. A bar
+     that appears by changing layout counts against CLS; a transform does not. -->
+<div class="stick" id="stick" hidden>
+  <a class="stick__b stick__b--tel" href="tel:+17179791975" aria-label="Call Encore Roofing, 7 1 7. 9 7 9. 1 9 7 5">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11.4 11.4 0 003.6.58 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.58 3.6a1 1 0 01-.25 1z"/></svg>
+    <span>Call</span>
+  </a>
+  <a class="stick__b stick__b--cta" href="#submit">Free estimate</a>
+</div>
+
 <script defer src="js/site.js?v=1"></script>
 <script defer src="./a.js"></script>
 </body>
