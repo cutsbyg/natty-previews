@@ -1,0 +1,397 @@
+/* ==========================================================================
+   Cain and Sons' Automotive — built to LAW-CARD.md
+   Brand sampled from the logo mark: #D81818 (H0 S80% L47%)
+   Shipped after the §6 brightness ceiling: #BF1818 (H0 S78% L42%)
+   white on --brand 6.25:1 · --brand on --paper 5.69:1
+   ========================================================================== */
+
+:root{
+  --disp:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+
+  --brand:#bf1818;
+  --paper:#f7f4ef;
+  --ink:#1c1a17;
+  --ink-60:#6b6862;
+  --ink-30:#b4b1ab;
+  --dusk:#121a24;
+  --rule:rgba(28,26,23,.14);
+  --star:#d8a72b;
+
+  --wrap:78rem;
+  --pad:clamp(2rem,6vw,3rem);   /* §0r shed order #1: section padding, to clear the scroll-depth bar */
+  --gut:clamp(.75rem,1.6vw,1.25rem);
+  --shadow:8px 8px 0 var(--ink);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--body);font-size:1.125rem;line-height:1.55;font-weight:400;
+  overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3,.eyebrow,.btn,.nav__name,.mq,.foot__slogan,.cardx h3,.side__addr strong{font-family:var(--disp)}
+p{margin:0 0 1rem}
+
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
+
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:.6rem 1rem;z-index:99}
+.skip:focus{left:.5rem;top:.5rem}
+
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+
+/* ---------- the grid ground (§6) — painted by the band itself ---------- */
+@keyframes drift{from{background-position:0 0}to{background-position:64px 64px}}
+.band{
+  padding-block:var(--pad);
+  background-size:64px 64px;
+  animation:drift 44s linear infinite;
+  position:relative;
+}
+@media (prefers-reduced-motion:reduce){.band{animation:none}}
+
+.band--paper{
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(to right,rgba(191,24,24,.18) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(191,24,24,.18) 1px,transparent 1px);
+}
+.band--brand{
+  background-color:var(--brand);color:#fff;
+  background-image:
+    linear-gradient(to right,rgba(255,255,255,.18) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(255,255,255,.18) 1px,transparent 1px);
+}
+.band--brand a{color:#fff}
+
+/* ---------- type ---------- */
+h1{margin:0}
+h2{
+  font-size:clamp(1.755rem,3.2vw,2.9rem);font-weight:900;line-height:.95;   /* §3.3c: h2 never larger than h1, at every width, not just 390/1440 */
+  letter-spacing:-.02em;text-transform:uppercase;margin:.1em 0 .35rem}
+h3{font-size:clamp(1.1rem,1.5vw,1.35rem);font-weight:800;line-height:1.1;
+  text-transform:uppercase;letter-spacing:-.01em;margin:0 0 .75rem}
+.eyebrow{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:600;margin:0 0 .25rem;color:var(--brand)}
+.band--brand .eyebrow{color:#fff;opacity:.85}
+.lede{font-size:1.125rem;max-width:34ch;margin-bottom:1rem}
+
+.stars{color:var(--star);letter-spacing:.06em}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:.55rem 1.15rem;
+  font-weight:800;text-transform:uppercase;letter-spacing:.02em;
+  font-size:.95rem;text-decoration:none;border:2px solid var(--ink);
+  transition:transform .18s ease,box-shadow .18s ease,background-color .15s ease}
+.btn--primary{background:var(--ink);color:var(--paper);box-shadow:6px 6px 0 var(--ink)}
+.btn--primary:hover,.btn--primary:focus-visible{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--ink)}
+.btn--ghost{background:transparent;color:inherit;border-color:currentColor;box-shadow:4px 4px 0 var(--ink)}
+.btn--ghost:hover,.btn--ghost:focus-visible{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.band--brand .btn--primary{background:var(--paper);color:var(--ink);border-color:var(--ink)}
+.btn--big{min-height:56px;font-size:1.05rem;padding-inline:1.6rem}
+
+/* ---------- NAV ---------- */
+.nav{position:sticky;top:0;z-index:40;background:var(--brand);color:#fff}
+.nav__in{width:100%;max-width:var(--wrap);margin-inline:auto;
+  padding:.5rem var(--gut);display:flex;align-items:center;gap:1.25rem}
+.nav__brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;flex:0 0 auto}
+.nav__mark{width:auto;height:52px;filter:brightness(0) invert(1);
+  transition:transform .18s ease}
+.nav__brand:hover .nav__mark{transform:translateY(-2px)}
+.nav__name{font-size:1.15rem;font-weight:900;text-transform:uppercase;letter-spacing:-.01em}
+.nav__links{margin-left:auto;display:flex;gap:1.35rem}
+.nav__links a{font-family:var(--body);font-size:1.02rem;font-weight:700;
+  text-decoration:none;padding:.35rem 0;border-bottom:2px solid transparent}
+.nav__links a:hover,.nav__links a[aria-current="true"]{border-bottom-color:#fff}
+.nav__tel{font-size:1.15rem;font-weight:800;text-decoration:none;white-space:nowrap;
+  min-height:44px;display:inline-flex;align-items:center;
+  border-bottom:2px solid transparent}
+.nav__tel:hover{border-bottom-color:#fff}
+.nav__rail{height:2px;background:var(--ink);width:0}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;background:var(--ink)}
+.hero__media{position:relative;width:100%;aspect-ratio:900/563;overflow:hidden}
+.hero__media picture,.hero__media img{display:block;width:100%;height:100%}
+.hero__media img{object-fit:cover}
+
+.glass{
+  position:absolute;left:3%;top:50%;transform:translateY(-50%);
+  width:41%;
+  container-type:inline-size;
+  padding:1.6cqw 2.1cqw;
+  background:rgba(18,26,36,.56);
+  backdrop-filter:blur(14px) saturate(115%);
+  -webkit-backdrop-filter:blur(14px) saturate(115%);
+  border:1px solid rgba(255,255,255,.20);
+  border-radius:18px;
+  box-shadow:0 18px 44px rgba(0,0,0,.34);
+  color:#fff;
+  transition:box-shadow .2s ease,border-color .2s ease;
+}
+.glass:hover{box-shadow:0 22px 54px rgba(0,0,0,.44);border-color:rgba(255,255,255,.34)}
+.glass__eyebrow{font-family:var(--disp);font-weight:600;text-transform:uppercase;
+  letter-spacing:.16em;font-size:clamp(.6rem,1.55cqw,.78rem);margin:0 0 .35em;opacity:.9}
+.glass__h1{font-family:var(--disp);font-weight:900;text-transform:uppercase;
+  font-size:min(4.3rem,9.4cqw);line-height:.86;letter-spacing:-.025em;margin:0 0 .24em}
+.glass__sub{font-family:var(--body);font-weight:400;
+  font-size:clamp(.68rem,2.4cqw,.95rem);line-height:1.3;margin:0 0 .3em;opacity:.94}
+.glass__rate{margin:0 0 .55em;font-size:clamp(.68rem,2.5cqw,1.02rem);font-weight:600}
+.glass__rate .stars{font-size:1.1em;margin-right:.35em}
+.glass__rate a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5)}
+.glass__act{margin:0}
+.glass__act .btn{background:var(--paper);color:var(--ink);border-color:var(--ink);
+  font-size:clamp(.72rem,2.2cqw,.95rem);box-shadow:5px 5px 0 var(--ink)}
+.glass__act .btn:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+
+.cue{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.22);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.4);color:#fff;text-decoration:none;
+  animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
+@media (prefers-reduced-motion:reduce){.cue{animation:none}}
+
+/* ---------- MARQUEE (paper chrome, not counted in the alternation) ---------- */
+.marquee{background:var(--paper);border-block:1px solid var(--rule);
+  overflow:hidden;max-height:56px}
+.mq{display:flex;flex:0 0 auto;list-style:none;margin:0;padding:.9rem 0;gap:0;
+  animation:slide 42s linear infinite;white-space:nowrap}
+.mq li{flex:none;font-family:var(--disp);font-weight:700;text-transform:uppercase;
+  letter-spacing:.04em;font-size:.9rem;padding-inline:.9rem}
+.mq li::after{content:"◆";color:var(--ink-30);margin-left:1.05rem;font-size:.62em;
+  vertical-align:middle}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion:reduce){.mq{animation:none}}
+
+/* ---------- WHAT WE FIX ---------- */
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gut);margin-top:.5rem}
+.cardx{background:var(--paper);color:var(--ink);border:2px solid var(--ink);
+  box-shadow:var(--shadow);padding:1.25rem 1.15rem;min-width:0;
+  transition:transform .18s ease,box-shadow .18s ease}
+.cardx:hover{transform:translate(4px,4px);box-shadow:4px 4px 0 var(--ink)}
+.cardx h3{color:var(--brand)}
+.cardx ul{list-style:none;margin:0;padding:0}
+.cardx li{font-size:1.125rem;line-height:1.45;padding:.16rem 0;border-bottom:1px solid var(--rule)}
+.cardx li:last-child{border-bottom:0}
+.board__note{margin:1rem 0 0;font-size:1.125rem;max-width:52ch}
+.board__note a{color:#fff;text-underline-offset:3px}
+
+/* ---------- THE PEOPLE ---------- */
+.people{display:grid;grid-template-columns:30% 1fr;gap:clamp(1.25rem,3vw,2.75rem);align-items:center}
+.people__fig{min-width:0}
+.stand{margin:0}
+.stand svg{width:100%;height:auto;max-width:280px;display:block;
+  border:2px solid var(--ink);box-shadow:var(--shadow);background:var(--paper);padding:.5rem}
+.stand figcaption{font-size:1.125rem;color:var(--ink-60);margin-top:.75rem;max-width:26ch}
+.people__txt{min-width:0}
+.people__txt p{max-width:52ch}
+.people__ask{margin-top:.85rem}
+
+/* ---------- REVIEWS ---------- */
+.revs{display:grid;grid-template-columns:1fr 1fr;gap:var(--gut)}
+.rev{background:var(--paper);color:var(--ink);border:2px solid var(--ink);
+  box-shadow:var(--shadow);padding:1.6rem;min-width:0;
+  transition:transform .18s ease,box-shadow .18s ease}
+.rev:hover{transform:translate(4px,4px);box-shadow:4px 4px 0 var(--ink)}
+.rev__stars{margin:0 0 .6rem;font-size:1.6rem;line-height:1}
+.rev blockquote{margin:0 0 .9rem;font-size:1.12rem;font-weight:700;line-height:1.4}
+.rev__by{margin:0;font-size:1.05rem;font-weight:800}
+.rev__src{margin:.15rem 0 0;font-size:1.125rem;font-weight:400;color:var(--ink-60)}
+.rev__src a{color:var(--ink-60);text-underline-offset:3px}
+.rev__src a:hover{color:var(--brand)}
+
+/* ---------- FAQ ---------- */
+.faq{border-top:1px solid var(--rule);max-width:64rem}
+.foot__mark{box-shadow:none}
+.faq details{border-bottom:1px solid var(--rule)}
+.faq summary{cursor:pointer;list-style:none;padding:1rem 0;min-height:48px;
+  font-family:var(--disp);font-weight:800;font-size:1.15rem;line-height:1.25;
+  display:flex;align-items:center;gap:.75rem;transition:color .15s ease}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"+";color:var(--brand);font-weight:900;flex:0 0 auto}
+.faq details[open] summary::before{content:"–"}
+.faq summary:hover{color:var(--brand)}
+.faq details p{margin:0 0 1.1rem;max-width:60ch;font-size:1.125rem}
+
+/* ---------- CTA + FORM ---------- */
+.cta__in{display:block}
+.side{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem 1.5rem;align-items:center;margin:1.75rem 0 0}
+.cta__form{min-width:0}
+.cta__guar{font-size:1.125rem;max-width:48ch;margin-bottom:1rem}
+#lead{display:grid;gap:.9rem}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+#lead label{display:grid;gap:.3rem;font-size:1.125rem;font-weight:600;min-width:0}
+#lead input[type=text],#lead input[type=tel],#lead input[type=email],
+#lead select,#lead textarea{
+  font-family:var(--body);font-size:16px;padding:.7rem .75rem;min-height:48px;
+  border:2px solid var(--ink);background:var(--paper);color:var(--ink);
+  -webkit-appearance:none;appearance:none;border-radius:0;width:100%}
+#lead input[type=file]{font-family:var(--body);font-size:16px;min-height:48px;
+  padding:.55rem;border:2px solid var(--ink);background:var(--paper);color:var(--ink);width:100%}
+#lead textarea{min-height:88px}
+.opts{border:2px solid var(--ink);padding:1rem;margin:0;background:rgba(255,255,255,.08);box-shadow:6px 6px 0 var(--ink)}
+.opts legend{font-size:1.125rem;font-weight:700;padding-inline:.4rem}
+.optgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0 1rem}
+#lead label.opt,.opt{display:flex;align-items:center;gap:.65rem;min-height:48px;font-weight:400;
+  padding:0 .5rem;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.22)}
+.opt input{width:22px;height:22px;min-height:22px;flex:0 0 auto;accent-color:var(--ink)}
+.opt span{font-weight:400}
+.opt:hover{background:rgba(255,255,255,.12)}
+.cta__alt{font-size:1.125rem;margin:.25rem 0 0}
+.cta__side{min-width:0}
+.side{background:var(--paper);color:var(--ink);border:2px solid var(--ink);
+  box-shadow:var(--shadow);padding:1.25rem 1.5rem}
+.side__k{font-family:var(--disp);text-transform:uppercase;letter-spacing:.16em;
+  font-size:.74rem;font-weight:600;color:var(--brand);margin:0 0 .3rem}
+.side__addr{font-size:1.35rem;line-height:1.2;margin:0 0 .2rem}
+.side__addr strong{font-weight:900}
+.side__line{font-size:1.125rem;color:var(--ink-60);margin:0}
+.side__hrs{font-size:1.125rem;margin:0}
+.side__hrs strong{font-size:1.25rem}
+/* the band-level `.band--brand a{color:#fff}` was painting this label white on a
+   paper card — invisible. Scoped back to ink inside the card. */
+.side .btn--ghost{color:var(--ink);border-color:var(--ink)}
+.side .btn--ghost:hover,.side .btn--ghost:focus-visible{background:var(--ink);color:var(--paper)}
+
+/* ---------- FOOTER (flat, no grid — §6) ---------- */
+.foot{background:var(--paper);border-top:2px solid var(--ink);padding-block:clamp(2rem,5vw,3rem)}
+.foot__in{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1.75rem clamp(1rem,3vw,2.5rem)}
+.foot__brand{min-width:0}
+.foot__mark{height:104px;width:auto}
+.foot__legal-name{font-size:1.125rem;font-weight:700;margin:.6rem 0 0}
+.foot__head{font-family:var(--disp);font-size:.74rem;letter-spacing:.16em;
+  text-transform:uppercase;font-weight:600;color:var(--brand);margin:0 0 .5rem}
+.foot__col ul{list-style:none;margin:0;padding:0}
+.foot__col li{font-size:1.125rem;padding:.15rem 0}
+.foot__col a{text-decoration:none;border-bottom:1px solid var(--rule)}
+.foot__col a:hover{border-bottom-color:var(--brand);color:var(--brand)}
+.foot__slogan{grid-column:1/-1;font-size:clamp(1.6rem,4.4vw,2.9rem);font-weight:900;
+  text-transform:uppercase;line-height:.95;letter-spacing:-.02em;
+  margin:.5rem 0 0;color:var(--brand)}
+.foot__law{grid-column:1/-1;font-size:.82rem;color:var(--ink-60);margin:0;
+  border-top:1px solid var(--rule);padding-top:1rem}
+.foot__law a{color:var(--ink-60)}
+.foot__law a:hover{color:var(--brand)}
+
+
+/* §8.18 — 44px on standalone controls. No width scope: it is a touch rule,
+   not a width rule (§0). Inline prose links and the owner's door stay exempt. */
+.nav__brand,.foot__col a,.rev__src a,.glass__rate a,.cta__alt a{
+  min-height:44px;display:inline-flex;align-items:center}
+
+/* ==========================================================================
+   MID TIER — 601px to 1023px. The panel STAYS on the photograph (§0x).
+   ========================================================================== */
+@media (max-width:899px){
+  .nav__links{display:none}
+}
+@media (max-width:1023px){
+  .optgrid{grid-template-columns:1fr 1fr}
+  .hero__media{aspect-ratio:1080/675}
+  .glass{width:52%;left:3.5%}
+  .board{grid-template-columns:1fr 1fr}
+  .people{grid-template-columns:34% 1fr}
+  .cta__in{grid-template-columns:1fr}
+  .foot__in{grid-template-columns:1fr 1fr}
+  .nav__links{gap:1rem}
+}
+@media (min-width:1024px){
+  .hero__media{aspect-ratio:1080/416}
+}
+/* NOTE (§0w): between 1024 and 1280 the 2.596 plate is only 394-493px tall and the
+   panel measures 55-60% of it, over the ~50% guide. Widening the panel makes it
+   worse (cqw grows the headline), so per §0w the CROP is what is wrong, not the
+   card. Recorded in GAPS.md; the fix is a wider original frame, not a width hack. */
+
+/* ==========================================================================
+   §8.16 — THE PHONE BLOCK LIVES LAST.
+   ≤600px: no glass. The panel is a full-bleed WHITE section under the photo
+   (§0u / §1.0b-H / §1.0b-J), carrying the same grid ground, inverse-tinted.
+   ========================================================================== */
+@media (max-width:600px){
+  body{font-size:1.125rem}
+
+  .nav__in{flex-wrap:wrap;gap:.6rem 1rem;padding-block:.45rem}
+  .nav__links{display:none}
+  .nav__mark{height:42px}
+  .nav__name{display:none}   /* the logo lockup already carries the name (§8.7 one row) */
+  .nav__tel{margin-left:auto;font-size:1.15rem}
+
+  .hero{background:none}
+  .hero__media{aspect-ratio:900/563;overflow:visible}
+  .hero__media picture,.hero__media img{height:auto}
+  .hero__media img{aspect-ratio:900/563;object-fit:cover}
+
+  .glass{
+    position:static;transform:none;width:100%;left:auto;top:auto;
+    padding:1rem var(--gut) 1.15rem;
+    background-color:var(--paper);
+    background-image:
+      linear-gradient(to right,rgba(191,24,24,.18) 1px,transparent 1px),
+      linear-gradient(to bottom,rgba(191,24,24,.18) 1px,transparent 1px);
+    background-size:64px 64px;
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+    border:0;border-radius:0;box-shadow:none;color:var(--ink);
+    container-type:normal;
+  }
+  .glass:hover{box-shadow:none;border-color:transparent}
+  .glass__eyebrow{font-size:.74rem;color:var(--brand);opacity:1}
+  .glass__h1{font-size:clamp(1.78rem,7.6vw,2.1rem);line-height:.92}
+  .glass__sub{font-size:1.125rem;opacity:1}
+  .glass__rate{font-size:1.125rem}
+  .glass__rate a{border-bottom-color:var(--ink-30)}
+  .glass__act .btn{width:100%;font-size:.95rem}
+  .cue{display:none}
+
+  .marquee{max-height:52px}
+  .mq li{font-size:.82rem;padding-inline:.7rem}
+
+  .board{grid-template-columns:1fr 1fr}
+  .cardx{padding:.85rem .7rem}
+  .cardx h3{margin-bottom:.45rem}
+  .faq summary{padding:.7rem 0;min-height:44px}
+  .faq details p{margin-bottom:.85rem}
+  .marquee{max-height:46px}
+  .mq{padding:.7rem 0}
+  .lede{margin-bottom:.75rem}
+  .cardx li{font-size:1rem}
+
+  .people{grid-template-columns:34% 1fr;gap:1rem;align-items:start}
+  .stand svg{max-width:100%}
+  .stand figcaption{font-size:.92rem;max-width:none}
+  .people__ask .btn{width:100%}
+  .sec{display:none}   /* §8.5 secondary prose is dropped, never shrunk */
+
+  .revs{grid-template-columns:1fr 1fr;gap:.75rem}
+  .rev{padding:1rem .9rem}
+  .rev__stars{font-size:1.6rem}
+  .rev blockquote{font-size:1rem;line-height:1.35}
+  .rev__by{font-size:1.05rem}
+  .rev__src{font-size:.92rem}
+
+  .faq summary{font-size:1.02rem}
+
+  .f2{grid-template-columns:1fr}
+  .optgrid{grid-template-columns:1fr}
+  .side{grid-template-columns:1fr;gap:.65rem}
+  .cta__in{grid-template-columns:1fr}
+
+  .foot__in{grid-template-columns:1fr}
+  .foot__mark{height:84px}
+}
+
+/* no-hover devices: the panel's ground must never repaint (§1.0b-M) */
+@media (hover:none){
+  .glass:hover,.glass:focus-within{
+    background-color:rgba(18,26,36,.56);box-shadow:0 18px 44px rgba(0,0,0,.34);
+    border-color:rgba(255,255,255,.20);transform:translateY(-50%)}
+  .cardx:hover,.rev:hover{transform:none;box-shadow:var(--shadow)}
+  .btn--primary:hover{transform:none}
+}
+@media (hover:none) and (max-width:600px){
+  .glass:hover,.glass:focus-within{
+    background-color:var(--paper);box-shadow:none;border-color:transparent;transform:none}
+}
