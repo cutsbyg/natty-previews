@@ -1,0 +1,807 @@
+/* The display face is SELF-HOSTED, not fetched. The whole bold register lives in
+   it, and a register that depends on a third-party CDN collapses to Arial exactly
+   when the connection is worst — a phone at a kitchen table. One variable file,
+   35KB, weights 100-900, latin. Zero external requests on this build. */
+@font-face{font-family:Archivo;src:url(../fonts/archivo-latin.woff2) format('woff2');
+  font-weight:100 900;font-style:normal;font-display:swap}
+
+/* Wenger's Flooring — locked spine.
+   §3.2a --brand is SAMPLED, never chosen. Re-sampled 2026-08-15 from the isolated mark
+   in logo.jpg, discarding near-white and the charcoal ground: #806860 wins with 32,760
+   px, ~10x the next candidate. (An earlier pass shipped #866e64, which is not the
+   dominant sample.) hue 15.0 — clear of the 20-50 ban. White on it 5.27:1;
+   it on --paper 4.76:1. Both clear. --ink is the mark's own charcoal ground. */
+:root{
+  --brand:#806860;          /* hue 15.0 — clear of the 20-50 ban */
+  --brand-deep:#5f4a43;     /* brand-coloured TYPE on paper */
+  --paper:#f7f4ef;
+  --ink:#262524;
+  --ink-60:rgba(38,37,36,.62);
+  --ink-30:rgba(38,37,36,.30);
+  --rule:rgba(38,37,36,.14);
+  --star:#d8a72b;           /* star glyphs only */
+
+  /* §3.3 two families, no more: one grotesk for display, one neutral for body.
+     §3.3.0 — BOTH are actually LOADED in the head, at the weights used. Archivo is
+     self-hosted so the display register survives a dead CDN; Inter comes from the
+     font CDN as the reference build does. A computed family of system-ui or Arial
+     where a real face was intended is a BLOCKER, not a warning. */
+  --disp:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Inter","Helvetica Neue",Arial,sans-serif;
+  --white:#fff;
+  --brand-lift:#a08a80;     /* brand, lifted off a dark ground — eyebrows, hover */
+
+  --pad:clamp(1.4rem,4vw,2.4rem);   /* height purge 2026-08-18 */
+  --gut:clamp(.75rem,1.6vw,1.25rem);
+  --col:78rem;
+  --shadow:6px 6px 0 var(--ink);
+
+  /* floor cut-out — traced by _work/mask.py from ONE point list, never hand-authored */
+  --floor-left:0.000%; --floor-top:58.983%; --floor-width:100.000%; --floor-height:41.017%;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+body{background:var(--paper);color:var(--ink);font:400 1.125rem/1.55 var(--body);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+/* §3.3 the display register: grotesk, 900, caps, leading .86 (floor is .82).
+   "Not bold enough" is a fail — the register is the same on every site. */
+h1,h2,h3{font-family:var(--disp);font-weight:900;line-height:.86;letter-spacing:-.02em;
+  text-transform:uppercase;text-wrap:balance}
+:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.wrap{max-width:var(--col);margin-inline:auto;padding-inline:var(--gut)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ── the grid is the ground. Painted BY the band, never a ::before. ───────── */
+.band{padding-block:var(--pad);position:relative;background-repeat:repeat;background-position:0 0;
+  animation:drift 44s linear infinite}
+@keyframes drift{to{background-position:64px 64px}}
+.band--paper{background-color:var(--paper);
+  background-image:linear-gradient(rgba(128,104,96,.18) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(128,104,96,.18) 1px,transparent 1px);
+  background-size:64px 64px}
+.band--brand{background-color:var(--brand);color:#fff;
+  background-image:linear-gradient(rgba(255,255,255,.18) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.18) 1px,transparent 1px);
+  background-size:64px 64px}
+.band--brand a{color:#fff}
+.band--brand .form a{color:var(--ink)}
+.eyebrow{font:600 .74rem/1 var(--disp);letter-spacing:.16em;text-transform:uppercase;color:var(--brand-deep);margin-bottom:1rem}
+.band--brand .eyebrow{color:rgba(255,255,255,.82)}
+.band h2{font-size:clamp(2rem,8vw,4.5rem);font-weight:900;margin-bottom:.6rem}
+.lede{font-size:1.125rem;max-width:34ch;color:var(--ink-60);margin-bottom:2rem}
+.band--brand .lede{color:rgba(255,255,255,.86)}
+
+/* ── NAV ──────────────────────────────────────────────────────────────────── */
+.nav{position:sticky;top:0;z-index:60;background:var(--brand);color:#fff}
+.nav__links a{color:rgba(255,255,255,.9)}
+.nav__in{max-width:var(--col);margin-inline:auto;padding:.55rem var(--gut);display:flex;align-items:center;gap:1.4rem}
+.nav__brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;font:900 1.15rem/1 var(--disp);letter-spacing:-.01em}
+/* the mark is sampled FROM the logo, so the logo vanishes on its own ground — knock it out */
+.nav__mark{width:56px;height:auto;filter:brightness(0) invert(1);transition:transform .22s}
+.nav__brand:hover .nav__mark{transform:scale(1.06)}
+.nav__links{margin-left:auto;display:flex;gap:1.5rem;list-style:none;padding:0}
+.nav__links a{font:700 1.02rem/1 var(--body);text-decoration:none;padding:.55rem .1rem;display:block;
+  border-bottom:2px solid transparent;transition:border-color .2s,opacity .2s}
+.nav__links a:hover,.nav__links a[aria-current="true"]{border-bottom-color:var(--paper)}
+.nav__tel{font:800 1.15rem/1 var(--disp);text-decoration:none;white-space:nowrap;padding:.6rem .2rem;
+  /* §8.18 — the 44px tap floor lives on the BASE rule, not in a phone block. Touch laptops
+     exist above every width breakpoint, and it costs a mouse nothing. */
+  min-height:44px;display:inline-flex;align-items:center;transition:opacity .2s}
+.nav__tel:hover{opacity:.75}
+.nav__rail{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--paper);opacity:.9}
+.nav.nudge .nav__tel{animation:nudge 1.1s ease}
+@keyframes nudge{25%{transform:translateY(-3px)}50%{transform:translateY(0)}75%{transform:translateY(-2px)}}
+
+/* ── HERO ─────────────────────────────────────────────────────────────────── */
+.hero{position:relative;background:var(--ink)}
+.hero__media{position:relative;width:100%;overflow:hidden;
+  touch-action:pan-y;user-select:none;-webkit-user-select:none}
+/* §hero-shot — the PHOTOGRAPH's own box, and the containing block for everything
+   measured in percentages of the crop (the lift, the floor hit-area). It carries the
+   ratio at EVERY width. .hero__media does not, because below 861px .hero__media is a
+   wrapper holding the photo AND the text band, and a % rect resolved against that
+   wrapper lands the floor cut-out halfway down the headline. */
+.hero__shot{position:relative;width:100%;aspect-ratio:3168/1219;overflow:hidden}
+.hero__shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+/* the lift needs a real cut-out; a mask has no pixels of its own and can only shine.
+   Clipped to the finished side or it paints new floor over the torn-up half. */
+.hero__shot img.hero__lift{position:absolute;inset:auto;left:var(--floor-left);top:var(--floor-top);
+  width:var(--floor-width);height:var(--floor-height);object-fit:fill;
+  transform-origin:50% 100%;transition:transform .28s cubic-bezier(.2,.7,.3,1);pointer-events:none}
+.hero__floorhit{position:absolute;inset:0;clip-path:polygon(0.00% 95.50%,10.00% 89.00%,20.00% 78.00%,24.00% 71.00%,26.00% 65.50%,28.00% 63.50%,33.00% 64.00%,40.00% 65.00%,44.00% 63.00%,46.00% 61.00%,49.00% 60.00%,55.00% 59.50%,62.00% 59.50%,68.00% 59.50%,70.00% 59.00%,73.50% 59.00%,74.00% 72.00%,75.00% 77.00%,79.00% 77.50%,80.50% 73.00%,81.50% 63.00%,82.00% 78.00%,84.50% 80.00%,85.00% 82.00%,90.00% 88.00%,95.00% 93.00%,100.00% 96.00%,100.00% 100.00%,0.00% 100.00%);
+  cursor:default}
+.hero__shot:has(.hero__floorhit:hover) .hero__lift{transform:scale(1.03) translateY(-7px)}
+
+
+/* the panel — measured, never composed. left 2.5%, width 22.5% -> right edge 25.0%,
+   clear of the tub filler (25.5%) and the window (29%). bottom lands 56.6%,
+   hand-read transition line 70.0% -> clears the 62.0% ceiling by 5.4 points. */
+/* §1.0a item 4 — BLOCKER, no waiver: the owner's face is on the first screen, on
+   the LEFT, beside the words. Panel and face are ONE assembly, so the panel is a
+   two-column grid: figure, then words. Widening 23.5% -> 29% costs the tub filler
+   at 25.5%; the window (31.4%) still clears. A covered tap is the price of the
+   blocker — §1.0a item 4 outranks the panel's own measured right edge. */
+/* above the grip (z-index 2): the divider is part of the photograph's mechanic and
+   must not draw a white rule through the headline when the split sits behind the card */
+/* §1a: the rect is MEASURED FIRST and the type is tuned into it. This panel used to
+   set width only and let the content derive its height, which is the procedure
+   backwards — every type size and the figure downstream then scaled off whatever
+   the copy happened to need. top 8% + height 56% puts the bottom at 64%, clear of
+   the hand-read 70.0% transition line. */
+/* §hero-panel-height — Grady: "the height of the text bubble for the desktop version
+   should be the height of the picture of the person." So the portrait is NOT a grid
+   column any more: it is pinned top:0/bottom:0 inside the panel, which makes the two
+   heights the SAME NUMBER by construction rather than by tuning (measured 99.4-99.6%
+   at 1280/1440/1920 — the 0.5% is the panel's own 1px hairline, top and bottom).
+   Same mechanic Haas, WSL and Double B already run. The words hold their side by
+   percentage WIDTH, below. The portrait gains 18% on every edge as a side effect:
+   198.6px wide at 1280 against 168px before. */
+.hero__panel{position:absolute;left:4%;top:8%;width:38%;min-height:61.5%;container-type:inline-size;z-index:4;
+  display:grid;grid-template-columns:1fr;gap:0;align-items:center;justify-items:start;
+  padding:1.05vw;border-radius:20px;background:rgba(26,23,21,.42);
+  -webkit-backdrop-filter:blur(14px) saturate(115%);backdrop-filter:blur(14px) saturate(115%);
+  border:1px solid rgba(255,255,255,.20);box-shadow:0 18px 40px rgba(0,0,0,.34);
+  color:#fff;text-align:center;transition:box-shadow .3s,border-color .3s}
+.hero__panel:hover{box-shadow:0 22px 52px rgba(0,0,0,.44);border-color:rgba(255,255,255,.34)}
+.hero__nameline{display:none}
+/* §8.12a rung 4 — a DELIBERATELY FRAMED portrait. This source cannot be cut out:
+   the top of the head is clipped by the source frame itself, and the near arm and
+   both shoulders occupy the same rows (the arm reaches a handlebar), so every
+   head-and-shoulders crop severs a limb. So it ships framed ON PURPOSE, in the
+   build's own border + hard offset shadow. A frame is a decision; a loose
+   rectangle of someone's background is an accident. No name, no role — see PEOPLE.md. */
+.hero__fig{position:absolute;top:0;bottom:0;right:.6vw;width:41%;margin:0;line-height:0;
+  display:flex;align-items:flex-end;justify-content:center;align-self:center}
+.hero__fig img{position:relative;inset:auto;width:auto;height:100%;max-width:100%;object-fit:contain;
+  object-position:bottom;border:0;box-shadow:none;transition:transform .22s}
+.hero__panel:hover .hero__fig img{transform:translateY(-4px)}
+/* cqw now measures the WORDS column, not the whole panel, so the headline is
+   sized off the space it actually occupies */
+/* the words hold their own column by WIDTH, not by a grid track: the portrait beside
+   them is out of flow, and a percentage width is the one length that resolves against
+   the panel itself (percentage PADDING would resolve against .hero__media instead). */
+.hero__words{width:57%;container-type:inline-size}
+.hero__panel h1{font-size:min(3.7rem,11.7cqw);line-height:.84;font-weight:900;letter-spacing:-.03em}
+.hero__sup{font-size:max(11px,min(1.02rem,4.6cqw));line-height:1.4;margin-top:.5vw;font-weight:600;
+  text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.94)}
+.hero__rate{margin-top:.45vw;font-size:max(11px,min(.98rem,4.4cqw));font-weight:700;display:flex;gap:.5em;justify-content:center;align-items:center}
+/* the stars are an accent GLYPH, not type — they carry the rating at 1.7x the
+   line they sit on, which is what makes the badge read from across a room */
+.hero__rate span{color:var(--star);letter-spacing:.04em;font-size:1.7em;line-height:1}
+.hero__act{margin-top:.6vw;display:flex;gap:.6vw;align-items:stretch;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.7rem 1.1rem;
+  background:var(--brand);color:#fff;padding:.6rem .8rem;font:900 max(12px,min(1rem,5.9cqw))/1 var(--disp);
+  letter-spacing:.04em;text-transform:uppercase;
+  text-decoration:none;border:0;border-radius:6px;box-shadow:5px 5px 0 var(--ink);cursor:pointer;
+  transition:transform .2s,box-shadow .2s,background-color .15s}
+.btn:hover{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink);background:var(--brand-deep)}
+/* the phone gets its own line and display treatment. It is the money event. */
+.hero__num{margin-top:.45vw}
+.hero__num .tel{display:inline-flex;align-items:center;min-height:44px;
+  /* §1a: the h1 is the dominant type in the panel, so the phone sits just under it.
+     The reference build runs 33px here; its h1 is a 2-word name, ours is a 4-word
+     slogan (§8z) in a narrower column, so ours cannot go that high without the
+     headline losing the panel. */
+  font:900 max(15px,min(2.1rem,11.5cqw))/1 var(--disp);letter-spacing:-.02em;
+  color:#fff;text-decoration:none;white-space:nowrap;border-bottom:2px solid rgba(255,255,255,.5);transition:border-color .2s}
+.hero__num .tel:hover{border-bottom-color:#fff}
+
+.hero__cue{position:absolute;left:50%;bottom:1.1rem;transform:translateX(-50%);width:44px;height:44px;
+  display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.24);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.4);
+  color:#fff;text-decoration:none;animation:bob 2.4s ease-in-out infinite;z-index:3}
+@keyframes bob{50%{transform:translate(-50%,7px)}}
+@media(prefers-reduced-motion:reduce){.hero__cue{animation:none}}
+
+/* ── MARQUEE (paper chrome — NOT counted in the alternation) ──────────────── */
+.marquee{background:var(--paper);border-block:1px solid var(--rule);overflow:hidden;display:flex;padding:.85rem 0}
+.mq{flex:0 0 auto;display:flex;gap:1.6rem;list-style:none;padding:0 .8rem 0 0;margin:0;white-space:nowrap;
+  font:700 1rem/1 var(--disp);letter-spacing:.04em;animation:mq 42s linear infinite}
+.mq li{flex:none}
+.mq li::after{content:"◆";color:var(--ink-30);margin-left:1.6rem}
+@keyframes mq{to{transform:translateX(-100%)}}
+.marquee:hover .mq{animation-play-state:paused}
+
+/* ── WORK ─────────────────────────────────────────────────────────────────── */
+/* §work-groups — three labelled material groups, each a HORIZONTAL scroll row.
+   Native overflow-x, so touch swipe, trackpad and the wheel all work for free;
+   js/site.js adds mouse press-and-drag on top. The row scrolls inside itself —
+   the page never gains a horizontal scrollbar. */
+.grp+.grp{margin-top:1.5rem}
+.grp__t{font:900 clamp(1.05rem,2.4vw,1.4rem)/1 var(--disp);letter-spacing:.08em;margin-bottom:.7rem}
+.row{display:flex;gap:1rem;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+  /* the cards carry a 6px hard offset shadow — without the padding the row clips it */
+  padding:0 8px 12px 0;scrollbar-width:thin;scrollbar-color:var(--ink-30) transparent}
+.row::-webkit-scrollbar{height:8px}
+.row::-webkit-scrollbar-thumb{background:var(--ink-30);border-radius:4px}
+.band--brand .row{scrollbar-color:rgba(255,255,255,.45) transparent}
+.band--brand .row::-webkit-scrollbar-thumb{background:rgba(255,255,255,.45)}
+.card{position:relative;flex:0 0 clamp(15rem,28vw,21rem);scroll-snap-align:start;
+  display:block;text-decoration:none;color:inherit;
+  box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;background:var(--paper)}
+.card:hover,.card:focus-visible{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
+.card__ph{display:block;position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--ink)}
+.card__ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .32s}
+.card__ph .b{opacity:0}
+.card:hover .b,.card:focus-visible .b,.card.flip .b{opacity:1}
+.card__cap{display:block;position:absolute;left:0;right:0;bottom:0;padding:.75rem .9rem;
+  background:linear-gradient(transparent,rgba(26,23,21,.62) 22%,rgba(26,23,21,.92) 58%);color:#fff}
+.card__t{font:600 clamp(1rem,1.4vw,1.35rem)/1.2 var(--disp);display:block}
+.card__m{display:block;font:400 .82rem/1.3 var(--body);color:rgba(255,255,255,.76)}
+.card__two{display:block;position:absolute;top:.6rem;right:.6rem;font:700 .74rem/1 var(--disp);letter-spacing:.08em;
+  padding:.4rem .5rem;background:rgba(247,244,239,.92);color:var(--ink);border-radius:3px}
+
+.proj{display:none;margin-top:1.4rem;padding:1.4rem;background:var(--paper);color:var(--ink);box-shadow:var(--shadow)}
+.proj:target{display:block}
+.proj h3{font:800 1.6rem/1.15 var(--disp);margin-bottom:.8rem}
+.proj__pics{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.proj p{margin:.8rem 0 .6rem;color:var(--ink-60);font-size:1rem}
+
+/* ── PEOPLE ───────────────────────────────────────────────────────────────── */
+.people{display:grid;grid-template-columns:1.05fr 1fr;gap:2.4rem;align-items:start}
+.people__fig{margin:0;box-shadow:var(--shadow);background:var(--paper)}
+.people__fig img{width:100%}
+.people__fig figcaption{padding:.8rem 1rem;font:400 .95rem/1.4 var(--body);color:var(--ink-60)}
+.people__q{font:700 clamp(1.15rem,2.1vw,1.5rem)/1.25 var(--body);letter-spacing:-.02em;margin:.4rem 0 1.2rem}
+.people__q cite{display:block;margin-top:.6rem;font:400 .9rem/1.3 var(--body);font-style:normal;color:var(--ink-60)}
+.people__b{max-width:52ch;margin-bottom:1.2rem}
+.people__meta{display:flex;gap:1.6rem;flex-wrap:wrap;font:700 1.05rem/1.3 var(--disp)}
+.people__meta b{display:block;font-size:1.7rem;letter-spacing:-.02em}
+
+/* ── PROCESS (earned extra) ───────────────────────────────────────────────── */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;counter-reset:s}
+.step{padding:1.5rem;background:rgba(247,244,239,.10);border:1px solid rgba(255,255,255,.28);
+  box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+.step:hover{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
+.step b{counter-increment:s;display:block;font:900 2.6rem/1 var(--disp);letter-spacing:-.03em;margin-bottom:.4rem}
+.step b::before{content:counter(s)}
+.step h3{font:800 1.25rem/1.2 var(--disp);margin-bottom:.4rem}
+.step p{font-size:1.125rem;line-height:1.5;color:rgba(255,255,255,.86)}
+
+/* ── REVIEWS + FAQ ────────────────────────────────────────────────────────── */
+.rev{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+/* white, not paper: a proof card the same colour as the band it sits on is a flat
+   rectangle with a rule round it. §5 wants the artifact to read AS an artifact. */
+.rev__c{padding:1rem;background:#fff;box-shadow:var(--shadow);border:1px solid var(--rule);
+  transition:transform .2s,box-shadow .2s}
+.rev__c:hover{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink)}
+.rev__s{color:var(--star);font-size:1.6rem;line-height:1;letter-spacing:.06em;margin-bottom:.7rem}
+.rev__q{font-size:1.12rem;line-height:1.5;margin-bottom:.9rem}
+.rev__n{font:800 1.05rem/1.2 var(--disp)}
+.rev__l{font:400 .95rem/1.3 var(--body);color:var(--ink-60);text-decoration:underline}
+.rev__more{margin-top:1.1rem;font:700 1.05rem/1.3 var(--body)}
+.rev__more a{min-height:44px;display:inline-flex;align-items:center;text-decoration:underline;
+  text-underline-offset:3px;margin-right:.9rem;transition:color .15s}
+.rev__more a:hover{color:var(--brand-deep)}
+.faq{margin-top:2.6rem;border-top:1px solid var(--rule);padding-top:2.2rem}
+.faq h3{font-size:clamp(1.8rem,5vw,3rem);margin-bottom:1.2rem}
+.faq details{border-bottom:1px solid var(--rule)}
+.faq summary{cursor:pointer;list-style:none;padding:1rem 2rem 1rem 0;position:relative;
+  font:800 1.15rem/1.35 var(--disp);min-height:44px;display:flex;align-items:center;transition:color .15s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--brand-deep)}
+.faq summary::after{content:"+";position:absolute;right:.2rem;font-weight:800;font-size:1.5rem}
+.faq details[open] summary::after{content:"–"}
+.faq p{padding:0 0 1.2rem;max-width:62ch;color:var(--ink-60)}
+
+/* ── CTA + SUBMIT ─────────────────────────────────────────────────────────── */
+.cta{display:grid;grid-template-columns:1fr 1.05fr;gap:2.6rem;align-items:stretch}
+.cta__l{display:grid;gap:.85rem;align-content:start}
+.cta__l .f__two,.cta__l fieldset{margin-top:.6rem}
+.cta__l label,.cta__l .f__leg{color:rgba(255,255,255,.92)}
+.cta__l .opt{border-color:rgba(255,255,255,.55);color:#fff}
+.cta__l .opt:hover{background:var(--paper);color:var(--ink)}
+.cta__l select{border-color:var(--paper)}
+.cta__tel{display:inline-block;font:900 clamp(2.4rem,5.4vw,4rem)/1 var(--disp);letter-spacing:-.03em;
+  text-decoration:none;margin:.4rem 0 .8rem;border-bottom:4px solid rgba(255,255,255,.4);transition:border-color .2s}
+.cta__tel:hover{border-bottom-color:#fff}
+.cta__n{font-size:1.125rem;line-height:1.5;color:rgba(255,255,255,.88);max-width:34ch}
+.cta__lic{margin-top:1.1rem;font:400 .95rem/1.4 var(--body);color:rgba(255,255,255,.72)}
+.form{background:var(--paper);color:var(--ink);padding:1.6rem;box-shadow:var(--shadow);
+  display:grid;align-content:space-between;gap:.9rem}
+.form h3{font:800 1.5rem/1.15 var(--disp);margin-bottom:.3rem}
+.form>p{font-size:1.125rem;color:var(--ink-60);margin-bottom:1.1rem}
+.f{display:grid;gap:.85rem}
+.f label{font:700 .95rem/1.2 var(--disp)}
+.f input,.f select,.f textarea{width:100%;font:400 16px/1.35 var(--body);padding:.7rem .8rem;min-height:44px;
+  border:2px solid var(--ink);border-radius:4px;background:#fff;color:var(--ink);-webkit-appearance:none;appearance:none}
+.f textarea{min-height:88px;resize:vertical}
+.f__two{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.2rem}
+/* the whole row is the tap target — a 20px checkbox is not */
+.opt{display:flex;align-items:center;gap:.6rem;min-height:44px;padding:.4rem .7rem;
+  border:2px solid var(--ink);border-radius:4px;font:600 .98rem/1.2 var(--body);cursor:pointer;
+  transition:background-color .15s,color .15s}
+.opt:hover{background:var(--brand);color:#fff}
+.opt input{width:20px;height:20px;min-height:0;accent-color:var(--brand);flex:none}
+.f__row{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-top:.4rem}
+.f__row .tel{font:800 1.15rem/1 var(--disp);text-decoration:none;min-height:44px;display:inline-flex;align-items:center;
+  border-bottom:2px solid var(--ink);transition:color .15s}
+.f__row .tel:hover{color:var(--brand-deep)}
+
+/* ── FOOTER (flat — small body copy end to end, the one grid exclusion) ───── */
+.foot{background:var(--paper);border-top:1px solid var(--rule);padding-block:var(--pad) calc(1rem + 64px)}
+.foot__top{display:grid;grid-template-columns:1fr 2.2fr;gap:1.4rem;align-items:start}
+.foot__mark{width:132px;filter:brightness(0);margin-bottom:.7rem}
+.foot__name{font:900 1.25rem/1.2 var(--disp);letter-spacing:-.01em}
+.foot h4{font:600 .74rem/1 var(--disp);letter-spacing:.16em;text-transform:uppercase;color:var(--brand-deep);margin-bottom:.8rem}
+.foot ul{list-style:none;padding:0;display:grid;gap:.45rem;font-size:1rem}
+.foot a{text-decoration:none;transition:color .15s}
+.foot a:hover{color:var(--brand-deep);text-decoration:underline}
+.foot__slogan{margin:2.4rem 0 1.6rem;font:900 clamp(1.9rem,4.6vw,3.2rem)/1 var(--disp);letter-spacing:-.03em;color:var(--brand-deep)}
+.foot__legal{border-top:1px solid var(--rule);padding-top:1rem;font:400 .82rem/1.5 var(--body);color:var(--ink-60);
+  display:flex;gap:1rem;flex-wrap:wrap;justify-content:space-between}
+
+/* ═══ 861–1023: the measured panel stays ON the photograph, type tightens ═══ */
+@media(max-width:1023px){
+  .rev,.steps{grid-template-columns:repeat(2,1fr)}
+  .people,.cta{grid-template-columns:1fr}
+  .foot__top{grid-template-columns:1fr 1fr}
+}
+
+/* ═══ 861–1279: the panel is still ON the photograph but the frame is shorter.
+   Two 44px tap rows (phone, then button) stop clearing the 70.0% transition line
+   below 1280, so the number and the button share a row — same trade as the phone. */
+@media(max-width:1279px){
+  /* PRE-EXISTING BUG, caught at 1100: the words column got narrow enough that
+     "SATISFACTION." no longer fit on its own line, so every slogan word wrapped
+     twice, the panel doubled in height and clipped the built work. The figure
+     yields column width here rather than the headline losing its line breaks. */
+  .hero__fig{width:30%}
+  .hero__words{width:64%}
+  .hero__panel h1{font-size:min(2rem,8.2cqw)}   /* 4-line slogan needs the frame it has */
+  .hero__num{display:inline-flex;margin-top:.4vw}
+  .hero__num .tel{font-size:max(15px,min(1.15rem,9cqw))}
+  .hero__act{display:inline-flex;margin-top:.4vw;margin-left:.5rem}
+}
+
+/* ═══ 431–860: THE SLAB. Panel leaves the photograph, flows beneath it. ═════ */
+@media(max-width:860px){
+  /* §1.0b-G1 — the ratio lives on .hero__shot at every width now, so nothing has to be
+     re-anchored here: .hero__media is free to be a plain wrapper. */
+  /* the portrait leaves the pinned-to-panel-height model and becomes a grid column again:
+     below 861 the panel is a full-width band, and a person stretched to a band's height
+     is a person three lines of copy tall. */
+  .hero__fig{position:static;width:auto;display:block}
+  .hero__fig img{width:100%;height:auto}
+  .hero__panel{position:static;width:100%;height:auto;min-height:0;left:auto;top:auto;border-radius:0;padding:1.8rem var(--gut);
+    /* §1.0b-J — the first section after the hero is ALWAYS white, at EVERY width it is a band,
+       with the same grid ground as any other section. This tier shipped --ink. */
+    background-color:var(--paper);color:var(--ink);
+    background-image:linear-gradient(rgba(128,104,96,.18) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(128,104,96,.18) 1px,transparent 1px);
+    background-size:64px 64px;
+    backdrop-filter:none;-webkit-backdrop-filter:none;border:0;box-shadow:none;
+    container-type:normal;text-align:left;
+    /* §1.0b-F — THE FOUNDER IS SIZED ACROSS THE WHOLE BAND RANGE, NOT JUST THE PHONE TIER.
+       `clamp(120px,22vw,190px)` held him at 22-28% from 431 to 860 while the <=430 tier had him
+       at 51%. Grady browses in a ~600px window, so he kept seeing a tiny man and being told it
+       was fixed. THIRD time in two days that fixing the phone tier and leaving the tier beside
+       it produced "you didn't change it". Rule: a BAND rule applies to the ENTIRE band range.
+       The text gives way, not the man. */
+    /* 40%, swept 32/36/40/44 against EVERY text node's right edge at 431/500/600/860: 44%
+       overlaps at all of them, 40% is clean from 500 up. The floor drops to 8rem because at
+       431 a 10rem floor is itself wider than the column allows. */
+    grid-template-columns:minmax(0,1fr) clamp(8rem,40%,40vw);gap:.8rem;align-items:center}
+  .hero__panel h1{font-size:clamp(1.6rem,4.4vw,2.6rem)}
+  .hero__sup{font-size:12px;line-height:1.3}
+  .hero__rate{font-size:12px;flex-wrap:nowrap;white-space:nowrap}
+  /* 10vw is sized to the VIEWPORT, but the headline lives in the 1fr column of a two-column
+     panel whose other column is up to 190px of portrait — so it clipped by 82px at 431 and
+     62px at 600 (§1.0b-G1 rule 3). Swept 10/8/7/6: 7vw is the largest that clears the column
+     at every width in this tier. */
+  .hero__panel h1{font-size:clamp(2rem,7vw,4.4rem);color:var(--ink);order:2}
+  .hero__sup,.hero__rate,.hero__rate a{color:var(--ink-60)}
+  .hero__num .tel{color:var(--ink)}
+  /* §1c.4 — company name above the slogan; button loudest, phone under it. */
+  .hero__name{display:block;order:1;color:var(--brand-deep);font:800 .8rem/1 var(--disp);
+    letter-spacing:.16em;text-transform:uppercase;margin:0 0 .5rem}
+  .hero__words{width:100%;display:flex;flex-direction:column;align-items:flex-start}
+  .hero__sup{order:3}.hero__rate{order:4}.hero__act{order:5}.hero__num{order:6}
+  /* the nav's link list plus the phone number measured 611px against a 431px viewport, which
+     is the horizontal scroll on this tier. The links are duplicated in the footer; the number
+     is not, so the links go. */
+  .nav__links{display:none}
+  /* §8.18 — the tap floor. This measured 38px across 431-860: the min-height lived only in
+     the <=430 block, so the tier in between inherited the base rule and fell under the floor.
+     It is the sole navigation and the primary CTA on that tier. */
+  .nav__tel{margin-left:auto;min-height:44px;display:flex;align-items:center}
+  .hero__sup{font-size:1.125rem;margin-top:1rem}
+  .hero__rate{margin-top:1rem;justify-content:flex-start;font-size:1.05rem}
+  .hero__act{margin-top:1.4rem;gap:1.2rem;justify-content:flex-start}
+  .btn{font-size:1rem}
+  .hero__num .tel{font-size:1.6rem}
+  .hero__cue{display:none}
+}
+
+/* ═══ THE PHONE ≤430 — a different product. This block lives LAST. ══════════ */
+@media(max-width:430px){
+  :root{--pad:clamp(1.2rem,3.4vw,1.8rem)}
+  body{font-size:1.125rem}
+  .nav__in{gap:.8rem;padding:.5rem var(--gut)}
+  .nav__links{display:none}                 /* a three-row nav overflows */
+  .nav__mark{width:52px}
+  .nav__brand{font-size:1.15rem}
+  .nav__tel{margin-left:auto;font-size:1.15rem;min-height:44px;display:flex;align-items:center}
+
+  /* §1.0b-H — NO GLASS BUBBLE ON A PHONE. The card does NOT return onto the photograph.
+     Grady, 2026-08-16: "get rid of that ... on every single one ... there should be none of
+     that glass morphism, it should just be a separate section directly beneath it."
+     The tall 0.620 window existed ONLY to give the floating card somewhere to sit. With the
+     card gone the phone crop goes the other way — SHORTER, not taller — because the photo and
+     the band now have to share the first screen. 833/1344 is 605px tall at 375, which with a
+     280px band puts the band's bottom edge below an iPhone SE's fold. */
+  .hero__shot{aspect-ratio:1500/1000}   /* the phone plates are 1.5 (§1.0b-K) */
+  /* §1.0b-H — a SECTION under the photograph. Absolute position, inset, blur, hairline,
+     rounding and shadow are all deliberately absent: it is a band, not a card. */
+  /* §1.0b-J — the first section after the hero is ALWAYS white, every site, and it is a REAL
+     section, so it carries the same grid ground as every other band (§3.2) — inverse-tinted:
+     brand rules on paper. It shipped in --ink, which broke both halves of that rule. */
+  .hero__panel{position:static;left:auto;right:auto;top:auto;bottom:auto;
+    width:100%;height:auto;min-height:0;
+    padding:.8rem var(--gut) .85rem;border-radius:0;border:0;box-shadow:none;
+    text-align:left;container-type:normal;color:var(--ink);
+    background-color:var(--paper);
+    background-image:linear-gradient(rgba(128,104,96,.18) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(128,104,96,.18) 1px,transparent 1px);
+    background-size:64px 64px;
+    -webkit-backdrop-filter:none;backdrop-filter:none}
+  /* white ground — every colour tuned for the dark card comes back to ink */
+  .hero__panel h1{color:var(--ink)}
+  .hero__sup{color:var(--ink-60)}
+  .hero__rate,.hero__rate a{color:var(--ink-60)}
+  .hero__num .tel{color:var(--ink)}
+  /* §1c.4 — the company name directly above the slogan, as an eyebrow. */
+  .hero__name{display:block;order:1;color:var(--brand-deep);
+    font:800 .74rem/1 var(--disp);letter-spacing:.16em;text-transform:uppercase;margin:0 0 .4rem}
+  /* §1c.4 / §8 — the button is loudest and the phone follows it, never above the slogan. */
+  .hero__words{width:100%;display:flex;flex-direction:column;align-items:flex-start}
+  .hero__panel h1{order:2}
+  .hero__sup{order:3}
+  .hero__rate{order:4}
+  .hero__act{order:5}
+  .hero__num{order:6}
+  /* §8.2 five things and no more, and the card stays about a third of the hero.
+     The name is two rows above in the sticky nav, so repeating it here is the §8.5 defect. */
+  /* the figure comes onto the phone card too — §1.0a item 4 has no width waiver
+     either. Small column, so the words keep the room they had. */
+  /* align-items:start, not center — centring the portrait against a tall words
+     column leaves a hole above it. A narrow column so the action row still fits
+     button-and-phone side by side (§2.5); at 26% it wrapped onto two rows. */
+  /* §1.0b-F — a real column, not 19% of a cramped card. The band is full width now, so the
+     figure gets the share a person needs to read as a person. */
+  /* §1.0b-F — minmax(0,1fr), not 1fr. A bare 1fr floors at the headline's MIN-CONTENT
+     width, which is the fixed pixel width of the word "SATISFACTION." — so every extra
+     point given to the portrait was taken by the headline overflowing its own track and
+     landing on his shoulder instead. With the floor removed the track is exactly
+     100% - <portrait>, and the headline (sized in cqw below) fits whatever is left. */
+    /* §1.0b-F — swept 40/44/48/52/56 against the right edge of EVERY element in the words
+     column, not just the headline. The binding constraint is `.hero__rate` (the stars and
+     "4.6 on Google"), which the photograph covered at 48% and above — the headline was still
+     clear there, so a headline-only sweep passed a build that visibly clipped the rating.
+     Sweep against every text node, not the biggest one. 44% is the largest with zero overlap
+     at 360, 375, 390 and 430. */
+  .hero__panel{grid-template-columns:minmax(0,1fr) clamp(10rem,54%,54vw);gap:.5rem;align-items:center}
+  /* Grady: "if he's maxed out at size, that means the text needs to be smaller so you can make
+     him bigger." Correct — the founder was pinned at 44% by `.hero__rate`, not by his own size.
+     So the TEXT gives way: the rating line drops to the 11px floor and is allowed to wrap, and
+     the headline comes down a step. That buys 44% -> 54%. */
+  .hero__rate{flex-wrap:wrap;gap:.15rem .35rem;font-size:11px}
+  .hero__rate .stars{font-size:.82rem}
+  .hero__panel h1{font-size:clamp(1.35rem,5.6vw,2rem)}
+  .hero__sup{font-size:11px;line-height:1.25}
+  .hero__fig img{border:0;box-shadow:none}
+  /* 1.25rem was sized for the floating card. In a full-width band the headline is the headline
+     again — §1a's "h1 >= 2x the next-largest type in the panel" with room to honour it. */
+  /* sized off ITS OWN COLUMN, not the viewport: the portrait and the headline share one
+     row, so a viewport-sized headline cannot know how much room it actually has. */
+  .hero__panel h1{font-size:clamp(1.15rem,12cqw,2.4rem);font-weight:900;line-height:.9;letter-spacing:-.015em}
+  .hero__panel h1 br{display:none}          /* the slogan flows to 2 lines, not 4 */
+  .hero__sup{font-size:.7rem;margin-top:.3rem;line-height:1.25}
+  .hero__rate{margin-top:.22rem;font-size:.8rem;justify-content:flex-start}
+  /* the words column is narrower now that the portrait has a real share of it, and the
+     rating broke across two lines. It is one badge, so it holds one line. */
+  .hero__rate a{min-height:0;white-space:nowrap}
+  /* Archivo 900 caps is wider than the fallback this was tuned against: at .86rem
+     the button and the number wrapped onto two rows, which breaks §2.5 and cost
+     53px of card height. Sized to fit one row. */
+  .hero__act{margin-top:.35rem;gap:.45rem;justify-content:flex-start;align-items:center;flex-wrap:nowrap}
+  /* on the phone the number and the button share a row again: the card is measured
+     against the hero (40% bar) and a display-sized phone on its own line costs 45px.
+     The sticky nav carries the number at 1.15rem two rows above either way. */
+  .hero__num{display:flex;margin-top:.35rem}
+  .hero__num .tel{font-size:1rem;min-height:44px}
+  .hero__act{display:flex;margin-top:.5rem;margin-left:0}
+  .btn{font-size:.78rem;padding:.5rem .6rem;box-shadow:4px 4px 0 var(--ink)}
+  .cta__tel{min-height:44px;display:inline-flex;align-items:center}
+      /* the card now reaches ~60% of the phone hero, so a grip centred at 50% lands on
+     the CTA. Drop it onto the floor — which is the thing being compared anyway. */
+  
+  .marquee{padding:.7rem 0}.mq{font-size:.92rem;gap:1.2rem}.mq li::after{margin-left:1.2rem}
+  /* vertical compression is the phone's axis — the rows carry it sideways instead.
+     ~72% of the viewport leaves the next card's edge showing, which is what tells a
+     thumb the row scrolls at all. */
+  .grp+.grp{margin-top:1.1rem}
+  .row{gap:.7rem}
+  .card{flex:0 0 72%}
+  .card__t{font-size:.92rem;line-height:1.15}.card__m{font-size:.72rem}
+  .card__two{font-size:.72rem;top:.45rem;right:.45rem}
+  .band h2{font-size:clamp(1.9rem,9vw,2.6rem)}
+  .lede{margin-bottom:1.4rem}
+  .people{gap:1.4rem}
+  .people__meta{gap:1.1rem}.people__meta b{font-size:1.45rem}
+  .steps{grid-template-columns:1fr;gap:.8rem}
+  /* §2.4c — reviews are TWO ACROSS and short. One per row made each card 934px tall — a whole
+     screen for one quote. Haas and WSL already did this; Wenger was missed because here `.rev`
+     is the CONTAINER and `.rev__c` is the card, so a class-name-based sweep looked at the wrong
+     element. Rules travel by ROLE, not by class name. */
+  .rev{grid-template-columns:1fr 1fr;gap:.55rem}
+  .rev__c{padding:.7rem .75rem;box-shadow:5px 5px 0 var(--ink);border-width:2px}
+  .rev__s{font-size:.95rem;margin-bottom:.35rem}
+  .rev__q{font-size:.78rem;line-height:1.35;margin-bottom:.45rem}
+  .rev__n{font-size:.72rem}
+  .rev__c:nth-child(3){grid-column:1 / -1}
+  .step{padding:1.1rem}.step b{font-size:2.1rem}
+  .rev__c{padding:1.6rem}
+  .faq summary{font-size:1.08rem}
+  .cta{gap:1.6rem}
+  .form{padding:1.2rem}
+  /* two across held on the phone — stacking was ~350px of pure height */
+  .foot__top{grid-template-columns:1fr;gap:.9rem}
+  .foot__slogan{margin:1.8rem 0 1.2rem}
+  /* 44px on anything that is a control; prose links inside a sentence stay exempt */
+  .nav__brand{min-height:44px}
+  .hero__rate a,.rev__l,.people__fig figcaption{min-height:44px;display:inline-flex;align-items:center}
+  .foot ul a{min-height:44px;display:flex;align-items:center}
+  .foot__legal a{min-height:44px;display:inline-flex;align-items:center}
+  .foot__legal{gap:.5rem}
+}
+
+
+/* ============================================================================
+   §1.0b-M — NO HOVER STATE SURVIVES ON A TOUCH SCREEN. LAST BLOCK, ON PURPOSE.
+   Grady, 2026-08-16, with a photo of the Double B hero: "when you scroll the top
+   section gets really dark."
+   `.hero__panel:hover` was written for the GLASS CARD, where darkening the scrim on
+   hover is the right feel. Two things make it a bug on a phone:
+     1. iOS applies :hover on tap and LEAVES IT ON until you tap something else,
+        so a hover style is a PERMANENT state on a touch device, not a transient one.
+     2. `:focus-within` fires the moment the tap lands on the phone link or the
+        button inside the panel — which is the whole point of the panel.
+   And `.hero__panel:hover` is specificity (0,2,0) against the band's (0,1,0), so it
+   beat the white ground and painted the dark card scrim back over it.
+   `@media (hover:none)` is the correct guard, not a width: it asks whether the
+   DEVICE can hover, so it also covers touch laptops and misses nothing at 900px.
+   ========================================================================= */
+@media (hover:none){
+  /* the lift is driven by :hover, which a touch screen never fires — so on a touch
+     device it is a second, static copy of floor the photograph already shows. The
+     guard is the DEVICE, not a width: a 600px desktop window still gets the effect. */
+  .hero__lift,.hero__floorhit{display:none}
+  .hero__panel:hover,.hero__panel:focus-within{
+    background:
+      linear-gradient(rgba(128,104,96,.18) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(128,104,96,.18) 1px,transparent 1px),
+      var(--paper);
+    background-size:64px 64px;
+    border-color:transparent;box-shadow:none}
+  .hero__panel:hover .hero__fig img{transform:none}
+}
+
+
+/* ============================================================================
+   §2.0c — NO HORIZONTAL SCROLL ROWS ON A PHONE. LAST BLOCK, ON PURPOSE.
+   Grady, 2026-08-17, reversing the swipe rows added the same day: "you've added
+   sections for the mobile sites where you have to scroll to the right to see all
+   of them, like for projects, reviews and awards — don't do this. Just make the
+   text smaller and more concise, and put the text underneath the content photos
+   so it's all visible on one page with no extra scroll."
+   The swipe row traded VERTICAL scroll for HIDDEN CONTENT: everything past the
+   first card-and-a-bit is invisible until you think to swipe sideways, and most
+   people never do. Two-up grid instead — every card on screen at once, caption
+   UNDER its photograph, type sized down rather than content hidden.
+   The saving is real: two columns halves the rows, which is most of what the
+   swipe row was buying, without hiding anything.
+   ========================================================================= */
+@media(max-width:900px){
+  .row{
+    display:grid !important;grid-template-columns:1fr 1fr;gap:.6rem;
+    overflow-x:visible;overflow-y:visible;scroll-snap-type:none;padding-bottom:0}
+  .row>.card,.card{flex:none !important;width:auto !important;scroll-snap-align:none}
+  /* §2.0d — the caption needs its OWN GROUND. `background:none` + `color:inherit` left white
+     text on the white band: invisible. Same defect as Haas and WSL; it was fixed there and not
+     swept here, which is exactly the failure Grady called out. The builds are one recipe. */
+  .card__cap{position:static;background:var(--paper);color:var(--ink);
+    padding:.45rem .55rem;border-top:2px solid var(--ink)}
+  .card__t{color:var(--ink)}
+  .card__m{color:var(--ink-60)}
+  /* even cards: one photo ratio, every card stretches, captions clamped */
+  .row>.card,.card{align-self:stretch;height:100%;display:flex;flex-direction:column}
+  .card__ph{aspect-ratio:4/3;height:auto;flex:none}
+  .card__ph img{width:100%;height:100%;object-fit:cover}
+  .card__cap{margin-top:auto;min-height:3.6rem}
+  .card__t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .card--flag .card__cap{position:static;background:none}
+  .card__t{font-size:.78rem;line-height:1.15}
+  .card__m{font-size:.7rem}
+  .card--flag{grid-column:span 2}
+}
+
+
+/* §9.2 — THE FLOOR POP IS DELETED, EVERY WIDTH (2026-08-17, Grady: "you can get rid of the
+   floor pop on the flooring on the Wenger website").
+   It was a real cut-out of the floor lifted on :hover. Three things killed it: a phone has no
+   hover so it never fired there; its rect is a percentage of the DESKTOP crop, so on any other
+   crop it lifts the wrong pixels (that was the mobile "glitch" that slid down the page); and it
+   asks the visitor to discover an interaction that pays them nothing. The photograph is the
+   proof; it does not need to move. */
+.hero__lift,.hero__floorhit{display:none !important}
+
+
+/* §9.2 — the before/after drag. No library: one clipped copy over the other, driven by a real
+   <input type=range>, so touch drag, mouse drag, arrow keys and screen readers all work and it
+   degrades to a plain photograph with JS off. */
+.ba{position:relative;margin:0;overflow:hidden;border:3px solid var(--ink);
+  box-shadow:var(--shadow);background:var(--ink)}
+/* §9.2b — BOTH PLATES ARE THE SAME ELEMENT SIZE. The before is revealed with clip-path, NOT by
+   sizing an image inside a narrower window. The window approach shipped broken: `.ba__clip img`
+   carried `aspect-ratio:4/3` from an earlier pair of plates, so at 1440 the AFTER rendered
+   1440x554 and the BEFORE rendered 739x554 — two different scales, and the wipe compared nothing.
+   With clip-path the two images are identical boxes by construction and cannot drift apart. */
+.ba img{display:block;width:100%;height:100%;object-fit:cover}
+.ba__a{position:relative;z-index:0}
+/* --ba is HOW MUCH OF THE BEFORE IS CLIPPED AWAY from the right. 100% = fully clipped = the
+   FINISHED photograph, which is what the visitor must land on (§9.2b). 0% = the whole before. */
+.ba__b{position:absolute;inset:0;z-index:1;clip-path:inset(0 var(--ba,100%) 0 0)}
+.ba__line{position:absolute;top:0;bottom:0;left:calc(100% - var(--ba,100%));width:3px;background:var(--paper);
+  z-index:2;box-shadow:0 0 0 1px rgba(0,0,0,.35);pointer-events:none;transform:translateX(-1.5px)}
+.ba__line::after{content:"◀ ▶";position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--paper);
+  color:var(--ink);display:grid;place-items:center;font:700 .6rem/1 var(--body);
+  letter-spacing:.02em;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+.ba__range{position:absolute;inset:0;z-index:3;width:100%;height:100%;margin:0;opacity:0;
+  cursor:ew-resize;-webkit-appearance:none;appearance:none;background:transparent}
+.ba__range::-webkit-slider-thumb{-webkit-appearance:none;width:46px;height:46px}
+.ba__range::-moz-range-thumb{width:46px;height:46px;border:0;background:transparent}
+.ba__range:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.ba__cap{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;flex-wrap:wrap;
+  gap:.1rem .6rem;align-items:baseline;padding:.45rem .6rem;background:rgba(247,244,239,.94);
+  color:var(--ink);border-top:2px solid var(--ink);pointer-events:none}
+.ba__cap b{font:800 .82rem/1.1 var(--disp)}
+.ba__cap span{font-size:.72rem;color:var(--ink-60)}
+/* §9.2b — opens FINISHED, then sways once to teach the gesture. */
+@property --ba{syntax:'<percentage>';inherits:true;initial-value:100%}
+@keyframes ba-sway{0%,100%{--ba:100%}45%{--ba:70%}}
+/* the handle RESTS AT THE LEFT EDGE so the whole finished photograph is what the visitor
+   lands on; the sway pulls right and returns. `both` fill keeps it pinned left through the
+   delay, so there is no flash of the torn-up room before the animation starts. */
+.ba.is-hinting{animation:ba-sway 1.8s cubic-bezier(.4,0,.2,1) 1.1s 1 both}
+@media (prefers-reduced-motion:reduce){.ba.is-hinting{animation:none}}
+@media(max-width:900px){.ba__cap b{font-size:.76rem}}
+
+
+/* §1.0b-K — the smallest phone still in the field (360x640) ran 8px past the fold once the
+   founder grew to 54%. The founder is NOT the thing to give back — Grady asked for him bigger
+   twice. The vertical rhythm between the stacked text pieces is, and 8px of it is invisible. */
+@media(max-width:375px){
+  .hero__panel{padding-top:.6rem;padding-bottom:.65rem}
+  .hero__words{gap:.1rem}
+  .hero__sup{margin-top:.2rem}
+  .hero__rate{margin-top:.2rem;flex-wrap:nowrap;white-space:nowrap}
+  .hero__rate .stars{font-size:.74rem}
+  .hero__act{margin-top:.35rem}
+  .hero__num{margin-top:.25rem}
+}
+
+
+/* §9.2 — the drag IS the hero photograph now, so it fills the shot box rather than sitting in
+   the flow with its own frame and shadow. */
+.hero__shot .ba{position:absolute;inset:0;margin:0;border:0;box-shadow:none;aspect-ratio:auto;
+  max-height:none;width:100%;height:100%}
+.hero__shot .ba__cap{background:rgba(247,244,239,.94)}
+@media(max-width:900px){ .hero__shot .ba{position:relative;inset:auto;aspect-ratio:3168/1219} }
+
+
+/* ============================================================================
+   §SWEEP 2026-08-17 — RULES PROVEN ON ONE BUILD, APPLIED TO ALL OF THEM.
+   Grady: "whenever I tell you to fix one thing in one website, you can probably
+   assume those issues are present on all the other websites as well."
+   Found by _review/sweepcheck.py, which now measures every build at PHONE and
+   MID width, because nearly every missed fix in this project was applied to the
+   phone tier while the tier beside it kept the old value.
+   ========================================================================= */
+@media(max-width:900px){
+  /* §2.9 — the phone number does not repeat inside the hero band. It is in the sticky nav
+     directly above it and in the CTA band below. Proven on Haas, swept here. */
+  .hero__panel .hero__num,.hero__panel a[href^="tel:"]{display:none}
+
+  /* §8.18 — the 44px tap floor, applied to STANDALONE controls only.
+     A blanket `a,button{min-height:44px;display:inline-flex}` was tried first and was worse than
+     the defect: `display:inline-flex` on every anchor overrode the `display:none` above it (so
+     the phone number came back) and forced inline links inside review prose out to 458px on a
+     390px screen, giving the page a horizontal scrollbar. A floor belongs on things that ARE
+     targets, not on every link in a sentence. */
+  .btn,.nav__tel,.cta__tel,.fact,.hero__tel,.glass__tel,.hero__num .tel,.submit__tel,
+  button[type=submit]{min-height:44px;display:inline-flex;align-items:center}
+  /* review cards must be allowed to shrink, or long quotes push the page sideways */
+  .rev,.rev *{min-width:0}
+  .rev__q,.rev__who{overflow-wrap:anywhere}
+}
+
+
+/* §2.0d — even cards, same fix as Haas and WSL. The flagship stopped spanning and the caption
+   got a fixed floor, because three captions of different lengths in equal columns is what makes
+   a grid look ragged even when every photograph is the same size. */
+@media(max-width:900px){
+  .work__grid>.card--flag,.row>.card--flag{grid-column:span 1}
+  .card__cap{min-height:3.4rem}
+  .card__t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .card__m{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+}
+
+
+/* §1.0b-G1 — the phone plates are 1.5 and the desktop plates 2.599, so the box follows the file
+   at each width. Declaring one ratio for both is what makes object-fit re-crop silently. */
+@media(max-width:900px){ .hero__shot,.hero__shot .ba{aspect-ratio:1500/1000} }
+
+
+/* ============================================================================
+   §1.0b-Q — THE HERO PANEL HOLDS EXACTLY SIX THINGS, AND A PHONE NUMBER IS NOT
+   ONE OF THEM. EVERY BUILD, EVERY WIDTH. (2026-08-17)
+   Grady: "The founder section should be the name of their company, then their
+   slogan, then what they do, then the reviews, then the start-your-project
+   button, then a picture of the founder. And that's it. There shouldn't be a
+   phone number... Everything I'm saying is something I need you to tweak for
+   the blueprint."
+     1 company name (eyebrow)  2 slogan (h1)  3 what they do + where
+     4 rating  5 ONE button  6 the founder's photograph
+   🛑 NO WIDTH SCOPE. This was written once as `@media(max-width:900px)` and the
+   number stayed visible from 901 up — the FOURTH time in this project that a
+   rule was applied to the phone tier and left everywhere else. Grady browses in
+   a ~600px window and on desktop; a hero rule that only holds on phones is not
+   a rule, it is a coincidence.
+   The number is in the sticky nav above and the CTA band below (§2.9).
+   ========================================================================= */
+.hero__panel .hero__num,.hero__panel a[href^="tel:"]{display:none !important}
+
+/* §2.a — THE MOVING BANNER RUNS ON THE PHONE TOO. It was deleted below 900 back when the hero
+   was a floating card and the band beneath it needed the room. The hero is a stacked section
+   now, the marquee is the transition out of it, and without it the photograph runs straight
+   into the next band. Grady: "why does the Haas website not have a moving banner anymore?" */
+@media(max-width:900px){ .marquee{display:flex} }
+
+/* §3.3 — the button register is 800, not 900. Wenger was the outlier. */
+.btn{font-weight:800}
+
+
+/* footer runs + sticky CTA (same contract as Encore/Hurley) */
+.foot__runs{min-width:0}
+.foot__run{margin:0 0 .55rem;font-size:.9rem;line-height:1.6;color:var(--ink-60)}
+.foot__run b{font:600 .72rem/1 var(--disp,sans-serif);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);margin-right:.4rem}
+.foot__run a{font-weight:700;text-underline-offset:3px}
+.stick{position:fixed;left:0;right:0;bottom:0;z-index:70;
+  display:flex;gap:.5rem;align-items:stretch;
+  padding:.5rem clamp(.75rem,1.6vw,1.25rem);
+  padding-bottom:max(.5rem,env(safe-area-inset-bottom));
+  background:rgba(248,245,242,.94);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-top:1px solid var(--rule);box-shadow:0 -6px 24px rgba(0,0,0,.14);
+  transform:translateY(110%);opacity:0;
+  transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .3s}
+.stick.on{transform:translateY(0);opacity:1}
+.stick__b{display:flex;align-items:center;justify-content:center;gap:.4rem;
+  min-height:48px;border-radius:10px;text-decoration:none;
+  font-weight:800;font-size:.95rem;line-height:1;letter-spacing:.03em;text-transform:uppercase}
+.stick__b--tel{flex:0 0 38%;background:#fff;color:var(--brand);
+  border:2px solid var(--brand);box-shadow:3px 3px 0 var(--ink)}
+.stick__b--cta{flex:1 1 auto;background:var(--brand);color:#fff;box-shadow:3px 3px 0 var(--ink)}
+html{scroll-padding-bottom:96px}
+@media (min-width:901px){.stick{display:none}html{scroll-padding-bottom:0}
+  .foot{padding-block:var(--pad) 1.4rem}}
+@media (prefers-reduced-motion:reduce){.stick{transition:none}}

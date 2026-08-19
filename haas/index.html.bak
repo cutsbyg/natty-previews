@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Haas Creative Carpentry — Custom Homes, Remodeling &amp; Carpentry · Loysville, PA</title>
+<meta name="description" content="Haas Creative Carpentry, LLC — custom homes, remodeling and carpentry in Loysville and Central Pennsylvania. Winner, 2022 HBA Pyramid Award for the best custom home over $1,500,001.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero-wide.webp" fetchpriority="high">
+<!-- ?v= is a cache-buster. Without it a phone that has loaded the page once keeps its old
+     stylesheet through a normal reload, so a tweak looks like it did nothing. Bump on edit. -->
+<link rel="stylesheet" href="css/style.css?v=16">
+<!-- §11.3 first-party analytics. Same origin, no cookies, no IP, no consent banner.
+     Served by analytics/server.js; harmlessly absent when the folder is opened directly. -->
+<script defer src="a.js"></script>
+</head>
+<body>
+<a class="skip" href="#top">Skip to content</a>
+<div class="prog" aria-hidden="true"><div class="prog__b"></div></div>
+
+<!-- 1 NAV — brand chrome, outside the alternation (§3.2a rule 2) -->
+<header class="nav">
+ <div class="nav__in">
+  <a class="nav__brand" href="#top" aria-label="Haas Carpentry — home">
+    <img src="img/logo-truss.png" alt="" width="300" height="115">
+    <!-- §8.18 — brand + number must hold ONE row and the brand TYPE never shrinks, so the
+         NAME shortens instead: §2.10's shortest unambiguous form is HAAS. -->
+    <span>HAAS<span class="wm"> CARPENTRY</span></span>
+  </a>
+  <nav class="nav__links" aria-label="Sections">
+    <a class="nav-link" href="#work">Projects</a>
+    <a class="nav-link" href="#dustin">Dustin</a>
+    <a class="nav-link" href="#award">The Award</a>
+    <a class="nav-link" href="#reviews">Reviews</a>
+  </nav>
+  <a class="nav__tel" href="tel:+17177893652" aria-label="Call 7 1 7. 7 8 9. 3 6 5 2">
+    <span>CALL DUSTIN</span><b>717-789-3652</b>
+  </a>
+ </div>
+</header>
+
+<main id="top">
+
+<!-- 2 HERO — measured panel (§1a). Panel in the left third; rail finishes with CLEARANCE
+     above panelcheck's built-work limit (§1a step 8c), not resting on the pool-house ridge.
+     Headline is one word per authored line so a rendered line can never exceed the
+     authored count (§1a step 8d). -->
+<section class="hero" id="hero">
+  <div class="hero__media">
+    <picture>
+      <!-- §8.1 — the phone gets its own vertical frame, cropped from the 4096px original of
+           the same photograph (PIL crop, no generation). 1356x1808 = 0.75, chosen by §8.1's
+           arithmetic: at 375 the hero is 500px and the five-item card lands at about a third
+           of it. The old 1242x932 (1.33) crop made the hero 281px and the panel measured 119%
+           of its own photograph; it is kept as hero-phone-1242x932.webp.
+           The CSS aspect-ratio tracks this file to the pixel or object-fit re-crops it. -->
+      <source media="(max-width:430px)" srcset="img/hero-phone.webp?v=10" width="1356" height="1808">
+      <!-- 431-900: the 0.75 portrait crop makes the hero 933px tall at 700px wide, which pushes
+           the glass card BELOW THE FOLD. A 2.0 crop keeps the whole first screen visible. -->
+      <source media="(max-width:900px)" srcset="img/hero-mid-tall.webp?v=5" width="1864" height="932">
+      <source media="(max-width:1365px)" srcset="img/hero-mid.webp?v=5">
+      <img src="img/hero-wide.webp?v=5" width="2100" height="808" fetchpriority="high"
+           alt="A timber-frame home at dusk with its pool lit, built by Haas Creative Carpentry">
+    </picture>
+    <!-- Vertical percentages rescaled x1.15347 when the frame was cropped 932 -> 808.
+         These boxes are % of the media box, so shortening the box without rescaling them
+         slides the cut-out and the hotspot off the house they are supposed to sit on. -->
+    <div class="hero__pop" style="left:47.19%;top:3.71%;width:40.76%;height:87.25%;--cut:url(../img/house-cut.png)" aria-hidden="true"><img src="img/house-cut.png" alt=""><div class="hero__shine"></div></div>
+  <!-- The rect lives in CSS, not here. As an inline style it outranked the media query that
+       has to widen it to the whole photograph below 1366px, where a different crop is served
+       and this rect points at open sky. -->
+  <button type="button" class="hero__fly" data-fly="img/flythrough-2.mp4"
+          style="--fly-org:66% 45%"
+          aria-label="Fly through the front doors into the great room">
+    <span class="hero__fly-tag">Take a look →</span>
+  </button>
+  </div>
+
+  <div class="glass hero__panel">
+    <div class="hero__words">
+      <!-- §8.3 — the phone card leads with the NAME. Hidden at every other width, where the
+           headline does that job; shown only inside the ≤430 card, where a giant phone number
+           under no name reads as noise to a stranger. §2.10 shortest unambiguous form. -->
+      <span class="hero__name" aria-hidden="true">HAAS CARPENTRY</span>
+      <h1>BUILDING<br>TRUST,<br>DELIVERING<br>QUALITY<em>.</em></h1>
+      <!-- §8.5 — the card's name already says CARPENTRY, and §8.5 says each fact once across
+           the whole page. The third trade is marked .sec and dropped in the ≤430 card, which
+           is what keeps the authored two lines rendering as two (§1a step 8d). -->
+      <p class="hero__support">CUSTOM HOMES <i>·</i> REMODELING<span class="sec"> <i>·</i> CARPENTRY</span><br>PERRY <i>&amp;</i> CUMBERLAND COUNTIES</p>
+      <p class="hero__rate">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span class="hero__rate-t">4.7 on Google</span>
+      </p>
+      <div class="hero__row">
+        <a class="btn" href="#contact"><span>START YOUR PROJECT</span></a>
+        <a class="hero__tel" href="tel:+17177893652" aria-label="Call 7 1 7. 7 8 9. 3 6 5 2">
+          <span>CALL DUSTIN</span><b>717-789-3652</b>
+        </a>
+      </div>
+    </div>
+    <a class="hero__cut" href="#dustin" aria-label="Meet Dustin">
+      <img src="img/dustin-cutout.png" alt="Dustin Haas, who owns Haas Creative Carpentry"
+           width="696" height="900">
+    </a>
+  </div>
+
+  <!-- §1a.11b — the ONE sanctioned element outside the panel: an affordance, not content. -->
+  <a class="scroll-cue" href="#work" aria-label="Scroll to our recent work">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+      <path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.4"
+            stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </a>
+</section>
+
+<!-- 3 MARQUEE — the transition out of the hero, ≤64px (§1.2 blocker) -->
+<div class="marquee" aria-label="Loysville, Elliottsburg, Carlisle, Shermans Dale, New Bloomfield, Millerstown">
+  <ul class="mq"><li>LOYSVILLE</li><li class="d">◆</li><li>ELLIOTTSBURG</li><li class="d">◆</li><li>CARLISLE</li><li class="d">◆</li><li>SHERMANS DALE</li><li class="d">◆</li><li>NEW BLOOMFIELD</li><li class="d">◆</li><li>MILLERSTOWN</li><li class="d">◆</li><li>BUILDING TRUST</li><li class="d">◆</li><li>DELIVERING QUALITY</li><li class="d">◆</li></ul>
+  <ul class="mq" aria-hidden="true"><li>LOYSVILLE</li><li class="d">◆</li><li>ELLIOTTSBURG</li><li class="d">◆</li><li>CARLISLE</li><li class="d">◆</li><li>SHERMANS DALE</li><li class="d">◆</li><li>NEW BLOOMFIELD</li><li class="d">◆</li><li>MILLERSTOWN</li><li class="d">◆</li><li>BUILDING TRUST</li><li class="d">◆</li><li>DELIVERING QUALITY</li><li class="d">◆</li></ul>
+</div>
+
+<!-- 4 WORK — brand band, first below the hero (§3.2a rule 2). 12 columns: 2 flagships at
+     span 6 + 4 majors at span 3 tile
+     exactly into two complete rows. Detail tier is empty by design — the reference's
+     "Staircase" tile is a known defect and does not come back. -->
+<section class="work g-brand" id="work">
+  <div class="in">
+    <div class="work__head">
+      <div>
+        <p class="kicker rv">PERRY &amp; CUMBERLAND COUNTIES</p>
+        <h2 class="rv d1">OUR RECENT<br>WORK<em>.</em></h2>
+      </div>
+      <p class="lede rv d2">Custom homes, remodels, and the woodwork that goes in them. Every photo flips to the inside.</p>
+    </div>
+
+    <div class="mz dimset">
+      <button type="button" class="pj" data-tier="flagship" data-cycle data-lb aria-label="Carlisle Home — custom home in Carlisle, Pennsylvania">
+        <div class="pj__ph">
+          <img class="a" src="img/pj-carlisle-a.jpg" alt="A stone and shingle custom home with a timber entry, built by Haas Creative Carpentry" width="1400" height="933">
+          <img class="b" src="img/pj-carlisle-b.jpg" alt="Inside the Carlisle Home — timber trusses over a stone fireplace" width="1400" height="933">
+        </div>
+        <span class="pj__flip">Look up →</span>
+        <span class="pj__bar"><span><b>Carlisle Home</b><i>Custom home · Carlisle, PA</i></span><span class="pj__go" aria-hidden="true">→</span></span>
+      </button>
+
+      <button type="button" class="pj" data-tier="flagship" data-cycle data-lb aria-label="Elliottsburg Home — custom home in Elliottsburg, Pennsylvania">
+        <div class="pj__ph">
+          <img class="a" src="img/pj-elliottsburg-a.jpg" alt="A two-storey home with a stone porch, built by Haas Creative Carpentry" width="1400" height="933">
+          <img class="b" src="img/pj-elliottsburg-b.jpg" alt="Inside the Elliottsburg Home — the kitchen and island under a wood ceiling" width="1400" height="933">
+        </div>
+        <span class="pj__flip">Inside →</span>
+        <span class="pj__bar"><span><b>Elliottsburg Home</b><i>Custom home · Elliottsburg, PA</i></span><span class="pj__go" aria-hidden="true">→</span></span>
+      </button>
+
+      <button type="button" class="pj" data-tier="major" data-cycle data-lb aria-label="Mountain Road Home — custom home">
+        <div class="pj__ph">
+          <img class="a" src="img/pj-mountainroad-a.jpg" alt="The great room at the Mountain Road Home — arched timber beams over an open floor" width="1400" height="933">
+          <img class="b" src="img/pj-mountainroad-b.jpg" alt="Inside the Mountain Road Home — the kitchen under a wood ceiling" width="1400" height="933">
+        </div>
+        <span class="pj__flip">The kitchen →</span>
+        <span class="pj__bar"><span><b>Mountain Road Home</b><i>Custom home</i></span><span class="pj__go" aria-hidden="true">→</span></span>
+      </button>
+
+      <!-- Cut on phone (§3.4 vertical compression): six tiles leave the basement tile
+           orphaned in a one-up column with no pair. The deck is the weakest of the six,
+           so dropping it re-pairs the rest. Desktop keeps all six — its 12-column grid
+           tiles them evenly and nothing is orphaned there. -->
+      <button type="button" class="pj" data-phone-cut data-tier="major" data-cycle data-lb aria-label="Remodeled deck">
+        <div class="pj__ph">
+          <img class="a" src="img/pj-deck-a.jpg" alt="A two-level deck on a hillside home, built by Haas Creative Carpentry" width="1400" height="933">
+          <img class="b" src="img/pj-deck-b.jpg" alt="On the Remodeled Deck — furnished, looking out over the valley" width="1400" height="933">
+        </div>
+        <span class="pj__flip">On it →</span>
+        <span class="pj__bar"><span><b>Remodeled Deck</b><i>Deck rebuild</i></span><span class="pj__go" aria-hidden="true">→</span></span>
+      </button>
+
+      <button type="button" class="pj" data-tier="major" data-cycle data-lb aria-label="Porch roof addition">
+        <div class="pj__ph">
+          <img class="a" src="img/pj-porch-a.jpg" alt="A gabled porch roof on timber posts, built by Haas Creative Carpentry" width="1400" height="933">
+          <img class="b" src="img/pj-porch-b.jpg" alt="Under the Porch Roof Addition — the timber trusses and ceiling seen from below" width="1400" height="933">
+        </div>
+        <span class="pj__flip">Look up →</span>
+        <span class="pj__bar"><span><b>Porch Roof Addition</b><i>Covered porch, added on</i></span><span class="pj__go" aria-hidden="true">→</span></span>
+      </button>
+
+      <button type="button" class="pj" data-tier="major" data-cycle data-lb aria-label="Basement Finish with Theater">
+        <div class="pj__ph">
+          <img class="a" src="img/pj-basement-a.jpg" alt="A finished basement with a wet bar and sitting room, built by Haas Creative Carpentry" width="1400" height="933">
+          <img class="b" src="img/pj-basement-b.jpg" alt="The home theater in the finished basement, with tiered seating" width="1400" height="933">
+        </div>
+        <span class="pj__flip">The theater →</span>
+        <span class="pj__bar"><span><b>Basement Finish with Theater</b><i>Home theater, wet bar and workout room</i></span><span class="pj__go" aria-hidden="true">→</span></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- 5 FOUNDER — paper band (§3.2a rule 2: it follows the brand WORK band). Contextual photo,
+     background intact — a different photograph from the hero cut-out (§3). -->
+<section class="who g-paper" id="dustin">
+  <div class="who__in">
+    <a class="who__cut" href="https://www.facebook.com/HaasCreativeCarpentry" target="_blank" rel="noopener"
+       aria-label="Haas Creative Carpentry on Facebook — opens in a new tab">
+      <img src="img/dustin-context.jpg" alt="Dustin Haas going over a set of drawings at the Haas Creative Carpentry office"
+           width="1000" height="1333">
+      <span class="who__tag"><b>DUSTIN HAAS</b><span>FACEBOOK →</span></span>
+    </a>
+
+    <div class="who__text">
+      <p class="kicker rv">LOYSVILLE, PENNSYLVANIA</p>
+      <h2 class="rv d1">YOUR NEIGHBOR<br>IS A CARPENTER<em>.</em></h2>
+      <blockquote class="who__quote rv d2">
+        &ldquo;After working for more than 15 years for &lsquo;the other guys&rsquo;, I decided I had had enough.&rdquo;
+        <cite>Dustin Haas, Loysville</cite>
+      </blockquote>
+      <p class="who__body rv d3">Dustin started Haas Creative Carpentry in 2016; his wife Brooke does the books.
+        In 2024 he bought Collins Construction and its shop. He builds custom homes, remodels, and the
+        woodwork that goes in them.</p>
+
+      <div class="who__facts rv d4">
+        <a class="fact" href="tel:+17177893652"><b>717-789-3652</b><span>Call</span></a>
+        <a class="fact" href="#work"><b>Custom homes and remodeling</b><span>What he builds</span></a>
+      </div>
+
+      <div class="crew rv d5">
+        <p class="crew__k">The crew</p>
+        <ul class="crew__row">
+          <li class="crew__c"><img src="img/crew-emily.jpg" alt="Emily, project manager at Haas Creative Carpentry" width="560" height="700"><span class="crew__n">Emily<em>Project manager</em></span></li>
+          <li class="crew__c"><img src="img/crew-tracy.jpg" alt="Tracy, office administrator at Haas Creative Carpentry" width="560" height="700"><span class="crew__n">Tracy<em>Office administrator</em></span></li>
+          <li class="crew__c"><img src="img/crew-brooke.jpg" alt="Brooke, finance administrator at Haas Creative Carpentry" width="560" height="700"><span class="crew__n">Brooke<em>Finance administrator</em></span></li>
+          <li class="crew__c"><img src="img/crew-scott.jpg" alt="Scott, field crew at Haas Creative Carpentry" width="560" height="700"><span class="crew__n">Scott<em>Field crew</em></span></li>
+          <li class="crew__c"><img src="img/crew-bear.jpg" alt="Mr. Bear, the shop dog at Haas Creative Carpentry" width="560" height="700"><span class="crew__n">Bear<em>Pawsitivity supervisor</em></span></li>
+        </ul>
+        <p class="crew__more">Plus Trevin, Landen and William — three full-time hands who came up through the trade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 PROOF — brand band. The credential → the project that earned it → where it ran (§1.5). -->
+<section class="award g-brand" id="award">
+  <div class="in">
+    <p class="kicker rv">2022</p>
+    <h2 class="rv d1">WE WON BEST<br>CUSTOM HOME<em>.</em></h2>
+    <p class="lede rv d2">The Home Builders Association of Metropolitan Harrisburg holds an awards night for the
+      houses built in its area. In 2022 ours won the one for the best custom home over $1,500,001.</p>
+
+    <div class="award__row">
+      <div class="artifact rv d3">
+        <div class="artifact__ph"><img src="img/proof-trophy.jpg" alt="The 2022 Pyramid Award trophy, engraved for Haas Creative Carpentry" width="1200" height="900"></div>
+        <span class="artifact__step">1 — The trophy</span>
+        <span class="artifact__t">2022 Pyramid Award<em>Best Custom Home Over $1,500,001 — Home Builders Association of Metropolitan Harrisburg</em></span>
+      </div>
+      <div class="artifact rv d4">
+        <div class="artifact__ph"><img src="img/proof-house.jpg" alt="The award-winning timber-frame home, built by Haas Creative Carpentry" width="1200" height="900"></div>
+        <span class="artifact__step">2 — The house that won it</span>
+        <span class="artifact__t">The house that won it<em>A timber-framed home in Perry County, with a stone chimney at each end and a pool house across the yard.</em></span>
+      </div>
+      <a class="artifact rv d5" href="img/timbertalk-spread.webp" target="_blank" rel="noopener">
+        <div class="artifact__ph"><img src="img/proof-magazine.webp" alt="Timber Talk magazine, Spring 2023, with the award-winning house on the cover" width="1200" height="900"></div>
+        <span class="artifact__step">3 — The magazine it was in</span>
+        <span class="artifact__t">Timber Talk, Spring 2023<em>The house is the cover. Inside, a four-page story about building it — see the pages →</em></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 7 REVIEWS — paper band. The hero panel carries the SCORE, so this band carries the
+     COUNT and links out (§1a.11a). -->
+<section class="revs g-paper" id="reviews">
+  <div class="in">
+    <div class="revs__head">
+      <div>
+        <p class="kicker rv">WHAT THE OWNERS SAY</p>
+        <h2 class="rv d1">TEN YEARS OF<br>BUILDING HERE<em>.</em></h2>
+      </div>
+      <p class="revs__rate rv d2">
+        <span><a class="lnk" href="https://www.google.com/maps/search/?api=1&amp;query=Haas+Creative+Carpentry+Loysville+PA" target="_blank" rel="noopener">11 reviews on Google →</a></span>
+      </p>
+    </div>
+    <div class="revs__grid">
+      <a class="rev" href="https://www.google.com/maps/search/?api=1&amp;query=Haas+Creative+Carpentry+Loysville+PA" target="_blank" rel="noopener">
+        <p class="stars" aria-label="Five out of five stars">★★★★★</p>
+        <p class="rev__who">The Bells <em>Shermans Dale, PA</em></p>
+        <p class="rev__q">&ldquo;Admittedly I am a bit of a micromanager, however during the entire construction process Dustin and team kept us fully informed and engaged.&rdquo;</p>
+      </a>
+      <a class="rev" href="https://www.google.com/maps/search/?api=1&amp;query=Haas+Creative+Carpentry+Loysville+PA" target="_blank" rel="noopener">
+        <p class="stars" aria-label="Five out of five stars">★★★★★</p>
+        <p class="rev__who">Todd &amp; Audrey <em>New Bloomfield, PA · September 2022</em></p>
+        <p class="rev__q">&ldquo;We were never asked to select from a pre-set list of materials or to use cookie-cutter options. This team truly offers a CUSTOM design.&rdquo;</p>
+      </a>
+      <a class="rev" href="https://www.google.com/maps/search/?api=1&amp;query=Haas+Creative+Carpentry+Loysville+PA" target="_blank" rel="noopener">
+        <p class="stars" aria-label="Five out of five stars">★★★★★</p>
+        <p class="rev__who">Catrina Spano</p>
+        <p class="rev__q">&ldquo;The quality in craftsmanship and attention to detail was as if Haas Creative Carpentry took my thoughts and dreams and made them a reality.&rdquo;</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- 7b FAQ — §1.0c-FAQ. It sits between the reviews and the CTA, and it lives INSIDE the
+       reviews band rather than as a section of its own: seven grounded bands cannot
+       alternate between a brand WORK band and a paper FOOTER, so a new band here would put
+       two papers or two blues together (§3.2a rule 2). The intake form lives inside the CTA
+       for exactly the same reason. Native <details name="faq"> — one open at a time, first
+       open, zero JS. §2.9: the rating, the award and the years are said elsewhere. -->
+  <div class="faq" id="faq">
+    <div class="faq__in">
+      <p class="kicker">BEFORE YOU CALL</p>
+      <h2 class="faq__h">QUESTIONS WE<br>GET ASKED<em>.</em></h2>
+
+      <div class="faq__list">
+        <details class="faq__q" name="faq" open>
+          <summary>Do you build timber frame homes?</summary>
+          <p class="faq__a">Yes — timber framing is regular work here. The trusses, the arched
+            beams and the porch roofs in the projects above were cut and raised by this crew.</p>
+        </details>
+        <details class="faq__q" name="faq">
+          <summary>Do I need house plans before I call?</summary>
+          <p class="faq__a">No. Most people start with a sketch and a rough idea of the budget.
+            Dustin sits in on the design meetings with your designer, so the plan gets drawn by
+            people who already know what it will take to build it.</p>
+        </details>
+        <details class="faq__q" name="faq">
+          <summary>Do you take small jobs, or only whole houses?</summary>
+          <p class="faq__a">Both. Alongside the custom homes the shop does remodels and finish
+            carpentry — custom cabinets, a butler's pantry, a laundry room, a live-edge desktop,
+            a basement finished out.</p>
+        </details>
+        <details class="faq__q" name="faq">
+          <summary>What happens first when I get in touch?</summary>
+          <p class="faq__a">Call the shop Monday to Friday, 7:00 to 4:30, or send the project form
+            further down this page. The job starts in pre-construction — planning it on paper
+            before anything gets built.</p>
+        </details>
+        <details class="faq__q" name="faq">
+          <summary>What areas do you build in?</summary>
+          <p class="faq__a">The shop is on Shermans Valley Road in Loysville and most jobs stay
+            inside Perry and Cumberland counties. Elliottsburg, Shermans Dale, New Bloomfield and
+            Millerstown are regular ground, and Carlisle is a short run over the mountain.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 STATS — the cap of the CTA block, not a band (§3.2a rule 2). Stat blocks carry the
+     house hard shadow (§3.2a rule 3a). -->
+<section class="stats" aria-label="Haas Creative Carpentry by the numbers">
+  <div class="stat"><span class="n" data-count="2016">2016</span><span class="l">Started in Loysville</span></div>
+  <div class="stat"><span class="n" data-count="22">22</span><span class="l">Years Tracy has answered the phone</span></div>
+  <div class="stat"><span class="n" data-count="2022">2022</span><span class="l">Won best custom home in the region</span></div>
+  <div class="stat"><span class="n" data-count="2024">2024</span><span class="l">Bought Collins Construction, kept the crew</span></div>
+</section>
+
+<!-- 9 CTA — brand band. The phone number is the largest type on the page (§8). -->
+<section class="cta g-brand" id="contact">
+  <div class="cta__in">
+    <div>
+      <p class="kicker rv" style="color:#cfe0f0">TALK TO DUSTIN</p>
+      <a class="tel-big rv d1" href="tel:+17177893652" aria-label="Call 7 1 7. 7 8 9. 3 6 5 2">717<i>·</i>789<i>·</i>3652</a>
+      <p class="cta__line rv d2">Call Dustin. The shop is open 7:00 to 4:30, Monday to Friday.</p>
+      <div class="cta__row rv d3">
+        <a class="btn btn--ghost" href="#submit"><span>SUBMIT A PROJECT</span></a>
+        <a class="lnk" href="https://maps.google.com/?q=3205+Shermans+Valley+Rd+Loysville+PA+17047" target="_blank" rel="noopener">3205 Shermans Valley Rd, Loysville, PA 17047</a>
+      </div>
+    </div>
+    <figure class="cta__edge rv d4">
+      <img src="img/cta-edge.jpg" alt="Inside a timber-framed great room built by Haas Creative Carpentry" width="900" height="600">
+    </figure>
+  </div>
+
+  <!-- 9b SUBMIT A PROJECT - the intake form, fields taken from the client's own existing
+       form. It lives INSIDE the CTA band rather than as its own section: a new band here
+       would put two papers or three blues together and break the §3.2a alternation. -->
+  <div class="lead" id="submit">
+    <div class="lead__in">
+      <p class="kicker" style="color:#cfe0f0">TELL US ABOUT THE JOB</p>
+      <h2 class="lead__h">SUBMIT A PROJECT<em>.</em></h2>
+      <p class="lead__lede">The more you can tell us up front, the better the first conversation goes.
+        Photos help more than anything.</p>
+
+      <form class="lead__form" method="post" action="/api/lead" enctype="multipart/form-data">
+        <div class="f f--half">
+          <label for="lf-name">Name <b>*</b></label>
+          <span class="f__hint">First and last</span>
+          <input id="lf-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="f f--half">
+          <label for="lf-email">Email <b>*</b></label>
+          <input id="lf-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="f f--half">
+          <label for="lf-phone">Phone <b>*</b></label>
+          <input id="lf-phone" name="phone" type="tel" autocomplete="tel" required>
+        </div>
+        <div class="f f--half">
+          <label for="lf-addr">Job site address <b>*</b></label>
+          <input id="lf-addr" name="address" type="text" autocomplete="street-address" required>
+        </div>
+
+        <div class="f">
+          <label for="lf-photos">Photos of the current space</label>
+          <span class="f__hint">Optional, but the fastest way to get a real answer</span>
+          <input id="lf-photos" name="photos" type="file" accept="image/*" multiple>
+        </div>
+
+        <fieldset class="f f--half">
+          <legend>Type of property</legend>
+          <label class="opt"><input type="radio" name="property" value="residential"> Residential</label>
+          <label class="opt"><input type="radio" name="property" value="commercial"> Commercial</label>
+          <label class="opt"><input type="radio" name="property" value="other"> Other</label>
+        </fieldset>
+
+        <div class="f f--half">
+          <label for="lf-src">How did you hear about us?</label>
+          <input id="lf-src" name="source" type="text">
+        </div>
+
+        <fieldset class="f">
+          <legend>What would you like done?</legend>
+          <div class="opts">
+            <label class="opt"><input type="checkbox" name="needs" value="New build"> New build</label>
+            <label class="opt"><input type="checkbox" name="needs" value="Full remodel"> Full remodel</label>
+            <label class="opt"><input type="checkbox" name="needs" value="Kitchen remodel"> Kitchen remodel</label>
+            <label class="opt"><input type="checkbox" name="needs" value="Bathroom remodel"> Bathroom remodel</label>
+            <label class="opt"><input type="checkbox" name="needs" value="Addition"> Addition</label>
+            <label class="opt"><input type="checkbox" name="needs" value="Exterior"> Exterior</label>
+            <label class="opt"><input type="checkbox" name="needs" value="Interior"> Interior</label>
+            <label class="opt"><input type="checkbox" name="needs" value="Roof"> Roof</label>
+            <label class="opt"><input type="checkbox" name="needs" value="Outdoor living space"> Outdoor living space</label>
+            <label class="opt"><input type="checkbox" name="needs" value="Detached structure"> Detached structure</label>
+            <label class="opt"><input type="checkbox" name="needs" value="Repair"> Repair</label>
+            <label class="opt"><input type="checkbox" name="needs" value="Custom furniture"> Custom furniture</label>
+          </div>
+        </fieldset>
+
+        <div class="f">
+          <label for="lf-notes">Anything else</label>
+          <textarea id="lf-notes" name="notes" rows="4"></textarea>
+        </div>
+
+        <div class="f lead__send">
+          <button class="btn" type="submit"><span>SEND IT TO DUSTIN</span></button>
+          <p class="lead__alt">Or call <a class="lnk" href="tel:+17177893652">717-789-3652</a> &mdash; the shop is open 7:00 to 4:30.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<dialog class="lb" aria-label="Project">
+  <button type="button" class="lb__x" aria-label="Close">&times;</button>
+  <div class="lb__ph"></div>
+  <p class="lb__cap"><b></b><i></i></p>
+</dialog>
+</main>
+
+<!-- 10 FOOTER — paper, so it never touches the CTA's brand ground. Always flat: no grid
+     behind body copy (§3.2a rule 3b). -->
+<footer class="foot g-paper">
+  <div class="foot__in">
+    <div class="foot__brand">
+      <img src="img/logo-truss.png" alt="" width="300" height="115">
+      <span>HAAS CREATIVE CARPENTRY, LLC</span>
+    </div>
+    <div class="foot__cols">
+      <div>
+        <p class="foot__k">Where we build</p>
+        <p class="foot__t">Loysville · Elliottsburg · Carlisle · Shermans Dale · New Bloomfield · Millerstown · Perry and Cumberland counties</p>
+      </div>
+      <div>
+        <p class="foot__k">Office</p>
+        <p class="foot__t">Monday to Friday, 7:00–4:30<br>3205 Shermans Valley Rd, Loysville, PA 17047</p>
+      </div>
+      <div>
+        <p class="foot__k">Reach us</p>
+        <nav class="foot__links" aria-label="Footer">
+          <a class="lnk" href="tel:+17177893652">717-789-3652</a>
+          <a class="lnk" href="mailto:office@haascarpentry.com">office@haascarpentry.com</a>
+          <a class="lnk" href="https://www.facebook.com/HaasCreativeCarpentry" target="_blank" rel="noopener">Facebook</a>
+          <a class="lnk" href="https://www.instagram.com/haascreativecarpentry/" target="_blank" rel="noopener">Instagram</a>
+        </nav>
+      </div>
+    </div>
+    <p class="foot__slog">BUILDING TRUST,<br>DELIVERING QUALITY<em>.</em></p>
+    <p class="foot__legal">© 2026 Haas Creative Carpentry, LLC · <a class="foot__adm" href="/admin" rel="nofollow">Owner login</a></p>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness",
+"name":"Haas Creative Carpentry, LLC","foundingDate":"2016",
+"url":"https://haascarpentry.com/","telephone":"+1-717-789-3652","email":"office@haascarpentry.com",
+"address":{"@type":"PostalAddress","streetAddress":"3205 Shermans Valley Rd","addressLocality":"Loysville","addressRegion":"PA","postalCode":"17047","addressCountry":"US"},
+"geo":{"@type":"GeoCoordinates","latitude":40.3718852,"longitude":-77.3292567},
+"openingHours":"Mo-Fr 07:00-16:30",
+"areaServed":["Loysville, PA","Elliottsburg, PA","Carlisle, PA","Shermans Dale, PA","New Bloomfield, PA","Millerstown, PA","Perry County, PA","Cumberland County, PA"],
+"founder":{"@type":"Person","name":"Dustin Haas","sameAs":"https://www.facebook.com/HaasCreativeCarpentry"},
+"sameAs":["https://www.facebook.com/HaasCreativeCarpentry","https://www.instagram.com/haascreativecarpentry/"],
+"award":"2022 HBA Pyramid Award — Best Custom Home Over $1,500,001"}
+</script>
+<!-- §1.0c-FAQ — FAQPage mirroring the on-page questions and answers VERBATIM. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Do you build timber frame homes?","acceptedAnswer":{"@type":"Answer","text":"Yes — timber framing is regular work here. The trusses, the arched beams and the porch roofs in the projects above were cut and raised by this crew."}},
+{"@type":"Question","name":"Do I need house plans before I call?","acceptedAnswer":{"@type":"Answer","text":"No. Most people start with a sketch and a rough idea of the budget. Dustin sits in on the design meetings with your designer, so the plan gets drawn by people who already know what it will take to build it."}},
+{"@type":"Question","name":"Do you take small jobs, or only whole houses?","acceptedAnswer":{"@type":"Answer","text":"Both. Alongside the custom homes the shop does remodels and finish carpentry — custom cabinets, a butler's pantry, a laundry room, a live-edge desktop, a basement finished out."}},
+{"@type":"Question","name":"What happens first when I get in touch?","acceptedAnswer":{"@type":"Answer","text":"Call the shop Monday to Friday, 7:00 to 4:30, or send the project form further down this page. The job starts in pre-construction — planning it on paper before anything gets built."}},
+{"@type":"Question","name":"What areas do you build in?","acceptedAnswer":{"@type":"Answer","text":"The shop is on Shermans Valley Road in Loysville and most jobs stay inside Perry and Cumberland counties. Elliottsburg, Shermans Dale, New Bloomfield and Millerstown are regular ground, and Carlisle is a short run over the mountain."}}]}
+</script>
+<script src="js/app.js?v=5"></script>
+</body>
+</html>

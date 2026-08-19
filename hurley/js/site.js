@@ -78,3 +78,25 @@
     });
   }
 })();
+
+/* sticky mobile CTA — same contract as Encore (appear past hero, hide at form + while
+   typing; typing resets when the form scrolls off because touch scroll never blurs) */
+(function () {
+  var bar = document.getElementById('stick');
+  if (!bar || !('IntersectionObserver' in window)) return;
+  var hero = document.querySelector('.hero'),
+      form = document.getElementById('submit');
+  if (!hero || !form) return;
+  bar.hidden = false;
+  var pastHero = false, atForm = false, typing = false;
+  function apply() { bar.classList.toggle('on', pastHero && !atForm && !typing); }
+  new IntersectionObserver(function (es) { pastHero = !es[0].isIntersecting; apply(); },
+    {threshold: 0}).observe(hero);
+  new IntersectionObserver(function (es) {
+    atForm = es[0].isIntersecting;
+    if (!atForm) typing = false;
+    apply();
+  }, {threshold: 0.25}).observe(form);
+  form.addEventListener('focusin',  function () { typing = true;  apply(); });
+  form.addEventListener('focusout', function () { typing = false; apply(); });
+})();

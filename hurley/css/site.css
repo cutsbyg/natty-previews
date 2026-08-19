@@ -24,7 +24,7 @@
   --star:#d8a72b;
   --disp:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
   --body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --pad:clamp(2.2rem,6vw,3rem);
+  --pad:clamp(1.3rem,3.6vw,2.2rem);   /* height purge 2026-08-18 */
   --gut:clamp(.75rem,1.6vw,1.25rem);
   --shadow:6px 6px 0 var(--ink);
 }
@@ -240,7 +240,7 @@ a{color:inherit}
 .ppl__q{font-family:var(--disp);font-weight:800;text-transform:uppercase;
   font-size:clamp(1.3rem,2.4vw,2rem);line-height:1.02;letter-spacing:-.02em}
 .ppl__cite{font-size:.86rem;color:var(--ink-60);margin-top:.5rem}
-.ppl__num{margin-top:1.3rem;font-size:1.05rem;line-height:1.25}
+.ppl__num{margin-top:.9rem;font-size:1.05rem;line-height:1.25}
 .ppl__num span{display:block;font-family:var(--disp);font-weight:600;
   font-size:clamp(3rem,3.6vw,5.5rem);line-height:.9;font-variant-numeric:tabular-nums;
   color:var(--brand)}
@@ -251,19 +251,19 @@ a{color:inherit}
 .rev{grid-column:span 2}
 .revs .rev:nth-child(4),.revs .rev:nth-child(5){grid-column:span 3}
 .rev{display:block;text-decoration:none;min-width:0;background:var(--paper);color:var(--ink);border-radius:12px;
-  padding:1.3rem;box-shadow:8px 8px 0 var(--ink);
+  padding:1rem;box-shadow:8px 8px 0 var(--ink);
   transition:transform .2s ease,box-shadow .2s ease}
 .rev:hover{transform:translate(4px,4px);box-shadow:4px 4px 0 var(--ink)}
 
 .rev__st{color:var(--star);font-size:1.6rem;line-height:1;letter-spacing:.08em}
-.rev__q{font-size:1.12rem;font-weight:700;line-height:1.4;margin-top:.6rem}
+.rev__q{font-size:1rem;font-weight:700;line-height:1.35;margin-top:.5rem}
 .rev__n{display:block;margin-top:.9rem;font-size:1.05rem;font-weight:800;font-style:normal}
 .rev__s{display:block;font-size:.8rem;font-weight:400;color:var(--ink-60);margin-top:.15rem}
 .rev:hover .rev__s{color:var(--brand-deep);text-decoration:underline}
 
 /* ---------------------- 7. QUESTIONS ---------------------- */
 .faq__list{display:grid;grid-template-columns:1fr 1fr;gap:0 calc(var(--gut) * 2)}
-.faq{margin-top:2rem;border-top:1px solid rgba(255,255,255,.35);padding-top:2rem}
+.faq{margin-top:1.2rem;border-top:1px solid rgba(255,255,255,.35);padding-top:1.2rem}
 .faq h2{font-size:clamp(1.6rem,1.2rem + 1.5vw,2.8rem);margin-bottom:1rem}
 .faq details{border-bottom:1px solid rgba(255,255,255,.3)}
 .faq summary{cursor:pointer;list-style:none;padding:.95rem 0;min-height:44px;
@@ -285,7 +285,7 @@ a{color:inherit}
 .cta__free{margin-top:.9rem;font-size:1.125rem;max-width:34ch}
 .guar{margin-top:1rem;padding:1rem 1.1rem;font-size:1.08rem;background:var(--brand);color:#fff;
   border-radius:10px;box-shadow:6px 6px 0 var(--ink);font-size:1.02rem;max-width:38ch}
-.cta__tel{margin-top:1.2rem}
+.cta__tel{margin-top:.7rem}
 .cta__tel a{font-family:var(--disp);font-weight:800;font-size:clamp(1.9rem,4vw,3.4rem);
   text-decoration:none;white-space:nowrap;display:inline-block;min-height:44px}
 .cta__tel a:hover{color:var(--brand-deep)}
@@ -300,12 +300,11 @@ a{color:inherit}
   padding:.6rem .7rem;min-height:44px;border:1px solid var(--ink-30);border-radius:8px;
   background:#fff;color:var(--ink);-webkit-appearance:none;appearance:none}
 .fld input:hover,.fld select:hover,.fld textarea:hover{border-color:var(--ink-60)}
-.fld textarea{min-height:88px}
+.fld textarea{min-height:64px}
 .opts{border:1px solid var(--rule);border-radius:10px;padding:.6rem .8rem 1rem;margin:0 0 .8rem}
 .opts legend{font-size:.82rem;font-weight:600;padding:0 .3rem}
-.row{display:flex;align-items:center;gap:.6rem;min-height:44px;cursor:pointer;
-  border-bottom:1px solid var(--rule);font-size:1rem}
-.row:last-child{border-bottom:0}
+.opts__grid{display:grid;grid-template-columns:1fr 1fr;gap:.3rem .8rem}
+.row{display:flex;align-items:center;gap:.5rem;min-height:44px;cursor:pointer;font-size:.95rem}
 .row:hover{color:var(--brand-deep)}
 .row input{width:20px;height:20px;flex:0 0 auto;accent-color:var(--brand)}
 .callback{margin-top:.8rem;font-size:1rem}
@@ -425,7 +424,7 @@ a{color:inherit}
   .faq summary{font-size:.98rem}
   .faq details p{font-size:1rem}
 
-  .f2{grid-template-columns:1fr}
+  /* two across on the phone too — stacking every field was ~200px of pure height */
   .form{padding:1rem;box-shadow:6px 6px 0 var(--ink)}
   .guar{font-size:.98rem;box-shadow:4px 4px 0 var(--ink)}
 
@@ -433,3 +432,37 @@ a{color:inherit}
   .ft__mark img{height:88px}
   .ft__slogan{margin-top:1.6rem}
 }
+
+
+/* footer runs (§2.10 — lists that were the same facts as columns) */
+.ft__runs{min-width:0}
+.ft__run{margin:0 0 .6rem;font-size:.92rem;line-height:1.6;color:rgba(255,255,255,.78)}
+.ft__run b{font:600 .72rem/1 var(--disp);letter-spacing:.14em;text-transform:uppercase;
+  color:#fff;margin-right:.4rem}
+.ft__run a{color:#fff;font-weight:700;text-underline-offset:3px}
+
+/* sticky mobile CTA — same contract as Encore: transform-hidden in initial HTML (CLS),
+   max() safe-area floor (iOS returns 0 with the toolbar hidden), band tier only */
+.stick{position:fixed;left:0;right:0;bottom:0;z-index:70;
+  display:flex;gap:.5rem;align-items:stretch;
+  padding:.5rem var(--gut);
+  padding-bottom:max(.5rem,env(safe-area-inset-bottom));
+  background:rgba(247,244,239,.94);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-top:1px solid var(--rule);
+  box-shadow:0 -6px 24px rgba(0,0,0,.14);
+  transform:translateY(110%);opacity:0;
+  transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .3s}
+.stick.on{transform:translateY(0);opacity:1}
+.stick__b{display:flex;align-items:center;justify-content:center;gap:.4rem;
+  min-height:48px;border-radius:10px;text-decoration:none;
+  font-family:var(--disp);font-weight:800;font-size:.95rem;line-height:1;
+  letter-spacing:.03em;text-transform:uppercase}
+.stick__b:active{transform:translateY(2px)}
+.stick__b--tel{flex:0 0 38%;background:#fff;color:var(--brand);
+  border:2px solid var(--brand);box-shadow:3px 3px 0 var(--ink)}
+.stick__b--cta{flex:1 1 auto;background:var(--brand);color:#fff;box-shadow:3px 3px 0 var(--ink)}
+html{scroll-padding-bottom:96px}
+.ft{padding-bottom:calc(1rem + 64px)}
+@media (min-width:1024px){.stick{display:none}html{scroll-padding-bottom:0}.ft{padding-bottom:1.4rem}}
+@media (prefers-reduced-motion:reduce){.stick{transition:none}}
