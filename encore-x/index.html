@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Encore Roofing — Roofer in Newport, PA | Free Estimates</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&display=swap">
 <meta name="description" content="Encore Roofing replaces and repairs roofs across Perry, Cumberland and Dauphin counties. 4.9 stars from 138 Google reviews. Free estimates — (717) 979-1975.">
 <!-- ═══════════════════════════════════════════════════════════════════════════
      CHALLENGER BUILD (site-x) — Claude's free-hand design, 2026-08-22.
@@ -128,6 +130,14 @@ textarea{min-height:84px;resize:vertical}
 .bar__go{background:var(--cta);color:#fff}
 @media(min-width:900px){.bar{display:none}}
 
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{min-height:48px;display:flex;align-items:center;cursor:pointer;
+  font-weight:700;list-style:none;justify-content:space-between}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.3rem;color:var(--mut)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{margin:.1rem 0 .9rem;color:var(--mut);max-width:60ch}
+h1,h2,.rev__score{font-family:'Archivo',ui-sans-serif,system-ui,sans-serif}
 footer{padding:1.6rem 0 2rem;color:var(--mut);font-size:.85rem}
 footer .wrap{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
 footer a{color:inherit}
@@ -144,6 +154,7 @@ footer a{color:inherit}
 </style>
 </head>
 <body>
+<a class="skip" href="#estimate" style="position:absolute;left:-9999px">Skip to the estimate form</a>
 
 <!-- SCREEN 1 — who, the number that proves it, one ask -->
 <section class="hero">
@@ -152,36 +163,37 @@ footer a{color:inherit}
   </video>
   <img class="still" src="img/hero-poster.jpg" alt="" aria-hidden="true" style="z-index:-1">
   <div class="hero__brand"><img src="img/logo.png" alt=""><b>ENCORE ROOFING</b></div>
-  <a class="hero__call" href="tel:+17179791975">📞 (717) 979-1975</a>
+  <a class="hero__call" href="tel:+17179791975"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11.4 11.4 0 003.6.58 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.58 3.6a1 1 0 01-.25 1z"/></svg>(717) 979-1975</a>
   <div class="hero__in">
     <h1>Your roof has one job. So do we.</h1>
     <p class="hero__proof"><span class="stars" aria-hidden="true">★★★★★</span>
-      <span>4.9 — 138 Google reviews</span></p>
-    <p class="hero__sub">Pennsylvania winters kill roofs. We replace and repair them across
-      Perry, Cumberland and Dauphin counties — most estimates within 48 hours, free.</p>
+      <a href="https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867" rel="noopener" style="color:#fff">4.9 — 138 Google reviews</a></p>
+    <p class="hero__sub">New roofs, repairs, storm damage — across Perry, Cumberland and Dauphin
+      counties. Estimates are free, and Scott answers 7am–10pm, every day.</p>
     <a class="btn" href="#estimate">Get my free estimate</a>
     <p class="hero__or">or call Scott directly — <a href="tel:+17179791975">(717) 979-1975</a></p>
   </div>
 </section>
 
 <!-- SCREEN 2 — proof: the work, then the words -->
+<main>
 <section class="proof">
   <div class="wrap">
     <p class="k">Our work, our photos</p>
-    <h2>Roofs we put on last season</h2>
+    <h2>Our work</h2>
     <div class="jobs">
-      <figure class="wide"><img src="img/crew-at-work.jpg" alt="Two Encore Roofing crew members working either side of a dormer with the felt down">
+      <figure class="wide"><img src="img/crew-at-work.jpg" width="1600" height="1047" loading="lazy" decoding="async" alt="Two Encore Roofing crew members working either side of a dormer with the felt down">
         <figcaption>The crew on a tear-off — May 2026</figcaption></figure>
-      <figure><img src="img/job-colonial.jpg" alt="A three-storey brick colonial stripped to the deck being re-roofed">
-        <figcaption>Tear-off &amp; re-deck</figcaption></figure>
-      <figure><img src="img/job-skylight.jpg" alt="A re-roof around a skylight with new pipe boots">
-        <figcaption>Re-roof &amp; skylight</figcaption></figure>
-      <figure><img src="img/job-dormers.jpg" alt="A stone and siding house with three dormers and a finished grey roof">
-        <figcaption>Full replacement</figcaption></figure>
-      <figure><img src="img/ba-before.jpg" alt="The old weathered roof before tear-off">
-        <figcaption>Before</figcaption></figure>
-      <figure><img src="img/ba-after.jpg" alt="The same roof stripped and dried-in with underlayment">
-        <figcaption>After — dried in, day one</figcaption></figure>
+      <figure><a href="https://www.facebook.com/photo.php?fbid=1617168430414128&set=pb.100063629588031.-2207520000&type=3" rel="noopener"><img src="img/job-colonial.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="A three-storey brick colonial stripped to the deck being re-roofed">
+        <figcaption>Tear-off &amp; re-deck — May 2026 · see the post →</figcaption></a></figure>
+      <figure><a href="https://www.facebook.com/photo.php?fbid=1617168400414131&set=pb.100063629588031.-2207520000&type=3" rel="noopener"><img src="img/job-skylight.jpg" width="1200" height="800" loading="lazy" decoding="async" alt="A re-roof around a skylight with new pipe boots">
+        <figcaption>Re-roof &amp; skylight — May 2026 · see the post →</figcaption></a></figure>
+      <figure><a href="https://www.facebook.com/photo.php?fbid=395746690485444&set=pb.100063629588031.-2207520000&type=3" rel="noopener"><img src="img/job-dormers.jpg" width="720" height="480" loading="lazy" decoding="async" alt="A stone and siding house with three dormers and a finished grey roof">
+        <figcaption>Full replacement — 2012 · see the post →</figcaption></a></figure>
+      <figure><img src="img/ba-before.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="The old weathered roof before tear-off">
+        <figcaption>Before — April 2026</figcaption></figure>
+      <figure><img src="img/ba-after.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="The same roof stripped and dried-in with underlayment">
+        <figcaption>After — dried in, April 2026</figcaption></figure>
     </div>
     <p class="proof__note">Every photo is ours, from our own jobs. The black surface is
       underlayment — the stage before shingle.</p>
@@ -193,7 +205,7 @@ footer a{color:inherit}
     <div class="rev__head">
       <span class="rev__score">4.9</span>
       <span class="rev__meta"><span class="stars" aria-hidden="true">★★★★★</span>
-        from 138 Google reviews</span>
+        from <a href="https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867" rel="noopener">138 Google reviews</a></span>
     </div>
     <div class="revs">
       <article class="rev"><p>“We had the best experience with Encore roofing. Great
@@ -213,12 +225,29 @@ footer a{color:inherit}
 </section>
 
 <!-- SCREEN 3 — the ask. Four fields. -->
+<section class="faq" style="padding:clamp(2rem,5vw,3.2rem) 0">
+  <div class="wrap">
+    <p class="k">Before you call</p>
+    <h2>Questions we get</h2>
+    <div style="max-width:44rem">
+      <details name="faq"><summary>Do you repair roofs, or only replace them?</summary>
+        <p>Both. We do repairs, full replacements, and storm and wind damage — and we hang gutters, siding and windows too.</p></details>
+      <details name="faq"><summary>What goes on a full replacement?</summary>
+        <p>Architectural shingle over black underlayment — the black in our photos is the underlayment stage, not a finished roof. We also do ventilation and inspections.</p></details>
+      <details name="faq"><summary>Do you do commercial roofs?</summary>
+        <p>No. Residential only — houses, not warehouses.</p></details>
+      <details name="faq"><summary>What areas do you cover?</summary>
+        <p>We work out of Newport and cover Perry, Cumberland and Dauphin counties. Marysville, Carlisle, Camp Hill, Mechanicsburg, New Cumberland and Harrisburg are all regular runs.</p></details>
+    </div>
+  </div>
+</section>
+
 <section class="ask" id="estimate">
   <div class="wrap">
     <p class="k" style="color:var(--gold)">Free estimate</p>
     <h2>Tell Scott about your roof</h2>
     <p class="ask__lede">Leaking now, storm damage, or just old and tired — send it over
-      and you'll hear back fast, usually within 48 hours. The estimate costs nothing.</p>
+      — Scott answers 7am–10pm, every day, and the estimate costs nothing.</p>
     <form action="/api/lead" method="post" enctype="multipart/form-data">
       <label>Your name<input name="name" autocomplete="name" required></label>
       <label>Phone<input name="phone" type="tel" autocomplete="tel" required></label>
@@ -234,10 +263,14 @@ footer a{color:inherit}
       gutters, siding &amp; windows · Perry, Cumberland &amp; Dauphin counties</p>
   </div>
 </section>
+</main>
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Encore Roofing, LLC</span>
+    <span>© 2026 Encore Roofing, LLC · Newport, PA</span>
+    <a href="mailto:encoreroofing1@gmail.com">encoreroofing1@gmail.com</a>
+    <a href="https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867" rel="noopener">Google profile</a>
+    <span>7am–10pm, every day</span>
     <a href="https://www.facebook.com/EncoreRoofing" rel="noopener">Facebook</a>
     <a href="tel:+17179791975">(717) 979-1975</a>
   </div>
@@ -271,6 +304,23 @@ footer a{color:inherit}
   ask.addEventListener('focusin', function () { typing = true; ap(); });
   ask.addEventListener('focusout', function () { typing = false; ap(); });
 })();
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"RoofingContractor","name":"Encore Roofing, LLC",
+"telephone":"+1-717-979-1975","email":"encoreroofing1@gmail.com",
+"address":{"@type":"PostalAddress","addressLocality":"Newport","addressRegion":"PA","postalCode":"17074","addressCountry":"US"},
+"geo":{"@type":"GeoCoordinates","latitude":40.4621747,"longitude":-77.1992867},
+"areaServed":["Perry County, PA","Cumberland County, PA","Dauphin County, PA"],
+"openingHours":"Mo-Su 07:00-22:00","founder":{"@type":"Person","name":"Scott Boreman"},
+"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"138"},
+"sameAs":["https://www.facebook.com/EncoreRoofing"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Do you repair roofs, or only replace them?","acceptedAnswer":{"@type":"Answer","text":"Both. We do repairs, full replacements, and storm and wind damage — and we hang gutters, siding and windows too."}},
+{"@type":"Question","name":"What goes on a full replacement?","acceptedAnswer":{"@type":"Answer","text":"Architectural shingle over black underlayment — the black in our photos is the underlayment stage, not a finished roof."}},
+{"@type":"Question","name":"Do you do commercial roofs?","acceptedAnswer":{"@type":"Answer","text":"No. Residential only — houses, not warehouses."}},
+{"@type":"Question","name":"What areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We work out of Newport and cover Perry, Cumberland and Dauphin counties."}}]}
 </script>
 </body>
 </html>
