@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Encore Roofing — Roofer in Newport, PA | Free Estimates</title>
+<title>[H1 drone film] Encore Roofing — Roofer in Newport, PA | Free Estimates</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&display=swap">
 <meta name="description" content="Encore Roofing replaces and repairs roofs across Perry, Cumberland and Dauphin counties. 4.9 stars from 138 Google reviews. Free estimates — (717) 979-1975.">
@@ -45,13 +45,12 @@ h1,h2{margin:0;line-height:1.04;letter-spacing:-.022em;font-weight:800}
   top:1rem;left:clamp(1rem,4vw,2rem)}
 .hero__brand img{width:46px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
 .hero__brand b{font-size:1.02rem;letter-spacing:.05em}
-.hero__brand{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.45)}
 .hero__call{position:absolute;top:1rem;right:clamp(1rem,4vw,2rem);
   display:inline-flex;align-items:center;gap:.45rem;min-height:44px;padding:0 1rem;
   background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.45);
   border-radius:999px;color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.hero h1{font-size:clamp(2.7rem,9.5vw,5.6rem);max-width:13ch;text-wrap:balance;
+.hero h1{font-size:clamp(2.3rem,7.5vw,4.6rem);max-width:13ch;text-wrap:balance;
   text-shadow:0 2px 24px rgba(0,0,0,.35)}
 .hero__proof{display:flex;align-items:center;gap:.55rem;margin:.9rem 0 1.2rem;
   font-weight:600;font-size:clamp(.95rem,2.6vw,1.15rem)}
@@ -65,7 +64,7 @@ h1,h2{margin:0;line-height:1.04;letter-spacing:-.022em;font-weight:800}
   box-shadow:0 10px 28px rgba(200,68,44,.38);transition:transform .15s,background .15s}
 .btn:hover{background:var(--cta-d);transform:translateY(-1px)}
 .hero__or{margin:.7rem 0 0;font-size:.9rem;color:rgba(255,255,255,.75)}
-.hero__or a{color:#fff;font-weight:700;display:inline-block;padding:.65rem .25rem;margin:-.65rem -.25rem}
+.hero__or a{color:#fff;font-weight:700}
 
 /* ————— PROOF: the work, then the words ————— */
 .proof{padding:clamp(2.2rem,6vw,4rem) 0}
@@ -144,12 +143,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
 footer a{color:inherit}
 
 @media(prefers-reduced-motion:reduce){
+  .hero video{display:none}
   .btn,.bar{transition:none}
   html{scroll-behavior:auto}
 }
 @media(max-width:640px){
-  .hero .still{object-position:68% 38%}
-  .hero__brand b{display:none}   /* wordmark collides with the call pill at 390 — the logo carries it */
   .jobs{grid-template-columns:1fr 1fr}
   .hero{min-height:92svh}
 }
@@ -160,7 +158,10 @@ footer a{color:inherit}
 
 <!-- SCREEN 1 — who, the number that proves it, one ask -->
 <section class="hero">
-  <img class="still" src="img/hero-poster.jpg" srcset="img/hero-poster-1300.jpg 1300w, img/hero-poster.jpg 2600w" sizes="100vw" fetchpriority="high" alt="" aria-hidden="true">
+  <video autoplay muted loop playsinline preload="auto" poster="img/hero-poster.jpg" aria-hidden="true">
+    <source src="img/hero-loop.mp4" type="video/mp4">
+  </video>
+  <img class="still" src="img/hero-poster.jpg" alt="" aria-hidden="true" style="z-index:-1">
   <div class="hero__brand"><img src="img/logo.png" alt=""><b>ENCORE ROOFING</b></div>
   <a class="hero__call" href="tel:+17179791975"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11.4 11.4 0 003.6.58 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.58 3.6a1 1 0 01-.25 1z"/></svg>(717) 979-1975</a>
   <div class="hero__in">
@@ -281,6 +282,13 @@ footer a{color:inherit}
 </div>
 
 <script>
+// film: nudge once, remove on refusal (iOS Low Power) — the poster stands
+(function () {
+  var v = document.querySelector('.hero video');
+  if (!v) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.remove(); return; }
+  var p = v.play(); if (p && p.catch) p.catch(function () { v.remove(); });
+})();
 // sticky bar: past hero -> on; form visible or typing -> off
 (function () {
   var bar = document.getElementById('bar'), hero = document.querySelector('.hero'),
