@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>[H2 drift+centered] Encore Roofing — Roofer in Newport, PA | Free Estimates</title>
+<title>[H7 Scott's note] Encore Roofing — Roofer in Newport, PA | Free Estimates</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&display=swap">
 <meta name="description" content="Encore Roofing replaces and repairs roofs across Perry, Cumberland and Dauphin counties. 4.9 stars from 138 Google reviews. Free estimates — (717) 979-1975.">
@@ -31,31 +31,32 @@ img,video{display:block;max-width:100%;height:auto}
 h1,h2{margin:0;line-height:1.04;letter-spacing:-.022em;font-weight:800}
 
 /* ————— HERO: the film, the number, the ask. Nothing else. ————— */
-.hero{position:relative;min-height:88svh;display:grid;align-items:center;
+.hero{position:relative;min-height:86svh;display:grid;align-items:end;
   background:var(--navy);isolation:isolate;overflow:hidden}
 .hero video,.hero .still{position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;z-index:0}
 /* scrim measured over the brightest region (sky, top-left): gradient runs heavier at the
    bottom where the type sits. White body on composited ground ≥4.5:1 verified. */
 .hero::after{content:"";position:absolute;inset:0;z-index:1;
-  background:radial-gradient(ellipse at 50% 55%,rgba(14,26,40,.72) 0%,rgba(18,37,58,.45) 55%,rgba(18,37,58,.34) 100%)}
-.hero__in{position:relative;z-index:2;width:100%;max-width:52rem;margin:0 auto;
-  padding:4.5rem clamp(1rem,4vw,2rem) 2rem;color:#fff;text-align:center}
+  background:linear-gradient(180deg,rgba(18,37,58,.30) 0%,rgba(18,37,58,.42) 55%,rgba(14,26,40,.88) 100%)}
+.hero__in{position:relative;z-index:2;width:100%;max-width:64rem;margin:0 auto;
+  padding:1.2rem clamp(1rem,4vw,2rem) clamp(1.6rem,4vh,2.6rem);color:#fff}
 .hero__brand{display:flex;align-items:center;gap:.65rem;position:absolute;
   top:1rem;left:clamp(1rem,4vw,2rem)}
 .hero__brand img{width:46px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
 .hero__brand b{font-size:1.02rem;letter-spacing:.05em}
+.hero__brand{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.45)}
 .hero__call{position:absolute;top:1rem;right:clamp(1rem,4vw,2rem);
   display:inline-flex;align-items:center;gap:.45rem;min-height:44px;padding:0 1rem;
   background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.45);
   border-radius:999px;color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.hero h1{font-size:clamp(2.4rem,8vw,5rem);max-width:14ch;margin:0 auto;text-wrap:balance;
+.hero h1{font-size:clamp(2.7rem,9.5vw,5.6rem);max-width:13ch;text-wrap:balance;
   text-shadow:0 2px 24px rgba(0,0,0,.35)}
-.hero__proof{display:flex;align-items:center;justify-content:center;gap:.55rem;margin:.9rem 0 1.2rem;
+.hero__proof{display:flex;align-items:center;gap:.55rem;margin:.9rem 0 1.2rem;
   font-weight:600;font-size:clamp(.95rem,2.6vw,1.15rem)}
 .hero__proof .stars{color:var(--gold);letter-spacing:.1em;font-size:1.1em}
-.hero__sub{margin:0 auto 1.1rem;max-width:44ch;color:rgba(255,255,255,.86);
+.hero__sub{margin:0 0 1.1rem;max-width:44ch;color:rgba(255,255,255,.86);
   font-size:clamp(.95rem,2.7vw,1.1rem)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
   min-height:56px;padding:0 clamp(1.4rem,4vw,2.2rem);border:0;border-radius:12px;
@@ -64,8 +65,33 @@ h1,h2{margin:0;line-height:1.04;letter-spacing:-.022em;font-weight:800}
   box-shadow:0 10px 28px rgba(200,68,44,.38);transition:transform .15s,background .15s}
 .btn:hover{background:var(--cta-d);transform:translateY(-1px)}
 .hero__or{margin:.7rem 0 0;font-size:.9rem;color:rgba(255,255,255,.75)}
-.hero__or a{color:#fff;font-weight:700}
+.hero__or a{color:#fff;font-weight:700;display:inline-block;padding:.65rem .25rem;margin:-.65rem -.25rem}
 
+.hero--note::after{display:none}
+.hero--note{background:var(--paper);min-height:88svh;display:grid;place-items:center;
+  padding:3.2rem 1rem 0}
+.hn__card{max-width:58rem;width:100%;background:#fff;border:1px solid var(--line);
+  border-radius:20px;box-shadow:0 24px 70px rgba(18,37,58,.14);
+  display:grid;grid-template-columns:1.5fr 1fr;gap:0;overflow:hidden}
+.hn__words{padding:clamp(1.4rem,4vw,2.6rem)}
+.hn__eyebrow{font:700 .7rem/1 ui-sans-serif;letter-spacing:.16em;color:var(--cta);margin:0 0 .7rem}
+.hero--note h1{font-size:clamp(1.7rem,5.4vw,2.7rem);line-height:1.08}
+.hn__letter{margin:1rem 0 .4rem;color:var(--mut);font-size:1.02rem}
+.hn__sig{margin:0 0 1.2rem;font-style:italic;font-weight:600}
+.hn__alt{margin:.7rem 0 0;font-size:.92rem}
+.hn__alt a{color:var(--navy-2);font-weight:700;display:inline-block;padding:.5rem .2rem;margin:-.5rem -.2rem}
+.hn__side{position:relative;background:linear-gradient(180deg,#eef2f6,#dfe6ec);display:grid;align-items:end}
+.hn__cut{width:100%;max-width:300px;margin:1.6rem auto 0;display:block;
+  filter:drop-shadow(0 10px 24px rgba(0,0,0,.28))}
+.hn__chip{position:absolute;top:1rem;left:50%;transform:translateX(-50%);white-space:nowrap;
+  background:#fff;border:1px solid var(--line);border-radius:999px;padding:.45rem .8rem;
+  font-size:.85rem;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,.1)}
+.hn__chip a{color:var(--ink)}
+@media(max-width:640px){
+  .hn__card{grid-template-columns:1fr}
+  .hn__side{order:-1;min-height:270px}
+  .hn__cut{max-width:230px;margin-top:2.6rem}
+}
 /* ————— PROOF: the work, then the words ————— */
 .proof{padding:clamp(2.2rem,6vw,4rem) 0}
 .wrap{max-width:64rem;margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
@@ -143,11 +169,12 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
 footer a{color:inherit}
 
 @media(prefers-reduced-motion:reduce){
-  .hero video{display:none}
   .btn,.bar{transition:none}
   html{scroll-behavior:auto}
 }
 @media(max-width:640px){
+  .hero .still{object-position:68% 38%}
+  .hero__brand b{display:none}   /* wordmark collides with the call pill at 390 — the logo carries it */
   .jobs{grid-template-columns:1fr 1fr}
   .hero{min-height:92svh}
 }
@@ -157,21 +184,23 @@ footer a{color:inherit}
 <a class="skip" href="#estimate" style="position:absolute;left:-9999px">Skip to the estimate form</a>
 
 <!-- SCREEN 1 — who, the number that proves it, one ask -->
-<section class="hero">
-  <video autoplay muted loop playsinline preload="auto" poster="img/poster-drone2.jpg" aria-hidden="true">
-    <source src="img/loop-drone2.mp4" type="video/mp4">
-  </video>
-  <img class="still" src="img/poster-drone2.jpg" alt="" aria-hidden="true" style="z-index:-1">
-  <div class="hero__brand"><img src="img/logo.png" alt=""><b>ENCORE ROOFING</b></div>
-  <a class="hero__call" href="tel:+17179791975"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11.4 11.4 0 003.6.58 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.58 3.6a1 1 0 01-.25 1z"/></svg>(717) 979-1975</a>
-  <div class="hero__in">
-    <h1>Your roof has one job. So do we.</h1>
-    <p class="hero__proof"><span class="stars" aria-hidden="true">★★★★★</span>
-      <a href="https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867" rel="noopener" style="color:#fff">4.9 — 138 Google reviews</a></p>
-    <p class="hero__sub">New roofs, repairs, storm damage — across Perry, Cumberland and Dauphin
-      counties. Estimates are free, and Scott answers 7am–10pm, every day.</p>
-    <a class="btn" href="#estimate">Get my free estimate</a>
-    <p class="hero__or">or call Scott directly — <a href="tel:+17179791975">(717) 979-1975</a></p>
+<section class="hero hero--note">
+  <div class="hn__card">
+    <div class="hn__words">
+      <p class="hn__eyebrow">A NOTE FROM THE OWNER</p>
+      <h1>Worried nobody around here does roofs right anymore?</h1>
+      <p class="hn__letter">I'm Scott. I've been putting roofs on Perry County houses for 30
+        years &#8212; my name and number are on every one of them. Call me, I'll come look at
+        yours, and the estimate's free.</p>
+      <p class="hn__sig">&#8212; Scott Boreman, Encore Roofing</p>
+      <a class="btn" href="tel:+17179791975">Call Scott: (717) 979-1975</a>
+      <p class="hn__alt"><a href="#estimate">or request your free estimate online</a></p>
+    </div>
+    <div class="hn__side">
+      <img class="hn__cut" src="img/scott-cut.png" width="899" height="1107"
+           alt="Scott Boreman, owner of Encore Roofing">
+      <p class="hn__chip"><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <a href="https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867" rel="noopener">4.9 &#183; 138 reviews</a></p>
+    </div>
   </div>
 </section>
 
@@ -282,13 +311,6 @@ footer a{color:inherit}
 </div>
 
 <script>
-// film: nudge once, remove on refusal (iOS Low Power) — the poster stands
-(function () {
-  var v = document.querySelector('.hero video');
-  if (!v) return;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.remove(); return; }
-  var p = v.play(); if (p && p.catch) p.catch(function () { v.remove(); });
-})();
 // sticky bar: past hero -> on; form visible or typing -> off
 (function () {
   var bar = document.getElementById('bar'), hero = document.querySelector('.hero'),
