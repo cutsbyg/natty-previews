@@ -124,41 +124,32 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
   display:grid;grid-template-columns:1fr;align-items:center;
   padding:3.2vw 3.6vw}
 .hero__words{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:2.2cqw}
-.hero__intro{display:flex;align-items:center;gap:.65rem;margin:0}
-.hero__head{width:42px;height:auto;filter:drop-shadow(0 3px 8px rgba(0,0,0,.22))}
 .eyebrow{font:600 .74rem/1.3 var(--disp);letter-spacing:.16em;text-transform:uppercase;
   color:var(--brand)}
-.hero h1{font-size:min(3.4rem,8.05cqw);font-weight:900;text-transform:uppercase;word-spacing:.05em;
+.hero h1{font-size:min(3.4rem,9.3cqw);font-weight:900;text-transform:uppercase;word-spacing:.05em;
   line-height:.9;text-wrap:balance;max-width:100%}
-.hero .sup{font:600 clamp(.875rem,2.2cqw,1.05rem)/1.45 var(--body);letter-spacing:.015em;
-  color:var(--ink-60);margin:0}
-/* hero law v3 — the signature rides INLINE at the letter's end (its own row cost the
-   fold on 360/375 phones and the bubble's height on laptops; measured, not guessed) */
-.hero__sig{font-style:italic;font-weight:700;white-space:nowrap}
-/* ≤900 the sticky call bar (#stick) IS the online path on every screen, so the alt link
-   row is redundant weight the fold can't afford (measured 41px over at 360×640). It
-   returns at 901 where the bar is hidden. */
-.hero__alt2{display:none;margin:0;font:600 .9rem/1.3 var(--body)}
-.hero__alt2 a{display:inline-block;padding:.5rem .2rem;margin:-.5rem -.2rem;
-  text-underline-offset:3px}
-.hero .rate{display:flex;align-items:center;gap:.45rem;margin:0;
-  font:700 clamp(.72rem,2.3cqw,1.05rem)/1.2 var(--body)}
+.hero .rate{display:flex;align-items:center;gap:.45rem;margin:0;white-space:nowrap;
+  font:700 clamp(.85rem,2.5cqw,1.05rem)/1.2 var(--body)}
 /* §8.18 — the review-count link is a 14px-tall text row; padding+negative margin buys
    the 44px tap target without costing the fold a pixel of layout */
 .hero .rate a{color:inherit;text-underline-offset:3px;display:inline-block;
   padding:1rem .2rem;margin:-1rem -.2rem}
 .hero .stars{color:var(--star);font-size:clamp(.9rem,3cqw,1.35rem);letter-spacing:.06em}
 .hero__act{margin:0}
-.btn__tel{white-space:nowrap}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;
   padding:0 clamp(1rem,3.4vw,1.6rem);background:var(--brand);color:#fff;text-decoration:none;
-  font:800 clamp(.8rem,2.5cqw,1.05rem)/1 var(--disp);letter-spacing:.04em;
+  font:800 clamp(.95rem,2.8cqw,1.1rem)/1 var(--disp);letter-spacing:.04em;
   text-transform:uppercase;border:0;border-radius:2px;box-shadow:var(--hs);cursor:pointer;
   transition:transform .18s,box-shadow .18s}
 .btn:hover,.btn:focus-visible{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
-.hero__cut{display:none;align-self:center;min-width:0}
+/* ≤900 the cut-out stands ON the photo, bottom-right, bottom edge at the photo/band
+   seam (his feet fade into it). The panel is position:static here, so the containing
+   block is .hero__media — anchor to the photo's own bottom: its height is 100vw/1.5.
+   Big by law: never a thumbnail (Grady, 2026-08-22). */
+.hero__cut{position:absolute;z-index:2;right:.4rem;min-width:0;
+  height:min(54vw,420px);top:calc(100vw/1.5 - min(54vw,420px))}
 /* §1.0b-L — no box round him on the white band. §2.6 — fade the straight cut in CSS. */
-.hero__cut img{width:100%;
+.hero__cut img{height:100%;width:auto;
   -webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
   mask-image:linear-gradient(to bottom,#000 78%,transparent 99%)}
 .cue{display:none}
@@ -197,17 +188,9 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
   color:var(--ink-60)}
 
 /* ---- §3 THE PEOPLE ------------------------------------------------------ */
-.two{display:grid;gap:clamp(1.2rem,3vw,2rem);align-items:start}
-.fig{margin:0}
-.frame{display:block;box-shadow:var(--hs);transition:transform .2s,box-shadow .2s}
-.frame img{aspect-ratio:2/1;object-fit:cover;object-position:50% 38%}
-.fig:hover .frame{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
-.fig figcaption{margin-top:.5rem;font:400 clamp(.8rem,2.2vw,.92rem)/1.4 var(--body);
-  color:var(--ink-60)}
-.two__t p{max-width:52ch;font-size:1rem;line-height:1.55;margin:0}
-.owner__line{font:600 .92rem/1.5 var(--body);color:var(--ink-60)}
+/* (the .two/.fig people-band family died with the merged crew band, 2026-08-22) */
+.owner__line{margin:.9rem 0 0;font:600 .92rem/1.5 var(--body);color:var(--ink-60)}
 .owner__line a{font-weight:700;text-underline-offset:3px}
-.two__t a{font-weight:700;text-underline-offset:3px}
 .sec{display:none}
 .facts{list-style:none;margin:.8rem 0 0;padding:.5rem 0 0;border-top:1px solid var(--rule);
   display:flex;flex-wrap:wrap;gap:.1rem 1.6rem}
@@ -377,8 +360,8 @@ p.frun a{font-weight:700;text-underline-offset:3px}
   .hero__panel{
     position:absolute;left:2.5%;top:50%;transform:translateY(-50%);
     /* wider than the old six-thing bubble (33%) — the letter needs the line length */
-    width:min(40%,30rem);
-    display:grid;grid-template-columns:1fr 33%;gap:1.15vw;align-items:center;
+    width:min(46%,34rem);
+    display:grid;grid-template-columns:1fr 36%;gap:1.15vw;align-items:center;
     background-color:rgba(16,28,40,.40);background-image:none;animation:none;
     color:#fff;
     -webkit-backdrop-filter:blur(14px) saturate(115%);
@@ -394,11 +377,8 @@ p.frun a{font-weight:700;text-underline-offset:3px}
   /* `:not(.stars)` is load-bearing, not defensive. `.rate span` alone also selects the star
      glyphs, which are the ONE thing in this build that owns its colour (--star, §3.1) — it
      turned five gold stars white and the rule that did it looked completely reasonable. */
-  .hero__panel h1,.hero__panel .rate span:not(.stars),.hero__panel .rate a,
-  .hero__panel .hero__alt2 a{color:#fff}
-  .hero__panel .sup{color:rgba(255,255,255,.88)}
-  .hero__panel .hero__sig{color:rgba(255,255,255,.85)}
-  .hero__panel h1,.hero__panel .sup{text-shadow:0 2px 14px rgba(0,0,0,.45)}
+  .hero__panel h1,.hero__panel .rate span:not(.stars),.hero__panel .rate a{color:#fff}
+  .hero__panel h1{text-shadow:0 2px 14px rgba(0,0,0,.45)}
   /* the button carried --brand, a deep navy, and on a dark scrim a dark button is a hole.
      On the white band tier it stays navy; here it inverts and the hard shadow goes with it. */
   .hero__panel .btn{background:#fff;color:var(--brand);box-shadow:6px 6px 0 rgba(0,0,0,.45)}
@@ -408,17 +388,16 @@ p.frun a{font-weight:700;text-underline-offset:3px}
      ground the text sits on, on any device. */
   .hero__panel:hover,.hero__panel:focus-within{
     border-color:rgba(255,255,255,.42);box-shadow:0 24px 62px rgba(0,0,0,.36)}
-  .hero__head{display:none}
-  /* grounded, never floating (hero law v3.4): he stands on the panel's bottom edge and
-     the §2.6 fade melts his cut line into it — align-items:center left him hovering
-     mid-panel beside the letter, which reads pasted-in (eyeballed at 1440) */
-  .hero__cut{display:block;align-self:end;margin-bottom:-1vw}
-  .hero__alt2{display:block}
+  /* ≥901 the cut returns to the panel as its second column and is PRETTY MUCH THE
+     HEIGHT OF THE TEXT BOX (Grady, 2026-08-22): the cell stretches to the panel, the
+     img fills it bottom-right, contain keeps him whole. */
+  .hero__cut{position:relative;top:auto;right:auto;height:auto;align-self:stretch}
+  .hero__cut img{position:absolute;inset:0;height:100%;width:100%;
+    object-fit:contain;object-position:right bottom}
   .hero__words{gap:1.35cqw}
   /* 10.2cqw not 11.4 — the note headline is longer than the old slogans and the extra
      wrap line it bought at 11.4 pushed the panel past the photo at 1024-1440 (measured) */
   .hero h1{font-size:min(4.4rem,10.2cqw)}
-  .hero .sup{font-size:clamp(.72rem,3.1cqw,1.02rem)}
   .hero .rate{font-size:clamp(.74rem,3.2cqw,1.05rem)}
   .hero .stars{font-size:clamp(.9rem,4cqw,1.3rem)}
   .btn{font-size:clamp(.8rem,3.1cqw,1.02rem)}
@@ -436,7 +415,8 @@ p.frun a{font-weight:700;text-underline-offset:3px}
   @keyframes bob{50%{transform:translate(-50%,6px)}}
 
   .sec{display:block}
-  .grid{grid-template-columns:repeat(3,1fr)}
+  /* 4 fixed cards since the crew merge (2026-08-22): one row, section stays short */
+  .grid{grid-template-columns:repeat(4,1fr)}
   .pj:first-child{grid-column:auto}
   .pj:first-child .pj__ph{aspect-ratio:3/2}
   .revs{grid-template-columns:repeat(4,1fr)}
@@ -445,9 +425,6 @@ p.frun a{font-weight:700;text-underline-offset:3px}
      sized for a paragraph column that no longer exists (pictures, then headings, then
      nothing), and it left the line floating in an empty half-band. Image-led instead:
      the photo carries the band, the line sits under it beside the caption. */
-  .two{grid-template-columns:minmax(0,52rem);justify-content:center;
-    gap:.4rem;align-items:start}
-  .two__t{text-align:right}   /* under the caption row, right-aligned against the photo edge */
   .fgrid{grid-template-columns:1fr 1fr}
   .opts{grid-template-columns:repeat(4,1fr)}
   .fcols{grid-template-columns:repeat(3,1fr);gap:2rem}
@@ -455,20 +432,11 @@ p.frun a{font-weight:700;text-underline-offset:3px}
 }
 
 /* ---- §8.6 / reduced motion ---------------------------------------------- */
-@media (min-width:901px) and (max-width:1365px){
-  /* §1.0b-G1, note-panel tier: the 7-row owner's note does not fit a 2.6 box below
-     1366px, so this range SERVES the 2.0 plate (hero-mid, a center crop of the wide
-     plate) and declares a 2.0 box — the ratio changes WITH the file, never against it.
-     The old min-height shortcut kept serving 2.6 into a shorter box and G1 rightly
-     failed it: object-fit was silently re-cropping the composition. */
-  .hero__media{aspect-ratio:2}
-}
-
 @media (max-width:600px){
   .band,.hero__panel{animation:none}
 }
 @media (hover:none){
-  .pj:hover,.rev:hover,.fig:hover .frame{transform:none;box-shadow:var(--hs)}
+  .pj:hover,.rev:hover{transform:none;box-shadow:var(--hs)}
   .hero__panel:hover,.hero__panel:focus-within{
     background-color:rgba(247,244,239,.74);border-color:rgba(255,255,255,.20)}
 }
