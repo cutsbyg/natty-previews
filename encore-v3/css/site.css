@@ -1,0 +1,531 @@
+/* ============================================================================
+   Natty template — one stylesheet, every client, byte-identical (§0 determinism)
+   Written MOBILE-FIRST on purpose (§8.16). The band tier is the BASE, and every
+   desktop rule lives in a min-width query, so nothing later in the file can
+   silently override the phone tier at equal specificity — which is the failure
+   §8.16 was written to stop.
+   ============================================================================ */
+
+/* ---- §3.1 tokens -------------------------------------------------------- */
+:root{
+  --brand:#1c3a54;            /* sampled hue 208 off the isolated mark, held to S50 L22 */
+  --brand-deep:#132838;
+  --paper:#f7f4ef;
+  --ink:#1c1a17;
+  --ink-60:rgba(28,26,23,.62);
+  --ink-30:rgba(28,26,23,.32);
+  --rule:rgba(28,26,23,.14);
+  --star:#d8a72b;             /* star glyphs ONLY */
+  --disp:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --wrap:78rem;
+  --hs:6px 6px 0 var(--ink);  /* the house hard offset shadow: equal offsets, zero blur */
+  --pad:clamp(1.05rem,3vw,1.75rem);   /* height purge 2026-08-18: 8 bands pay this twice */
+  --gut:clamp(.75rem,1.6vw,1.25rem);
+}
+@property --ba{syntax:'<percentage>';inherits:true;initial-value:0%}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 1.125rem/1.55 var(--body);overflow-x:hidden}
+
+/* §3.2a — ALL THREE. Without height:auto the width/height attributes pin the box
+   and aspect-ratio is ignored. */
+img{display:block;max-width:100%;height:auto}
+
+h1,h2,h3,h4,.kick,.eyebrow,.btn,.brandmark b,.mq,.bigtel,.pj__bar b,.fslogan{
+  font-family:var(--disp)}
+h1,h2,h3,h4,.fslogan{margin:0;line-height:.92;letter-spacing:-.02em;word-spacing:.06em}
+p{margin:0 0 1rem}
+a{color:inherit}
+:focus-visible{outline:3px solid currentColor;outline-offset:3px;border-radius:3px}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:99;background:var(--ink);color:#fff;
+  padding:.6rem 1rem;font:700 1rem var(--body)}
+.skip:focus{left:.5rem;top:.5rem}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
+.band{padding:var(--pad) 0;position:relative}
+
+/* ---- §3.2a the grid ground. Painted by the band ITSELF, never a pseudo-element,
+        and the rules are always the inverse of the ground, at 18%. -------------- */
+.g-brand{--gline:rgba(255,255,255,.18);background-color:var(--brand);color:#fff}
+.g-paper{--gline:rgba(28,58,84,.18);background-color:var(--paper);color:var(--ink)}
+.band,.hero__panel{
+  background-image:linear-gradient(var(--gline) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--gline) 1px,transparent 1px);
+  background-size:64px 64px;
+  animation:drift 46s linear infinite}
+@keyframes drift{to{background-position:64px 64px,64px 64px}}
+
+.g-brand a{color:#fff}
+.g-brand .kick{color:#fff;opacity:.86}
+.kick{font:600 .74rem/1.4 var(--disp);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brand);margin:0 0 .25rem}
+h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-height:.9;
+  margin:0 0 clamp(.4rem,1.1vw,.7rem)}
+.lede{font:400 1.125rem/1.5 var(--body);max-width:34ch}
+
+/* ---- §10 NAV ------------------------------------------------------------ */
+.nav{position:sticky;top:0;z-index:40;background:var(--brand);color:#fff}
+.nav__in{max-width:var(--wrap);margin:0 auto;padding:.5rem clamp(1rem,4vw,2rem);
+  display:flex;align-items:center;gap:1rem;justify-content:space-between}
+.brandmark{display:flex;align-items:center;gap:.6rem;text-decoration:none;min-height:44px}
+.brandmark img{width:52px;height:auto;transition:transform .2s}
+.brandmark:hover img{transform:scale(1.05)}
+.brandmark b{font-size:1.15rem;font-weight:900;letter-spacing:.01em;white-space:nowrap}
+/* §8.7 — a three-row nav overflows. The section list goes; brand + phone stay on one row. */
+.nav__links{display:none;gap:1.4rem}
+.wm{display:none}
+.nav__links a{font:700 1.02rem/1 var(--body);text-decoration:none;
+  display:inline-flex;align-items:center;min-height:44px;position:relative}
+.nav__links a::after{content:"";position:absolute;left:0;right:0;bottom:10px;height:2px;
+  background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .18s}
+.nav__links a:hover::after,.nav__links a:focus-visible::after,
+.nav__links a[aria-current="true"]::after{transform:scaleX(1)}
+.nav__tel{font:800 1.15rem/1 var(--disp);text-decoration:none;white-space:nowrap;
+  display:inline-flex;align-items:center;min-height:44px;transition:opacity .15s}
+.nav__tel:hover{opacity:.8}
+#rail{position:fixed;top:0;left:0;height:2px;width:0;background:#fff;z-index:50}
+.nudge{animation:nudge .6s ease 2}
+@keyframes nudge{50%{transform:translateY(-3px)}}
+
+/* ---- §1a HERO — BASE IS THE BAND TIER (§1.0b-H) -------------------------- */
+.hero{position:relative}
+.hero__media{position:relative}          /* the panel's offsetParent at EVERY width */
+.hero__pic{display:block}
+.hero__pic img{width:100%;height:auto}   /* the PICTURE carries the ratio in band mode */
+/* §9.3 — THE FILM LIES EXACTLY ON THE STILL AND NEVER CHANGES THE BOX. It is absolutely
+   positioned over the <picture>, so the PICTURE still carries the ratio and the layout is
+   identical whether the video loads, fails, or is suppressed. That is the whole point of
+   condition 6: the still is not a placeholder, it is the fallback. */
+/* In BAND mode .hero__media wraps the picture AND the panel, so `inset:0` would stretch the
+   film down over the text. It is pinned to the TOP and takes the served plate's ratio, which
+   is the picture's own box exactly. `inset:0` is correct only above 901, where .hero__media
+   IS the photograph — so that value lives in the min-width block, not here. */
+/* 🛑 THE FILM MUST PAINT ABOVE THE STILL. It shipped at z-index:0 with the <picture> also
+   at 0 and LATER in the DOM — so the opaque still painted over the film at every width.
+   The video measured paused:false in every check while not one of its pixels was visible:
+   `paused` is playback state, not paint order. Pixel-diff two screenshots to verify a film. */
+.hero__film{position:absolute;top:0;left:0;width:100%;height:auto;
+  aspect-ratio:1500/1000;object-fit:cover;
+  display:block;z-index:1;pointer-events:none}
+.hero__pic{position:relative;z-index:0}
+.hero__panel{position:relative;z-index:2}
+
+.hero__panel{
+  position:static;width:100%;
+  background-color:var(--paper);--gline:rgba(28,58,84,.18);color:var(--ink);
+  border:0;border-radius:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+  container-type:inline-size;
+  /* base tier is SINGLE column — the full cut-out is hidden and the head-shot in the
+     intro row carries the owner (hero law v3, phone). Two columns return at 901. */
+  display:grid;grid-template-columns:1fr;align-items:center;
+  padding:3.2vw 3.6vw}
+.hero__words{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:2.2cqw}
+.hero__intro{display:flex;align-items:center;gap:.65rem;margin:0}
+.hero__head{width:42px;height:auto;filter:drop-shadow(0 3px 8px rgba(0,0,0,.22))}
+.eyebrow{font:600 .74rem/1.3 var(--disp);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brand)}
+.hero h1{font-size:min(3.4rem,8.05cqw);font-weight:900;text-transform:uppercase;word-spacing:.05em;
+  line-height:.9;text-wrap:balance;max-width:100%}
+.hero .sup{font:600 clamp(.875rem,2.2cqw,1.05rem)/1.45 var(--body);letter-spacing:.015em;
+  color:var(--ink-60);margin:0}
+/* hero law v3 — the signature rides INLINE at the letter's end (its own row cost the
+   fold on 360/375 phones and the bubble's height on laptops; measured, not guessed) */
+.hero__sig{font-style:italic;font-weight:700;white-space:nowrap}
+/* ≤900 the sticky call bar (#stick) IS the online path on every screen, so the alt link
+   row is redundant weight the fold can't afford (measured 41px over at 360×640). It
+   returns at 901 where the bar is hidden. */
+.hero__alt2{display:none;margin:0;font:600 .9rem/1.3 var(--body)}
+.hero__alt2 a{display:inline-block;padding:.5rem .2rem;margin:-.5rem -.2rem;
+  text-underline-offset:3px}
+.hero .rate{display:flex;align-items:center;gap:.45rem;margin:0;
+  font:700 clamp(.72rem,2.3cqw,1.05rem)/1.2 var(--body)}
+/* §8.18 — the review-count link is a 14px-tall text row; padding+negative margin buys
+   the 44px tap target without costing the fold a pixel of layout */
+.hero .rate a{color:inherit;text-underline-offset:3px;display:inline-block;
+  padding:1rem .2rem;margin:-1rem -.2rem}
+.hero .stars{color:var(--star);font-size:clamp(.9rem,3cqw,1.35rem);letter-spacing:.06em}
+.hero__act{margin:0}
+.btn__tel{white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;
+  padding:0 clamp(1rem,3.4vw,1.6rem);background:var(--brand);color:#fff;text-decoration:none;
+  font:800 clamp(.8rem,2.5cqw,1.05rem)/1 var(--disp);letter-spacing:.04em;
+  text-transform:uppercase;border:0;border-radius:2px;box-shadow:var(--hs);cursor:pointer;
+  transition:transform .18s,box-shadow .18s}
+.btn:hover,.btn:focus-visible{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
+.hero__cut{display:none;align-self:center;min-width:0}
+/* §1.0b-L — no box round him on the white band. §2.6 — fade the straight cut in CSS. */
+.hero__cut img{width:100%;
+  -webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
+  mask-image:linear-gradient(to bottom,#000 78%,transparent 99%)}
+.cue{display:none}
+
+/* ---- §2 MARQUEE — paper chrome, not counted in the alternation ----------- */
+.marquee{background:var(--paper);border-block:1px solid var(--rule);overflow:hidden;
+  padding:.55rem 0;display:flex}
+.mq{flex:0 0 auto;display:flex;gap:1.1rem;margin:0;padding:0 .55rem;list-style:none;
+  font:700 .96rem/1.4 var(--disp);letter-spacing:.06em;text-transform:uppercase;
+  white-space:nowrap;animation:slide 46s linear infinite}
+.mq li{flex:none}
+.mq .d{color:var(--ink-30)}
+@keyframes slide{to{transform:translateX(-100%)}}
+
+/* ---- §4 WORK ------------------------------------------------------------ */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gut)}
+.pj{min-width:0;display:block;text-decoration:none;background:var(--paper);color:var(--ink);
+  box-shadow:var(--hs);transition:transform .2s,box-shadow .2s}
+.pj:first-child{grid-column:1 / -1}
+.pj:hover,.pj:focus-visible{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
+.pj__ph{display:block;aspect-ratio:3/2;overflow:hidden}
+.pj:first-child .pj__ph{aspect-ratio:2.2/1}
+.pj__ph img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;transition:transform .5s}
+.pj:hover .pj__ph img{transform:scale(1.05)}
+/* §2.0e — ONE shape. Two rows, both always present, both clamped to one line, and no
+   optional row anywhere. NO media query on this. */
+.pj__bar{display:block;background:var(--paper);color:var(--ink);padding:.65rem .8rem .55rem}
+.pj__bar b,.pj__bar i{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;
+  overflow:hidden}
+.pj__bar b{font-size:clamp(.92rem,1.4vw,1.35rem);font-weight:700;line-height:1.2}
+/* titles get TWO lines — at one, "The house with the skylight" clamps to "The house
+   with the…" in the 2-across phone row, which reads as broken. Placed AFTER the shared
+   clamp rule: same specificity, so source order is the whole mechanism here. */
+.pj__bar b{-webkit-line-clamp:2}
+.pj__bar i{font:400 clamp(.72rem,1.1vw,.82rem)/1.3 var(--body);font-style:normal;
+  color:var(--ink-60)}
+
+/* ---- §3 THE PEOPLE ------------------------------------------------------ */
+.two{display:grid;gap:clamp(1.2rem,3vw,2rem);align-items:start}
+.fig{margin:0}
+.frame{display:block;box-shadow:var(--hs);transition:transform .2s,box-shadow .2s}
+.frame img{aspect-ratio:2/1;object-fit:cover;object-position:50% 38%}
+.fig:hover .frame{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
+.fig figcaption{margin-top:.5rem;font:400 clamp(.8rem,2.2vw,.92rem)/1.4 var(--body);
+  color:var(--ink-60)}
+.two__t p{max-width:52ch;font-size:1rem;line-height:1.55;margin:0}
+.owner__line{font:600 .92rem/1.5 var(--body);color:var(--ink-60)}
+.owner__line a{font-weight:700;text-underline-offset:3px}
+.two__t a{font-weight:700;text-underline-offset:3px}
+.sec{display:none}
+.facts{list-style:none;margin:.8rem 0 0;padding:.5rem 0 0;border-top:1px solid var(--rule);
+  display:flex;flex-wrap:wrap;gap:.1rem 1.6rem}
+.facts li{display:flex;flex-wrap:wrap;gap:.2rem 1rem;align-items:center;
+  padding:.55rem 0;border-bottom:1px solid var(--rule);min-height:44px}
+.facts b{font:600 .74rem/1.4 var(--disp);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-60);flex:0 0 8rem}
+.facts a{font-weight:700;text-underline-offset:3px;display:inline-flex;align-items:center;
+  min-height:44px}
+.facts a:hover{color:var(--brand)}
+
+/* ---- §9.2b BEFORE / AFTER ----------------------------------------------- */
+.ba{margin:0}
+.ba__win{position:relative;aspect-ratio:16/9;box-shadow:var(--hs);
+  max-width:52rem;margin-inline:auto}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 50%}
+/* clip-path, not width: a part-width window would size the BEFORE plate to the window
+   and the two halves would stop registering across the wipe. */
+.ba__clip{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--ba,0%)) 0 0)}
+.ba__line{position:absolute;top:0;bottom:0;left:var(--ba,0%);width:3px;
+  background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.3);pointer-events:none}
+.ba__line::after{content:"◀ ▶";position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;
+  background:#fff;color:var(--ink);display:grid;place-items:center;
+  font:700 .62rem/1 var(--body);letter-spacing:.06em;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.ba__range{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;
+  cursor:ew-resize;-webkit-appearance:none;appearance:none;background:transparent}
+.ba__range::-webkit-slider-thumb{-webkit-appearance:none;width:44px;height:44px}
+.ba__range::-moz-range-thumb{width:44px;height:44px;border:0}
+.ba__tag{position:absolute;top:.7rem;padding:.3rem .55rem;background:rgba(28,26,23,.78);
+  color:#fff;font:800 .74rem/1 var(--disp);letter-spacing:.14em;text-transform:uppercase;
+  pointer-events:none}
+.ba__tag{top:auto;bottom:.7rem}
+.ba__tag.l{left:.7rem}
+.ba__tag.r{right:.7rem}
+.ba__cap{position:static;margin:.7rem auto 0;max-width:52rem;font:400 clamp(.85rem,2.3vw,1rem)/1.45 var(--body);
+  color:#fff;opacity:.88;max-width:56ch}
+@keyframes ba-sway{0%,100%{--ba:0%}45%{--ba:34%}}
+.ba.is-hinting{animation:ba-sway 1.6s cubic-bezier(.4,0,.2,1) .6s 1 both}
+
+/* ---- §6 REVIEWS + FAQ --------------------------------------------------- */
+/* §2.4c — TWO ACROSS, always, sized to content. Never one per row. */
+.revs{display:grid;grid-template-columns:1fr 1fr;gap:var(--gut)}
+.rev{min-width:0;background:#fff;padding:clamp(.55rem,1.4vw,1.35rem);box-shadow:var(--hs);
+  font-size:.88rem;
+  transition:transform .2s,box-shadow .2s}
+.rev:hover{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
+.rev .stars{margin:0 0 .4rem;color:var(--star);font-size:clamp(.98rem,2.7vw,1.6rem);
+  letter-spacing:.08em;line-height:1}
+.rev blockquote{margin:0 0 .4rem;font:700 clamp(.8rem,2.3vw,1.12rem)/1.35 var(--body)}
+.rev cite{font:400 clamp(.75rem,2vw,1.05rem)/1.2 var(--body);font-style:normal;
+  color:var(--ink-60)}
+.count{margin:.2rem 0 0}
+.count a{display:inline-flex;align-items:center;min-height:44px;
+  font:700 1.02rem/1 var(--body);text-underline-offset:4px}
+.count a:hover{color:var(--brand)}
+
+.faq{margin-top:clamp(.7rem,2vw,1.1rem);padding-top:clamp(.7rem,1.8vw,1rem);
+  border-top:1px solid var(--rule)}
+.faq h3{font-size:clamp(1.3rem,4.2vw,2rem);font-weight:900;text-transform:uppercase;
+  margin:0 0 .6rem}
+.faq details{border-bottom:1px solid var(--rule)}
+.faq summary{display:flex;align-items:center;min-height:44px;cursor:pointer;
+  font:700 clamp(1rem,2.6vw,1.125rem)/1.35 var(--body);padding:.5rem 1.8rem .5rem 0;
+  position:relative;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:.2rem;font:700 1.4rem/1 var(--disp);
+  color:var(--brand)}
+.faq details[open] summary::after{content:"–"}
+.faq summary:hover{color:var(--brand)}
+.faq details p{margin:0 0 .6rem;max-width:60ch;font-size:1rem;color:var(--ink-60)}
+
+/* ---- §8 CTA + SUBMIT A PROJECT ------------------------------------------ */
+/* §0z — the form is the loudest thing here; the phone follows it. */
+.cta .lede{max-width:46ch;margin-bottom:.9rem}
+#quote{margin:0}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem .6rem}
+.fgrid p{margin:0}
+.fgrid .full{grid-column:1 / -1}
+label,legend{display:block;font:600 .74rem/1.4 var(--disp);letter-spacing:.16em;
+  text-transform:uppercase;margin:0 0 .3rem;color:#fff;opacity:.9}
+input,select,textarea{width:100%;min-height:48px;padding:.65rem .8rem;font:400 16px/1.4 var(--body);
+  color:var(--ink);background:#fff;border:2px solid transparent;border-radius:2px;
+  -webkit-appearance:none;appearance:none}
+textarea{min-height:96px}
+input:focus,select:focus,textarea:focus{border-color:var(--brand);outline:none}
+input[type=file]{padding:.55rem .6rem;background:#fff}
+fieldset{margin:1.4rem 0;padding:0;border:0}
+legend{padding:0}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+/* §8.18 — the WHOLE ROW is the tap target, not the 20px box. */
+.opt{display:flex;align-items:center;gap:.6rem;min-height:44px;padding:0 .7rem;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);cursor:pointer;
+  font:400 .95rem/1.25 var(--body);letter-spacing:0;text-transform:none;color:#fff;
+  margin:0;transition:background .15s}
+.opt:hover,.opt:focus-within{background:rgba(255,255,255,.2)}
+.opt input{width:20px;height:20px;min-height:20px;flex:none;accent-color:var(--brand);
+  -webkit-appearance:auto;appearance:auto;padding:0}
+.send{margin:1rem 0 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.nb{margin:.7rem 0 0}
+.btn--go{min-height:56px;background:#fff;color:var(--brand);
+  font-size:clamp(1rem,2.8vw,1.25rem);box-shadow:8px 8px 0 var(--ink)}
+.btn--go:hover,.btn--go:focus-visible{box-shadow:3px 3px 0 var(--ink)}
+.note{margin:.7rem 0 0;font:600 1rem/1.4 var(--body)}
+.ratherbig{margin:0;display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.5rem;
+  font:400 1.125rem/1.3 var(--body)}
+.send .bigtel{font-size:1.15rem}
+.bigtel{font:800 clamp(1.7rem,5.4vw,2.6rem)/1 var(--disp);text-decoration:none;
+  white-space:nowrap;letter-spacing:-.01em;border-bottom:3px solid #fff;
+  transition:opacity .15s}
+.bigtel:hover{opacity:.82}
+
+/* ---- §9 FOOTER — a designed band, flat ground, three type sizes ---------- */
+.foot{padding:var(--pad) 0 calc(1rem + 64px)}  /* 64px: the sticky bar shows over the footer */
+.foot__top{display:flex;align-items:center;gap:.8rem;margin-bottom:clamp(.9rem,2.6vw,1.6rem)}
+.foot__plate{display:inline-flex;padding:.5rem;background:var(--brand);border-radius:2px}
+.foot__plate img{width:44px;height:auto}
+.foot__top b{font:900 clamp(1.3rem,3.6vw,1.9rem)/1 var(--disp);letter-spacing:-.01em}
+.fcols{display:grid;grid-template-columns:1fr;gap:.55rem}
+p.frun{margin:0;font-size:.9rem;line-height:1.55;color:var(--ink-60)}
+p.frun b{font:600 .72rem/1 var(--disp);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);margin-right:.4rem}
+p.frun a{font-weight:700;text-underline-offset:3px}
+.fcols h4{font:600 .74rem/1.4 var(--disp);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-60);margin:0 0 .5rem}
+.fcols ul{list-style:none;margin:0;padding:0}
+.fcols li{font:400 1.02rem/1.55 var(--body)}
+.fcols a{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:3px}
+.fcols a:hover{color:var(--brand)}
+.fslogan{font:900 clamp(1.4rem,4.6vw,2.6rem)/.95 var(--disp);text-transform:uppercase;
+  letter-spacing:-.02em;margin:clamp(1.6rem,4vw,2.4rem) 0 1rem;max-width:20ch}
+.legal{display:flex;flex-wrap:wrap;gap:.3rem .5rem;align-items:center;margin:0;font-size:.78rem;
+  padding-top:1rem;border-top:1px solid var(--rule);
+  font:400 .82rem/1.5 var(--body);color:var(--ink-60)}
+.foot__adm{color:var(--ink-30);text-decoration:none}
+.foot__adm:hover{color:var(--ink-60);text-decoration:underline}
+
+/* ============================================================================
+   ≥901px — THE BUBBLE TIER. The panel returns ONTO the photograph (§1.0b-G).
+   The media box takes the served file's ratio exactly: 2.6, the wide plate.
+   ============================================================================ */
+@media (min-width:480px){
+  .wm{display:inline}
+}
+
+@media (min-width:901px){
+  .nav__links{display:flex}
+  /* the note panel is 7 rows — at 901-1200 a pure 2.6 box is too short to hold it, so the
+     box gets a floor and object-fit:cover absorbs the difference by cropping the plate's
+     sides. §1.0b-G1 is untouched: the SERVED file is still the 2.6 plate and the <picture>
+     declares it truthfully — this is a box-height floor, not a ratio lie. */
+  .hero__media{aspect-ratio:2.6;overflow:hidden}
+  .hero__pic{position:absolute;inset:0}
+  .hero__pic img{width:100%;height:100%;object-fit:cover}
+  /* above 901 .hero__media IS the photograph (aspect-ratio:2.6, overflow:hidden), so the film
+     fills it. §1.0b-G1 measures the STILL's ratio, not the film's — cover does the crop. */
+  .hero__film{inset:0;height:100%;aspect-ratio:auto}
+
+  /* §3.2b — THE BUBBLE IS A DARK, TRANSLUCENT SCRIM, NOT TINTED PAPER. This shipped at
+     rgba(247,244,239,.74): three-quarters-opaque paper under a 14px blur, so the blur was
+     doing nothing visible and the panel read as a pale slab pasted on the drone shot. Alpha
+     .40 sits mid-band (.26-.55) — it needs more than Haas's .26 because it stands on sunlit
+     grass and tree canopy, which is the brightest ground any of the six panels sits on.
+     THIS IS THE BUBBLE TIER ONLY. The band tier below 901 is the base of this mobile-first
+     stylesheet and stays WHITE — §1.0b-H, which is not negotiable against any brand. */
+  .hero__panel{
+    position:absolute;left:2.5%;top:50%;transform:translateY(-50%);
+    /* wider than the old six-thing bubble (33%) — the letter needs the line length */
+    width:min(40%,30rem);
+    display:grid;grid-template-columns:1fr 33%;gap:1.15vw;align-items:center;
+    background-color:rgba(16,28,40,.40);background-image:none;animation:none;
+    color:#fff;
+    -webkit-backdrop-filter:blur(14px) saturate(115%);
+    backdrop-filter:blur(14px) saturate(115%);
+    border:1px solid rgba(255,255,255,.28);border-radius:20px;
+    box-shadow:0 20px 54px rgba(0,0,0,.30);
+    padding:1vw 1.6vw;gap:1.15vw;
+    transition:border-color .2s,box-shadow .2s}
+  /* the panel's ink follows its ground. Scoped INSIDE the bubble query and inside .hero__panel,
+     so nothing here can reach the white band tier — the mistake that produces a navy mobile
+     panel is a colour rule that outlives the query that justified it. */
+  .hero__panel .eyebrow{color:#cfe0f0}
+  /* `:not(.stars)` is load-bearing, not defensive. `.rate span` alone also selects the star
+     glyphs, which are the ONE thing in this build that owns its colour (--star, §3.1) — it
+     turned five gold stars white and the rule that did it looked completely reasonable. */
+  .hero__panel h1,.hero__panel .rate span:not(.stars),.hero__panel .rate a,
+  .hero__panel .hero__alt2 a{color:#fff}
+  .hero__panel .sup{color:rgba(255,255,255,.88)}
+  .hero__panel .hero__sig{color:rgba(255,255,255,.85)}
+  .hero__panel h1,.hero__panel .sup{text-shadow:0 2px 14px rgba(0,0,0,.45)}
+  /* the button carried --brand, a deep navy, and on a dark scrim a dark button is a hole.
+     On the white band tier it stays navy; here it inverts and the hard shadow goes with it. */
+  .hero__panel .btn{background:#fff;color:var(--brand);box-shadow:6px 6px 0 rgba(0,0,0,.45)}
+  .hero__panel .btn:hover,.hero__panel .btn:focus-visible{background:#e8eff5;
+    box-shadow:3px 3px 0 rgba(0,0,0,.45)}
+  /* §1.0b-M — hover may move a border or a shadow. It may NEVER repaint the
+     ground the text sits on, on any device. */
+  .hero__panel:hover,.hero__panel:focus-within{
+    border-color:rgba(255,255,255,.42);box-shadow:0 24px 62px rgba(0,0,0,.36)}
+  .hero__head{display:none}
+  /* grounded, never floating (hero law v3.4): he stands on the panel's bottom edge and
+     the §2.6 fade melts his cut line into it — align-items:center left him hovering
+     mid-panel beside the letter, which reads pasted-in (eyeballed at 1440) */
+  .hero__cut{display:block;align-self:end;margin-bottom:-1vw}
+  .hero__alt2{display:block}
+  .hero__words{gap:1.35cqw}
+  /* 10.2cqw not 11.4 — the note headline is longer than the old slogans and the extra
+     wrap line it bought at 11.4 pushed the panel past the photo at 1024-1440 (measured) */
+  .hero h1{font-size:min(4.4rem,10.2cqw)}
+  .hero .sup{font-size:clamp(.72rem,3.1cqw,1.02rem)}
+  .hero .rate{font-size:clamp(.74rem,3.2cqw,1.05rem)}
+  .hero .stars{font-size:clamp(.9rem,4cqw,1.3rem)}
+  .btn{font-size:clamp(.8rem,3.1cqw,1.02rem)}
+  /* on the photograph he needs separating from it; on the white band he does not. */
+  .hero__cut img{filter:drop-shadow(0 12px 18px rgba(0,0,0,.34)) drop-shadow(0 2px 4px rgba(0,0,0,.3));
+    transition:transform .2s}
+  .hero__panel:hover .hero__cut img{transform:translateY(-4px)}
+
+  .cue{display:grid;place-items:center;position:absolute;left:50%;bottom:1.2rem;
+    transform:translateX(-50%);width:46px;height:46px;border-radius:50%;color:#fff;
+    background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    animation:bob 2.4s ease-in-out infinite}
+  .cue:hover{background:rgba(255,255,255,.3)}
+  @keyframes bob{50%{transform:translate(-50%,6px)}}
+
+  .sec{display:block}
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .pj:first-child{grid-column:auto}
+  .pj:first-child .pj__ph{aspect-ratio:3/2}
+  .revs{grid-template-columns:repeat(4,1fr)}
+  .faq__list{display:grid;grid-template-columns:1fr 1fr;gap:0 2rem;align-items:start}
+  /* the section is now a photograph with one contact line — the old .72fr/1fr split was
+     sized for a paragraph column that no longer exists (pictures, then headings, then
+     nothing), and it left the line floating in an empty half-band. Image-led instead:
+     the photo carries the band, the line sits under it beside the caption. */
+  .two{grid-template-columns:minmax(0,52rem);justify-content:center;
+    gap:.4rem;align-items:start}
+  .two__t{text-align:right}   /* under the caption row, right-aligned against the photo edge */
+  .fgrid{grid-template-columns:1fr 1fr}
+  .opts{grid-template-columns:repeat(4,1fr)}
+  .fcols{grid-template-columns:repeat(3,1fr);gap:2rem}
+  .ba__win{aspect-ratio:2/1}
+}
+
+/* ---- §8.6 / reduced motion ---------------------------------------------- */
+@media (min-width:901px) and (max-width:1365px){
+  /* §1.0b-G1, note-panel tier: the 7-row owner's note does not fit a 2.6 box below
+     1366px, so this range SERVES the 2.0 plate (hero-mid, a center crop of the wide
+     plate) and declares a 2.0 box — the ratio changes WITH the file, never against it.
+     The old min-height shortcut kept serving 2.6 into a shorter box and G1 rightly
+     failed it: object-fit was silently re-cropping the composition. */
+  .hero__media{aspect-ratio:2}
+}
+
+@media (max-width:600px){
+  .band,.hero__panel{animation:none}
+}
+@media (hover:none){
+  .pj:hover,.rev:hover,.fig:hover .frame{transform:none;box-shadow:var(--hs)}
+  .hero__panel:hover,.hero__panel:focus-within{
+    background-color:rgba(247,244,239,.74);border-color:rgba(255,255,255,.20)}
+}
+@media (prefers-reduced-motion:reduce){
+  /* §9.3.7 — the film is REMOVED, not paused: a paused first frame and the poster are the
+     same pixels, so display:none costs nothing and guarantees no motion at all. */
+  .hero__film{display:none}
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important}
+  .ba.is-hinting{animation:none}
+}
+
+/* ============================================================================
+   STICKY MOBILE CTA — phone/band tier only, never on the desktop bubble.
+   Height budget is the whole argument. On a 390x844 iPhone, Safari's SMALL
+   viewport (toolbars expanded) is ~664 CSS px, not 844. A 56px nav plus this
+   bar plus a 34px home-indicator inset is ~22% of the usable screen. 56px is
+   therefore a ceiling, not a starting point — nothing here gets taller.
+   ============================================================================ */
+.stick{position:fixed;left:0;right:0;bottom:0;z-index:70;
+  display:flex;gap:.5rem;align-items:stretch;
+  padding:.5rem var(--gut);
+  /* 🛑 max() IS LOAD-BEARING. iOS Safari returns 0 for env(safe-area-inset-bottom)
+     when the toolbar is hidden, so a bar padded with the raw value jumps 34px
+     mid-scroll and can land under the home indicator. The max() floors it. */
+  padding-bottom:max(.5rem,env(safe-area-inset-bottom));
+  background:rgba(247,244,239,.94);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-top:1px solid var(--rule);
+  box-shadow:0 -6px 24px rgba(0,0,0,.14);
+  /* hidden by TRANSFORM, never by layout — a bar that appears by changing layout
+     counts against CLS; a transform does not. */
+  transform:translateY(110%);opacity:0;
+  transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .3s}
+.stick.on{transform:translateY(0);opacity:1}
+.stick__b{display:flex;align-items:center;justify-content:center;gap:.4rem;
+  min-height:48px;border-radius:10px;text-decoration:none;
+  font:800 .95rem/1 var(--disp);letter-spacing:.03em;text-transform:uppercase;
+  transition:transform .15s,box-shadow .15s}
+.stick__b:active{transform:translateY(2px)}
+/* the tel: link is the SMALLER half on purpose: it is the higher-intent action but
+   the narrower audience — nobody phones a roofer at 9pm. */
+.stick__b--tel{flex:0 0 38%;background:#fff;color:var(--brand);
+  border:2px solid var(--brand);box-shadow:3px 3px 0 var(--ink)}
+.stick__b--cta{flex:1 1 auto;background:var(--brand);color:#fff;
+  box-shadow:3px 3px 0 var(--ink)}
+/* WCAG 2.2 SC 2.4.11 Focus Not Obscured: a sticky bar covering a focused field is
+   a failure. This keeps a focused input clear of the bar when it scrolls into view. */
+html{scroll-padding-bottom:96px}
+
+@media (min-width:901px){
+  /* the bubble tier has the panel's own button on screen one; a bar here is noise */
+  .stick{display:none}
+  html{scroll-padding-bottom:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .stick{transition:none}
+}
+
+.kick__a{text-decoration:underline;text-underline-offset:3px;letter-spacing:.16em}
