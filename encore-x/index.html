@@ -84,6 +84,7 @@ h1,h2{margin:0;line-height:1.04;letter-spacing:-.022em;font-weight:800}
 .hero--note h1{font-size:clamp(1.7rem,5.4vw,2.7rem);line-height:1.08;text-shadow:none;max-width:none}
 .hn__letter{margin:1rem 0 .4rem;color:var(--mut);font-size:1.02rem}
 .hn__sig{margin:0 0 1.2rem;font-style:italic;font-weight:600}
+.hn__oneline{display:none;margin:.4rem 0 0;color:rgba(255,255,255,.88);font-size:.98rem;max-width:34ch}
 .hn__alt{margin:.7rem 0 0;font-size:.92rem}
 .hn__alt a{color:var(--navy-2);font-weight:700;display:inline-block;padding:.5rem .2rem;margin:-.5rem -.2rem}
 .hn__side{position:relative;background:linear-gradient(rgba(18,37,58,.55),rgba(18,37,58,.55)),url(img/crew-at-work.jpg) center 30%/cover;display:grid;align-items:end}
@@ -94,9 +95,29 @@ h1,h2{margin:0;line-height:1.04;letter-spacing:-.022em;font-weight:800}
   font-size:.85rem;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,.1)}
 .hn__chip a{color:var(--ink)}
 @media(max-width:640px){
-  .hn__card{grid-template-columns:1fr}
+  /* image-forward mobile hero: the enhanced jobsite photo full-bleed, Scott large and
+     centered (the author, not a sticker — he stands on the scrim over his own jobsite),
+     the note compressed to its trust core. Desktop keeps the full letter card. */
+  .hero--note{background:linear-gradient(180deg,rgba(10,18,28,.18) 0%,rgba(10,18,28,.06) 34%,rgba(10,18,28,.62) 62%,rgba(9,16,26,.94) 100%),
+    url(img/hero-crew-phone.jpg) top center/cover;
+    min-height:96svh;align-content:end;padding:0 1rem 1.1rem}
+  .hn__brand{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.5);position:absolute;top:1rem;left:1rem;margin:0}
+  .hn__card{grid-template-columns:1fr;background:transparent;border:0;box-shadow:none;border-radius:0}
   .hn__side{display:none}
-  .hn__head{display:block}
+  .hn__words{padding:0;text-align:center;color:#fff;display:flex;flex-direction:column;align-items:center}
+  .hn__head{display:block;width:min(58vw,235px);height:auto;margin:0 auto -0.9rem;
+    transform:translateX(14%);   /* clears the working man on the photo's left */
+    filter:drop-shadow(0 14px 30px rgba(0,0,0,.55));
+    -webkit-mask-image:linear-gradient(#000 80%,transparent 99%);mask-image:linear-gradient(#000 80%,transparent 99%)}
+  .hn__eyebrow{text-shadow:0 1px 10px rgba(0,0,0,.65)}
+  .hn__eyebrow{color:var(--gold)}
+  .hero--note h1{color:#fff;font-size:clamp(1.7rem,7.6vw,2.3rem);text-wrap:balance}
+  .hn__letter,.hn__sig{display:none}
+  .hn__oneline{display:block}
+  .hn__words .btn{width:100%;max-width:22rem;margin-top:.9rem}
+  .hn__alt a{color:#fff}
+  .hn__stars{color:#fff}
+  .hn__stars a{color:#fff}
 }
 /* ————— PROOF: the work, then the words ————— */
 .proof{padding:clamp(2.2rem,6vw,4rem) 0}
@@ -194,13 +215,14 @@ footer a{color:inherit}
   <div class="hn__brand"><img src="img/logo.png" alt="" width="40" height="37"><b>ENCORE ROOFING</b></div>
   <div class="hn__card">
     <div class="hn__words">
-      <img class="hn__head" src="img/scott-head.png" width="220" height="209" alt="Scott Boreman">
+      <img class="hn__head" src="img/scott-cut.png" width="899" height="1107" alt="Scott Boreman, owner of Encore Roofing">
       <p class="hn__eyebrow">A NOTE FROM THE OWNER</p>
       <h1>Roof leaking? Get it fixed before winter.</h1>
       <p class="hn__letter">I'm Scott. I've been putting roofs on Perry County houses for 30
         years &#8212; my name and number are on every one of them. Call me, I'll come look at
         yours, and the estimate's free.</p>
       <p class="hn__sig">&#8212; Scott Boreman, Encore Roofing</p>
+      <p class="hn__oneline">I&#8217;m Scott &#8212; my name and number are on 30 years of Perry County roofs.</p>
       <a class="btn" href="tel:+17179791975">Call Scott: (717) 979-1975</a>
       <p class="hn__alt"><a href="#estimate">or request your free estimate online</a></p>
       <p class="hn__stars"><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <a href="https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867" rel="noopener">4.9 &#8212; 138 Google reviews</a></p>
