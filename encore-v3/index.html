@@ -64,29 +64,25 @@
          Chromium ignores preload for an autoplaying muted video and plays it anyway. So every
          desktop check passed and the phone — which is most of the traffic — got a still.
          `preload="auto"` is a 990KB fetch and it is the point of the band. -->
-    <video class="hero__film" autoplay muted loop playsinline preload="auto"
-           poster="img/hero-poster.jpg?v=2" width="1600" height="900" aria-hidden="true">
-      <source src="img/hero-loop.mp4?v=2" type="video/mp4">
-    </video>
 
     <picture class="hero__pic">
       <source media="(max-width:900px)" type="image/webp" srcset="img/hero-phone.webp?v=1" width="1500" height="1000">
       <source media="(max-width:900px)" srcset="img/hero-phone.jpg?v=1" width="1500" height="1000">
       <source type="image/webp" srcset="img/hero-wide.webp?v=1" width="2600" height="1000">
       <img src="img/hero-wide.jpg?v=1" width="2600" height="1000" fetchpriority="high"
-           alt="A drone view of the Encore Roofing crew laying shingle across a large charcoal roof, with the mown lawn and tree line beside the house">
+           alt="A straight-down drone view of a whole house with a new charcoal roof, three Encore Roofing roofers at work on it, lawn and trees beside it">
     </picture>
 
     <div class="glass hero__panel">
-      <div class="hero__words">
-        <h1>Roof leaking? Get it fixed before winter.</h1>
-        <p class="rate"><span class="stars" aria-hidden="true">★★★★★</span><a href="https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867" rel="noopener">4.9 — 138 Google reviews</a></p>
-        <p class="hero__act"><a class="btn" href="#submit">Get your free estimate</a></p>
-      </div>
+      <div class="hero__words"><h1>Roof leaking? Get it fixed before winter.</h1></div>
+      <!-- the cut-out sits NEXT TO THE HEADLINE at every width (Grady, 2026-08-22) —
+           phone: beside the h1 in the band; desktop: the panel's full height. -->
       <div class="hero__cut">
         <img src="img/owner-cut.png?v=1" width="899" height="1107"
              alt="Scott Boreman of Encore Roofing, in an Encore Roofing shirt">
       </div>
+      <p class="rate"><span class="stars" aria-hidden="true">★★★★★</span><a href="https://www.google.com/maps/place/ENCORE+ROOFING,+LLC/@40.4621747,-77.1992867" rel="noopener">4.9 — 138 Google reviews</a></p>
+      <p class="hero__act"><a class="btn" href="#submit">Get your free estimate</a></p>
     </div>
 
     <a class="cue" href="#work" aria-label="See the projects">

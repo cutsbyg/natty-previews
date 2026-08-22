@@ -119,14 +119,21 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
   background-color:var(--paper);--gline:rgba(28,58,84,.18);color:var(--ink);
   border:0;border-radius:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
   container-type:inline-size;
-  /* base tier is SINGLE column — the full cut-out is hidden and the head-shot in the
-     intro row carries the owner (hero law v3, phone). Two columns return at 901. */
-  display:grid;grid-template-columns:1fr;align-items:center;
+  /* band tier: headline | cut-out on row 1, rating and button full-width beneath
+     (Grady, 2026-08-22: "put him right next to the heading"). */
+  display:grid;grid-template-columns:1fr 42%;grid-template-rows:auto auto auto;
+  column-gap:3vw;row-gap:2.2cqw;align-items:end;
   padding:3.2vw 3.6vw}
-.hero__words{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:2.2cqw}
+.hero__words{grid-column:1;grid-row:1}
+.hero__cut{grid-column:2;grid-row:1}
+.hero .rate,.hero__act{grid-column:1 / -1}
+/* the headline is sized from ITS OWN column (the words cell is the container), so it
+   can never out-wrap the cut-out beside it — sizing from the panel width did (measured:
+   6 lines, 252px, panel overflow, cut 'escaping' at every bubble width). */
+.hero__words{min-width:0;container-type:inline-size}
 .eyebrow{font:600 .74rem/1.3 var(--disp);letter-spacing:.16em;text-transform:uppercase;
   color:var(--brand)}
-.hero h1{font-size:min(3.4rem,9.3cqw);font-weight:900;text-transform:uppercase;word-spacing:.05em;
+.hero h1{font-size:min(3.4rem,16cqw);font-weight:900;text-transform:uppercase;word-spacing:.05em;
   line-height:.9;text-wrap:balance;max-width:100%}
 .hero .rate{display:flex;align-items:center;gap:.45rem;margin:0;white-space:nowrap;
   font:700 clamp(.85rem,2.5cqw,1.05rem)/1.2 var(--body)}
@@ -142,14 +149,13 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
   text-transform:uppercase;border:0;border-radius:2px;box-shadow:var(--hs);cursor:pointer;
   transition:transform .18s,box-shadow .18s}
 .btn:hover,.btn:focus-visible{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
-/* ≤900 the cut-out stands ON the photo, bottom-right, bottom edge at the photo/band
-   seam (his feet fade into it). The panel is position:static here, so the containing
-   block is .hero__media — anchor to the photo's own bottom: its height is 100vw/1.5.
-   Big by law: never a thumbnail (Grady, 2026-08-22). */
-.hero__cut{position:absolute;z-index:2;right:.4rem;min-width:0;
-  height:min(54vw,420px);top:calc(100vw/1.5 - min(54vw,420px))}
+/* the cut-out is NEXT TO THE HEADLINE and as tall as its row — never a thumbnail,
+   never floating on the photo (Grady, 2026-08-22). The cell stretches to the h1's row
+   on phones and to the whole panel on desktop; the img fills it bottom-right. */
+.hero__cut{position:relative;align-self:stretch;min-width:0;min-height:26vw}
 /* §1.0b-L — no box round him on the white band. §2.6 — fade the straight cut in CSS. */
-.hero__cut img{height:100%;width:auto;
+.hero__cut img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+  object-position:right bottom;
   -webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
   mask-image:linear-gradient(to bottom,#000 78%,transparent 99%)}
 .cue{display:none}
@@ -360,8 +366,13 @@ p.frun a{font-weight:700;text-underline-offset:3px}
   .hero__panel{
     position:absolute;left:2.5%;top:50%;transform:translateY(-50%);
     /* wider than the old six-thing bubble (33%) — the letter needs the line length */
-    width:min(46%,34rem);
-    display:grid;grid-template-columns:1fr 36%;gap:1.15vw;align-items:center;
+    /* PANEL-HEIGHT CUT-OUT: the panel's height comes from its words; the cut spans all
+       three rows and stretches to it (a fixed panel height fought the headline's
+       line count at every width — measured, abandoned). Wide on big monitors on
+       purpose: Grady's 'super tiny' was a 34rem cap on a 2560 screen. */
+    width:min(56%,60rem);
+    display:grid;grid-template-columns:1fr 36%;grid-template-rows:auto auto auto;
+    column-gap:1.2vw;row-gap:1vw;align-items:end;
     background-color:rgba(16,28,40,.40);background-image:none;animation:none;
     color:#fff;
     -webkit-backdrop-filter:blur(14px) saturate(115%);
@@ -391,13 +402,13 @@ p.frun a{font-weight:700;text-underline-offset:3px}
   /* ≥901 the cut returns to the panel as its second column and is PRETTY MUCH THE
      HEIGHT OF THE TEXT BOX (Grady, 2026-08-22): the cell stretches to the panel, the
      img fills it bottom-right, contain keeps him whole. */
-  .hero__cut{position:relative;top:auto;right:auto;height:auto;align-self:stretch}
-  .hero__cut img{position:absolute;inset:0;height:100%;width:100%;
-    object-fit:contain;object-position:right bottom}
+  .hero__words{align-self:end}
+  .hero__cut{grid-row:1 / 4;min-height:0}
+  .hero .rate,.hero__act{grid-column:1}
   .hero__words{gap:1.35cqw}
   /* 10.2cqw not 11.4 — the note headline is longer than the old slogans and the extra
      wrap line it bought at 11.4 pushed the panel past the photo at 1024-1440 (measured) */
-  .hero h1{font-size:min(4.4rem,10.2cqw)}
+  .hero h1{font-size:min(4.4rem,14.5cqw)}
   .hero .rate{font-size:clamp(.74rem,3.2cqw,1.05rem)}
   .hero .stars{font-size:clamp(.9rem,4cqw,1.3rem)}
   .btn{font-size:clamp(.8rem,3.1cqw,1.02rem)}
