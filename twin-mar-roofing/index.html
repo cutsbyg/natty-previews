@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Twin Mar Roofing, LLC — Residential roofing in Millerstown and Elliottsburg, PA</title>
+<meta name="description" content="Twin Mar Roofing, LLC of Millerstown, PA. Residential roof installation, replacement and repair — asphalt shingle, standing seam metal, rubber and cedar shakes — across central Pennsylvania. Call (717) 437-5758.">
+
+<!-- §9 — the LCP image is discoverable in the HTML and never lazy. -->
+<link rel="preload" as="image" href="img/hero-wide.webp?v=1" media="(min-width:901px)" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-phone.webp?v=1" media="(max-width:900px)" fetchpriority="high">
+
+<!-- §3.3 — TWO families, one job each. Archivo carries display, Inter carries body. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="css/site.css?v=1">
+</head>
+<body data-owner="Twin Mar">
+<a class="skip" href="#work">Skip to the projects</a>
+<div id="rail" aria-hidden="true"></div>
+
+<!-- ═════ NAV (§10) ═════ -->
+<header class="nav">
+  <div class="nav__in">
+    <a class="brandmark" href="#top" aria-label="Twin Mar Roofing, home">
+      <img src="img/logo.png?v=1" width="260" height="238" alt="Twin Mar Roofing">
+      <b>TWIN MAR<span class="wm"> ROOFING</span></b>
+    </a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#work">Twin Mar &amp; the crew</a>
+      <a href="#reviews">Reviews</a>
+    </nav>
+    <a class="nav__tel" href="tel:+17174375758" aria-label="Call 7 1 7. 4 3 7. 5 7 5 8">(717)&nbsp;437-5758</a>
+  </div>
+</header>
+
+<!-- ═════ HERO (§1a, §1.0b) ═════
+     THE PANEL IS A CHILD OF .hero__media AT EVERY WIDTH (§1.0b-G1). Above 900 it is the glass
+     bubble ON the photograph, left, in the lawn. At 900 and below .hero__media becomes a plain
+     wrapper — aspect-ratio:auto, overflow:visible — the <picture> carries the ratio, and the
+     panel is a full-bleed paper SECTION under the photo (§1.0b-H). Ratios declared here are the
+     ratio of the file actually served at that width (§1.0b-G1): 2.6 wide, 1.5 phone.
+     THE PANEL HOLDS EXACTLY THREE THINGS (§1.0b-Q v4 — Grady, 2026-08-22, overruling the
+     R3 letter: "way too much stuff that I'm just not gonna read… make everything way
+     bigger"): the problem-direct headline, the rating on ONE line (linked, with count and
+     source), ONE estimate button. Plus the owner's cut-out at pretty much the height of
+     the panel — never tiny, never floating. No eyebrow, no letter, no phone link (the
+     number lives in the nav and the sticky bar). Brand at first paint = the nav. -->
+<section class="hero" id="top" aria-label="Twin Mar Roofing">
+  <div class="hero__media">
+    <!-- §9.3 THE LOOPING HERO FILM — the one place `loop` is allowed, and only because all
+         seven conditions hold: hero only · ping-pong seam measured at 5.2/255 mean abs diff
+         between the first and last frame · 6.000s · 990KB h264, no audio track · autoplay muted
+         loop playsinline (without muted+playsinline iOS refuses and paints a black box) ·
+         poster IS the approved hero still so the first paint is the photograph and the still
+         is the fallback if the video never loads · and reduced-motion hides it entirely.
+         The film was generated FROM this still, so it is the same frame moving. It is 16:9
+         because Kling rejects 2.6; `object-fit:cover` crops it into the hero box, and the
+         STILL — not the film — is what §1.0b-G1 measures. -->
+    <!-- 🛑 preload MUST NOT be "none". It shipped that way once and the film never played on
+         an iPhone: iOS Safari will not autoplay a video it was told not to buffer, while
+         Chromium ignores preload for an autoplaying muted video and plays it anyway. So every
+         desktop check passed and the phone — which is most of the traffic — got a still.
+         `preload="auto"` is a 990KB fetch and it is the point of the band. -->
+
+    <picture class="hero__pic">
+      <source media="(max-width:900px)" type="image/webp" srcset="img/hero-phone.webp?v=1" width="1500" height="1000">
+      <source media="(max-width:900px)" srcset="img/hero-phone.jpg?v=1" width="1500" height="1000">
+      <source type="image/webp" srcset="img/hero-wide.webp?v=1" width="2600" height="1000">
+      <img src="img/hero-wide.jpg?v=1" width="2600" height="1000" fetchpriority="high"
+           alt="A shingle roof photographed from up on the ridge on a Twin Mar Roofing job in Camp Hill — the plane running down past a brick chimney with a new cap, a dormer below it and the treeline beyond">
+    </picture>
+
+    <div class="glass hero__panel">
+      <div class="hero__words"><h1>That ceiling stain starts on the roof</h1></div>
+      <!-- the cut-out sits NEXT TO THE HEADLINE at every width (Grady, 2026-08-22) —
+           phone: beside the h1 in the band; desktop: the panel's full height.
+           A CLIENT WITH NO SOURCED OWNER PHOTO SHIPS HERO_CUT AS "" — there is no
+           placeholder face and no owner claim. The panel then collapses to one column
+           (see .hero__panel:not(:has(.hero__cut)) in site.css) so the missing cut does
+           not leave the dead gutter herocheck §0v was written to catch. -->
+
+      <!-- THE PROOF LINE IS A BLOCK, NOT A SENTENCE WITH HOLES IN IT. "Google reviews" was
+           hard-coded here, so a client whose rating lives somewhere else (or who has no
+           public rating at all) could only be rendered by lying about the source. Amendment
+           6 stands — stars + numeric + count + SOURCE, and the source has to be the real
+           one. Clients with no rating anywhere ship RATE_LINE as "". -->
+      <p class="rate"><span class="stars" aria-hidden="true">★★★★★</span><a href="https://www.angi.com/companylist/us/pa/elliottsburg/twin-mar-roofing-llc-reviews-1.htm" target="_blank" rel="noopener">5.0 — 1 review on Angi</a></p>
+      <p class="hero__act"><a class="btn" href="#submit">Get your free estimate</a></p>
+    </div>
+
+    <a class="cue" href="#work" aria-label="See the projects">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="3" aria-hidden="true"><path d="M5 8l7 8 7-8"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ═════ MARQUEE (§2) — paper chrome, not counted in the alternation ═════ -->
+<div class="marquee" aria-hidden="true">
+  <ul class="mq">
+    <li>Millerstown</li><li class="d">◆</li>
+    <li>Elliottsburg</li><li class="d">◆</li>
+    <li>Mechanicsburg</li><li class="d">◆</li>
+    <li>Linglestown</li><li class="d">◆</li>
+    <li>Camp Hill</li><li class="d">◆</li>
+    <li>Harrisburg</li><li class="d">◆</li>
+    <li>State College</li><li class="d">◆</li>
+    <li>Halifax</li><li class="d">◆</li>
+    <li>Burnham</li><li class="d">◆</li>
+    <li>Lykens</li><li class="d">◆</li>
+    <li>Mechanicsburg to Chambersburg</li><li class="d">◆</li>
+    <li>Customer satisfaction is our goal</li><li class="d">◆</li>
+  </ul>
+</div>
+
+<!-- ═════ THE CREW (paper) (§4 v2 — Grady, 2026-08-22: "get rid of the recent roofs
+     section and do the Scott and the crew section… it's all people working on houses…
+     keep it vertically short"). One band: the crew photo leads the same dated, FB-linked
+     grid the work section always carried, and the owner line closes it. Alternation
+     stays legal because the people band it replaced was the paper one. ═════ -->
+<section id="work" class="band g-paper">
+  <div class="wrap">
+    <p class="kick">Halifax &middot; Burnham &middot; Lykens &middot; Camp Hill</p>
+    <h2>The Twin Mar crew</h2>
+    <div class="grid">
+      <div class="pj">
+        <span class="pj__ph"><img src="img/crew-at-work.jpg?v=1" width="1500" height="1000"
+             alt="A Twin Mar Roofing man working from a lift basket at the eaves of a split-level in Lykens, the roof stripped to the sheathing and shingle bundles staged along the ridge"></span>
+        <span class="pj__bar"><b>Stripped to the deck in Lykens</b><i>Our own crew &middot; on the job, not staged</i></span>
+      </div>
+      <div class="pj">
+        <span class="pj__ph"><img src="img/job-camp-hill.jpg?v=1" width="1500" height="1000"
+             alt="A two-storey house in Camp Hill with a finished shingle roof and a Twin Mar Roofing sign in the front lawn"></span>
+        <span class="pj__bar"><b>The Camp Hill house</b><i>Asphalt shingle &middot; finished</i></span>
+      </div>
+      <div class="pj">
+        <span class="pj__ph"><img src="img/job-burnham-metal.jpg?v=1" width="1500" height="1000"
+             alt="A white clapboard farmhouse in Burnham with a new green standing seam metal roof over the house and the porch"></span>
+        <span class="pj__bar"><b>The Burnham farmhouse</b><i>Standing seam metal &middot; Burnham</i></span>
+      </div>
+      <div class="pj">
+        <span class="pj__ph"><img src="img/job-lykens.jpg?v=1" width="1500" height="1000"
+             alt="The same Lykens split-level finished, with new shingles across the whole roof and autumn woods behind it"></span>
+        <span class="pj__bar"><b>The Lykens split-level</b><i>The same roof, finished</i></span>
+      </div>
+    </div>
+    <p class="owner__line">Twin Mar Roofing, LLC &middot; Millerstown, PA &middot;
+       <a href="tel:+17174375758" aria-label="Call 7 1 7. 4 3 7. 5 7 5 8">(717)&nbsp;437-5758</a> &middot;
+       <a href="https://www.facebook.com/twinmarroofing" target="_blank" rel="noopener">Facebook</a></p>
+  </div>
+</section>
+
+
+<!-- ═════ REVIEWS + FAQ (paper) (§6) ═════ -->
+<section id="reviews" class="band g-paper">
+  <div class="wrap">
+    <p class="kick">What our customers say &middot; <a class="kick__a"
+       href="https://www.angi.com/companylist/us/pa/elliottsburg/twin-mar-roofing-llc-reviews-1.htm"
+       target="_blank" rel="noopener">read the Angi review →</a></p>
+    <h2>Two reviews, in full</h2>
+    <div class="revs">
+      <article class="rev">
+        <blockquote>I&rsquo;ve worked with John at Twin Mar Roofing on multiple roofing projects. John and
+          his team do excellent work at a very fair price. I highly recommend Twin Mar Roofing and will
+          continue to do business with them!</blockquote>
+        <cite>Reese Reimagined Homes</cite>
+      </article>
+      <article class="rev">
+        <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
+        <blockquote>Twin Mar Roofing did an excellent job of replacing the roof om my mobile home. The
+          crew did a great job They were able to replace my roof in less than a day. They cleaned up
+          after finishing. I would recommend them to anyone.</blockquote>
+        <cite>Francis D. &middot; Angi, January 2024</cite>
+      </article>
+    </div>
+
+    <!-- FAQ (spine). Four questions, every answer a fact off their own pages. The questions we
+         cannot answer yet — warranty, manufacturer certification, PA registration — are the ones
+         buyers search for, and not one of them ships until Twin Mar answers it. -->
+    <div class="faq" id="faq">
+      <p class="kick">Before you call</p>
+      <h3>Questions we get asked</h3>
+      <div class="faq__list">
+        <details name="faq">
+          <summary>What kind of roofs do you put on?</summary>
+          <p>Four. Asphalt shingle &mdash; we often use GAF shingles, but will work with any brand
+            the customer prefers. Metal, including standing seam. Rubber, for porch roofs and other
+            low-sloped areas where shingles aren&rsquo;t the best option. And cedar shakes, for those
+            who want a natural look.</p>
+        </details>
+        <details name="faq">
+          <summary>Do you repair roofs, or only replace them?</summary>
+          <p>Both. New roof installation, full replacement and repair, including storm damage.</p>
+        </details>
+        <details name="faq">
+          <summary>Do you do commercial roofs?</summary>
+          <p>No. We are a residential roofing company serving central Pennsylvania &mdash; houses,
+            not warehouses.</p>
+        </details>
+        <details name="faq">
+          <summary>What areas do you cover?</summary>
+          <p>We are a residential roofer based in Millerstown, and we are happy to serve
+            Mechanicsburg, Linglestown, Camp Hill, Harrisburg, State College and surrounding areas
+            &mdash; Mechanicsburg to Chambersburg. Recent jobs have been in Halifax, Burnham, Lykens
+            and Camp Hill, so if you are near any of them, call and ask.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ CTA + SUBMIT A PROJECT (brand) (§8, §1.0d, §0z) ═════
+     §0z: the form is the loudest thing in this band and the phone sits beneath it. -->
+<section id="submit" class="band g-brand cta">
+  <div class="wrap">
+    <p class="kick">Fully licensed, insured, and committed to safety on every job</p>
+    <h2>Send us the job</h2>
+    <form id="quote" action="/api/lead" method="post" enctype="multipart/form-data">
+      <div class="fgrid">
+        <p><label for="q-name">Your name</label><input id="q-name" name="name" autocomplete="name" required></p>
+        <p><label for="q-tel">Phone</label><input id="q-tel" name="phone" type="tel" autocomplete="tel" required></p>
+        <p><label for="q-mail">Email</label><input id="q-mail" name="email" type="email" autocomplete="email"></p>
+        <p><label for="q-addr">Job site address</label>
+          <input id="q-addr" name="address" autocomplete="street-address"></p>
+        <p><label for="q-photo">Photos help more than words</label>
+          <input id="q-photo" name="photos" type="file" accept="image/*" multiple></p>
+        <p><label for="q-when">When do you need it?</label>
+          <select id="q-when" name="when">
+            <option>Not sure yet</option><option>It is leaking now</option>
+            <option>Within a month</option><option>This year</option>
+          </select></p>
+      </div>
+      <fieldset>
+        <legend>What do you need done?</legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="job" value="New roof"><span>New roof</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Full replacement"><span>Full replacement</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Repair"><span>Repair</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Storm damage"><span>Storm damage</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Asphalt shingle"><span>Asphalt shingle</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Metal roofing"><span>Metal roofing</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Rubber roofing"><span>Rubber roofing</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Cedar shakes"><span>Cedar shakes</span></label>
+          <label class="opt"><input type="checkbox" name="job" value="Not sure yet"><span>Not sure yet</span></label>
+        </div>
+      </fieldset>
+      <p class="full nb"><label for="q-notes">Anything else</label>
+        <textarea id="q-notes" name="notes" rows="2"></textarea></p>
+      <p class="send"><button class="btn btn--go" type="submit">Send it to Twin Mar</button>
+        <span class="ratherbig">or call
+        <a class="bigtel" href="tel:+17174375758" aria-label="Call 7 1 7. 4 3 7. 5 7 5 8">(717)&nbsp;437-5758</a></span></p>
+      <p class="note" id="q-msg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ═════ FOOTER (paper, flat) (§9) ═════ -->
+<footer class="foot g-paper">
+  <div class="wrap">
+    <div class="foot__top">
+      <span class="foot__plate"><img src="img/logo.png?v=1" width="260" height="238" alt="Twin Mar Roofing"></span>
+      <b>TWIN MAR ROOFING, LLC</b>
+    </div>
+    <div class="fcols">
+      <p class="frun"><b>Where we work</b> Millerstown &middot; Elliottsburg &middot; Mechanicsburg &middot;
+         Linglestown &middot; Camp Hill &middot; Harrisburg &middot; State College &middot; Halifax &middot;
+         Burnham &middot; Lykens &middot; Mechanicsburg to Chambersburg</p>
+      <p class="frun"><b>What we do</b> New roof installation &middot; Roof replacement &middot; Roof repair &middot;
+         Storm damage &middot; Asphalt shingle &middot; Metal &amp; standing seam &middot; Rubber roofing &middot;
+         Cedar shakes &middot; Residential only</p>
+      <p class="frun"><b>Reach us</b> Opens 6am Monday &middot; closed Sunday &middot;
+         <a href="tel:+17174375758" aria-label="Call 7 1 7. 4 3 7. 5 7 5 8">(717)&nbsp;437-5758</a> &middot;
+         <a href="mailto:info@twinmarroofing.com">info@twinmarroofing.com</a> &middot;
+         <a href="https://www.facebook.com/twinmarroofing" target="_blank" rel="noopener">Facebook</a> &middot;
+         <a href="https://g.page/r/CYQaI9w9avlIEBM" target="_blank" rel="noopener">Google profile</a> &middot;
+         Fully licensed and insured &middot; Licensed PA 185627</p>
+    </div>
+    <p class="fslogan">Customer satisfaction is our goal</p>
+    <p class="legal"><span>© 2026 Twin Mar Roofing, LLC · Millerstown, PA</span> ·
+      <a class="foot__adm" href="/admin">Owner login</a></p>
+  </div>
+</footer>
+
+<!-- §9 — the full LocalBusiness record, typed RoofingContractor. streetAddress is deliberately
+     absent: the registered address is a private house (GAPS §5). geo is the pin off their own
+     Google profile, the same URL linked in the reviews band and the footer. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"RoofingContractor",
+ "@id":"https://www.twinmarroofing.com/#business",
+ "name":"Twin Mar Roofing, LLC","alternateName":"Twin Mar Roofing","url":"https://www.twinmarroofing.com/",
+ "telephone":"+1-717-437-5758","email":"info@twinmarroofing.com",
+ "address":{"@type":"PostalAddress","addressLocality":"Millerstown","addressRegion":"PA","postalCode":"17062","addressCountry":"US"},
+ "areaServed":["Millerstown, PA","Elliottsburg, PA","Mechanicsburg, PA","Linglestown, PA","Camp Hill, PA","Harrisburg, PA","State College, PA","Halifax, PA","Burnham, PA","Lykens, PA","Perry County, PA"],
+ "slogan":"Customer satisfaction is our goal",
+ "makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Roof installation"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Roof replacement"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Roof repair"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Metal roofing"}}],
+ "sameAs":["https://www.facebook.com/twinmarroofing",
+   "https://g.page/r/CYQaI9w9avlIEBM",
+   "https://www.instagram.com/twinmarroofing",
+   "https://twitter.com/TwinMarRoofing"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What kind of roofs do you put on?","acceptedAnswer":{"@type":"Answer","text":"Four. Asphalt shingle — we often use GAF shingles, but will work with any brand the customer prefers. Metal, including standing seam. Rubber, for porch roofs and other low-sloped areas where shingles aren't the best option. And cedar shakes, for those who want a natural look."}},
+{"@type":"Question","name":"Do you repair roofs, or only replace them?","acceptedAnswer":{"@type":"Answer","text":"Both. New roof installation, full replacement and repair, including storm damage."}},
+{"@type":"Question","name":"Do you do commercial roofs?","acceptedAnswer":{"@type":"Answer","text":"No. We are a residential roofing company serving central Pennsylvania — houses, not warehouses."}},
+{"@type":"Question","name":"What areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We are a residential roofer based in Millerstown, and we are happy to serve Mechanicsburg, Linglestown, Camp Hill, Harrisburg, State College and surrounding areas — Mechanicsburg to Chambersburg. Recent jobs have been in Halifax, Burnham, Lykens and Camp Hill, so if you are near any of them, call and ask."}}]}
+</script>
+<!-- ===================== STICKY MOBILE CTA (phone/band tier only) =====================
+     Evidence, honestly: across 33 measured A/B tests sticky mobile CTAs win ~29% of the time
+     and LOSE ~18%. Every mobile winner was bottom-positioned; top-positioned won 13%. So this
+     is a bottom bar, and it is a bet, not a certainty. It exists because the form on this page
+     sits ~4 screens down and a decided visitor should never have to hunt for the action.
+
+     THE FINDING THAT SHAPED IT: in the best-documented test, a sticky button that merely
+     SCROLLED TO THE FORM produced no significant lift — only bringing the action itself to the
+     user won. So `tel:` is the strong half of this bar and the estimate button is the weak
+     half. Both ship, because a homeowner comparing roofers at 9pm will not phone anyone.
+
+     It is IN THE INITIAL HTML, hidden by transform — not injected by JS after paint. A bar
+     that appears by changing layout counts against CLS; a transform does not. -->
+<div class="stick" id="stick" hidden>
+  <a class="stick__b stick__b--tel" href="tel:+17174375758" aria-label="Call Twin Mar Roofing, 7 1 7. 4 3 7. 5 7 5 8">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11.4 11.4 0 003.6.58 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.58 3.6a1 1 0 01-.25 1z"/></svg>
+    <span>Call</span>
+  </a>
+  <a class="stick__b stick__b--cta" href="#submit">Free estimate</a>
+</div>
+
+<script defer src="js/site.js?v=1"></script>
+<script defer src="./a.js"></script>
+</body>
+</html>
