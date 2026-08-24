@@ -1,0 +1,85 @@
+/* a.js — first-party only. No cookies, no IP, no tag manager, no third party.
+   Five fixed events, instrumented by delegation so a rebuild cannot drop them. */
+(function () {
+  'use strict';
+
+  /* ---- the five events ------------------------------------------------- */
+  var sent = {};
+  function ev(name, detail) {
+    if (name === 'Work viewed' || name === 'Reached CTA') { if (sent[name]) return; sent[name] = 1; }
+    var body = JSON.stringify({ e: name, d: detail || '', p: location.pathname, t: Date.now() });
+    if (navigator.sendBeacon) { try { navigator.sendBeacon('e', body); } catch (x) {} }
+    if (window.console && console.debug) console.debug('[a]', name, detail || '');
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target : e.target.parentElement;
+    if (!t || !t.closest) return;
+    if (t.closest('a[href^="tel:"]')) ev('Call', t.closest('a[href^="tel:"]').getAttribute('href'));
+    if (t.closest('a[href*="google.com/maps"]')) ev('Directions');
+    var hit = t.closest('.card__hit');
+    if (hit) ev('Work viewed', (hit.querySelector('.card__s') || {}).textContent || '');
+  }, true);
+
+  var form = document.getElementById('submit');
+  if (form) form.addEventListener('submit', function () { ev('Quote request'); });
+
+  var cta = document.getElementById('quote');
+  if (cta && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (rows) {
+      rows.forEach(function (r) { if (r.isIntersecting) ev('Reached CTA'); });
+    }, { threshold: 0.15 }).observe(cta);
+  }
+
+  /* ---- marquee: clone from ONE stored seed until the track has no hole --- */
+  var box = document.querySelector('.marquee');
+  var seed = document.getElementById('mqseed');
+  if (box && seed) {
+    var HTML = seed.innerHTML;              // the seed, read once and never re-read from a grown copy
+    var timer;
+    var fill = function () {
+      var copies = box.querySelectorAll('.mq');
+      for (var i = 1; i < copies.length; i++) copies[i].parentNode.removeChild(copies[i]);
+      seed.innerHTML = HTML;
+      var guard = 0;
+      while (seed.scrollWidth < box.clientWidth && guard++ < 24) seed.innerHTML += HTML;
+      var twin = seed.cloneNode(true);
+      twin.removeAttribute('id');
+      box.appendChild(twin);                // one copy >= container, track >= 2x container
+    };
+    fill();
+    addEventListener('resize', function () { clearTimeout(timer); timer = setTimeout(fill, 150); });
+  }
+
+  /* ---- nav: progress rail + section-aware aria-current ------------------ */
+  var rail = document.getElementById('rail');
+  var links = [].slice.call(document.querySelectorAll('.nav__links a'));
+  var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  var tick;
+  function paint() {
+    tick = 0;
+    if (rail) {
+      var h = document.documentElement.scrollHeight - innerHeight;
+      rail.style.width = (h > 0 ? Math.min(100, scrollY / h * 100) : 0) + '%';
+    }
+    var best = -1;
+    secs.forEach(function (s, i) {
+      if (s && s.getBoundingClientRect().top <= innerHeight * 0.4) best = i;
+    });
+    links.forEach(function (a, i) {
+      if (i === best) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+  addEventListener('scroll', function () { if (!tick) tick = requestAnimationFrame(paint); }, { passive: true });
+  paint();
+
+  /* ---- §8.4 one gesture per photograph: on touch the first tap flips ----- */
+  if (matchMedia('(hover: none)').matches) {
+    document.addEventListener('click', function (e) {
+      var hit = e.target.closest ? e.target.closest('.card__hit') : null;
+      if (!hit) return;
+      var card = hit.closest('.card');
+      if (card && !card.classList.contains('is-flip')) { e.preventDefault(); card.classList.add('is-flip'); }
+    });
+  }
+})();
