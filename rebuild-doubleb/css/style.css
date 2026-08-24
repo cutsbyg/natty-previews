@@ -82,8 +82,8 @@ li{list-style:none}
 .hero__cue:hover{background:rgba(255,255,255,.42)}
 @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
 
-.glass{position:absolute;left:4%;top:54%;transform:translateY(-50%);width:42%;
-  display:grid;grid-template-columns:1fr 24%;gap:3%;align-items:center;
+.glass{position:absolute;left:4%;top:54%;transform:translateY(-50%);width:47%;
+  display:grid;grid-template-columns:1fr 36%;gap:3%;align-items:center;
   padding:1.4rem 3%;
   background-color:rgba(247,244,239,.80);
   backdrop-filter:blur(14px) saturate(115%);-webkit-backdrop-filter:blur(14px) saturate(115%);
