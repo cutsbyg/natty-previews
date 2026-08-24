@@ -369,6 +369,7 @@ input[type=file]{padding:.55rem}
 }
 
 /* Amendment 13: sticky mobile CTA */
-@media(max-width:600px){.stickycta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:.6rem;padding:.6rem .8rem calc(.6rem + env(safe-area-inset-bottom));background:rgba(20,24,20,.92);backdrop-filter:blur(8px);transform:translateY(110%);transition:transform .25s ease}.stickycta.on{transform:none}.stickycta .btn{flex:1;text-align:center;margin:0}.stickycta__call{flex:1;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;font-weight:700;border:1px solid rgba(255,255,255,.35);border-radius:10px}}@media(min-width:601px){.stickycta{display:none}}
+@media(max-width:600px){.stickycta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:.6rem;padding:.6rem .8rem max(.7rem, env(safe-area-inset-bottom));background:rgba(20,24,20,.92);backdrop-filter:blur(8px);transform:translateY(110%);transition:transform .25s ease}.stickycta.on{transform:none}.stickycta .btn{flex:1;text-align:center;margin:0}.stickycta__call{flex:1;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;font-weight:700;border:1px solid rgba(255,255,255,.35);border-radius:10px}}@media(min-width:601px){.stickycta{display:none}}
 /* Grady: grid lines in the hero panel */
 .glass{background-image:linear-gradient(rgba(51,128,36,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(51,128,36,.14) 1px,transparent 1px);background-size:44px 44px}
+@media(max-width:600px){.hero__img{object-position:72% 50%}}/* iPhone: center the cage in the narrow crop */
