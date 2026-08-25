@@ -131,13 +131,10 @@ li{list-style:none}
 .lede{max-width:34ch;margin-top:.6rem;font-size:1.125rem;line-height:1.4}
 .eyebrow{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
          color:var(--brand-deep)}
-.grp{margin:0 0 .55rem;font-size:.8rem;font-weight:800;letter-spacing:.18em;
-     text-transform:uppercase;border-bottom:2px solid rgba(255,255,255,.45);padding-bottom:.3rem}
 .sec{color:inherit}
 
 /* ---------- work ---------- */
 .work{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gut);margin-top:1.3rem}
-.grp__col{min-width:0}
 .work__grid{display:grid;grid-template-columns:1fr;gap:var(--gut)}
 .card{min-width:0;background:var(--paper);border:2px solid var(--ink);
       box-shadow:8px 8px 0 var(--ink);
