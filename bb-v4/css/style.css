@@ -292,6 +292,7 @@ input[type=file]{padding:.55rem}
 
   .work{grid-template-columns:1fr;gap:1.1rem}
   .work__grid{grid-template-columns:repeat(2,1fr)}
+  .work__grid--three{grid-template-columns:repeat(3,1fr)}
   .revs{grid-template-columns:1fr}
   .people{grid-template-columns:1fr}
   .card__s{min-height:2.6em}
