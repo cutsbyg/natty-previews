@@ -30,6 +30,13 @@ look at each sheet and pick the number that makes the best hero.
 
 ## Step 2 — What makes a good hero (the taste rules, learned the hard way)
 
+**NEW DEFAULT (Grady, Aug 25): heroes are custom AI-generated for every trade except
+portfolio trades like custom home builders.** So when a sheet's real photos are just okay,
+"none of these — go AI" is usually the RIGHT answer, and Grady's Claude generates cinematic
+candidates in that niche (that's how Jameson's and Backdraft's heroes were made). The sheets
+still matter: the best real photos fill the work section of every site, and an exceptional
+real shot can still win the hero.
+
 - **The work being DONE by a person beats a picture of the result.** "Just a picture of trees
   is stupid" — Grady. A human doing the job, easily visible, wins.
 - **The subject should sit RIGHT-of-frame or be extendable leftward** — the text box always
