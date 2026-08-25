@@ -23,3 +23,6 @@ Free website already built + free month of trending-format posts + $0 down. Mont
 - Never invent facts, photos, reviews, or client work. Real references only.
 - Every fact on a page must be sourceable to the client's own published material.
 - No API keys or passwords in this repo, ever. Ask Grady directly for keys.
+
+## William: hero picking (start here on 2026-08-26+)
+Read **WILLIAM-HEROES.md** in this folder — it walks you and your Claude through the whole hero-pick workflow, with the contact sheets in `heroes/`.
