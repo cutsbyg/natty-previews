@@ -121,7 +121,7 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
   container-type:inline-size;
   /* band tier: headline | cut-out on row 1, rating and button full-width beneath
      (Grady, 2026-08-22: "put him right next to the heading"). */
-  display:grid;grid-template-columns:1fr 42%;grid-template-rows:auto auto auto;
+  display:grid;grid-template-columns:minmax(0,1fr) 42%;grid-template-rows:auto auto auto;
   column-gap:3vw;row-gap:2.2cqw;align-items:end;
   padding:3.2vw 3.6vw}
 .hero__words{grid-column:1;grid-row:1}
@@ -384,7 +384,7 @@ p.frun a{font-weight:700;text-underline-offset:3px}
        line count at every width — measured, abandoned). Wide on big monitors on
        purpose: Grady's 'super tiny' was a 34rem cap on a 2560 screen. */
     width:min(46%,54rem);
-    display:grid;grid-template-columns:1fr 40%;grid-template-rows:auto auto auto;
+    display:grid;grid-template-columns:minmax(0,1fr) 40%;grid-template-rows:auto auto auto;
     column-gap:1.2vw;row-gap:1vw;align-items:end;
     background-color:rgba(16,28,40,.40);background-image:none;animation:none;
     color:#fff;
