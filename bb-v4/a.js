@@ -85,10 +85,10 @@
     var hid = document.getElementById('f-products');
     if (hid) hid.value = picks.join(', ');
     var line = document.getElementById('picked');
-    if (line) { line.textContent = 'On your pricing request: ' + picks.join(', '); line.hidden = false; }
+    if (line) { line.textContent = 'On your project: ' + picks.join(', '); line.hidden = false; }
     b.textContent = 'Added ✓';
     b.classList.add('on');
-    ev('Add to pricing', p);
+    ev('Add to project', p);
   });
 
   /* ---- §8.4 one gesture per photograph: on touch the first tap flips ----- */
