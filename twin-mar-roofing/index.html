@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Twin Mar Roofing, LLC — Residential roofing in Millerstown and Elliottsburg, PA</title>
-<meta name="description" content="Twin Mar Roofing, LLC of Millerstown, PA. Residential roof installation, replacement and repair — asphalt shingle, standing seam metal, rubber and cedar shakes — across central Pennsylvania. Call (717) 437-5758.">
+
+<title>Your roof leaks. We end it | Twin Mar Roofing</title>
+<meta name="description" content="Twin Mar Roofing of Millerstown PA. New roofs, replacements and storm damage repair across Perry, Cumberland and Dauphin counties. Licensed and insured.">
 
 <!-- §9 — the LCP image is discoverable in the HTML and never lazy. -->
 <link rel="preload" as="image" href="img/hero-wide.webp?v=1" media="(min-width:901px)" fetchpriority="high">
@@ -15,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="css/site.css?v=1">
+<link rel="stylesheet" href="css/site.css?v=20260825c">
 </head>
 <body data-owner="Twin Mar">
 <a class="skip" href="#work">Skip to the projects</a>
@@ -30,6 +31,10 @@
     </a>
     <nav class="nav__links" aria-label="Sections">
       <a href="#work">Twin Mar &amp; the crew</a>
+      <!-- the second band is the reviews band for every client that HAS reviews. A client
+           with none (Backdraft: zero on Facebook, BBB, BuildZoom, Google — FACTS.md) fills it
+           with their own service list instead, and the nav label has to follow the band or it
+           points "Reviews" at something that is not reviews. One token, no per-client HTML. -->
       <a href="#reviews">Reviews</a>
     </nav>
     <a class="nav__tel" href="tel:+17174375758" aria-label="Call 7 1 7. 4 3 7. 5 7 5 8">(717)&nbsp;437-5758</a>
@@ -74,7 +79,7 @@
     </picture>
 
     <div class="glass hero__panel">
-      <div class="hero__words"><h1>That ceiling stain starts on the roof</h1></div>
+      <div class="hero__words"><h1>Your roof leaks. We end it.</h1></div>
       <!-- the cut-out sits NEXT TO THE HEADLINE at every width (Grady, 2026-08-22) —
            phone: beside the h1 in the band; desktop: the panel's full height.
            A CLIENT WITH NO SOURCED OWNER PHOTO SHIPS HERO_CUT AS "" — there is no
@@ -87,7 +92,7 @@
            public rating at all) could only be rendered by lying about the source. Amendment
            6 stands — stars + numeric + count + SOURCE, and the source has to be the real
            one. Clients with no rating anywhere ship RATE_LINE as "". -->
-      <p class="rate"><span class="stars" aria-hidden="true">★★★★★</span><a href="https://www.angi.com/companylist/us/pa/elliottsburg/twin-mar-roofing-llc-reviews-1.htm" target="_blank" rel="noopener">5.0 — 1 review on Angi</a></p>
+      <p class="rate"><span class="stars" aria-hidden="true">★★★★★</span><a href="https://www.angi.com/companylist/us/pa/elliottsburg/twin-mar-roofing-llc-reviews-1.htm" target="_blank" rel="noopener">5.0 on Angi</a></p>
       <p class="hero__act"><a class="btn" href="#submit">Get your free estimate</a></p>
     </div>
 
@@ -99,22 +104,6 @@
 </section>
 
 <!-- ═════ MARQUEE (§2) — paper chrome, not counted in the alternation ═════ -->
-<div class="marquee" aria-hidden="true">
-  <ul class="mq">
-    <li>Millerstown</li><li class="d">◆</li>
-    <li>Elliottsburg</li><li class="d">◆</li>
-    <li>Mechanicsburg</li><li class="d">◆</li>
-    <li>Linglestown</li><li class="d">◆</li>
-    <li>Camp Hill</li><li class="d">◆</li>
-    <li>Harrisburg</li><li class="d">◆</li>
-    <li>State College</li><li class="d">◆</li>
-    <li>Halifax</li><li class="d">◆</li>
-    <li>Burnham</li><li class="d">◆</li>
-    <li>Lykens</li><li class="d">◆</li>
-    <li>Mechanicsburg to Chambersburg</li><li class="d">◆</li>
-    <li>Customer satisfaction is our goal</li><li class="d">◆</li>
-  </ul>
-</div>
 
 <!-- ═════ THE CREW (paper) (§4 v2 — Grady, 2026-08-22: "get rid of the recent roofs
      section and do the Scott and the crew section… it's all people working on houses…
@@ -157,10 +146,8 @@
 <!-- ═════ REVIEWS + FAQ (paper) (§6) ═════ -->
 <section id="reviews" class="band g-paper">
   <div class="wrap">
-    <p class="kick">What our customers say &middot; <a class="kick__a"
-       href="https://www.angi.com/companylist/us/pa/elliottsburg/twin-mar-roofing-llc-reviews-1.htm"
-       target="_blank" rel="noopener">read the Angi review →</a></p>
-    <h2>Two reviews, in full</h2>
+    <p class="kick"></p>
+    <h2>Reviews</h2>
     <div class="revs">
       <article class="rev">
         <blockquote>I&rsquo;ve worked with John at Twin Mar Roofing on multiple roofing projects. John and
@@ -218,7 +205,7 @@
   <div class="wrap">
     <p class="kick">Fully licensed, insured, and committed to safety on every job</p>
     <h2>Send us the job</h2>
-    <form id="quote" action="/api/lead" method="post" enctype="multipart/form-data">
+    <form id="quote" action="https://formsubmit.co/gradymreisinger@gmail.com" method="post">
       <div class="fgrid">
         <p><label for="q-name">Your name</label><input id="q-name" name="name" autocomplete="name" required></p>
         <p><label for="q-tel">Phone</label><input id="q-tel" name="phone" type="tel" autocomplete="tel" required></p>
@@ -265,9 +252,9 @@
       <b>TWIN MAR ROOFING, LLC</b>
     </div>
     <div class="fcols">
-      <p class="frun"><b>Where we work</b> Millerstown &middot; Elliottsburg &middot; Mechanicsburg &middot;
-         Linglestown &middot; Camp Hill &middot; Harrisburg &middot; State College &middot; Halifax &middot;
-         Burnham &middot; Lykens &middot; Mechanicsburg to Chambersburg</p>
+      <p class="frun"><b>Where we work</b> Perry County is home &mdash; Millerstown and Elliottsburg.
+         From there Twin Mar roofs through Cumberland and Dauphin counties, west into
+         Mifflin and Centre, and south to Franklin.</p>
       <p class="frun"><b>What we do</b> New roof installation &middot; Roof replacement &middot; Roof repair &middot;
          Storm damage &middot; Asphalt shingle &middot; Metal &amp; standing seam &middot; Rubber roofing &middot;
          Cedar shakes &middot; Residential only</p>
@@ -329,7 +316,6 @@
   <a class="stick__b stick__b--cta" href="#submit">Free estimate</a>
 </div>
 
-<script defer src="js/site.js?v=1"></script>
-<script defer src="./a.js"></script>
+<script defer src="js/site.js?v=20260825a"></script>
 </body>
 </html>
