@@ -291,7 +291,7 @@ input[type=file]{padding:.55rem}
   .hero__img{height:auto;object-fit:fill}
   .hero__cue{display:none}
   .glass{position:static;transform:none;width:100%;left:auto;top:auto;
-    grid-template-columns:1fr 30%;gap:4%;padding:1.3rem 6%;
+    grid-template-columns:1fr 35%;gap:4%;padding:1.3rem 5%;
     background-color:var(--paper);
     backdrop-filter:none;-webkit-backdrop-filter:none;
     border:0;border-radius:0;box-shadow:none}
@@ -329,7 +329,7 @@ input[type=file]{padding:.55rem}
   .nav__name{font-size:1.05rem}
   .nav__tel{margin-left:auto;font-size:1.05rem}
 
-  .glass{grid-template-columns:1fr 30%;gap:4%;padding:1.1rem 5.5%}
+  .glass{grid-template-columns:1fr 38%;gap:4%;padding:1.1rem 4.5%}
   .glass h1{font-size:min(3.9rem,13cqw)}
   .hero__eyebrow{margin-bottom:.25rem}
   .hero__sub{margin-top:.4rem}
