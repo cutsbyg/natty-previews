@@ -73,6 +73,24 @@
   addEventListener('scroll', function () { if (!tick) tick = requestAnimationFrame(paint); }, { passive: true });
   paint();
 
+  /* ---- add to pricing: card button pre-fills the quote form -------------- */
+  var picks = [];
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('.card__add') : null;
+    if (!b) return;
+    var box = document.querySelector('.opts input[value="' + b.getAttribute('data-want') + '"]');
+    if (box) box.checked = true;
+    var p = b.getAttribute('data-product');
+    if (picks.indexOf(p) < 0) picks.push(p);
+    var hid = document.getElementById('f-products');
+    if (hid) hid.value = picks.join(', ');
+    var line = document.getElementById('picked');
+    if (line) { line.textContent = 'On your pricing request: ' + picks.join(', '); line.hidden = false; }
+    b.textContent = 'Added ✓';
+    b.classList.add('on');
+    ev('Add to pricing', p);
+  });
+
   /* ---- §8.4 one gesture per photograph: on touch the first tap flips ----- */
   if (matchMedia('(hover: none)').matches) {
     document.addEventListener('click', function (e) {
