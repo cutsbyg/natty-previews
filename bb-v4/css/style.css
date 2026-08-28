@@ -82,9 +82,9 @@ li{list-style:none}
 .hero__cue:hover{background:rgba(255,255,255,.42)}
 @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
 
-.glass{position:absolute;left:4%;top:54%;transform:translateY(-50%);width:47%;
-  display:grid;grid-template-columns:1fr 36%;gap:3%;align-items:center;
-  padding:1.4rem 3%;
+.glass{position:absolute;left:4%;top:54%;transform:translateY(-50%);width:50%;
+  display:grid;grid-template-columns:1fr 40%;gap:3%;align-items:center;
+  padding:2.3rem 3.2%;
   background-color:rgba(247,244,239,.80);
   backdrop-filter:blur(14px) saturate(115%);-webkit-backdrop-filter:blur(14px) saturate(115%);
   border:1px solid rgba(28,26,23,.20);border-radius:18px;
@@ -92,11 +92,11 @@ li{list-style:none}
   transition:box-shadow 220ms ease,border-color 220ms ease}
 .glass:hover,.glass:focus-within{box-shadow:0 24px 56px rgba(0,0,0,.42);border-color:rgba(28,26,23,.34)}
 .hero__words{container-type:inline-size;min-width:0}
-.hero__eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+.hero__eyebrow{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
                color:var(--brand-deep);margin-bottom:.35rem}
-.glass h1{font-size:min(6rem,13cqw);line-height:.86;font-weight:900;letter-spacing:-.03em;
+.glass h1{font-size:min(7rem,14.5cqw);line-height:.86;font-weight:900;letter-spacing:-.03em;
           text-transform:uppercase;color:var(--ink)}
-.hero__sub{font-size:clamp(11px,3.2cqw,1.05rem);font-weight:700;margin-top:.55rem;line-height:1.25}
+.hero__sub{font-size:clamp(12px,3.5cqw,1.2rem);font-weight:700;margin-top:.55rem;line-height:1.25}
 .hero__where{font-size:clamp(11px,2.9cqw,.98rem);color:var(--ink-60);margin-top:.15rem;line-height:1.25}
 .hero__btn{margin-top:.85rem;font-size:1.3rem;min-height:60px;padding:.9rem 2.2rem;
            box-shadow:7px 7px 0 var(--ink)}
@@ -129,6 +129,7 @@ li{list-style:none}
                    linear-gradient(90deg,rgba(51,128,36,.18) 1px,transparent 1px)}
 
 .band h2{font-size:clamp(2rem,6vw,3.4rem);line-height:.9;font-weight:800;text-transform:uppercase}
+.band--brand h2{text-shadow:0 1px 2px rgba(0,0,0,.45),0 0 1px rgba(0,0,0,.55)}
 .lede{max-width:34ch;margin-top:.6rem;font-size:1.125rem;line-height:1.4}
 .eyebrow{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
          color:var(--brand-deep)}
@@ -142,11 +143,13 @@ li{list-style:none}
 .work__grid--three .card:first-child{grid-column:1/-1}
 .work__grid--three .card:first-child .card__ph{aspect-ratio:5/2}
 .work__all{margin-top:var(--gut)}
-.card__add{display:block;width:100%;padding:.6rem .9rem;background:var(--paper);
-           color:var(--brand-deep);font:inherit;font-weight:800;font-size:.95rem;
-           border:0;border-top:2px solid var(--ink);cursor:pointer;text-align:left;min-height:44px}
-.card__add:hover,.card__add:focus-visible{background:rgba(51,128,36,.14)}
-.card__add.on{background:var(--brand);color:#fff}
+.card__add{display:block;width:calc(100% - 1.8rem);margin:.75rem auto .9rem;padding:.7rem 1rem;
+           background:var(--brand);color:#fff;font:inherit;font-weight:800;font-size:1rem;
+           border:0;border-radius:999px;cursor:pointer;text-align:center;min-height:48px;
+           box-shadow:0 4px 0 var(--ink);
+           transition:transform 150ms ease,box-shadow 150ms ease,background 150ms ease}
+.card__add:hover,.card__add:focus-visible{background:var(--brand-deep);transform:translateY(2px);box-shadow:0 2px 0 var(--ink)}
+.card__add.on{background:var(--ink);color:#fff}
 .picked{grid-column:1/-1;font-weight:700;background:rgba(51,128,36,.1);
         border:2px solid var(--brand);padding:.6rem .8rem}
 .card{min-width:0;background:var(--paper);border:2px solid var(--ink);
@@ -198,9 +201,9 @@ li{list-style:none}
      box-shadow:8px 8px 0 var(--ink);padding:1.6rem;min-width:0;
      transition:transform 200ms ease,box-shadow 200ms ease}
 .rev:hover{transform:translate(4px,4px);box-shadow:4px 4px 0 var(--ink)}
-.rev__since{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
-            color:var(--brand-deep);margin-bottom:.5rem}
-.rev blockquote{margin:0;font-size:1.12rem;line-height:1.45}
+.rev blockquote{margin:0;font-size:1.12rem;line-height:1.45;font-style:italic}
+.rev blockquote::before{content:"\201C";display:block;font-size:3.2rem;line-height:.6;
+            font-weight:800;font-style:normal;color:var(--brand);margin-bottom:.45rem}
 .rev__who{margin-top:.9rem;font-size:1.05rem;font-weight:800}
 .rev__src{font-size:.9rem;color:var(--ink-60)}
 .revs__count{margin-top:1.2rem;font-size:1.125rem;font-weight:400}
