@@ -15,6 +15,8 @@
     if (window.console && console.debug) console.debug('[a]', name, detail || '');
   }
 
+  ev('Visit');   // one per page load — the daily-graph denominator
+
   document.addEventListener('click', function (e) {
     var t = e.target.closest ? e.target : e.target.parentElement;
     if (!t || !t.closest) return;
@@ -113,6 +115,18 @@
     b.classList.add('on');
     ev('Add to project', p);
   });
+
+  /* ---- scroll-in rise (Hormozi pass): section children fade up once ------ */
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var riseObs = new IntersectionObserver(function (rows) {
+      rows.forEach(function (r) {
+        if (r.isIntersecting) { r.target.classList.add('on'); riseObs.unobserve(r.target); }
+      });
+    }, { threshold: 0.12 });
+    [].slice.call(document.querySelectorAll('.band .wrap > *, .card')).forEach(function (el) {
+      el.classList.add('rise'); riseObs.observe(el);
+    });
+  }
 
   /* ---- §8.4 one gesture per photograph: on touch the first tap flips ----- */
   if (matchMedia('(hover: none)').matches) {

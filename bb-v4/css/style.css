@@ -72,17 +72,11 @@ li{list-style:none}
 
 /* ---------- hero ---------- */
 .hero{background:var(--ink)}
-.hero__media{position:relative;aspect-ratio:2200/859;overflow:hidden;max-width:100%}
-.hero__img{width:100%;height:100%;object-fit:cover}
+.hero__media{position:relative;aspect-ratio:2200/762;overflow:hidden;max-width:100%}
+.hero__img{width:100%;height:100%;object-fit:cover;object-position:50% 68%}
 
-.hero__cue{position:absolute;left:50%;bottom:1.1rem;transform:translateX(-50%);
-  width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  background:rgba(255,255,255,.24);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.5);
-  color:#fff;font-size:1.3rem;text-decoration:none;animation:bob 2.4s ease-in-out infinite}
-.hero__cue:hover{background:rgba(255,255,255,.42)}
-@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
 
-.glass{position:absolute;left:4%;top:54%;transform:translateY(-50%);width:50%;
+.glass{position:absolute;left:4%;top:52%;transform:translateY(-50%);width:50%;
   display:grid;grid-template-columns:1fr 40%;gap:3%;align-items:center;
   padding:2.3rem 3.2%;
   background-color:rgba(247,244,239,.80);
@@ -129,7 +123,12 @@ li{list-style:none}
                    linear-gradient(90deg,rgba(51,128,36,.18) 1px,transparent 1px)}
 
 .band h2{font-size:clamp(2rem,6vw,3.4rem);line-height:.9;font-weight:800;text-transform:uppercase}
-.band--brand h2{text-shadow:0 1px 2px rgba(0,0,0,.45),0 0 1px rgba(0,0,0,.55)}
+/* What we carry: centered, bigger, clearly separate from the card titles (Grady 8/28) */
+#products>.wrap>h2{text-align:center;font-size:clamp(2.6rem,7vw,4.6rem);margin-bottom:.2rem}
+#products>.wrap>.lede{margin-left:auto;margin-right:auto;text-align:center;max-width:44ch}
+
+/* no glow, no stroke (Grady 8/28 round 3): the headings are now big and heavy
+   enough to carry plain white on the green — clean like acquisition.com */
 .lede{max-width:34ch;margin-top:.6rem;font-size:1.125rem;line-height:1.4}
 .eyebrow{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
          color:var(--brand-deep)}
@@ -143,39 +142,45 @@ li{list-style:none}
 .work__grid--three .card:first-child{grid-column:1/-1}
 .work__grid--three .card:first-child .card__ph{aspect-ratio:5/2}
 .work__all{margin-top:var(--gut)}
-.card__add{display:block;width:calc(100% - 1.8rem);margin:.75rem auto .9rem;padding:.7rem 1rem;
-           background:var(--brand);color:#fff;font:inherit;font-weight:800;font-size:1rem;
+.card__add{display:block;width:100%;margin:.8rem 0 0;padding:.7rem 1rem;
+           background:#fff;color:var(--brand-deep);font:inherit;font-weight:800;font-size:1rem;
            border:0;border-radius:999px;cursor:pointer;text-align:center;min-height:48px;
-           box-shadow:0 4px 0 var(--ink);
+           box-shadow:0 6px 16px rgba(0,0,0,.25);
            transition:transform 150ms ease,box-shadow 150ms ease,background 150ms ease}
-.card__add:hover,.card__add:focus-visible{background:var(--brand-deep);transform:translateY(2px);box-shadow:0 2px 0 var(--ink)}
+.card__add:hover,.card__add:focus-visible{background:#f0eee8;transform:translateY(2px);
+           box-shadow:0 3px 10px rgba(0,0,0,.3)}
 .card__add.on{background:var(--ink);color:#fff}
-.picked{grid-column:1/-1;font-weight:700;background:rgba(51,128,36,.1);
+.picked{grid-column:1/-1;font-weight:700;color:var(--ink);background:var(--paper);
         border:2px solid var(--brand);padding:.6rem .8rem}
-.card{min-width:0;background:var(--paper);border:2px solid var(--ink);
-      box-shadow:8px 8px 0 var(--ink);
-      transition:transform 200ms ease,box-shadow 200ms ease}
-.card:hover,.card:focus-within{transform:translate(4px,4px);box-shadow:4px 4px 0 var(--ink)}
-.card__hit{display:block;text-decoration:none;color:var(--ink)}
-.card__ph{position:relative;display:block;aspect-ratio:3/2;overflow:hidden;background:var(--ink)}
+/* boxless cards, acquisition.com style (Grady 8/28 round 2): title on the green,
+   floating rounded photo with soft shadow, white pill button. No border, no box. */
+.card{min-width:0;background:transparent;border:0;
+      transition:transform 200ms ease}
+.card:hover,.card:focus-within{transform:translateY(-4px)}
+/* acquisition.com card order: text above, photo, then the CTA button below */
+.card__hit{display:flex;flex-direction:column;text-decoration:none;color:var(--ink)}
+.card__cap{order:-1}
+.card__ph{position:relative;display:block;aspect-ratio:3/2;overflow:hidden;background:var(--ink);
+           border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.28)}
 .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
     transition:opacity 320ms ease}
 .ph--b{opacity:0}
 .card__hit:hover .ph--b,.card__hit:focus-visible .ph--b,.card.is-flip .ph--b{opacity:1}
-.card__cap{display:block;background-color:var(--paper);color:var(--ink);
-           padding:.8rem .9rem;border-top:2px solid var(--ink)}
+.card__cap{display:block;background-color:transparent;color:#fff;
+           padding:.2rem .2rem .7rem;
+           text-shadow:0 1px 4px rgba(0,0,0,.5)}
 .card__t{display:block;font-size:clamp(1rem,1.4vw,1.35rem);font-weight:800;line-height:1.2;
          min-height:1.2em}
-.arw{color:var(--brand-deep)}
+.arw{color:rgba(255,255,255,.8)}
 .card__s{display:block;font-size:.95rem;font-weight:600;line-height:1.3;min-height:1.3em;
          margin-top:.15rem}
-.card__m{display:block;font-size:.82rem;color:var(--ink-60);line-height:1.3;min-height:1.3em}
+.card__m{display:block;font-size:.82rem;color:rgba(255,255,255,.78);line-height:1.3;min-height:1.3em}
 
 /* lightbox — the destination a tile promises */
 .lb{display:none}
 .lb:target{display:flex;position:fixed;inset:0;z-index:80;background:rgba(18,26,36,.92);
   align-items:center;justify-content:center;padding:var(--gut);overflow:auto}
-.lb__box{max-width:70rem;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);
+.lb__box{max-width:70rem;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);border-radius:14px;
          background:var(--paper);border:2px solid var(--ink);padding:var(--gut)}
 .lb__box p{grid-column:1/-1;font-weight:700}
 .lb__x{position:fixed;top:1rem;right:1rem;min-height:48px;display:inline-flex;align-items:center;
@@ -196,21 +201,19 @@ li{list-style:none}
 .crew{margin-top:1.2rem;font-size:1.125rem;color:var(--ink-60);max-width:52ch}
 
 /* ---------- reviews + faq ---------- */
-.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gut);margin-top:1.4rem}
-.rev{background:var(--paper);color:var(--ink);border:2px solid var(--ink);
-     box-shadow:8px 8px 0 var(--ink);padding:1.6rem;min-width:0;
-     transition:transform 200ms ease,box-shadow 200ms ease}
-.rev:hover{transform:translate(4px,4px);box-shadow:4px 4px 0 var(--ink)}
-.rev blockquote{margin:0;font-size:1.12rem;line-height:1.45;font-style:italic}
-.rev blockquote::before{content:"\201C";display:block;font-size:3.2rem;line-height:.6;
-            font-weight:800;font-style:normal;color:var(--brand);margin-bottom:.45rem}
-.rev__who{margin-top:.9rem;font-size:1.05rem;font-weight:800}
-.rev__src{font-size:.9rem;color:var(--ink-60)}
-.revs__count{margin-top:1.2rem;font-size:1.125rem;font-weight:400}
-.hair{border:0;border-top:1px solid rgba(255,255,255,.4);margin:1.1rem 0}
+/* hero star line — sits to the RIGHT of the Get pricing button (Grady 8/28) */
+.hero__ctarow{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;margin-top:.85rem}
+.hero__ctarow .hero__btn{margin-top:0}
+.hero__stars{font-size:.84rem;font-weight:700;color:var(--ink-60);line-height:1.3}
+.hero__stars .stars{color:#f2a900;letter-spacing:.12em;font-size:1.15rem}
+
+/* scroll-in rise (Hormozi pass) */
+.rise{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.rise.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rise{opacity:1;transform:none;transition:none}}
 /* FAQ — acquisition.com style: light ground, bold question, hairline divider, chevron right */
 #faq h2{text-align:center;font-size:clamp(1.6rem,3.5vw,2.2rem);text-transform:none;letter-spacing:0}
-.faq{margin:1.6rem auto 0;max-width:56rem}
+.faq{margin:1.6rem auto 0;max-width:46rem}
 .faq details{border-bottom:1px solid rgba(28,26,23,.16)}
 .faq summary{cursor:pointer;list-style:none;padding:1.15rem 0;font-size:1.15rem;font-weight:800;
              min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:1rem;
@@ -234,12 +237,16 @@ li{list-style:none}
      gap:clamp(1.2rem,3vw,2.4rem);align-items:start}
 .cta__intro{grid-column:2;grid-row:1}
 .cta__fig{grid-column:2;grid-row:2;align-self:end}
+.cta__family{margin:1.1rem 0 0;border:2px solid var(--ink);border-radius:12px;overflow:hidden;
+             box-shadow:10px 10px 0 var(--ink)}
+.cta__family img{width:100%}
+.cta__family figcaption{background-color:var(--paper);color:var(--ink);padding:.6rem .9rem;font-size:.95rem}
 .cta form{grid-column:1;grid-row:1/3;margin-top:0}
 .cta__lede{font-size:1.25rem;font-weight:700;line-height:1.35;max-width:52ch}
 .cta__ring{margin-top:.6rem}
 .cta__ring a{display:inline-flex;align-items:center;min-height:44px;font-weight:800;
              font-size:1.125rem;color:var(--brand-deep)}
-.cta__fig{margin:1.2rem 0 0;border:2px solid var(--ink);box-shadow:10px 10px 0 var(--ink);
+.cta__fig{margin:1.2rem 0 0;border:2px solid var(--ink);box-shadow:10px 10px 0 var(--ink);border-radius:12px;overflow:hidden;
           background:var(--paper)}
 .cta__fig img{width:100%}
 .cta__fig figcaption{background-color:var(--paper);color:var(--ink);padding:.7rem .9rem;
@@ -269,6 +276,13 @@ input[type=file]{padding:.55rem}
            -webkit-appearance:auto;appearance:auto;border:0;padding:0}
 .opt span{font-size:1.05rem;font-weight:600}
 .send{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
+/* quote band flipped to green (alternation law) — recolor form text for the dark ground */
+.band--brand .fld label{color:#fff}
+.band--brand .opts legend{color:var(--ink-60)}
+.opts .opt span{color:var(--ink)}
+.band--brand .send__alt{color:rgba(255,255,255,.85)}
+.band--brand .send__alt a,.band--brand .cta__ring a{color:#fff;text-decoration:underline}
+
 .send__alt{font-size:1.05rem;color:var(--ink-60)}
 .send__alt a{display:inline-flex;align-items:center;min-height:44px;font-weight:800;
              color:var(--brand-deep)}
@@ -295,7 +309,6 @@ input[type=file]{padding:.55rem}
 @media (max-width:860px){
   .hero__media{aspect-ratio:auto;overflow:visible}
   .hero__img{height:auto;object-fit:fill}
-  .hero__cue{display:none}
   .glass{position:static;transform:none;width:100%;left:auto;top:auto;
     grid-template-columns:1fr 35%;gap:4%;padding:1.3rem 5%;
     background-color:var(--paper);
@@ -307,7 +320,6 @@ input[type=file]{padding:.55rem}
   .glass:hover .hero__cut{transform:none}
 
   .work__grid--three{grid-template-columns:repeat(2,1fr)}
-  .revs{grid-template-columns:1fr}
   .people{grid-template-columns:1fr}
   .card__s{min-height:2.6em}
   .card__m{min-height:2.6em}
@@ -329,7 +341,7 @@ input[type=file]{padding:.55rem}
   .work__grid--three .card:not(:first-child) .card__t{font-size:1.05rem}
   .work__grid--three .card:not(:first-child) .card__s{font-size:.8rem;min-height:0}
   .work__grid--three .card:not(:first-child) .card__add{font-size:.82rem;min-height:40px;
-    padding:.45rem .5rem;width:calc(100% - 1rem);margin:.5rem auto .6rem}
+    padding:.45rem .5rem;width:100%;margin:.5rem 0 0}
   :root{--pad:clamp(1.6rem,6vw,2.4rem)}
   .band{animation:none}
   .nav__links{display:none}
@@ -357,10 +369,7 @@ input[type=file]{padding:.55rem}
   .people__fig img{aspect-ratio:2/1;object-fit:cover;object-position:50% 58%;width:100%}
   .faq summary{font-size:1.05rem;padding:.7rem 0}
   .faq details p{font-size:1.125rem;line-height:1.45;padding-bottom:.8rem}
-  .revs{gap:.8rem}
-  .revs__count{margin-top:.9rem}
 
-  .card{box-shadow:5px 5px 0 var(--ink)}
   .card__cap{padding:.55rem .6rem}
   .card__t{font-size:1rem}
   .card__s{font-size:.85rem;min-height:2.4em}
@@ -372,7 +381,6 @@ input[type=file]{padding:.55rem}
   .people__fig figcaption{font-size:.9rem;padding:.5rem .7rem}
   .crew{font-size:1.125rem;margin-top:.9rem}
 
-  .rev{padding:1.6rem;box-shadow:5px 5px 0 var(--ink)}
   .faq summary{font-size:1.1rem}
 
   .stats{gap:.6rem}
