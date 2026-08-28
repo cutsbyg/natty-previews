@@ -8,7 +8,7 @@
 
 /* ---- §3.1 tokens -------------------------------------------------------- */
 :root{
-  --brand:#b60507;            /* Lauver's: THEIR actual logo red, copied verbatim (median of the lettering pixels), William 8/28 */
+  --brand:#b60507;            /* sampled hue 208 off the isolated mark, held to S50 L22 */
   --brand-deep:#7a0305;
   --paper:#f7f4ef;
   --ink:#1c1a17;
