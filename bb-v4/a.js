@@ -5,10 +5,13 @@
 
   /* ---- the five events ------------------------------------------------- */
   var sent = {};
+  var _cfg = fetch('../analytics.json', { cache: 'no-store' }).then(function (r) { return r.json(); });
   function ev(name, detail) {
     if (name === 'Work viewed' || name === 'Reached CTA') { if (sent[name]) return; sent[name] = 1; }
-    var body = JSON.stringify({ e: name, d: detail || '', p: location.pathname, t: Date.now() });
-    if (navigator.sendBeacon) { try { navigator.sendBeacon('e', body); } catch (x) {} }
+    var body = JSON.stringify({ s: 'bb-v4', e: name, d: detail || '', p: location.pathname });
+    if (navigator.sendBeacon) {
+      _cfg.then(function (c) { if (c && c.url) { try { navigator.sendBeacon(c.url + '/e', body); } catch (x) {} } }).catch(function () {});
+    }
     if (window.console && console.debug) console.debug('[a]', name, detail || '');
   }
 
