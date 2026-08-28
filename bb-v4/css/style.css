@@ -208,9 +208,11 @@ li{list-style:none}
 .crew{margin-top:1.2rem;font-size:1.125rem;color:var(--ink-60);max-width:52ch}
 
 /* ---------- reviews + faq ---------- */
-/* hero star line — replaces the old reviews section (Hormozi pass) */
-.hero__stars{margin-top:.7rem;font-size:.95rem;font-weight:700;color:var(--ink-60)}
-.hero__stars .stars{color:#f2a900;letter-spacing:.12em;font-size:1.05rem}
+/* hero star line — sits to the RIGHT of the Get pricing button (Grady 8/28) */
+.hero__ctarow{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;margin-top:.85rem}
+.hero__ctarow .hero__btn{margin-top:0}
+.hero__stars{font-size:.84rem;font-weight:700;color:var(--ink-60);line-height:1.3}
+.hero__stars .stars{color:#f2a900;letter-spacing:.12em;font-size:1.15rem}
 
 /* scroll-in rise (Hormozi pass) */
 .rise{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
