@@ -5,10 +5,13 @@
 
   /* ---- the five events ------------------------------------------------- */
   var sent = {};
+  var _cfg = fetch('../analytics.json', { cache: 'no-store' }).then(function (r) { return r.json(); });
   function ev(name, detail) {
     if (name === 'Work viewed' || name === 'Reached CTA') { if (sent[name]) return; sent[name] = 1; }
-    var body = JSON.stringify({ e: name, d: detail || '', p: location.pathname, t: Date.now() });
-    if (navigator.sendBeacon) { try { navigator.sendBeacon('e', body); } catch (x) {} }
+    var body = JSON.stringify({ s: 'bb-v4', e: name, d: detail || '', p: location.pathname });
+    if (navigator.sendBeacon) {
+      _cfg.then(function (c) { if (c && c.url) { try { navigator.sendBeacon(c.url + '/e', body); } catch (x) {} } }).catch(function () {});
+    }
     if (window.console && console.debug) console.debug('[a]', name, detail || '');
   }
 
@@ -21,8 +24,28 @@
     if (hit) ev('Work viewed', (hit.querySelector('.card__s') || {}).textContent || '');
   }, true);
 
+
+  /* lead capture: full form payload -> our collector -> forwarded to the client's GHL */
+  function sendLead(form, site) {
+    try {
+      var o = { s: site };
+      var fd = new FormData(form);
+      fd.forEach(function (v, k) {
+        if (typeof v !== 'string' || !v) return;
+        if (o[k] === undefined) o[k] = v;
+        else if (Array.isArray(o[k])) o[k].push(v);
+        else o[k] = [o[k], v];
+      });
+      _cfg.then(function (c) {
+        if (c && c.url) fetch(c.url + '/lead', { method: 'POST', mode: 'no-cors',
+          keepalive: true, body: JSON.stringify(o),
+          headers: { 'Content-Type': 'text/plain' } });
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
   var form = document.getElementById('submit');
-  if (form) form.addEventListener('submit', function () { ev('Quote request'); });
+  if (form) form.addEventListener('submit', function () { ev('Quote request'); sendLead(form, 'bb-v4'); });
 
   var cta = document.getElementById('quote');
   if (cta && 'IntersectionObserver' in window) {

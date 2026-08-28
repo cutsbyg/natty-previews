@@ -1,3 +1,16 @@
+> # 🛑 THIS TASK IS CLOSED (2026-08-28) — do not pick heroes from these sheets
+> Grady picked every hero on 8/27–28 and three of the sites are already BUILT:
+> - Boyer's Tree — AI climber (site live) · Command Site — AI excavator (site live)
+> - Jones Construction — AI golden-hour (site live) · Lauvers — storm roof + crew (pending Grady's final yes)
+> - Backdraft — AI cine-blue (live since 8/25) · Burkholder — skipped, door-knock only
+> The sheets below now serve ONE purpose: shortlisting real photos for each site's PROJECT GRID.
+> **Bug William hit (8/28): the Boyer's sheet shows PERSONAL-profile photos (including a mirror
+> selfie of the likely owner) labeled as hero candidates.** That harvest came from a personal
+> Facebook profile — photos OF a person are founder-class material at best (portrait law:
+> AI-professionalized from a real photo, only with the owner's say-so at the door), never heroes.
+> Current hero flow lives at: https://cutsbyg.github.io/natty-previews/heropick/ (AI candidates,
+> Grady's gate). Source of truth for every site = the hub, crm/clients/.
+
 # William — hero picking starts here
 
 **William:** point your Claude at this file and say *"read this and walk me through it."*

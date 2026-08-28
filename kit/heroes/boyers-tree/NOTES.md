@@ -1,3 +1,7 @@
+> ⚠️ **PERSONAL PROFILE HARVEST — both photos are photos OF the (likely) owner, not job
+> photos. #2 is a mirror selfie: never usable anywhere. #1 (log loading) is cropped and
+> used in the site's project grid. Neither is a hero. Hero = AI climber, picked by Grady 8/28.**
+
 # Boyer's Tree Service — near-empty, only 2 photos exist
 
 - **Business:** Boyer's Tree Service
