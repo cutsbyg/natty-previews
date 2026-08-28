@@ -152,7 +152,7 @@ li{list-style:none}
 .card__add.on{background:var(--ink);color:#fff}
 .picked{grid-column:1/-1;font-weight:700;background:rgba(51,128,36,.1);
         border:2px solid var(--brand);padding:.6rem .8rem}
-.card{min-width:0;background:var(--paper);border:2px solid var(--ink);
+.card{min-width:0;background:var(--paper);border:2px solid var(--ink);border-radius:12px;overflow:hidden;
       box-shadow:8px 8px 0 var(--ink);
       transition:transform 200ms ease,box-shadow 200ms ease}
 .card:hover,.card:focus-within{transform:translate(4px,4px);box-shadow:4px 4px 0 var(--ink)}
@@ -175,7 +175,7 @@ li{list-style:none}
 .lb{display:none}
 .lb:target{display:flex;position:fixed;inset:0;z-index:80;background:rgba(18,26,36,.92);
   align-items:center;justify-content:center;padding:var(--gut);overflow:auto}
-.lb__box{max-width:70rem;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);
+.lb__box{max-width:70rem;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);border-radius:14px;
          background:var(--paper);border:2px solid var(--ink);padding:var(--gut)}
 .lb__box p{grid-column:1/-1;font-weight:700}
 .lb__x{position:fixed;top:1rem;right:1rem;min-height:48px;display:inline-flex;align-items:center;
@@ -196,18 +196,14 @@ li{list-style:none}
 .crew{margin-top:1.2rem;font-size:1.125rem;color:var(--ink-60);max-width:52ch}
 
 /* ---------- reviews + faq ---------- */
-.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gut);margin-top:1.4rem}
-.rev{background:var(--paper);color:var(--ink);border:2px solid var(--ink);
-     box-shadow:8px 8px 0 var(--ink);padding:1.6rem;min-width:0;
-     transition:transform 200ms ease,box-shadow 200ms ease}
-.rev:hover{transform:translate(4px,4px);box-shadow:4px 4px 0 var(--ink)}
-.rev blockquote{margin:0;font-size:1.12rem;line-height:1.45;font-style:italic}
-.rev blockquote::before{content:"\201C";display:block;font-size:3.2rem;line-height:.6;
-            font-weight:800;font-style:normal;color:var(--brand);margin-bottom:.45rem}
-.rev__who{margin-top:.9rem;font-size:1.05rem;font-weight:800}
-.rev__src{font-size:.9rem;color:var(--ink-60)}
-.revs__count{margin-top:1.2rem;font-size:1.125rem;font-weight:400}
-.hair{border:0;border-top:1px solid rgba(255,255,255,.4);margin:1.1rem 0}
+/* hero star line — replaces the old reviews section (Hormozi pass) */
+.hero__stars{margin-top:.7rem;font-size:.95rem;font-weight:700;color:var(--ink-60)}
+.hero__stars .stars{color:#f2a900;letter-spacing:.12em;font-size:1.05rem}
+
+/* scroll-in rise (Hormozi pass) */
+.rise{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.rise.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rise{opacity:1;transform:none;transition:none}}
 /* FAQ — acquisition.com style: light ground, bold question, hairline divider, chevron right */
 #faq h2{text-align:center;font-size:clamp(1.6rem,3.5vw,2.2rem);text-transform:none;letter-spacing:0}
 .faq{margin:1.6rem auto 0;max-width:56rem}
@@ -239,7 +235,7 @@ li{list-style:none}
 .cta__ring{margin-top:.6rem}
 .cta__ring a{display:inline-flex;align-items:center;min-height:44px;font-weight:800;
              font-size:1.125rem;color:var(--brand-deep)}
-.cta__fig{margin:1.2rem 0 0;border:2px solid var(--ink);box-shadow:10px 10px 0 var(--ink);
+.cta__fig{margin:1.2rem 0 0;border:2px solid var(--ink);box-shadow:10px 10px 0 var(--ink);border-radius:12px;overflow:hidden;
           background:var(--paper)}
 .cta__fig img{width:100%}
 .cta__fig figcaption{background-color:var(--paper);color:var(--ink);padding:.7rem .9rem;
@@ -307,7 +303,6 @@ input[type=file]{padding:.55rem}
   .glass:hover .hero__cut{transform:none}
 
   .work__grid--three{grid-template-columns:repeat(2,1fr)}
-  .revs{grid-template-columns:1fr}
   .people{grid-template-columns:1fr}
   .card__s{min-height:2.6em}
   .card__m{min-height:2.6em}
@@ -357,8 +352,6 @@ input[type=file]{padding:.55rem}
   .people__fig img{aspect-ratio:2/1;object-fit:cover;object-position:50% 58%;width:100%}
   .faq summary{font-size:1.05rem;padding:.7rem 0}
   .faq details p{font-size:1.125rem;line-height:1.45;padding-bottom:.8rem}
-  .revs{gap:.8rem}
-  .revs__count{margin-top:.9rem}
 
   .card{box-shadow:5px 5px 0 var(--ink)}
   .card__cap{padding:.55rem .6rem}
@@ -372,7 +365,6 @@ input[type=file]{padding:.55rem}
   .people__fig figcaption{font-size:.9rem;padding:.5rem .7rem}
   .crew{font-size:1.125rem;margin-top:.9rem}
 
-  .rev{padding:1.6rem;box-shadow:5px 5px 0 var(--ink)}
   .faq summary{font-size:1.1rem}
 
   .stats{gap:.6rem}
