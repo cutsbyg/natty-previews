@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Website analytics</title>
+<style>
+  :root{--brand:#338024;--deep:#245c1a;--paper:#f7f4ef;--ink:#1c1a17;--mut:#6b6862;--gold:#f2a900}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font:16px "Segoe UI",system-ui,sans-serif;
+       min-height:100vh;padding:2rem 1rem}
+  .wrap{max-width:56rem;margin:0 auto}
+  h1{font-size:clamp(1.6rem,5vw,2.6rem);font-weight:800}
+  .sub{color:var(--mut);margin-top:.2rem}
+  .live{display:inline-flex;align-items:center;gap:.45rem;margin-top:.4rem;color:var(--deep);font-weight:700;font-size:.9rem}
+  .live::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--brand);
+                animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.35}}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem;margin:1.6rem 0}
+  .tile{background:#fff;border-radius:12px;padding:1rem 1.1rem;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+  .tile b{display:block;font-size:2rem;font-variant-numeric:tabular-nums}
+  .tile span{color:var(--mut);font-size:.85rem}
+  h2{font-size:1.1rem;margin:1.6rem 0 .6rem}
+  .chart{background:#fff;border-radius:12px;padding:1rem;box-shadow:0 4px 14px rgba(0,0,0,.08);overflow-x:auto}
+  .bars{display:flex;align-items:flex-end;gap:4px;height:150px;min-width:540px}
+  .bcol{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;min-width:14px}
+  .bar{width:100%;background:var(--brand);border-radius:3px 3px 0 0;min-height:2px}
+  .bar.zero{background:#ddd8cf}
+  .bl{font-size:9px;color:var(--mut);white-space:nowrap;transform:rotate(-50deg);height:26px;margin-top:6px}
+  .bn{font-size:10px;font-weight:700;color:var(--deep)}
+  .err{background:#fff3f0;border-left:3px solid #c0392b;padding:.8rem 1rem;border-radius:6px;margin-top:1.4rem;display:none}
+  .foot{margin-top:2rem;color:var(--mut);font-size:.8rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 id="title">Website analytics</h1>
+  <p class="sub" id="sub">First-party. No cookies, nothing sold, counted on our own machine.</p>
+  <p class="live">LIVE — updates every 60 seconds</p>
+  <div class="tiles" id="tiles"></div>
+  <h2>Visits by day</h2>
+  <div class="chart"><div class="bars" id="bars"></div></div>
+  <p class="err" id="err">Can't reach the counter right now — the numbers are safe, this page just can't fetch them at the moment. Try again in a minute.</p>
+  <p class="foot" id="foot"></p>
+</div>
+<script>
+(function(){
+  'use strict';
+  var site = new URLSearchParams(location.search).get('site') || 'bb-v4';
+  var NAMES = {'bb-v4':'Double B Farm Supply'};
+  document.getElementById('title').textContent = (NAMES[site]||site) + ' — website analytics';
+  var LABELS = {'Visit':'Visits','Reached CTA':'Reached the pricing form','Quote request':'Pricing requests',
+                'Call':'Call taps','Directions':'Direction taps','Work viewed':'Products viewed','Add to project':'Added to a project'};
+  var ORDER = ['Visit','Work viewed','Add to project','Reached CTA','Quote request','Call','Directions'];
+
+  function draw(d){
+    document.getElementById('err').style.display='none';
+    var t = document.getElementById('tiles'); t.innerHTML='';
+    ORDER.forEach(function(k){
+      if (!(k in d.totals)) return;
+      var el = document.createElement('div'); el.className='tile';
+      el.innerHTML = '<b>'+d.totals[k]+'</b><span>'+(LABELS[k]||k)+'</span>';
+      t.appendChild(el);
+    });
+    Object.keys(d.totals).forEach(function(k){
+      if (ORDER.indexOf(k)>=0) return;
+      var el = document.createElement('div'); el.className='tile';
+      el.innerHTML = '<b>'+d.totals[k]+'</b><span>'+(LABELS[k]||k)+'</span>';
+      t.appendChild(el);
+    });
+    /* last 30 days, oldest left */
+    var bars = document.getElementById('bars'); bars.innerHTML='';
+    var days=[], now=new Date();
+    for (var i=29;i>=0;i--){
+      var dt=new Date(now); dt.setDate(now.getDate()-i);
+      days.push(dt.toISOString().slice(0,10));
+    }
+    var counts = days.map(function(day){
+      var o=d.days[day]||{}, n=0;
+      Object.keys(o).forEach(function(k){ n+=o[k]; });
+      return n;
+    });
+    var max = Math.max.apply(null, counts.concat([1]));
+    days.forEach(function(day,i){
+      var col=document.createElement('div'); col.className='bcol';
+      var n=counts[i];
+      col.innerHTML='<span class="bn">'+(n||'')+'</span>'+
+        '<div class="bar'+(n?'':' zero')+'" style="height:'+Math.max(2,Math.round(n/max*120))+'px"></div>'+
+        '<span class="bl">'+day.slice(5)+'</span>';
+      bars.appendChild(col);
+    });
+    document.getElementById('foot').textContent =
+      'Counted from '+ Object.keys(d.days).sort()[0] +' · updated '+ new Date(d.generated*1000).toLocaleString();
+  }
+
+  function tick(){
+    fetch('../analytics.json', {cache:'no-store'})
+      .then(function(r){ return r.json(); })
+      .then(function(c){ return fetch(c.url + '/stats/' + site, {cache:'no-store'}); })
+      .then(function(r){ return r.json(); })
+      .then(draw)
+      .catch(function(){ document.getElementById('err').style.display='block'; });
+  }
+  tick(); setInterval(tick, 60000);
+})();
+</script>
+</body>
+</html>

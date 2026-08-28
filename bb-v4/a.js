@@ -15,6 +15,8 @@
     if (window.console && console.debug) console.debug('[a]', name, detail || '');
   }
 
+  ev('Visit');   // one per page load — the daily-graph denominator
+
   document.addEventListener('click', function (e) {
     var t = e.target.closest ? e.target : e.target.parentElement;
     if (!t || !t.closest) return;
