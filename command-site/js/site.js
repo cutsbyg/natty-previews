@@ -143,3 +143,31 @@
     });
   })();
 })();
+
+/* ---- first-party analytics: no cookies, no IP logging, no third party ---------
+   Endpoint comes from ../analytics.json at the repo root (the collector tunnel URL
+   rotates on reboot; the boot script republishes that file). Custom-domain sites
+   get a site-local analytics.json emitted at go-live (render.py, later). */
+(function () {
+  'use strict';
+  var seg = location.pathname.split('/').filter(Boolean);
+  var SITE = (location.hostname.indexOf('github.io') > -1 && seg.length > 1) ? seg[1] : location.hostname;
+  var cfg = null;
+  try { cfg = fetch('../analytics.json', { cache: 'no-store' }).then(function (r) { return r.json(); }); } catch (e) {}
+  function ev(name, detail) {
+    if (!cfg || !navigator.sendBeacon) return;
+    cfg.then(function (c) {
+      if (c && c.url) navigator.sendBeacon(c.url + '/e',
+        JSON.stringify({ s: SITE, e: name, d: detail || '', p: location.pathname }));
+    }).catch(function () {});
+  }
+  ev('Visit');
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target : e.target.parentElement;
+    if (!t || !t.closest) return;
+    var a = t.closest('a[href^="tel:"]');
+    if (a) ev('Call', a.getAttribute('href'));
+  }, true);
+  var form = document.querySelector('form');
+  if (form) form.addEventListener('submit', function () { ev('Quote request'); });
+})();
