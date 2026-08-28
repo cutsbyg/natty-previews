@@ -1,5 +1,5 @@
 /* ============================================================================
-   Encore Roofing, LLC — site-v2
+   Natty template — one stylesheet, every client, byte-identical (§0 determinism)
    Written MOBILE-FIRST on purpose (§8.16). The band tier is the BASE, and every
    desktop rule lives in a min-width query, so nothing later in the file can
    silently override the phone tier at equal specificity — which is the failure
@@ -119,28 +119,53 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
   background-color:var(--paper);--gline:rgba(28,58,84,.18);color:var(--ink);
   border:0;border-radius:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
   container-type:inline-size;
-  display:grid;grid-template-columns:1fr 33%;gap:3vw;align-items:center;
-  padding:4vw 3.6vw}
-.hero__words{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:2.2cqw}
+  /* band tier: headline | cut-out on row 1, rating and button full-width beneath
+     (Grady, 2026-08-22: "put him right next to the heading"). */
+  display:grid;grid-template-columns:minmax(0,1fr) 42%;grid-template-rows:auto auto auto;
+  column-gap:3vw;row-gap:2.2cqw;align-items:end;
+  padding:3.2vw 3.6vw}
+.hero__words{grid-column:1;grid-row:1}
+.hero__cut{grid-column:2;grid-row:1}
+/* A client with no sourced owner photo ships HERO_CUT as "" (see index.html). Without this
+   the panel still reserves the 42%/36% column and the headline sits in a two-thirds gutter —
+   the exact "dead gutter" failure herocheck §0v names. One rule, both tiers, no per-client CSS. */
+.hero__panel:not(:has(.hero__cut)){grid-template-columns:1fr}
+/* …and the headline's cqw factors were calibrated against a words column that was ~58% of
+   the panel. Full-width, the SAME factor renders ~1.7x bigger and the band ran 8px past the
+   fold at 360x640 (measured). Re-based, not shrunk: the rendered type still lands larger
+   than the two-column tier. */
+.hero__panel:not(:has(.hero__cut)) h1{font-size:min(3.4rem,13cqw)}
+.hero .rate,.hero__act{grid-column:1 / -1}
+/* the headline is sized from ITS OWN column (the words cell is the container), so it
+   can never out-wrap the cut-out beside it — sizing from the panel width did (measured:
+   6 lines, 252px, panel overflow, cut 'escaping' at every bubble width). */
+.hero__words{min-width:0;container-type:inline-size}
 .eyebrow{font:600 .74rem/1.3 var(--disp);letter-spacing:.16em;text-transform:uppercase;
   color:var(--brand)}
-.hero h1{font-size:min(3.4rem,8.05cqw);font-weight:900;text-transform:uppercase;word-spacing:.05em;
+.hero h1{font-size:clamp(2.8rem,20cqw,4.4rem);font-weight:900;text-transform:uppercase;word-spacing:.05em;
   line-height:.9;text-wrap:balance;max-width:100%}
-.hero .sup{font:600 clamp(.7rem,2.2cqw,1.05rem)/1.45 var(--body);letter-spacing:.015em;
-  color:var(--ink-60);margin:0}
-.hero .rate{display:flex;align-items:center;gap:.45rem;margin:0;
-  font:700 clamp(.72rem,2.3cqw,1.05rem)/1.2 var(--body)}
+.hero .rate{display:flex;align-items:center;gap:.45rem;margin:0;white-space:nowrap;
+  font:700 clamp(.85rem,2.5cqw,1.05rem)/1.2 var(--body)}
+/* §8.18 — the review-count link is a 14px-tall text row; padding+negative margin buys
+   the 44px tap target without costing the fold a pixel of layout */
+.hero .rate a{color:inherit;text-underline-offset:3px;display:inline-block;
+  padding:1rem .2rem;margin:-1rem -.2rem}
 .hero .stars{color:var(--star);font-size:clamp(.9rem,3cqw,1.35rem);letter-spacing:.06em}
 .hero__act{margin:0}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;
   padding:0 clamp(1rem,3.4vw,1.6rem);background:var(--brand);color:#fff;text-decoration:none;
-  font:800 clamp(.8rem,2.5cqw,1.05rem)/1 var(--disp);letter-spacing:.04em;
+  font:800 clamp(.95rem,2.8cqw,1.1rem)/1 var(--disp);letter-spacing:.04em;
   text-transform:uppercase;border:0;border-radius:2px;box-shadow:var(--hs);cursor:pointer;
   transition:transform .18s,box-shadow .18s}
 .btn:hover,.btn:focus-visible{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
-.hero__cut{align-self:center;min-width:0}
+.hero__act .btn{min-height:62px;padding:0 clamp(1.4rem,4.2vw,2.2rem);font-size:clamp(1.1rem,3.4cqw,1.35rem)}
+/* the cut-out is NEXT TO THE HEADLINE and as tall as its row — never a thumbnail,
+   never floating on the photo (Grady, 2026-08-22). The cell stretches to the h1's row
+   on phones and to the whole panel on desktop; the img fills it bottom-right. */
+.hero__cut{position:relative;align-self:stretch;min-width:0;min-height:26vw}
 /* §1.0b-L — no box round him on the white band. §2.6 — fade the straight cut in CSS. */
-.hero__cut img{width:100%;
+.hero__cut img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+  object-position:right bottom;
   -webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
   mask-image:linear-gradient(to bottom,#000 78%,transparent 99%)}
 .cue{display:none}
@@ -165,6 +190,9 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
 .pj:first-child .pj__ph{aspect-ratio:2.2/1}
 .pj__ph img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;transition:transform .5s}
 .pj:hover .pj__ph img{transform:scale(1.05)}
+.pj__ph{position:relative}
+.pj__ph .pj-after{position:absolute;inset:0;opacity:0;transition:opacity .35s ease}
+.pj:hover .pj-after,.pj:focus-within .pj-after{opacity:1}
 /* §2.0e — ONE shape. Two rows, both always present, both clamped to one line, and no
    optional row anywhere. NO media query on this. */
 .pj__bar{display:block;background:var(--paper);color:var(--ink);padding:.65rem .8rem .55rem}
@@ -179,17 +207,9 @@ h2{font-size:min(2.9rem,7.2vw);font-weight:900;text-transform:uppercase;line-hei
   color:var(--ink-60)}
 
 /* ---- §3 THE PEOPLE ------------------------------------------------------ */
-.two{display:grid;gap:clamp(1.2rem,3vw,2rem);align-items:start}
-.fig{margin:0}
-.frame{display:block;box-shadow:var(--hs);transition:transform .2s,box-shadow .2s}
-.frame img{aspect-ratio:2/1;object-fit:cover;object-position:50% 38%}
-.fig:hover .frame{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
-.fig figcaption{margin-top:.5rem;font:400 clamp(.8rem,2.2vw,.92rem)/1.4 var(--body);
-  color:var(--ink-60)}
-.two__t p{max-width:52ch;font-size:1rem;line-height:1.55;margin:0}
-.scott__line{font:600 .92rem/1.5 var(--body);color:var(--ink-60)}
-.scott__line a{font-weight:700;text-underline-offset:3px}
-.two__t a{font-weight:700;text-underline-offset:3px}
+/* (the .two/.fig people-band family died with the merged crew band, 2026-08-22) */
+.owner__line{margin:.9rem 0 0;font:600 .92rem/1.5 var(--body);color:var(--ink-60)}
+.owner__line a{font-weight:700;text-underline-offset:3px}
 .sec{display:none}
 .facts{list-style:none;margin:.8rem 0 0;padding:.5rem 0 0;border-top:1px solid var(--rule);
   display:flex;flex-wrap:wrap;gap:.1rem 1.6rem}
@@ -338,6 +358,10 @@ p.frun a{font-weight:700;text-underline-offset:3px}
 
 @media (min-width:901px){
   .nav__links{display:flex}
+  /* the note panel is 7 rows — at 901-1200 a pure 2.6 box is too short to hold it, so the
+     box gets a floor and object-fit:cover absorbs the difference by cropping the plate's
+     sides. §1.0b-G1 is untouched: the SERVED file is still the 2.6 plate and the <picture>
+     declares it truthfully — this is a box-height floor, not a ratio lie. */
   .hero__media{aspect-ratio:2.6;overflow:hidden}
   .hero__pic{position:absolute;inset:0}
   .hero__pic img{width:100%;height:100%;object-fit:cover}
@@ -354,14 +378,21 @@ p.frun a{font-weight:700;text-underline-offset:3px}
      stylesheet and stays WHITE — §1.0b-H, which is not negotiable against any brand. */
   .hero__panel{
     position:absolute;left:2.5%;top:50%;transform:translateY(-50%);
-    width:33%;
+    /* wider than the old six-thing bubble (33%) — the letter needs the line length */
+    /* PANEL-HEIGHT CUT-OUT: the panel's height comes from its words; the cut spans all
+       three rows and stretches to it (a fixed panel height fought the headline's
+       line count at every width — measured, abandoned). Wide on big monitors on
+       purpose: Grady's 'super tiny' was a 34rem cap on a 2560 screen. */
+    width:min(50%,58rem);
+    display:grid;grid-template-columns:minmax(0,1fr) 40%;grid-template-rows:auto auto auto;
+    column-gap:1.2vw;row-gap:1vw;align-items:end;
     background-color:rgba(16,28,40,.40);background-image:none;animation:none;
     color:#fff;
     -webkit-backdrop-filter:blur(14px) saturate(115%);
     backdrop-filter:blur(14px) saturate(115%);
     border:1px solid rgba(255,255,255,.28);border-radius:20px;
     box-shadow:0 20px 54px rgba(0,0,0,.30);
-    padding:1.35vw 1.6vw;gap:1.15vw;
+    padding:2.6vw 2.1vw;gap:1.9vw 1.2vw;
     transition:border-color .2s,box-shadow .2s}
   /* the panel's ink follows its ground. Scoped INSIDE the bubble query and inside .hero__panel,
      so nothing here can reach the white band tier — the mistake that produces a navy mobile
@@ -370,9 +401,8 @@ p.frun a{font-weight:700;text-underline-offset:3px}
   /* `:not(.stars)` is load-bearing, not defensive. `.rate span` alone also selects the star
      glyphs, which are the ONE thing in this build that owns its colour (--star, §3.1) — it
      turned five gold stars white and the rule that did it looked completely reasonable. */
-  .hero__panel h1,.hero__panel .rate span:not(.stars){color:#fff}
-  .hero__panel .sup{color:rgba(255,255,255,.88)}
-  .hero__panel h1,.hero__panel .sup{text-shadow:0 2px 14px rgba(0,0,0,.45)}
+  .hero__panel h1,.hero__panel .rate span:not(.stars),.hero__panel .rate a{color:#fff}
+  .hero__panel h1{text-shadow:0 2px 14px rgba(0,0,0,.45)}
   /* the button carried --brand, a deep navy, and on a dark scrim a dark button is a hole.
      On the white band tier it stays navy; here it inverts and the hard shadow goes with it. */
   .hero__panel .btn{background:#fff;color:var(--brand);box-shadow:6px 6px 0 rgba(0,0,0,.45)}
@@ -382,9 +412,20 @@ p.frun a{font-weight:700;text-underline-offset:3px}
      ground the text sits on, on any device. */
   .hero__panel:hover,.hero__panel:focus-within{
     border-color:rgba(255,255,255,.42);box-shadow:0 24px 62px rgba(0,0,0,.36)}
-  .hero__words{gap:1.7cqw}
-  .hero h1{font-size:min(4.4rem,11.4cqw)}
-  .hero .sup{font-size:clamp(.72rem,3.1cqw,1.02rem)}
+  /* ≥901 the cut returns to the panel as its second column and is PRETTY MUCH THE
+     HEIGHT OF THE TEXT BOX (Grady, 2026-08-22): the cell stretches to the panel, the
+     img fills it bottom-right, contain keeps him whole. */
+  .hero__words{align-self:end}
+  .hero__cut{grid-row:1 / 4;min-height:0}
+  .hero .rate,.hero__act{grid-column:1}
+  .hero__words{gap:1.35cqw}
+  /* 10.2cqw not 11.4 — the note headline is longer than the old slogans and the extra
+     wrap line it bought at 11.4 pushed the panel past the photo at 1024-1440 (measured) */
+  .hero h1{font-size:min(4.4rem,14.5cqw)}
+  /* same re-base on the bubble tier — at 901 the panel stood 6.1px proud of the photo.
+     The 4.4rem ceiling goes with it: it was the size that fitted BESIDE a cut-out, and
+     holding it here left the headline floating in a half-empty panel on a 1440 screen. */
+  .hero__panel:not(:has(.hero__cut)) h1{font-size:min(6rem,12cqw)}
   .hero .rate{font-size:clamp(.74rem,3.2cqw,1.05rem)}
   .hero .stars{font-size:clamp(.9rem,4cqw,1.3rem)}
   .btn{font-size:clamp(.8rem,3.1cqw,1.02rem)}
@@ -402,18 +443,17 @@ p.frun a{font-weight:700;text-underline-offset:3px}
   @keyframes bob{50%{transform:translate(-50%,6px)}}
 
   .sec{display:block}
-  .grid{grid-template-columns:repeat(3,1fr)}
-  .pj:first-child{grid-column:auto}
-  .pj:first-child .pj__ph{aspect-ratio:3/2}
+  /* 4 fixed cards since the crew merge (2026-08-22): one row, section stays short */
+  /* BA-lattice (2026-08-25): oversized lead spans 2x2, four cards fill beside it - no orphan cells */
+  .grid{grid-template-columns:repeat(4,1fr)}
+  .pj:first-child{grid-column:1 / 3;grid-row:1 / 3;display:flex;flex-direction:column}
+  .pj:first-child .pj__ph{aspect-ratio:auto;flex:1;min-height:0}
   .revs{grid-template-columns:repeat(4,1fr)}
   .faq__list{display:grid;grid-template-columns:1fr 1fr;gap:0 2rem;align-items:start}
   /* the section is now a photograph with one contact line — the old .72fr/1fr split was
      sized for a paragraph column that no longer exists (pictures, then headings, then
      nothing), and it left the line floating in an empty half-band. Image-led instead:
      the photo carries the band, the line sits under it beside the caption. */
-  .two{grid-template-columns:minmax(0,52rem);justify-content:center;
-    gap:.4rem;align-items:start}
-  .two__t{text-align:right}   /* under the caption row, right-aligned against the photo edge */
   .fgrid{grid-template-columns:1fr 1fr}
   .opts{grid-template-columns:repeat(4,1fr)}
   .fcols{grid-template-columns:repeat(3,1fr);gap:2rem}
@@ -425,7 +465,7 @@ p.frun a{font-weight:700;text-underline-offset:3px}
   .band,.hero__panel{animation:none}
 }
 @media (hover:none){
-  .pj:hover,.rev:hover,.fig:hover .frame{transform:none;box-shadow:var(--hs)}
+  .pj:hover,.rev:hover{transform:none;box-shadow:var(--hs)}
   .hero__panel:hover,.hero__panel:focus-within{
     background-color:rgba(247,244,239,.74);border-color:rgba(255,255,255,.20)}
 }
@@ -486,3 +526,8 @@ html{scroll-padding-bottom:96px}
 }
 
 .kick__a{text-decoration:underline;text-underline-offset:3px;letter-spacing:.16em}
+
+/* Amendment 13: sticky mobile CTA */
+@media(max-width:600px){}@media(min-width:601px){}
+/* Amendment 13: grid lines in the hero panel (Grady 2026-08-24) */
+.hero__panel{background-image:linear-gradient(color-mix(in srgb,var(--brand) 14%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--brand) 14%,transparent) 1px,transparent 1px);background-size:44px 44px}
