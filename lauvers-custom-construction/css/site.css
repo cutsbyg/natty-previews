@@ -8,8 +8,8 @@
 
 /* ---- §3.1 tokens -------------------------------------------------------- */
 :root{
-  --brand:#541c1c;            /* Lauver's: hue 360 sampled off their red logo lettering, held to S50 L22 */
-  --brand-deep:#381313;
+  --brand:#b60507;            /* Lauver's: THEIR actual logo red, copied verbatim (median of the lettering pixels), William 8/28 */
+  --brand-deep:#7a0305;
   --paper:#f7f4ef;
   --ink:#1c1a17;
   --ink-60:rgba(28,26,23,.62);
