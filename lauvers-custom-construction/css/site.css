@@ -8,8 +8,8 @@
 
 /* ---- §3.1 tokens -------------------------------------------------------- */
 :root{
-  --brand:#1c3a54;            /* sampled hue 208 off the isolated mark, held to S50 L22 */
-  --brand-deep:#132838;
+  --brand:#541c1c;            /* Lauver's: hue 360 sampled off their red logo lettering, held to S50 L22 */
+  --brand-deep:#381313;
   --paper:#f7f4ef;
   --ink:#1c1a17;
   --ink-60:rgba(28,26,23,.62);
