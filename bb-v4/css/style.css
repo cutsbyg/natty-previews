@@ -208,16 +208,19 @@ li{list-style:none}
 .rev__src{font-size:.9rem;color:var(--ink-60)}
 .revs__count{margin-top:1.2rem;font-size:1.125rem;font-weight:400}
 .hair{border:0;border-top:1px solid rgba(255,255,255,.4);margin:1.1rem 0}
-.faq{margin-top:.9rem;max-width:60rem}
-.faq details{border-top:1px solid rgba(255,255,255,.4)}
-.faq details:last-child{border-bottom:1px solid rgba(255,255,255,.4)}
-.faq summary{cursor:pointer;list-style:none;padding:.95rem 0;font-size:1.2rem;font-weight:800;
-             min-height:44px;display:flex;align-items:center;gap:.6rem}
+/* FAQ — acquisition.com style: light ground, bold question, hairline divider, chevron right */
+#faq h2{text-align:center;font-size:clamp(1.6rem,3.5vw,2.2rem);text-transform:none;letter-spacing:0}
+.faq{margin:1.6rem auto 0;max-width:56rem}
+.faq details{border-bottom:1px solid rgba(28,26,23,.16)}
+.faq summary{cursor:pointer;list-style:none;padding:1.15rem 0;font-size:1.15rem;font-weight:800;
+             min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+             color:var(--ink)}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::before{content:"+";font-weight:900;color:#fff}
-.faq details[open] summary::before{content:"\2013"}
-.faq summary:hover{text-decoration:underline}
-.faq details p{padding:0 0 1rem;max-width:60ch;font-size:1.125rem}
+.faq summary::after{content:"\25BE";font-weight:400;color:var(--ink-60);flex:none;
+                    transition:transform 180ms ease}
+.faq details[open] summary::after{transform:rotate(180deg)}
+.faq summary:hover{color:var(--brand-deep)}
+.faq details p{padding:0 0 1.15rem;max-width:62ch;font-size:1.08rem;line-height:1.55;color:var(--ink-60)}
 
 /* ---------- stats + cta ---------- */
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.2rem}
