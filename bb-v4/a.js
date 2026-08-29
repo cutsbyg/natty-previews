@@ -128,6 +128,19 @@
     });
   }
 
+  /* ---- dwell: one beacon per view with seconds on page (3s..30min) ------- */
+  var t0 = Date.now(), dwelled = false;
+  function dwell() {
+    if (dwelled) return;
+    dwelled = true;
+    var s = Math.round((Date.now() - t0) / 1000);
+    if (s >= 3 && s <= 1800) ev('Dwell', String(s));
+  }
+  addEventListener('pagehide', dwell);
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') dwell();
+  });
+
   /* ---- §8.4 one gesture per photograph: on touch the first tap flips ----- */
   if (matchMedia('(hover: none)').matches) {
     document.addEventListener('click', function (e) {

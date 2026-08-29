@@ -54,18 +54,26 @@
   function draw(d){
     document.getElementById('err').style.display='none';
     var t = document.getElementById('tiles'); t.innerHTML='';
-    ORDER.forEach(function(k){
-      if (!(k in d.totals)) return;
+    function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+    function tile(big, label){
       var el = document.createElement('div'); el.className='tile';
-      el.innerHTML = '<b>'+d.totals[k]+'</b><span>'+(LABELS[k]||k)+'</span>';
+      el.innerHTML = '<b>'+esc(big)+'</b><span>'+esc(label)+'</span>';
       t.appendChild(el);
-    });
+    }
+    ORDER.forEach(function(k){ if (k in d.totals) tile(d.totals[k], LABELS[k]||k); });
     Object.keys(d.totals).forEach(function(k){
-      if (ORDER.indexOf(k)>=0) return;
-      var el = document.createElement('div'); el.className='tile';
-      el.innerHTML = '<b>'+d.totals[k]+'</b><span>'+(LABELS[k]||k)+'</span>';
-      t.appendChild(el);
+      if (ORDER.indexOf(k)<0) tile(d.totals[k], LABELS[k]||k);
     });
+    /* computed tiles: avg time on site, conversion, most popular action */
+    if (d.dwell && d.dwell.n){
+      var avg = Math.round(d.dwell.sum/d.dwell.n);
+      tile(avg>=60 ? Math.floor(avg/60)+'m '+(avg%60)+'s' : avg+'s', 'Avg. time on site');
+    }
+    var vis = d.totals['Visit']||0, qr = d.totals['Quote request']||0;
+    if (vis) tile((100*qr/vis).toFixed(1)+'%', 'Conversion — visits to pricing requests');
+    var CLICKS = ['Call','Directions','Add to project','Work viewed'], top = null;
+    CLICKS.forEach(function(k){ if (d.totals[k] && (!top || d.totals[k]>d.totals[top])) top = k; });
+    if (top) tile(d.totals[top], 'Most popular action — '+LABELS[top]);
     /* line graph, last 30 days, oldest left */
     var days=[], now=new Date();
     for (var i=29;i>=0;i--){
@@ -73,9 +81,7 @@
       days.push(dt.toISOString().slice(0,10));
     }
     var counts = days.map(function(day){
-      var o=d.days[day]||{}, n=0;
-      Object.keys(o).forEach(function(k){ n+=o[k]; });
-      return n;
+      return (d.days[day]||{})['Visit'] || 0;   // the heading says Visits — count only visits
     });
     var W=720, H=200, PAD_L=34, PAD_R=14, PAD_T=16, PAD_B=30;
     var max = Math.max.apply(null, counts.concat([4]));
