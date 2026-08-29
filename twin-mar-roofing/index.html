@@ -2,119 +2,67 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 
 <title>Your roof leaks. We end it | Twin Mar Roofing</title>
 <meta name="description" content="Twin Mar Roofing of Millerstown PA. New roofs, replacements and storm damage repair across Perry, Cumberland and Dauphin counties. Licensed and insured.">
-
-<!-- §9 — the LCP image is discoverable in the HTML and never lazy. -->
-<link rel="preload" as="image" href="img/hero-wide.webp?v=1" media="(min-width:901px)" fetchpriority="high">
-<link rel="preload" as="image" href="img/hero-phone.webp?v=1" media="(max-width:900px)" fetchpriority="high">
-
-<!-- §3.3 — TWO families, one job each. Archivo carries display, Inter carries body. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="css/site.css?v=20260825c">
+<link rel="icon" href="img/logo.png">
+<!-- LCP image discoverable in the HTML, never lazy -->
+<link rel="preload" as="image" href="img/hero-w.jpg?v=1" media="(min-width:861px)" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-p.jpg?v=1" media="(max-width:600px)" fetchpriority="high">
+<!-- bb-law: system stack only (Segoe UI). No webfonts — the reference build dropped them. -->
+<link rel="stylesheet" href="css/site.css?v=1">
 </head>
-<body data-owner="Twin Mar">
-<a class="skip" href="#work">Skip to the projects</a>
-<div id="rail" aria-hidden="true"></div>
+<body data-site="twin-mar-roofing">
+<a class="skip" href="#work">Skip to Twin Mar &amp; the crew</a>
 
-<!-- ═════ NAV (§10) ═════ -->
-<header class="nav">
+<header class="nav" id="top">
   <div class="nav__in">
-    <a class="brandmark" href="#top" aria-label="Twin Mar Roofing, home">
-      <img src="img/logo.png?v=1" width="260" height="238" alt="Twin Mar Roofing">
-      <b>TWIN MAR<span class="wm"> ROOFING</span></b>
+    <a class="nav__brand" href="#top">
+      <img class="nav__mark" src="img/logo.png" width="512" height="512" alt="Twin Mar Roofing">
+      <span class="nav__name"><span class="nav__name-full">Twin Mar Roofing</span><span class="nav__name-short">Twin Mar Roofing</span></span>
     </a>
     <nav class="nav__links" aria-label="Sections">
       <a href="#work">Twin Mar &amp; the crew</a>
-      <!-- the second band is the reviews band for every client that HAS reviews. A client
-           with none (Backdraft: zero on Facebook, BBB, BuildZoom, Google — FACTS.md) fills it
-           with their own service list instead, and the nav label has to follow the band or it
-           points "Reviews" at something that is not reviews. One token, no per-client HTML. -->
       <a href="#reviews">Reviews</a>
+      <a href="#faq">Questions</a>
     </nav>
-    <a class="nav__tel" href="tel:+17174375758" aria-label="Call 7 1 7. 4 3 7. 5 7 5 8">(717)&nbsp;437-5758</a>
+    <a class="nav__tel" href="tel:+17174375758" aria-label="7 1 7. 4 3 7. 5 7 5 8">(717)&nbsp;437-5758</a>
   </div>
+  <div class="nav__rail" id="rail"></div>
 </header>
 
-<!-- ═════ HERO (§1a, §1.0b) ═════
-     THE PANEL IS A CHILD OF .hero__media AT EVERY WIDTH (§1.0b-G1). Above 900 it is the glass
-     bubble ON the photograph, left, in the lawn. At 900 and below .hero__media becomes a plain
-     wrapper — aspect-ratio:auto, overflow:visible — the <picture> carries the ratio, and the
-     panel is a full-bleed paper SECTION under the photo (§1.0b-H). Ratios declared here are the
-     ratio of the file actually served at that width (§1.0b-G1): 2.6 wide, 1.5 phone.
-     THE PANEL HOLDS EXACTLY THREE THINGS (§1.0b-Q v4 — Grady, 2026-08-22, overruling the
-     R3 letter: "way too much stuff that I'm just not gonna read… make everything way
-     bigger"): the problem-direct headline, the rating on ONE line (linked, with count and
-     source), ONE estimate button. Plus the owner's cut-out at pretty much the height of
-     the panel — never tiny, never floating. No eyebrow, no letter, no phone link (the
-     number lives in the nav and the sticky bar). Brand at first paint = the nav. -->
-<section class="hero" id="top" aria-label="Twin Mar Roofing">
+<main>
+
+<section class="hero">
   <div class="hero__media">
-    <!-- §9.3 THE LOOPING HERO FILM — the one place `loop` is allowed, and only because all
-         seven conditions hold: hero only · ping-pong seam measured at 5.2/255 mean abs diff
-         between the first and last frame · 6.000s · 990KB h264, no audio track · autoplay muted
-         loop playsinline (without muted+playsinline iOS refuses and paints a black box) ·
-         poster IS the approved hero still so the first paint is the photograph and the still
-         is the fallback if the video never loads · and reduced-motion hides it entirely.
-         The film was generated FROM this still, so it is the same frame moving. It is 16:9
-         because Kling rejects 2.6; `object-fit:cover` crops it into the hero box, and the
-         STILL — not the film — is what §1.0b-G1 measures. -->
-    <!-- 🛑 preload MUST NOT be "none". It shipped that way once and the film never played on
-         an iPhone: iOS Safari will not autoplay a video it was told not to buffer, while
-         Chromium ignores preload for an autoplaying muted video and plays it anyway. So every
-         desktop check passed and the phone — which is most of the traffic — got a still.
-         `preload="auto"` is a 990KB fetch and it is the point of the band. -->
-
-    <picture class="hero__pic">
-      <source media="(max-width:900px)" type="image/webp" srcset="img/hero-phone.webp?v=1" width="1500" height="1000">
-      <source media="(max-width:900px)" srcset="img/hero-phone.jpg?v=1" width="1500" height="1000">
-      <source type="image/webp" srcset="img/hero-wide.webp?v=1" width="2600" height="1000">
-      <img src="img/hero-wide.jpg?v=1" width="2600" height="1000" fetchpriority="high"
-           alt="A shingle roof photographed from up on the ridge on a Twin Mar Roofing job in Camp Hill — the plane running down past a brick chimney with a new cap, a dormer below it and the treeline beyond">
+    <picture>
+      <source media="(min-width:861px)" srcset="img/hero-w.jpg?v=1">
+      <source media="(min-width:601px)" srcset="img/hero-m.jpg?v=1">
+      <img class="hero__img" src="img/hero-p.jpg?v=1" fetchpriority="high" alt="A shingle roof photographed from up on the ridge on a Twin Mar Roofing job in Camp Hill — the plane running down past a brick chimney with a new cap, a dormer below it and the treeline beyond">
     </picture>
-
+    <a class="hero__cue" href="#work" aria-label="Twin Mar &amp; the crew"><span aria-hidden="true">&#8595;</span></a>
     <div class="glass hero__panel">
-      <div class="hero__words"><h1>Your roof leaks. We end it.</h1></div>
-      <!-- the cut-out sits NEXT TO THE HEADLINE at every width (Grady, 2026-08-22) —
-           phone: beside the h1 in the band; desktop: the panel's full height.
-           A CLIENT WITH NO SOURCED OWNER PHOTO SHIPS HERO_CUT AS "" — there is no
-           placeholder face and no owner claim. The panel then collapses to one column
-           (see .hero__panel:not(:has(.hero__cut)) in site.css) so the missing cut does
-           not leave the dead gutter herocheck §0v was written to catch. -->
-
-      <!-- THE PROOF LINE IS A BLOCK, NOT A SENTENCE WITH HOLES IN IT. "Google reviews" was
-           hard-coded here, so a client whose rating lives somewhere else (or who has no
-           public rating at all) could only be rendered by lying about the source. Amendment
-           6 stands — stars + numeric + count + SOURCE, and the source has to be the real
-           one. Clients with no rating anywhere ship RATE_LINE as "". -->
+      <div class="hero__words">
+        <p class="hero__eyebrow">Twin Mar Roofing</p>
+        <h1>Your roof leaks. We end it.</h1>
+        <p class="hero__sub"></p>
       <p class="rate"><span class="stars" aria-hidden="true">★★★★★</span><a href="https://www.angi.com/companylist/us/pa/elliottsburg/twin-mar-roofing-llc-reviews-1.htm" target="_blank" rel="noopener">5.0 on Angi</a></p>
-      <p class="hero__act"><a class="btn" href="#submit">Get your free estimate</a></p>
-    </div>
+        <a class="btn hero__btn" href="#quote">Get your free estimate</a>
+      </div>
 
-    <a class="cue" href="#work" aria-label="See the projects">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-           stroke-width="3" aria-hidden="true"><path d="M5 8l7 8 7-8"/></svg>
-    </a>
+    </div>
   </div>
 </section>
 
-<!-- ═════ MARQUEE (§2) — paper chrome, not counted in the alternation ═════ -->
-
-<!-- ═════ THE CREW (paper) (§4 v2 — Grady, 2026-08-22: "get rid of the recent roofs
-     section and do the Scott and the crew section… it's all people working on houses…
-     keep it vertically short"). One band: the crew photo leads the same dated, FB-linked
-     grid the work section always carried, and the owner line closes it. Alternation
-     stays legal because the people band it replaced was the paper one. ═════ -->
-<section id="work" class="band g-paper">
+<section class="band band--brand" id="work">
   <div class="wrap">
-    <p class="kick">Halifax &middot; Burnham &middot; Lykens &middot; Camp Hill</p>
     <h2>The Twin Mar crew</h2>
-    <div class="grid">
+    <p class="lede">Straight off the job. <span class="sec">Tap any photo for a closer look.</span></p>
+    <div class="work">
+    <div class="work__grid work__grid--three">
+
       <div class="pj">
         <span class="pj__ph"><img src="img/crew-at-work.jpg?v=1" width="1500" height="1000"
              alt="A Twin Mar Roofing man working from a lift basket at the eaves of a split-level in Lykens, the roof stripped to the sheathing and shingle bundles staged along the ridge"></span>
@@ -135,20 +83,18 @@
              alt="The same Lykens split-level finished, with new shingles across the whole roof and autumn woods behind it"></span>
         <span class="pj__bar"><b>The Lykens split-level</b><i>The same roof, finished</i></span>
       </div>
+    
     </div>
-    <p class="owner__line">Twin Mar Roofing, LLC &middot; Millerstown, PA &middot;
-       <a href="tel:+17174375758" aria-label="Call 7 1 7. 4 3 7. 5 7 5 8">(717)&nbsp;437-5758</a> &middot;
-       <a href="https://www.facebook.com/twinmarroofing" target="_blank" rel="noopener">Facebook</a></p>
+
+    </div>
   </div>
 </section>
 
-
-<!-- ═════ REVIEWS + FAQ (paper) (§6) ═════ -->
-<section id="reviews" class="band g-paper">
+<section class="band band--brand" id="reviews">
   <div class="wrap">
-    <p class="kick"></p>
     <h2>Reviews</h2>
     <div class="revs">
+
       <article class="rev">
         <blockquote>I&rsquo;ve worked with John at Twin Mar Roofing on multiple roofing projects. John and
           his team do excellent work at a very fair price. I highly recommend Twin Mar Roofing and will
@@ -162,15 +108,14 @@
           after finishing. I would recommend them to anyone.</blockquote>
         <cite>Francis D. &middot; Angi, January 2024</cite>
       </article>
+    
     </div>
 
-    <!-- FAQ (spine). Four questions, every answer a fact off their own pages. The questions we
-         cannot answer yet — warranty, manufacturer certification, PA registration — are the ones
-         buyers search for, and not one of them ships until Twin Mar answers it. -->
-    <div class="faq" id="faq">
-      <p class="kick">Before you call</p>
-      <h3>Questions we get asked</h3>
-      <div class="faq__list">
+    <hr class="hair">
+
+    <h2 id="faq">Commonly asked questions</h2>
+    <div class="faq">
+
         <details name="faq">
           <summary>What kind of roofs do you put on?</summary>
           <p>Four. Asphalt shingle &mdash; we often use GAF shingles, but will work with any brand
@@ -194,35 +139,34 @@
             &mdash; Mechanicsburg to Chambersburg. Recent jobs have been in Halifax, Burnham, Lykens
             and Camp Hill, so if you are near any of them, call and ask.</p>
         </details>
-      </div>
+      
     </div>
   </div>
 </section>
 
-<!-- ═════ CTA + SUBMIT A PROJECT (brand) (§8, §1.0d, §0z) ═════
-     §0z: the form is the loudest thing in this band and the phone sits beneath it. -->
-<section id="submit" class="band g-brand cta">
+<section class="band band--paper" id="quote">
   <div class="wrap">
-    <p class="kick">Fully licensed, insured, and committed to safety on every job</p>
     <h2>Send us the job</h2>
-    <form id="quote" action="https://formsubmit.co/gradymreisinger@gmail.com" method="post">
-      <div class="fgrid">
-        <p><label for="q-name">Your name</label><input id="q-name" name="name" autocomplete="name" required></p>
-        <p><label for="q-tel">Phone</label><input id="q-tel" name="phone" type="tel" autocomplete="tel" required></p>
-        <p><label for="q-mail">Email</label><input id="q-mail" name="email" type="email" autocomplete="email"></p>
-        <p><label for="q-addr">Job site address</label>
-          <input id="q-addr" name="address" autocomplete="street-address"></p>
-        <p><label for="q-photo">Photos help more than words</label>
-          <input id="q-photo" name="photos" type="file" accept="image/*" multiple></p>
-        <p><label for="q-when">When do you need it?</label>
-          <select id="q-when" name="when">
-            <option>Not sure yet</option><option>It is leaking now</option>
-            <option>Within a month</option><option>This year</option>
-          </select></p>
+    <div class="cta">
+      <div class="cta__intro">
+        <p class="cta__lede">Tell the crew what the roof is doing &mdash; photos of the trouble spots are the most useful thing you can send.</p>
+        <p class="cta__lede sec"></p>
+        <p class="cta__ring"><a href="tel:+17174375758">Or ring Twin Mar</a></p>
       </div>
-      <fieldset>
-        <legend>What do you need done?</legend>
-        <div class="opts">
+
+      <form id="submit" action="https://formsubmit.co/gradymreisinger@gmail.com" method="post" enctype="multipart/form-data">
+          <div class="fld"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="fld"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email"></div>
+          <div class="fld"><label for="f-tel">Phone</label><input id="f-tel" name="phone" type="tel" autocomplete="tel" required></div>
+          <div class="fld"><label for="f-adr">Job address</label><input id="f-adr" name="address" type="text" autocomplete="street-address"></div>
+
+          <div class="fld fld--wide"><label for="f-pic">Photos help more than words</label><input id="f-pic" name="photos" type="file" accept="image/*" multiple></div>
+
+          <input type="hidden" id="f-products" name="products" value="">
+          <p class="picked" id="picked" hidden></p>
+          <fieldset class="opts">
+            <legend>What do you need done?</legend>
+
           <label class="opt"><input type="checkbox" name="job" value="New roof"><span>New roof</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Full replacement"><span>Full replacement</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Repair"><span>Repair</span></label>
@@ -232,26 +176,33 @@
           <label class="opt"><input type="checkbox" name="job" value="Rubber roofing"><span>Rubber roofing</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Cedar shakes"><span>Cedar shakes</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Not sure yet"><span>Not sure yet</span></label>
-        </div>
-      </fieldset>
-      <p class="full nb"><label for="q-notes">Anything else</label>
-        <textarea id="q-notes" name="notes" rows="2"></textarea></p>
-      <p class="send"><button class="btn btn--go" type="submit">Send it to Twin Mar</button>
-        <span class="ratherbig">or call
-        <a class="bigtel" href="tel:+17174375758" aria-label="Call 7 1 7. 4 3 7. 5 7 5 8">(717)&nbsp;437-5758</a></span></p>
-      <p class="note" id="q-msg" role="status"></p>
-    </form>
+        
+          </fieldset>
+
+          <div class="fld fld--wide"><label for="f-note">Anything else</label><textarea id="f-note" name="notes" rows="3"></textarea></div>
+
+          <div class="fld fld--wide send">
+            <button class="btn btn--big" type="submit">Send it to Twin Mar</button>
+            <p class="send__alt">or call <a href="tel:+17174375758">(717)&nbsp;437-5758</a></p>
+          </div>
+      </form>
+
+
+    </div>
   </div>
 </section>
 
-<!-- ═════ FOOTER (paper, flat) (§9) ═════ -->
-<footer class="foot g-paper">
+</main>
+
+<footer class="foot">
   <div class="wrap">
     <div class="foot__top">
-      <span class="foot__plate"><img src="img/logo.png?v=1" width="260" height="238" alt="Twin Mar Roofing"></span>
-      <b>TWIN MAR ROOFING</b>
-    </div>
-    <div class="fcols">
+      <div class="foot__brand">
+        <img class="foot__mark" src="img/logo.png" width="512" height="512" alt="">
+        <span class="foot__legal">Twin Mar Roofing, LLC</span>
+      </div>
+      <div class="foot__cols">
+
       <p class="frun"><b>Where we work</b> Perry County is home &mdash; Millerstown and Elliottsburg.
          From there Twin Mar roofs through Cumberland and Dauphin counties, west into
          Mifflin and Centre, and south to Franklin.</p>
@@ -264,16 +215,15 @@
          <a href="https://www.facebook.com/twinmarroofing" target="_blank" rel="noopener">Facebook</a> &middot;
          <a href="https://g.page/r/CYQaI9w9avlIEBM" target="_blank" rel="noopener">Google profile</a> &middot;
          Fully licensed and insured &middot; Licensed PA 185627</p>
+    
+      </div>
     </div>
-    <p class="fslogan">Customer satisfaction is our goal</p>
-    <p class="legal"><span>© 2026 Twin Mar Roofing, LLC · Millerstown, PA</span> ·
-      <a class="foot__adm" href="/admin">Owner login</a></p>
+    <p class="foot__slogan">Customer satisfaction is our goal</p>
+    <p class="foot__adm">&copy; 2026 Twin Mar Roofing, LLC &middot; Millerstown, PA &middot; <a class="foot__adm" href="admin/">Owner login</a></p>
   </div>
 </footer>
 
-<!-- §9 — the full LocalBusiness record, typed RoofingContractor. streetAddress is deliberately
-     absent: the registered address is a private house (GAPS §5). geo is the pin off their own
-     Google profile, the same URL linked in the reviews band and the footer. -->
+
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"RoofingContractor",
  "@id":"https://www.twinmarroofing.com/#business",
@@ -295,27 +245,6 @@
 {"@type":"Question","name":"Do you do commercial roofs?","acceptedAnswer":{"@type":"Answer","text":"No. We are a residential roofing company serving central Pennsylvania — houses, not warehouses."}},
 {"@type":"Question","name":"What areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We are a residential roofer based in Millerstown, and we are happy to serve Mechanicsburg, Linglestown, Camp Hill, Harrisburg, State College and surrounding areas — Mechanicsburg to Chambersburg. Recent jobs have been in Halifax, Burnham, Lykens and Camp Hill, so if you are near any of them, call and ask."}}]}
 </script>
-<!-- ===================== STICKY MOBILE CTA (phone/band tier only) =====================
-     Evidence, honestly: across 33 measured A/B tests sticky mobile CTAs win ~29% of the time
-     and LOSE ~18%. Every mobile winner was bottom-positioned; top-positioned won 13%. So this
-     is a bottom bar, and it is a bet, not a certainty. It exists because the form on this page
-     sits ~4 screens down and a decided visitor should never have to hunt for the action.
-
-     THE FINDING THAT SHAPED IT: in the best-documented test, a sticky button that merely
-     SCROLLED TO THE FORM produced no significant lift — only bringing the action itself to the
-     user won. So `tel:` is the strong half of this bar and the estimate button is the weak
-     half. Both ship, because a homeowner comparing roofers at 9pm will not phone anyone.
-
-     It is IN THE INITIAL HTML, hidden by transform — not injected by JS after paint. A bar
-     that appears by changing layout counts against CLS; a transform does not. -->
-<div class="stick" id="stick" hidden>
-  <a class="stick__b stick__b--tel" href="tel:+17174375758" aria-label="Call Twin Mar Roofing, 7 1 7. 4 3 7. 5 7 5 8">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11.4 11.4 0 003.6.58 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.58 3.6a1 1 0 01-.25 1z"/></svg>
-    <span>Call</span>
-  </a>
-  <a class="stick__b stick__b--cta" href="#submit">Free estimate</a>
-</div>
-
-<script defer src="js/site.js?v=20260828b"></script>
-</body>
+<script defer src="js/site.js?v=3"></script>
+<div class="stickycta" id="stickycta"><a class="btn" href="#quote">Get your free estimate</a><a class="stickycta__call" href="tel:+17174375758">Call Twin Mar</a></div><script>(function(){var b=document.getElementById("stickycta"),h=document.querySelector(".hero");if(!b||!h)return;addEventListener("scroll",function(){b.classList.toggle("on",scrollY>h.offsetHeight*0.8)},{passive:true})})();</script></body>
 </html>

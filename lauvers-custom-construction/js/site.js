@@ -1,179 +1,38 @@
-/* Natty template JS — shared verbatim by every client (owner name comes from <body data-owner>). Everything here is an enhancement; the page works without it. */
+/* site.js — bb-v4 reference behaviors, generalized. First-party only: no cookies,
+   no IP, no third party. Site slug comes from <body data-site>; analytics is OPTIONAL —
+   a deployed site only sends events if ../analytics.json exists beside it. */
 (function () {
   'use strict';
-  var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-  /* ---- §2.a MARQUEE ----------------------------------------------------
-     The track slides translateX(-100%) of ONE COPY'S OWN WIDTH, so
-     "one copy >= container" must hold or blank paper scrolls past. Clone from a
-     stored SEED, never from copy 1 — growing copy 1 desyncs the loop. */
-  (function () {
-    var box = document.querySelector('.marquee');
-    var one = box && box.querySelector('.mq');
-    if (!one) return;
-    var seed = one.cloneNode(true);            // the seed, captured before any cloning
-    function fill() {
-      while (box.children.length > 1) box.removeChild(box.lastChild);
-      one.innerHTML = seed.innerHTML;
-      // grow ONE copy until it is at least as wide as the container
-      while (one.scrollWidth < box.clientWidth) {
-        var kids = seed.cloneNode(true).children;
-        while (kids.length) one.appendChild(kids[0]);
-      }
-      // then a second copy so the tail of the loop is never empty
-      box.appendChild(one.cloneNode(true));
-    }
-    fill();
-    var t;
-    addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fill, 180); });
-  })();
+  var SITE = document.body.getAttribute('data-site') || location.pathname.split('/').filter(Boolean)[0] || 'site';
 
-  /* ---- §10 NAV: progress rail, section-aware aria-current, idle nudge ---- */
-  (function () {
-    var rail = document.getElementById('rail');
-    var links = [].slice.call(document.querySelectorAll('.nav__links a'));
-    var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
-    function onScroll() {
-      var h = document.documentElement.scrollHeight - innerHeight;
-      if (rail) rail.style.width = (h > 0 ? (scrollY / h) * 100 : 0) + '%';
-      var best = -1;
-      secs.forEach(function (s, i) {
-        if (s && s.getBoundingClientRect().top <= innerHeight * 0.4) best = i;
-      });
-      links.forEach(function (a, i) {
-        if (i === best) a.setAttribute('aria-current', 'true');
-        else a.removeAttribute('aria-current');
-      });
-    }
-    addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    if (!reduce) {
-      var tel = document.querySelector('.nav__tel');
-      var idle = setTimeout(function () {
-        if (tel && scrollY < 40) { tel.classList.add('nudge'); setTimeout(function () { tel.classList.remove('nudge'); }, 1400); }
-      }, 8000);
-      addEventListener('scroll', function () { clearTimeout(idle); }, { once: true, passive: true });
-    }
-  })();
-
-  /* ---- §9.2b BEFORE/AFTER: a real <input type=range> IS the control ------ */
-  (function () {
-    var ba = document.querySelector('.ba');
-    var r = ba && ba.querySelector('.ba__range');
-    if (!r) return;
-    var hinted = false;
-    function set() {
-      ba.style.setProperty('--ba', r.value + '%');
-      r.setAttribute('aria-valuenow', r.value);
-    }
-    r.addEventListener('input', function () {
-      if (!hinted) { hinted = true; ba.classList.remove('is-hinting'); }
-      set();
-    });
-    set();
-    // Gate the sway on BOTH plates decoding, or it plays against a blank frame.
-    if (reduce) return;
-    var imgs = [].slice.call(ba.querySelectorAll('img'));
-    Promise.all(imgs.map(function (i) { return i.decode ? i.decode().catch(function () {}) : Promise.resolve(); }))
-      .then(function () { if (!hinted) ba.classList.add('is-hinting'); });
-  })();
-
-  /* ---- §9.3 the hero film: NUDGE IT, THEN GIVE UP QUIETLY ---------------
-     The attributes alone are not enough on a phone. iOS refuses autoplay in Low Power Mode,
-     and some Android data-saver modes refuse it too. play() returns a promise that REJECTS in
-     those cases — unhandled, that is a console error on every affected visit and nothing else.
-     So: ask once, and if the answer is no, remove the film and let the poster stand. That is
-     condition 6 doing its job, not a failure. Never show the visitor a paused black box. */
-  (function () {
-    var v = document.querySelector('.hero__film');
-    if (!v) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.remove(); return; }
-    var p = v.play();
-    if (p && p.catch) p.catch(function () { v.remove(); });
-  })();
-
-  /* ---- STICKY MOBILE CTA -------------------------------------------------
-     Two observers, because the bar has two jobs and they are not the same job:
-       1. APPEAR once the hero is gone. Not a scroll-px threshold — a pixel count is
-          wrong on every viewport it was not measured on, and the hero's height differs
-          by tier here (1.5 phone plate vs 2.6 wide).
-       2. HIDE once the real form is on screen. This is the one that matters. The best
-          documented test of this pattern found a sticky button that merely SCROLLED TO
-          the form produced no significant lift — so a bar still shouting "free estimate"
-          while the estimate form is right there is pure competition with itself.
-     Plus a keyboard guard: iOS `position:fixed` does NOT respect the on-screen keyboard,
-     so the bar floats over the very inputs it sent them to. It is hidden while any field
-     in the form has focus — where it is useless anyway. -------------------------------- */
-  (function () {
-    var bar = document.getElementById('stick');
-    if (!bar || !('IntersectionObserver' in window)) return;
-    var hero = document.querySelector('.hero'),
-        form = document.getElementById('submit');
-    if (!hero || !form) return;
-
-    bar.hidden = false;               // it exists in the HTML; reveal it to layout only now
-    var pastHero = false, atForm = false, typing = false;
-    function apply() { bar.classList.toggle('on', pastHero && !atForm && !typing); }
-
-    new IntersectionObserver(function (es) {
-      pastHero = !es[0].isIntersecting; apply();
-    }, {threshold: 0}).observe(hero);
-
-    // 25%: enough of the form on screen that it owns the moment
-    new IntersectionObserver(function (es) {
-      atForm = es[0].isIntersecting;
-      // scrolling does not blur a focused input on touch, so a visitor who tapped a
-      // field and then scrolled back up would lose the bar forever. Off-screen form
-      // means the keyboard moment is over regardless of where focus is.
-      if (!atForm) typing = false;
-      apply();
-    }, {threshold: 0.25}).observe(form);
-
-    form.addEventListener('focusin',  function () { typing = true;  apply(); });
-    form.addEventListener('focusout', function () { typing = false; apply(); });
-  })();
-
-  /* ---- §1.0d the form: validation runs, and it says what happened ------- */
-  (function () {
-    var f = document.getElementById('quote'), msg = document.getElementById('q-msg');
-    if (!f) return;
-    f.addEventListener('submit', function () {
-      if (msg) msg.textContent = 'Sending it to ' + (document.body.dataset.owner || 'the owner') + '…';
-    });
-  })();
-})();
-
-/* ---- first-party analytics: no cookies, no IP logging, no third party ---------
-   Endpoint comes from ../analytics.json at the repo root (the collector tunnel URL
-   rotates on reboot; the boot script republishes that file). Custom-domain sites
-   get a site-local analytics.json emitted at go-live (render.py, later). */
-(function () {
-  'use strict';
-  var seg = location.pathname.split('/').filter(Boolean);
-  var SITE = (location.hostname.indexOf('github.io') > -1 && seg.length > 1) ? seg[1] : location.hostname;
-  var cfg = null;
-  try { cfg = fetch('../analytics.json', { cache: 'no-store' }).then(function (r) { return r.json(); }); } catch (e) {}
+  /* ---- the five events (no-ops until analytics.json resolves) ------------ */
+  var sent = {};
+  var _cfg = fetch('../analytics.json', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .catch(function () { return null; });
   function ev(name, detail) {
-    if (!cfg || !navigator.sendBeacon) return;
-    cfg.then(function (c) {
-      if (c && c.url) navigator.sendBeacon(c.url + '/e',
-        JSON.stringify({ s: SITE, e: name, d: detail || '', p: location.pathname }));
-    }).catch(function () {});
+    if (name === 'Work viewed' || name === 'Reached CTA') { if (sent[name]) return; sent[name] = 1; }
+    var body = JSON.stringify({ s: SITE, e: name, d: detail || '', p: location.pathname });
+    if (navigator.sendBeacon) {
+      _cfg.then(function (c) { if (c && c.url) { try { navigator.sendBeacon(c.url + '/e', body); } catch (x) {} } });
+    }
   }
   ev('Visit');
+
   document.addEventListener('click', function (e) {
     var t = e.target.closest ? e.target : e.target.parentElement;
     if (!t || !t.closest) return;
-    var a = t.closest('a[href^="tel:"]');
-    if (a) ev('Call', a.getAttribute('href'));
+    if (t.closest('a[href^="tel:"]')) ev('Call', t.closest('a[href^="tel:"]').getAttribute('href'));
+    if (t.closest('a[href*="google.com/maps"]')) ev('Directions');
+    var hit = t.closest('.card__hit');
+    if (hit) ev('Work viewed', (hit.querySelector('.card__s') || {}).textContent || '');
   }, true);
-  var _cfg = cfg;
 
-  /* lead capture: full form payload -> our collector -> forwarded to the client's GHL */
-  function sendLead(form, site) {
+  /* lead capture: full form payload -> collector -> forwarded to the client's CRM */
+  function sendLead(form) {
     try {
-      var o = { s: site };
+      var o = { s: SITE };
       var fd = new FormData(form);
       fd.forEach(function (v, k) {
         if (typeof v !== 'string' || !v) return;
@@ -184,11 +43,82 @@
       _cfg.then(function (c) {
         if (c && c.url) fetch(c.url + '/lead', { method: 'POST', mode: 'no-cors',
           keepalive: true, body: JSON.stringify(o),
-          headers: { 'Content-Type': 'text/plain' } });
+          headers: { 'Content-Type': 'text/plain' } }).catch(function () {});
       }).catch(function () {});
     } catch (e) {}
   }
+  var form = document.getElementById('submit');
+  if (form) form.addEventListener('submit', function () { ev('Quote request'); sendLead(form); });
 
-  var form = document.querySelector('form');
-  if (form) form.addEventListener('submit', function () { ev('Quote request'); sendLead(form, SITE); });
+  var cta = document.getElementById('quote');
+  if (cta && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (rows) {
+      rows.forEach(function (r) { if (r.isIntersecting) ev('Reached CTA'); });
+    }, { threshold: 0.15 }).observe(cta);
+  }
+
+  /* ---- nav: progress rail + section-aware aria-current ------------------ */
+  var rail = document.getElementById('rail');
+  var links = [].slice.call(document.querySelectorAll('.nav__links a'));
+  var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  var tick;
+  function paint() {
+    tick = 0;
+    if (rail) {
+      var h = document.documentElement.scrollHeight - innerHeight;
+      rail.style.width = (h > 0 ? Math.min(100, scrollY / h * 100) : 0) + '%';
+    }
+    var best = -1;
+    secs.forEach(function (s, i) {
+      if (s && s.getBoundingClientRect().top <= innerHeight * 0.4) best = i;
+    });
+    links.forEach(function (a, i) {
+      if (i === best) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+  addEventListener('scroll', function () { if (!tick) tick = requestAnimationFrame(paint); }, { passive: true });
+  paint();
+
+  /* ---- add to project: card button pre-fills the quote form -------------- */
+  var picks = [];
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('.card__add') : null;
+    if (!b) return;
+    var want = b.getAttribute('data-want');   // free text - never interpolate into a selector
+    [].forEach.call(document.querySelectorAll('.opts input'), function (i) {
+      if (i.value === want) i.checked = true;
+    });
+    var p = b.getAttribute('data-product');
+    if (picks.indexOf(p) < 0) picks.push(p);
+    var hid = document.getElementById('f-products');
+    if (hid) hid.value = picks.join(', ');
+    var line = document.getElementById('picked');
+    if (line) { line.textContent = 'On your project: ' + picks.join(', '); line.hidden = false; }
+    b.textContent = 'Added ✓';
+    b.classList.add('on');
+    ev('Add to project', p);
+  });
+
+  /* ---- dwell: one beacon per view with seconds on page (3s..30min) ------- */
+  var t0 = Date.now(), dwelled = false;
+  function dwell() {
+    if (dwelled) return;
+    dwelled = true;
+    var s = Math.round((Date.now() - t0) / 1000);
+    if (s >= 3 && s <= 1800) ev('Dwell', String(s));
+  }
+  addEventListener('pagehide', dwell);
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') dwell();
+  });
+
+  /* ---- one gesture per photograph: on touch the first tap flips ---------- */
+  if (matchMedia('(hover: none)').matches) {
+    document.addEventListener('click', function (e) {
+      var hit = e.target.closest ? e.target.closest('.card__hit') : null;
+      if (!hit) return;
+      var card = hit.closest('.card');
+      if (card && !card.classList.contains('is-flip')) { e.preventDefault(); card.classList.add('is-flip'); }
+    });
+  }
 })();

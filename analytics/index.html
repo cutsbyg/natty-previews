@@ -44,7 +44,11 @@
 (function(){
   'use strict';
   var site = new URLSearchParams(location.search).get('site') || 'bb-v4';
-  var NAMES = {'bb-v4':'Double B Farm Supply'};
+  var NAMES = {'bb-v4':'Double B Farm Supply','backdraft-excavating':'Backdraft Excavating',
+    'boyers-tree-service':"Boyer's Tree Service",'command-site':'Command Site Contractors',
+    'encore':'Encore Roofing','jameson-tree-pruners':'Jameson Tree Pruners',
+    'jones-construction':'Jones Construction & Lawn','lauvers-custom-construction':"Lauver's Custom Construction",
+    'timber-and-beyond-tree':'Timber & Beyond Tree Service','twin-mar-roofing':'Twin Mar Roofing'};
   document.getElementById('title').textContent = (NAMES[site]||site) + ' — website analytics';
   document.getElementById('back').href = '../' + site + '/';
   var LABELS = {'Visit':'Visits','Reached CTA':'Reached the pricing form','Quote request':'Pricing requests',
