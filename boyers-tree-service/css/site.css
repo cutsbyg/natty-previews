@@ -156,6 +156,16 @@ li{list-style:none}
       box-shadow:8px 8px 0 var(--ink);
       transition:transform 200ms ease,box-shadow 200ms ease}
 .card:hover,.card:focus-within{transform:translate(4px,4px);box-shadow:4px 4px 0 var(--ink)}
+/* quote band is brand (alternation law) — recolor form text for the dark ground (ported from
+   bb-v4 style.css L279, which the generalization dropped — that miss shipped 10 sites wrong) */
+.band--brand .fld label{color:#fff}
+.band--brand .opts legend{color:rgba(255,255,255,.8)}
+.opts .opt span{color:var(--ink)}
+.band--brand .send__alt{color:rgba(255,255,255,.85)}
+.band--brand .send__alt a,.band--brand .cta__ring a{color:#fff;text-decoration:underline}
+/* project cards on a dark band: caption text flips white or it vanishes */
+.band--brand .pj__bar b{color:#fff}
+.band--brand .pj__bar i{color:rgba(255,255,255,.72)}
 /* project cards ({{PROJECT_CARDS}} uses .pj) — uniform tiles regardless of source photo shape.
    The aspect-ratio + object-fit here is the LAW: mixed portrait/landscape/square photos may
    never produce ragged rows or gaps (Grady 2026-08-29, D & E build). */
