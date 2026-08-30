@@ -99,6 +99,18 @@
     ev('Add to project', p);
   });
 
+  /* ---- scroll-in rise (Hormozi pass): section children fade up once ------ */
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var riseObs = new IntersectionObserver(function (rows) {
+      rows.forEach(function (r) {
+        if (r.isIntersecting) { r.target.classList.add('on'); riseObs.unobserve(r.target); }
+      });
+    }, { threshold: 0.12 });
+    [].slice.call(document.querySelectorAll('.band .wrap > *, .card, .pj')).forEach(function (el) {
+      el.classList.add('rise'); riseObs.observe(el);
+    });
+  }
+
   /* ---- dwell: one beacon per view with seconds on page (3s..30min) ------- */
   var t0 = Date.now(), dwelled = false;
   function dwell() {

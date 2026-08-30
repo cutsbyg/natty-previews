@@ -419,3 +419,22 @@ input[type=file]{padding:.55rem}
 .rev .stars{margin:0 0 .4rem;color:var(--star);font-size:clamp(.98rem,2.7vw,1.6rem)}
 /* a client with no sourced owner photo ships HERO_CUT as "" - panel collapses to one column */
 .glass:not(:has(.hero__cut)){grid-template-columns:1fr}
+
+
+/* ported from bb-v4 reference 2026-08-30 (selector diff): rise animation, hero stars row, FAQ chevrons, family figure, sticky-call icon */
+.hero__ctarow{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;margin-top:.85rem}
+.hero__ctarow .hero__btn{margin-top:0}
+.hero__stars{font-size:.84rem;font-weight:700;color:var(--ink-60);line-height:1.3}
+.hero__stars .stars{color:#f2a900;letter-spacing:.12em;font-size:1.15rem}
+.rise{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.rise.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rise{opacity:1;transform:none;transition:none}}
+#faq h2{text-align:center;font-size:clamp(1.6rem,3.5vw,2.2rem);text-transform:none;letter-spacing:0}
+.faq summary::after{content:"\25BE";font-weight:400;color:var(--ink-60);flex:none;
+                    transition:transform 180ms ease}
+.faq details[open] summary::after{transform:rotate(180deg)}
+.cta__family{margin:1.1rem 0 0;border:2px solid var(--ink);border-radius:12px;overflow:hidden;
+             box-shadow:10px 10px 0 var(--ink)}
+.cta__family img{width:100%}
+.cta__family figcaption{background-color:var(--paper);color:var(--ink);padding:.6rem .9rem;font-size:.95rem}
+.stickycta__call::before{content:"\260E";font-size:1.15rem}
