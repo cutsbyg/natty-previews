@@ -285,7 +285,10 @@ li{list-style:none}
 form{margin-top:1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut)}
 .fld{display:flex;flex-direction:column;gap:.3rem;min-width:0}
 .fld--wide{grid-column:1/-1}
-.fld label,
+/* labels are TEXT, never boxes - they were grouped with inputs and rendered as white
+   bars with white text on dark bands (Grady 8/31: "blank white boxes") */
+.fld label{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  padding:0;border:0;background:transparent;min-height:0;width:auto}
 input,select,textarea{font:inherit;font-size:1rem;padding:.7rem .8rem;min-height:48px;
   border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:0;
   -webkit-appearance:none;appearance:none;width:100%}
