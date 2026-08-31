@@ -605,3 +605,8 @@ input[type=file]{padding:.55rem}
 .pj__cta{display:inline-block;margin-top:.45rem;font-weight:800;font-size:.95rem;
          color:inherit;text-decoration:underline;text-underline-offset:3px}
 .band--brand .pj__cta{color:#fff}
+
+/* the slider lives on the PHOTO only - it was anchored to the whole hero and painted over
+   the mobile text panel + left a zoomed black edge (Grady 8/31 screenshots) */
+.hero__shot{position:relative}
+.ba--hero .ba__tag--a{left:.7rem;right:auto}
