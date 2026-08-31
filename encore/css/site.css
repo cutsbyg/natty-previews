@@ -103,13 +103,15 @@ li{list-style:none}
           text-transform:uppercase;color:var(--ink)}
 .hero__sub{font-size:clamp(12px,3.5cqw,1.2rem);font-weight:700;margin-top:.55rem;line-height:1.25}
 .hero__where{font-size:clamp(11px,2.9cqw,.98rem);color:var(--ink-60);margin-top:.15rem;line-height:1.25}
-.hero__btn{margin-top:.85rem;font-size:1.3rem;min-height:60px;padding:.9rem 2.2rem;
+.hero__btn{margin-top:.85rem;font-size:min(1.3rem,4.4cqw);min-height:56px;
+           padding:.8rem min(2.2rem,4.5cqw);white-space:nowrap;
            box-shadow:7px 7px 0 var(--ink)}
-.hero__cut{width:100%;height:auto;max-height:100%;object-fit:contain;
+.hero__cut{width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;
   -webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
           mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
   filter:drop-shadow(0 10px 18px rgba(0,0,0,.45)) drop-shadow(0 2px 3px rgba(0,0,0,.4));
   transition:transform 220ms ease}
+.hero__cut img{width:auto;max-width:100%;height:auto;max-height:100%;object-fit:contain;margin-inline:auto}
 .glass:hover .hero__cut{transform:translateY(-4px)}
 
 /* ---------- marquee ---------- */
