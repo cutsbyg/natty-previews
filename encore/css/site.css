@@ -589,7 +589,8 @@ input[type=file]{padding:.55rem}
 .faq__ask .avatar{width:52px;height:52px}
 
 /* H1 keyword highlight (contrast doctrine): one phrase per headline gets the marker */
-.glass h1 em{font-style:normal;background:linear-gradient(transparent 62%, var(--brand) 62%, var(--brand) 94%, transparent 94%)}
+/* marker is ALWAYS gold - a near-black brand painted a black box under the words (Grady 8/31) */
+.glass h1 em{font-style:normal;background:linear-gradient(transparent 62%, #f2a900 62%, #f2a900 94%, transparent 94%)}
 /* 3. supporting text dims so headings and CTAs own the page */
 .lede,.pj__bar i,.faq p,.cta__lede,.send__alt,.hero__sub{opacity:.78}
 
