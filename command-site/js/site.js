@@ -131,23 +131,50 @@
       if (knob) knob.style.left = v + '%';
     }
     r.addEventListener('input', function () { auto = false; set(r.value); });
-    /* direct pointer drive - invisible range inputs are unreliable under thumbs (iOS) */
-    var dragging = false;
+    /* direct pointer drive - follows the finger anywhere on the photo. The panel cap (min)
+       only applies when the glass panel actually overlays the photo (desktop). */
+    var dragging = false, settleTimer = null, settleAnim = null;
+    function bounds() {
+      var glass = document.querySelector('.glass');
+      var overlaid = glass && getComputedStyle(glass).position === 'absolute';
+      return [overlaid ? (+r.min || 0) : 0, +r.max || 100];
+    }
     function drive(e) {
       var rect = ba.getBoundingClientRect();
-      var lo2 = +r.min || 0, hi2 = +r.max || 100;
-      var v = Math.max(lo2, Math.min(hi2, (e.clientX - rect.left) / rect.width * 100));
+      var b = bounds();
+      var v = Math.max(b[0], Math.min(b[1], (e.clientX - rect.left) / rect.width * 100));
       r.value = v;
       set(v);
     }
+    function settleToAfter() {
+      var b = bounds(), from = +r.value, to = b[1], t0 = null;
+      if (settleAnim) cancelAnimationFrame(settleAnim);
+      var step = function (ts) {
+        if (dragging) return;
+        if (t0 === null) t0 = ts;
+        var k = Math.min(1, (ts - t0) / 600);
+        var v = from + (to - from) * (1 - Math.pow(1 - k, 3));
+        r.value = v;
+        set(v);
+        if (k < 1) settleAnim = requestAnimationFrame(step);
+      };
+      settleAnim = requestAnimationFrame(step);
+    }
     ba.addEventListener('pointerdown', function (e) {
       auto = false; dragging = true;
+      if (settleTimer) clearTimeout(settleTimer);
+      if (settleAnim) cancelAnimationFrame(settleAnim);
       if (ba.setPointerCapture) { try { ba.setPointerCapture(e.pointerId); } catch (x) {} }
       drive(e);
     });
     ba.addEventListener('pointermove', function (e) { if (dragging) drive(e); });
-    ba.addEventListener('pointerup', function () { dragging = false; });
-    ba.addEventListener('pointercancel', function () { dragging = false; });
+    function release() {
+      dragging = false;
+      if (settleTimer) clearTimeout(settleTimer);
+      settleTimer = setTimeout(settleToAfter, 1000);   /* one beat, then glide to the AFTER */
+    }
+    ba.addEventListener('pointerup', release);
+    ba.addEventListener('pointercancel', release);
     set(r.value || 50);
     /* slow pulse between the endpoints until the viewer takes over (reduced-motion: off) */
     var auto = !matchMedia('(prefers-reduced-motion: reduce)').matches;
