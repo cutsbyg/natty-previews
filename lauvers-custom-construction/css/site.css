@@ -91,7 +91,7 @@ li{list-style:none}
   /* BLUEPRINT-LAW SS2: GEOMETRY DIALS - the ONLY place these numbers exist. Tiers below
      override dial VALUES only; no tier may restate a component rule. */
   --cut-col:44%;
-  --panel-pad:1.5rem 2.6%;
+  --pad-y:1.5rem;--panel-pad:var(--pad-y) 2.6%;
   --h1-size:min(6.6rem,16.5cqw);
   position:absolute;left:4%;top:54%;transform:translateY(-50%);width:50%;max-height:92%;
   display:grid;grid-template-columns:1fr var(--cut-col);gap:2.4%;align-items:center;
@@ -112,7 +112,8 @@ li{list-style:none}
 .hero__btn{margin-top:.85rem;font-size:min(1.3rem,4.4cqw);min-height:56px;
            padding:.8rem min(2.2rem,4.5cqw);white-space:nowrap;
            box-shadow:7px 7px 0 var(--ink)}
-.hero__cut{width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;
+.hero__cut{width:100%;height:calc(100% + 2*var(--pad-y));margin-block:calc(-1*var(--pad-y));
+  display:flex;align-items:flex-end;justify-content:center;
   -webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
           mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
   filter:drop-shadow(0 10px 18px rgba(0,0,0,.45)) drop-shadow(0 2px 3px rgba(0,0,0,.4));
@@ -333,10 +334,11 @@ input[type=file]{padding:.55rem}
 
 /* ================= BAND TIER — the panel leaves the photograph (§1.0b-H) ================= */
 @media (max-width:860px){
-  .hero__media{aspect-ratio:auto;overflow:visible}
-  .hero__img{height:auto;object-fit:fill}
+  /* letterbox fix (Grady 8/31 iPad): hero always covers a pinned box, every tier */
+  .hero__media{aspect-ratio:934/640;overflow:hidden}
+  .hero__img{width:100%;height:100%;object-fit:cover}
   .hero__cue{display:none}
-  .glass{--cut-col:36%;--panel-pad:.9rem 4%;--h1-size:min(4.6rem,14cqw);
+  .glass{--cut-col:36%;--pad-y:.9rem;--panel-pad:var(--pad-y) 4%;--h1-size:min(4.6rem,14cqw);
     position:static;transform:none;width:100%;left:auto;top:auto;max-height:none;
     background-color:var(--paper);
     backdrop-filter:none;-webkit-backdrop-filter:none;
@@ -365,7 +367,10 @@ input[type=file]{padding:.55rem}
 @media (max-width:600px){
   .work__grid--three{grid-template-columns:1fr}
   .work__grid--three .card:first-child{grid-column:auto}
-  .work__grid--three:has(.pj){grid-template-columns:1fr}
+  /* phone projects = swipe carousel (Grady 8/31): no long stack, no odd-count dead space */
+  .work__grid--three:has(.pj){display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+    gap:.8rem;padding-bottom:.6rem;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+  .work__grid--three .pj{flex:0 0 84%;scroll-snap-align:center}
   .work__grid--three .pj,.work__grid--three .pj:nth-child(-n+2){grid-column:auto}
   .work__grid--three .pj:nth-child(-n+2) .pj__ph{aspect-ratio:3/2}
   .work__grid--three .card:first-child .card__ph{aspect-ratio:3/2}
@@ -380,7 +385,7 @@ input[type=file]{padding:.55rem}
   .nav__tel{margin-left:auto;font-size:1.05rem}
 
   /* BLUEPRINT-LAW SS2 phone dials (aq.com lesson: headlines smaller than you think) */
-  .glass{--cut-col:46%;--panel-pad:.8rem 3%;--h1-size:min(3.4rem,13.5cqw)}
+  .glass{--cut-col:46%;--pad-y:.8rem;--panel-pad:var(--pad-y) 3%;--h1-size:min(3.4rem,13.5cqw)}
   .hero__eyebrow{margin-bottom:.25rem}
   .hero__sub{margin-top:.4rem}
   .hero__btn{margin-top:.6rem;min-height:44px;padding:.5rem 1.1rem;font-size:1rem;
@@ -501,3 +506,31 @@ input[type=file]{padding:.55rem}
 .opt:has(input:checked) span::before{content:"\2713  ";font-weight:900}
 .opt input{position:absolute;opacity:0;pointer-events:none}
 .opt span{font-size:1rem;line-height:1.2}
+
+/* ---- before/after slider (BLUEPRINT-LAW 7d: every deck build ships one) ---- */
+.ba{position:relative;margin-top:1.3rem;border-radius:12px;overflow:hidden;
+    box-shadow:0 10px 24px rgba(0,0,0,.28);user-select:none}
+.ba img{display:block;width:100%;height:auto;pointer-events:none}
+.ba__after{position:absolute;inset:0}
+.ba__after img{height:100%;object-fit:cover}
+.ba__range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;
+           -webkit-appearance:none;touch-action:none}
+.ba__bar{position:absolute;top:0;bottom:0;width:3px;background:#fff;pointer-events:none;
+         box-shadow:0 0 8px rgba(0,0,0,.5)}
+.ba__knob{position:absolute;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;
+          border-radius:50%;background:#fff;color:var(--ink);display:flex;align-items:center;
+          justify-content:center;font-weight:900;pointer-events:none;
+          box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.ba__tag{position:absolute;top:.7rem;font-size:.72rem;font-weight:800;letter-spacing:.12em;
+         text-transform:uppercase;background:rgba(0,0,0,.55);color:#fff;
+         padding:.3rem .7rem;border-radius:999px;pointer-events:none}
+.ba__tag--b{left:.7rem}.ba__tag--a{right:.7rem}
+
+/* ---- centered content law (Grady 8/31: "the entire website should be centered") ---- */
+.band h2{text-align:center}
+.lede{margin-inline:auto;text-align:center}
+.cta__intro{text-align:center}
+.cta__ring{text-align:center}
+.revs{justify-content:center}
+.faq{max-width:46rem;margin-inline:auto}
+.foot__slogan{text-align:center}

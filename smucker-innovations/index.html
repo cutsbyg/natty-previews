@@ -12,7 +12,7 @@
 <link rel="preload" as="image" href="img/hero-w.jpg?v=1" media="(min-width:861px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/hero-p.jpg?v=1" media="(max-width:600px)" fetchpriority="high">
 <!-- bb-law: system stack only (Segoe UI). No webfonts — the reference build dropped them. -->
-<link rel="stylesheet" href="css/site.css?v=c762e754">
+<link rel="stylesheet" href="css/site.css?v=c311ade9">
 </head>
 <body data-site="smucker-innovations">
 <a class="skip" href="#work">Skip to Our work</a>
@@ -64,6 +64,14 @@
   <div class="wrap">
     <h2>Our projects</h2>
     <p class="lede">A selection of recent work. <span class="sec">Tap any photo for a closer look.</span></p>
+
+    <div class="ba" aria-label="The same house before and after the deck">
+      <img src="img/ba-before.jpg?v=1" width="1200" height="920" alt="The house before the deck was built" loading="lazy" decoding="async">
+      <div class="ba__after"><img src="img/ba-after.jpg?v=1" width="1200" height="920" alt="The same house with the finished deck" loading="lazy" decoding="async"></div>
+      <span class="ba__tag ba__tag--b">Before</span><span class="ba__tag ba__tag--a">After</span>
+      <div class="ba__bar"></div><div class="ba__knob">&harr;</div>
+      <input class="ba__range" type="range" min="0" max="100" value="50" aria-label="Slide to compare before and after">
+    </div>
     <div class="work">
     <div class="work__grid work__grid--three">
 

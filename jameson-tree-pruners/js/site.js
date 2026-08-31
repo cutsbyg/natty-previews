@@ -111,6 +111,20 @@
     });
   }
 
+  /* ---- before/after slider ---- */
+  [].forEach.call(document.querySelectorAll('.ba'), function (ba) {
+    var r = ba.querySelector('.ba__range'), after = ba.querySelector('.ba__after'),
+        bar = ba.querySelector('.ba__bar'), knob = ba.querySelector('.ba__knob');
+    if (!r || !after) return;
+    function set(v) {
+      after.style.clipPath = 'inset(0 0 0 ' + v + '%)';
+      if (bar) bar.style.left = v + '%';
+      if (knob) knob.style.left = v + '%';
+    }
+    r.addEventListener('input', function () { set(r.value); });
+    set(r.value || 50);
+  });
+
   /* ---- dwell: one beacon per view with seconds on page (3s..30min) ------- */
   var t0 = Date.now(), dwelled = false;
   function dwell() {
