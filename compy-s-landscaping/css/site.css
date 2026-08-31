@@ -4,9 +4,9 @@
 :root{
   /* --brand sampled from the isolated mark: hue 110deg covers ~40% of the logo's
      opaque pixels. Held to the brightness ceiling: HSV sat 72%, HSL lightness 32%.
-     White on --brand = 16.49:1. --brand on --paper = 15.03:1. (computed at render) */
-  --brand:#221e1f;
-  --brand-deep:#121011;
+     White on --brand = 5.01:1. --brand on --paper = 4.57:1. (computed at render) */
+  --brand:#4C7C03;
+  --brand-deep:#335202;
   --paper:#f7f4ef;
   --ink:#1c1a17;
   --ink-60:#6b6862;

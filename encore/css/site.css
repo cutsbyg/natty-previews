@@ -146,6 +146,9 @@ li{list-style:none}
 /* one larger card leads full-width, then 6 even: two clean rows of three, no orphans */
 .work__grid--three .card:first-child{grid-column:1/-1}
 .work__grid--three .card:first-child .card__ph{aspect-ratio:5/2}
+/* the SAME lead-card law for .pj project grids - it was only ever written for .card (Grady 8/30) */
+.work__grid--three .pj:first-child{grid-column:1/-1}
+.work__grid--three .pj:first-child .pj__ph{aspect-ratio:5/2}
 .work__all{margin-top:var(--gut)}
 .card__add{display:block;width:calc(100% - 1.8rem);margin:.75rem auto .9rem;padding:.7rem 1rem;
            background:var(--brand);color:#fff;font:inherit;font-weight:800;font-size:1rem;
@@ -323,7 +326,7 @@ input[type=file]{padding:.55rem}
   .hero__img{height:auto;object-fit:fill}
   .hero__cue{display:none}
   .glass{position:static;transform:none;width:100%;left:auto;top:auto;
-    grid-template-columns:1fr 35%;gap:4%;padding:1.3rem 5%;
+    grid-template-columns:1fr 44%;gap:3%;padding:1rem 4%;  /* maximize law applies on MOBILE too */
     background-color:var(--paper);
     backdrop-filter:none;-webkit-backdrop-filter:none;
     border:0;border-radius:0;box-shadow:none}
@@ -350,6 +353,8 @@ input[type=file]{padding:.55rem}
 @media (max-width:600px){
   .work__grid--three{grid-template-columns:1fr}
   .work__grid--three .card:first-child{grid-column:auto}
+  .work__grid--three .pj:first-child{grid-column:auto}
+  .work__grid--three .pj:first-child .pj__ph{aspect-ratio:3/2}
   .work__grid--three .card:first-child .card__ph{aspect-ratio:3/2}
   :root{--pad:clamp(1.6rem,6vw,2.4rem)}
   .band{animation:none}
@@ -361,8 +366,9 @@ input[type=file]{padding:.55rem}
   .nav__name{font-size:1.05rem}
   .nav__tel{margin-left:auto;font-size:1.05rem}
 
-  .glass{grid-template-columns:1fr 38%;gap:4%;padding:1.1rem 4.5%}
-  .glass h1{font-size:min(3.9rem,17.5cqw)}
+  /* maximize law on PHONES: the founder fills his column (Grady 8/30, third tier caught) */
+  .glass{grid-template-columns:1fr 46%;gap:3%;padding:.9rem 3.5%}
+  .glass h1{font-size:min(3.9rem,19cqw)}
   .hero__eyebrow{margin-bottom:.25rem}
   .hero__sub{margin-top:.4rem}
   .hero__btn{margin-top:.6rem;min-height:44px;padding:.5rem 1.1rem;font-size:1rem;
