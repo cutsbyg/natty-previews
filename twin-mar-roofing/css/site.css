@@ -571,12 +571,11 @@ input[type=file]{padding:.55rem}
 
 /* desktop sticky quote bubble (Grady 8/31) - mobile keeps the bar instead */
 .quote-bubble{position:fixed;right:1.4rem;bottom:1.4rem;z-index:60;
-  background:var(--brand);color:#fff;font-weight:800;font-size:1.05rem;
+  background:#fff;color:var(--ink);font-weight:800;font-size:1.05rem;
   padding:.9rem 1.5rem;border:2px solid var(--ink);
   border-radius:999px 999px 4px 999px;box-shadow:6px 6px 0 var(--ink);
-  text-decoration:none;transform:translateY(180%);transition:transform .25s ease}
-.quote-bubble.on{transform:none}
-.quote-bubble:hover{background:var(--brand-deep)}
+  text-decoration:none}
+.quote-bubble:hover{background:var(--paper)}
 @media(max-width:600px){.quote-bubble{display:none}}
 
 /* tiny founder avatars (Grady 8/31: the face builds trust - small, everywhere) */
@@ -584,7 +583,7 @@ input[type=file]{padding:.55rem}
         border:2px solid var(--ink);background:#fff;flex:none;display:inline-block;
         vertical-align:middle}
 .quote-bubble{display:flex;align-items:center;gap:.6rem}
-.quote-bubble .avatar{border-color:#fff}
+.quote-bubble .avatar{border-color:var(--ink)}
 .avatar--lede{width:40px;height:40px;margin-right:.35rem}
 .faq__ask{display:flex;justify-content:center;margin-top:1.6rem}
 .faq__ask .avatar{width:52px;height:52px}
