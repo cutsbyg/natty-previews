@@ -474,7 +474,7 @@ input[type=file]{padding:.55rem}
              box-shadow:10px 10px 0 var(--ink)}
 .cta__family img{width:100%}
 .cta__family figcaption{background-color:var(--paper);color:var(--ink);padding:.6rem .9rem;font-size:.95rem}
-.stickycta__call::before{content:"\260E";font-size:1.15rem}
+/* no emoji in the sticky bar (Grady 8/31: reads AI-generated) */
 
 /* ---------- SERVICES variant of the reviews band (opt in: .rev--svc) ----------
    These entries are SERVICES, not testimonials. The card, the italics and the
