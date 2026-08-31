@@ -78,7 +78,7 @@ li{list-style:none}
 /* ---------- hero ---------- */
 .hero{background:var(--ink)}
 .hero__media{position:relative;aspect-ratio:2200/859;overflow:hidden;max-width:100%}
-.hero__img{width:100%;height:100%;object-fit:cover}
+.hero__img{width:100%;height:auto}
 
 .hero__cue{position:absolute;left:50%;bottom:1.1rem;transform:translateX(-50%);
   width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;
@@ -340,8 +340,7 @@ input[type=file]{padding:.55rem}
 
 /* ================= BAND TIER — the panel leaves the photograph (§1.0b-H) ================= */
 @media (max-width:860px){
-  /* letterbox fix (Grady 8/31 iPad): hero always covers a pinned box, every tier */
-  .hero__media{aspect-ratio:934/640;overflow:hidden}
+    .hero__media{aspect-ratio:auto;overflow:visible}
   .hero__img{width:100%;height:100%;object-fit:cover}
   .hero__cue{display:none}
   .glass{--cut-col:36%;--pad-y:.9rem;--panel-pad:var(--pad-y) 4%;--h1-size:min(4.6rem,14cqw);
@@ -373,10 +372,7 @@ input[type=file]{padding:.55rem}
 @media (max-width:600px){
   .work__grid--three{grid-template-columns:1fr}
   .work__grid--three .card:first-child{grid-column:auto}
-  /* phone projects = swipe carousel (Grady 8/31): no long stack, no odd-count dead space */
-  .work__grid--three:has(.pj){display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
-    gap:.8rem;padding-bottom:.6rem;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
-  .work__grid--three .pj{flex:0 0 84%;scroll-snap-align:center}
+  .work__grid--three:has(.pj){grid-template-columns:1fr}
   .work__grid--three .pj,.work__grid--three .pj:nth-child(-n+2){grid-column:auto}
   .work__grid--three .pj:nth-child(-n+2) .pj__ph{aspect-ratio:3/2}
   .work__grid--three .card:first-child .card__ph{aspect-ratio:3/2}
@@ -445,7 +441,7 @@ input[type=file]{padding:.55rem}
 }
 
 /* Amendment 13: sticky mobile CTA */
-@media(max-width:600px){.stickycta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:.6rem;padding:.6rem .8rem max(.7rem, env(safe-area-inset-bottom));background:rgba(20,24,20,.92);backdrop-filter:blur(8px);transform:translateY(110%);transition:transform .25s ease}.stickycta.on{transform:none}.stickycta .btn{flex:1;text-align:center;margin:0}.stickycta__call{flex:1;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;font-weight:700;border:1px solid rgba(255,255,255,.35);border-radius:10px}}@media(min-width:601px){.stickycta{display:none}}
+.stickycta{display:none}
 /* Grady: grid lines in the hero panel */
 .glass{background-image:linear-gradient(rgba(51,128,36,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(51,128,36,.14) 1px,transparent 1px);background-size:44px 44px}
 /* mobile hero is centered in the image itself now */
@@ -549,7 +545,7 @@ input[type=file]{padding:.55rem}
 
 /* ---- center the REST (Grady 8/31) ---- */
 .wrap>h2,.cta__lede,.picked{text-align:center}
-.work__grid--three:has(.pj){justify-content:center}
+
 .pj__bar{text-align:center}
 .card__cap{text-align:center}
 .frun{text-align:center}
@@ -576,7 +572,7 @@ input[type=file]{padding:.55rem}
   border-radius:999px 999px 4px 999px;box-shadow:6px 6px 0 var(--ink);
   text-decoration:none}
 .quote-bubble:hover{background:var(--paper)}
-@media(max-width:600px){.quote-bubble{display:none}}
+/* bubble is THE sticky CTA on every size (Grady 8/31: one sticky, the new one) */
 
 /* tiny founder avatars (Grady 8/31: the face builds trust - small, everywhere) */
 .avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:top;
@@ -589,8 +585,8 @@ input[type=file]{padding:.55rem}
 .faq__ask .avatar{width:52px;height:52px}
 
 /* H1 keyword highlight (contrast doctrine): one phrase per headline gets the marker */
-/* marker is ALWAYS gold - a near-black brand painted a black box under the words (Grady 8/31) */
-.glass h1 em{font-style:normal;background:linear-gradient(transparent 62%, #f2a900 62%, #f2a900 94%, transparent 94%)}
+/* H1 marker removed entirely (Grady 8/31: no yellow highlights) */
+.glass h1 em{font-style:normal}
 /* 3. supporting text dims so headings and CTAs own the page */
 .lede,.pj__bar i,.faq p,.cta__lede,.send__alt,.hero__sub{opacity:.78}
 
