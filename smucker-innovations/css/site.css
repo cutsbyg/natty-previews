@@ -85,8 +85,10 @@ li{list-style:none}
 @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
 
 .glass{position:absolute;left:4%;top:54%;transform:translateY(-50%);width:50%;
-  display:grid;grid-template-columns:1fr 40%;gap:3%;align-items:center;
-  padding:2.3rem 3.2%;
+  display:grid;grid-template-columns:1fr 44%;gap:2.4%;align-items:center;
+  /* MAXIMIZE-THE-PANEL LAW (Grady 2026-08-30, set on Smucker): the headline and the founder
+     photo fill the glass box - minimal air between content and the box edges, every site. */
+  padding:1.15rem 2.4%;
   background-color:rgba(247,244,239,.80);
   backdrop-filter:blur(14px) saturate(115%);-webkit-backdrop-filter:blur(14px) saturate(115%);
   border:1px solid rgba(28,26,23,.20);border-radius:18px;
@@ -96,7 +98,7 @@ li{list-style:none}
 .hero__words{container-type:inline-size;min-width:0}
 .hero__eyebrow{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
                color:var(--brand-deep);margin-bottom:.35rem}
-.glass h1{font-size:min(7rem,17cqw);line-height:.86;font-weight:900;letter-spacing:-.03em;
+.glass h1{font-size:min(7.5rem,18.5cqw);line-height:.86;font-weight:900;letter-spacing:-.03em;
           text-transform:uppercase;color:var(--ink)}
 .hero__sub{font-size:clamp(12px,3.5cqw,1.2rem);font-weight:700;margin-top:.55rem;line-height:1.25}
 .hero__where{font-size:clamp(11px,2.9cqw,.98rem);color:var(--ink-60);margin-top:.15rem;line-height:1.25}

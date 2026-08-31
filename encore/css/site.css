@@ -54,11 +54,13 @@ li{list-style:none}
 .nav{position:sticky;top:0;z-index:40;background:var(--brand);color:#fff}
 .nav__in{max-width:var(--wrap);margin:0 auto;padding:.5rem var(--gut);
          display:flex;align-items:center;gap:1.25rem}
-.nav__brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;min-height:44px}
+.nav__brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;min-height:44px;
+            min-width:0;overflow:hidden}
 .nav__mark{width:52px;height:52px;filter:brightness(0) invert(1);
            transition:transform 200ms ease}
 .nav__brand:hover .nav__mark{transform:scale(1.06)}
-.nav__name{font-weight:900;font-size:1.15rem;letter-spacing:-.01em;white-space:nowrap}
+.nav__name{font-weight:900;font-size:1.15rem;letter-spacing:-.01em;white-space:nowrap;
+           min-width:0;overflow:hidden;text-overflow:ellipsis}
 .nav__name-short{display:none}
 .nav__links{display:flex;gap:1.25rem;margin-left:auto}
 .nav__links a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;
@@ -83,8 +85,10 @@ li{list-style:none}
 @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
 
 .glass{position:absolute;left:4%;top:54%;transform:translateY(-50%);width:50%;
-  display:grid;grid-template-columns:1fr 40%;gap:3%;align-items:center;
-  padding:2.3rem 3.2%;
+  display:grid;grid-template-columns:1fr 44%;gap:2.4%;align-items:center;
+  /* MAXIMIZE-THE-PANEL LAW (Grady 2026-08-30, set on Smucker): the headline and the founder
+     photo fill the glass box - minimal air between content and the box edges, every site. */
+  padding:1.15rem 2.4%;
   background-color:rgba(247,244,239,.80);
   backdrop-filter:blur(14px) saturate(115%);-webkit-backdrop-filter:blur(14px) saturate(115%);
   border:1px solid rgba(28,26,23,.20);border-radius:18px;
@@ -94,7 +98,7 @@ li{list-style:none}
 .hero__words{container-type:inline-size;min-width:0}
 .hero__eyebrow{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
                color:var(--brand-deep);margin-bottom:.35rem}
-.glass h1{font-size:min(7rem,14.5cqw);line-height:.86;font-weight:900;letter-spacing:-.03em;
+.glass h1{font-size:min(7.5rem,18.5cqw);line-height:.86;font-weight:900;letter-spacing:-.03em;
           text-transform:uppercase;color:var(--ink)}
 .hero__sub{font-size:clamp(12px,3.5cqw,1.2rem);font-weight:700;margin-top:.55rem;line-height:1.25}
 .hero__where{font-size:clamp(11px,2.9cqw,.98rem);color:var(--ink-60);margin-top:.15rem;line-height:1.25}
@@ -128,7 +132,7 @@ li{list-style:none}
   background-image:linear-gradient(rgba(51,128,36,.18) 1px,transparent 1px),
                    linear-gradient(90deg,rgba(51,128,36,.18) 1px,transparent 1px)}
 
-.band h2{font-size:clamp(2rem,6vw,3.4rem);line-height:.9;font-weight:800;text-transform:uppercase}
+.band h2{font-size:clamp(1.9rem,5vw,2.9rem);line-height:.9;font-weight:800;text-transform:uppercase}
 .band--brand h2{text-shadow:0 1px 2px rgba(0,0,0,.45),0 0 1px rgba(0,0,0,.55)}
 .lede{max-width:34ch;margin-top:.6rem;font-size:1.125rem;line-height:1.4}
 .eyebrow{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
@@ -297,12 +301,18 @@ input[type=file]{padding:.55rem}
 .foot__mark{width:104px;height:104px;filter:brightness(0) invert(1)}
 .foot__legal{font-size:1.5rem;font-weight:900;line-height:1.1}
 .foot__cols{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gut)}
+/* a grid child defaults to min-width:auto, so one long unbreakable run (an email,
+   a URL) widens the whole document instead of wrapping. Both halves needed. */
+.foot__cols>*{min-width:0}
+.frun{overflow-wrap:anywhere}
+.foot__brand{min-width:0}
+.foot__legal{overflow-wrap:anywhere}
 .foot__h{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
          color:rgba(255,255,255,.75);margin-bottom:.4rem}
 .foot__col p{font-size:1.125rem;line-height:1.5}
 .lnk{color:#fff}
 .lnk:hover{text-decoration:none}
-.foot__slogan{margin-top:clamp(1.5rem,4vw,2.5rem);font-size:clamp(2rem,6vw,3.6rem);
+.foot__slogan{margin-top:clamp(1.5rem,4vw,2.5rem);font-size:clamp(1.75rem,5vw,2.9rem);
               font-weight:900;line-height:.9;letter-spacing:-.03em;text-transform:uppercase}
 .foot__adm{margin-top:1.4rem;font-size:.82rem;color:rgba(255,255,255,.72)}
 .foot__adm a{text-decoration:underline}
@@ -318,7 +328,7 @@ input[type=file]{padding:.55rem}
     backdrop-filter:none;-webkit-backdrop-filter:none;
     border:0;border-radius:0;box-shadow:none}
   .glass:hover,.glass:focus-within{box-shadow:none;border-color:transparent}
-  .glass h1{font-size:min(4.6rem,13cqw);letter-spacing:-.04em}
+  .glass h1{font-size:min(4.6rem,17cqw);letter-spacing:-.04em}
   .hero__cut{filter:none}
   .glass:hover .hero__cut{transform:none}
 
@@ -352,7 +362,7 @@ input[type=file]{padding:.55rem}
   .nav__tel{margin-left:auto;font-size:1.05rem}
 
   .glass{grid-template-columns:1fr 38%;gap:4%;padding:1.1rem 4.5%}
-  .glass h1{font-size:min(3.9rem,13cqw)}
+  .glass h1{font-size:min(3.9rem,17.5cqw)}
   .hero__eyebrow{margin-bottom:.25rem}
   .hero__sub{margin-top:.4rem}
   .hero__btn{margin-top:.6rem;min-height:44px;padding:.5rem 1.1rem;font-size:1rem;
@@ -361,7 +371,8 @@ input[type=file]{padding:.55rem}
   .marquee{height:46px}
   .mq li{font-size:.85rem}
 
-  .band h2{font-size:clamp(2rem,11vw,3rem)}
+  .band h2{font-size:clamp(1.6rem,7vw,2rem)}
+  .foot__slogan{font-size:clamp(1.5rem,5.5vw,1.75rem)}
   .lede{font-size:1.125rem;line-height:1.35;margin-top:.5rem}
   .sec{display:none}
   .work{margin-top:1rem}
@@ -438,3 +449,21 @@ input[type=file]{padding:.55rem}
 .cta__family img{width:100%}
 .cta__family figcaption{background-color:var(--paper);color:var(--ink);padding:.6rem .9rem;font-size:.95rem}
 .stickycta__call::before{content:"\260E";font-size:1.15rem}
+
+/* ---------- SERVICES variant of the reviews band (opt in: .rev--svc) ----------
+   These entries are SERVICES, not testimonials. The card, the italics and the
+   decorative quote glyph all say "a customer said this", which is untrue when the
+   copy is our own. This strips the testimonial signals and reads as a capability
+   list: name first, then what it covers.
+   The 2-up grid is scoped to min-width so the phone tier's single column still
+   applies -- a bare `.revs:has(...)` rule would out-specify it and never collapse. */
+.rev--svc{background:none;color:inherit;border:0;box-shadow:none;padding:0;
+          border-top:3px solid var(--brand);padding-top:.9rem}
+.rev--svc:hover{transform:none;box-shadow:none}
+.svc__t{font-size:clamp(1.15rem,1.9vw,1.45rem);font-weight:800;line-height:1.15;
+        margin:0 0 .35rem;color:var(--ink)}
+.svc__d{margin:0;font-size:1.06rem;line-height:1.5;color:var(--ink-60);max-width:38ch}
+@media (min-width:861px){
+  .revs:has(.rev--svc){grid-template-columns:repeat(2,1fr);
+                       gap:clamp(1.5rem,3.4vw,2.8rem);margin-top:1.8rem}
+}
