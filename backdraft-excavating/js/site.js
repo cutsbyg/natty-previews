@@ -131,6 +131,8 @@
       var loop = function (ts) {
         if (!auto) return;
         if (t0 === null) t0 = ts;
+        // two reveal passes (1.5 cycles), then rest on the AFTER
+        if (ts - t0 >= 10500) { r.value = hi; set(hi); auto = false; return; }
         var v = lo + (hi - lo) * (0.5 - 0.5 * Math.cos((ts - t0) / 7000 * 2 * Math.PI));
         r.value = v;
         set(v);
