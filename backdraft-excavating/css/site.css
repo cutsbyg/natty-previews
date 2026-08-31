@@ -159,13 +159,11 @@ li{list-style:none}
 /* one larger card leads full-width, then 6 even: two clean rows of three, no orphans */
 .work__grid--three .card:first-child{grid-column:1/-1}
 .work__grid--three .card:first-child .card__ph{aspect-ratio:5/2}
-/* HAAS-PATTERN PROJECT GRID (Grady 8/31): the top row is the TWO best projects, larger,
-   side by side - never one bulky full-width lead. Rows of three beneath. 6-col trick:
-   normal cards span 2 (three across), the first two span 3 (two across, bigger). */
-.work__grid--three:has(.pj){grid-template-columns:repeat(6,1fr)}
-.work__grid--three .pj{grid-column:span 2}
-.work__grid--three .pj:nth-child(-n+2){grid-column:span 3}
-.work__grid--three .pj:nth-child(-n+2) .pj__ph{aspect-ratio:16/10}
+/* PROJECT GRID (Grady 8/31 final): ONE wide shallow lead (css-cropped, never screen-tall),
+   then the rest in a 2x2 grid. Lead + 2n cards rows out even. */
+.work__grid--three:has(.pj){grid-template-columns:repeat(2,1fr)}
+.work__grid--three .pj:first-child{grid-column:1/-1}
+.work__grid--three .pj:first-child .pj__ph{aspect-ratio:21/8}
 .work__all{margin-top:var(--gut)}
 .card__add{display:block;width:calc(100% - 1.8rem);margin:.75rem auto .9rem;padding:.7rem 1rem;
            background:var(--brand);color:#fff;font:inherit;font-weight:800;font-size:1rem;
@@ -354,7 +352,8 @@ input[type=file]{padding:.55rem}
 
   .work__grid--three{grid-template-columns:repeat(2,1fr)}
   .work__grid--three:has(.pj){grid-template-columns:repeat(2,1fr)}
-  .work__grid--three .pj,.work__grid--three .pj:nth-child(-n+2){grid-column:span 1}
+  .work__grid--three .pj{grid-column:span 1}
+  .work__grid--three .pj:first-child{grid-column:1/-1}
   .revs{grid-template-columns:1fr}
   .people{grid-template-columns:1fr}
   .card__s{min-height:2.6em}
@@ -373,8 +372,9 @@ input[type=file]{padding:.55rem}
   .work__grid--three{grid-template-columns:1fr}
   .work__grid--three .card:first-child{grid-column:auto}
   .work__grid--three:has(.pj){grid-template-columns:repeat(2,1fr)}
-  .work__grid--three .pj,.work__grid--three .pj:nth-child(-n+2){grid-column:auto}
-  .work__grid--three .pj:nth-child(-n+2) .pj__ph{aspect-ratio:3/2}
+  .work__grid--three .pj{grid-column:auto}
+  .work__grid--three .pj:first-child{grid-column:1/-1}
+  .work__grid--three .pj:first-child .pj__ph{aspect-ratio:16/9}
   .work__grid--three .card:first-child .card__ph{aspect-ratio:3/2}
   :root{--pad:clamp(1.6rem,6vw,2.4rem)}
   .band{animation:none}
