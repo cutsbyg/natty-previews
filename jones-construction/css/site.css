@@ -329,6 +329,8 @@ input[type=file]{padding:.55rem}
               font-weight:900;line-height:.9;letter-spacing:-.03em;text-transform:uppercase}
 .foot__adm{margin-top:1.4rem;font-size:.82rem;color:rgba(255,255,255,.72)}
 .foot__adm a{text-decoration:underline}
+/* visual-issues sweep 8/31: footer links are 44px tap targets (research: cramped mobile taps) */
+.frun a,.foot__adm a{display:inline-flex;align-items:center;min-height:44px;margin-block:-.55rem}
 
 /* ================= BAND TIER — the panel leaves the photograph (§1.0b-H) ================= */
 @media (max-width:860px){
