@@ -179,8 +179,8 @@ li{list-style:none}
 /* quote band is brand (alternation law) — recolor form text for the dark ground (ported from
    bb-v4 style.css L279, which the generalization dropped — that miss shipped 10 sites wrong) */
 .band--brand .fld label{color:#fff}
-.band--brand .opts legend{color:rgba(255,255,255,.8)}
-.opts .opt span{color:var(--ink)}
+.band--brand 
+.opts 
 .band--brand .send__alt{color:rgba(255,255,255,.85)}
 .band--brand .send__alt a,.band--brand .cta__ring a{color:#fff;text-decoration:underline}
 /* project cards on a dark band: caption text flips white or it vanishes */
@@ -284,8 +284,7 @@ li{list-style:none}
 form{margin-top:1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut)}
 .fld{display:flex;flex-direction:column;gap:.3rem;min-width:0}
 .fld--wide{grid-column:1/-1}
-.fld label,.opts legend{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;
-                        font-weight:700;color:var(--ink-60)}
+.fld label,
 input,select,textarea{font:inherit;font-size:1rem;padding:.7rem .8rem;min-height:48px;
   border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:0;
   -webkit-appearance:none;appearance:none;width:100%}
@@ -295,15 +294,12 @@ select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),
        background-size:6px 6px,6px 6px;background-repeat:no-repeat}
 textarea{min-height:96px}
 input[type=file]{padding:.55rem}
-.opts{grid-column:1/-1;border:2px solid var(--ink);background:#fff;padding:1rem;margin:0;
-      display:grid;grid-template-columns:1fr 1fr;column-gap:1rem}
-.opts legend{padding:0 .4rem}
-.opt{display:flex;align-items:center;gap:.7rem;min-height:44px;padding:.2rem .4rem;
-     cursor:pointer;border-bottom:1px solid var(--rule);min-width:0}
-.opt:hover{background:rgba(51,128,36,.09)}
-.opt input{width:22px;height:22px;min-height:22px;flex:none;accent-color:var(--brand);
-           -webkit-appearance:auto;appearance:auto;border:0;padding:0}
-.opt span{font-size:1.05rem;font-weight:600}
+
+
+
+
+
+
 .send{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
 .send__alt{font-size:1.05rem;color:var(--ink-60)}
 .send__alt a{display:inline-flex;align-items:center;min-height:44px;font-weight:800;
@@ -358,7 +354,7 @@ input[type=file]{padding:.55rem}
   .card__m{min-height:2.6em}
   .cta{grid-template-columns:1fr;grid-template-rows:none}
   .cta__intro,.cta__fig,.cta form{grid-column:1;grid-row:auto;align-self:auto}
-  .opts{grid-template-columns:1fr}
+  
   .stats{grid-template-columns:repeat(2,1fr)}
   .foot__top{grid-template-columns:1fr}
   .foot__cols{grid-template-columns:repeat(2,1fr)}
@@ -489,3 +485,19 @@ input[type=file]{padding:.55rem}
   .revs:has(.rev--svc){grid-template-columns:repeat(2,1fr);
                        gap:clamp(1.5rem,3.4vw,2.8rem);margin-top:1.8rem}
 }
+
+/* ---- job chips (Grady 8/31: extremely simple, fun UI - the old fieldset legend clipped) ---- */
+.opts{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.6rem;grid-column:1/-1}
+.opts legend{float:left;width:100%;padding:0 0 .55rem;font-size:.82rem;font-weight:800;
+             letter-spacing:.14em;text-transform:uppercase}
+.band--brand .opts legend{color:#fff}
+.opt{position:relative;display:inline-flex;align-items:center;min-height:48px;
+     padding:.55rem 1.25rem;border:2px solid var(--ink);border-radius:999px;
+     background:var(--paper);color:var(--ink);font-weight:700;cursor:pointer;
+     transition:transform 140ms ease,background-color 140ms ease,color 140ms ease;
+     user-select:none}
+.opt:hover{transform:translateY(-2px)}
+.opt:has(input:checked){background:var(--ink);color:#fff;border-color:var(--ink)}
+.opt:has(input:checked) span::before{content:"\2713  ";font-weight:900}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt span{font-size:1rem;line-height:1.2}
