@@ -602,9 +602,11 @@ input[type=file]{padding:.55rem}
            letter-spacing:-.01em;color:#fff}
 .freebar strong{font-weight:900;letter-spacing:.02em;color:#f2a900}
 /* CTA under every project card (js-injected, uniform) */
-.pj__cta{display:inline-block;margin-top:.45rem;font-weight:800;font-size:.95rem;
-         color:inherit;text-decoration:underline;text-underline-offset:3px}
-.band--brand .pj__cta{color:#fff}
+.pj__cta{display:inline-block;margin-top:.5rem;font-weight:800;font-size:.85rem;
+         background:#f2a900;color:var(--ink);padding:.42rem .95rem;border-radius:999px;
+         border:2px solid var(--ink);text-decoration:none;
+         transition:transform 140ms ease}
+.pj__cta:hover{transform:translateY(-2px)}
 
 /* the slider lives on the PHOTO only - it was anchored to the whole hero and painted over
    the mobile text panel + left a zoomed black edge (Grady 8/31 screenshots) */
