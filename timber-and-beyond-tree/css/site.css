@@ -135,9 +135,12 @@ li{list-style:none}
 .band{padding-block:var(--pad);background-size:64px 64px;
       animation:drift 44s linear infinite}
 @keyframes drift{to{background-position:64px 64px,64px 64px}}
-.band--brand{background-color:var(--brand);color:#fff;
-  background-image:linear-gradient(rgba(255,255,255,.18) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,255,255,.18) 1px,transparent 1px)}
+/* CONTRAST DOCTRINE (Grady 8/31, from acquisition.com): dark bands are near-black so the
+   BRAND color is scarce - it appears only on buttons, chips, the bubble and the nav.
+   Scarce color = every CTA is the loudest object in view. */
+.band--brand{background-color:#101318;color:#fff;
+  background-image:linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px)}
 .band--paper{background-color:var(--paper);color:var(--ink);
   background-image:linear-gradient(rgba(51,128,36,.18) 1px,transparent 1px),
                    linear-gradient(90deg,rgba(51,128,36,.18) 1px,transparent 1px)}
@@ -505,7 +508,7 @@ input[type=file]{padding:.55rem}
      transition:transform 140ms ease,background-color 140ms ease,color 140ms ease;
      user-select:none}
 .opt:hover{transform:translateY(-2px)}
-.opt:has(input:checked){background:var(--ink);color:#fff;border-color:var(--ink)}
+.opt:has(input:checked){background:var(--brand);color:#fff;border-color:var(--ink)}
 .opt:has(input:checked) span::before{content:"\2713  ";font-weight:900}
 .opt input{position:absolute;opacity:0;pointer-events:none}
 .opt span{font-size:1rem;line-height:1.2}
@@ -575,3 +578,18 @@ input[type=file]{padding:.55rem}
 .quote-bubble.on{transform:none}
 .quote-bubble:hover{background:var(--brand-deep)}
 @media(max-width:600px){.quote-bubble{display:none}}
+
+/* tiny founder avatars (Grady 8/31: the face builds trust - small, everywhere) */
+.avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:top;
+        border:2px solid var(--ink);background:#fff;flex:none;display:inline-block;
+        vertical-align:middle}
+.quote-bubble{display:flex;align-items:center;gap:.6rem}
+.quote-bubble .avatar{border-color:#fff}
+.avatar--lede{width:40px;height:40px;margin-right:.35rem}
+.faq__ask{display:flex;justify-content:center;margin-top:1.6rem}
+.faq__ask .avatar{width:52px;height:52px}
+
+/* H1 keyword highlight (contrast doctrine): one phrase per headline gets the marker */
+.glass h1 em{font-style:normal;background:linear-gradient(transparent 62%, var(--brand) 62%, var(--brand) 94%, transparent 94%)}
+/* 3. supporting text dims so headings and CTAs own the page */
+.lede,.pj__bar i,.faq p,.cta__lede,.send__alt,.hero__sub{opacity:.78}
