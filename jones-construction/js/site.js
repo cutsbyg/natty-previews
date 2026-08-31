@@ -111,14 +111,22 @@
     });
   }
 
-  /* ---- a CTA under every project card ---- */
-  [].forEach.call(document.querySelectorAll('.pj .pj__bar'), function (bar) {
+  /* ---- a CTA under the LEAD project only (Grady 8/31) ---- */
+  (function () {
+    var bar = document.querySelector('.pj:first-child .pj__bar');
+    if (!bar) return;
     var a = document.createElement('a');
     a.className = 'pj__cta';
     a.href = '#quote';
     a.textContent = 'Get a free estimate';
     bar.appendChild(a);
-  });
+  })();
+
+  /* ---- the word "free" in the form heading goes gold ---- */
+  (function () {
+    var h = document.querySelector('#quote h2');
+    if (h) h.innerHTML = h.textContent.replace(/free/i, function (m) { return '<span class="gold">' + m + '</span>'; });
+  })();
 
   /* ---- before/after slider ---- */
   [].forEach.call(document.querySelectorAll('.ba'), function (ba) {
