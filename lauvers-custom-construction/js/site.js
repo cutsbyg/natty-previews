@@ -117,10 +117,7 @@
         bar = ba.querySelector('.ba__bar'), knob = ba.querySelector('.ba__knob');
     if (!r || !after) return;
     function set(v) {
-      // .ba--hero: the overlay holds the BEFORE image and covers LEFT of the knob
-      after.style.clipPath = ba.classList.contains('ba--hero')
-        ? 'inset(0 ' + (100 - v) + '% 0 0)'
-        : 'inset(0 0 0 ' + v + '%)';
+      after.style.clipPath = 'inset(0 0 0 ' + v + '%)';
       if (bar) bar.style.left = v + '%';
       if (knob) knob.style.left = v + '%';
     }

@@ -554,3 +554,11 @@ input[type=file]{padding:.55rem}
 .send{text-align:center}
 .send .btn{margin-inline:auto}
 .faq summary{text-align:left}
+
+/* hero slider: track occupies only the reveal zone right of the panel (54%..100%) */
+.ba--hero .ba__range{left:54%;width:46%;right:0}
+
+/* CTA = one centered column (Grady 8/31: section still wasn't centered) */
+.cta{display:grid;grid-template-columns:minmax(0,46rem);grid-template-rows:none;
+     justify-content:center;gap:1.2rem}
+.cta__intro,.cta form,.cta__fig{grid-column:1;grid-row:auto;align-self:auto}
