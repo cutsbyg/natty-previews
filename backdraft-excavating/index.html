@@ -12,7 +12,7 @@
 <link rel="preload" as="image" href="img/hero-w.jpg?v=1" media="(min-width:861px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/hero-p.jpg?v=1" media="(max-width:600px)" fetchpriority="high">
 <!-- bb-law: system stack only (Segoe UI). No webfonts — the reference build dropped them. -->
-<link rel="stylesheet" href="css/site.css?v=c2e8492e">
+<link rel="stylesheet" href="css/site.css?v=c8cfd5cb">
 </head>
 <body data-site="backdraft-excavating">
 <a class="skip" href="#work">Skip to Backdraft &amp; the crew</a>
@@ -25,7 +25,7 @@
     </a>
     <nav class="nav__links" aria-label="Sections">
       <a href="#work">Backdraft &amp; the crew</a>
-      <a href="#reviews">What we do</a>
+      <a href="#reviews"></a>
       <a href="#faq">Questions</a>
     </nav>
     <a class="nav__tel" href="tel:+17178530850" aria-label="7 1 7. 8 5 3. 0 8 5 0">(717)&nbsp;853-0850</a>
@@ -37,11 +37,14 @@
 
 <section class="hero">
   <div class="hero__media">
+    <div class="hero__shot">
     <picture>
       <source media="(min-width:861px)" srcset="img/hero-w.jpg?v=1">
       <source media="(min-width:601px)" srcset="img/hero-m.jpg?v=1">
       <img class="hero__img" src="img/hero-p.jpg?v=1" width="934" height="640" fetchpriority="high" alt="Two yellow backhoe loaders parked side by side on a gravel yard at the edge of the treeline under an overcast sky">
     </picture>
+
+    </div>
     <a class="hero__cue" href="#work" aria-label="Backdraft &amp; the crew"><span aria-hidden="true">&#8595;</span></a>
     <div class="glass hero__panel">
       <div class="hero__words">
@@ -60,35 +63,40 @@
   </div>
 </section>
 
-<section class="band band--brand" id="work">
+<section class="freebar">
+  <p><strong>FREE</strong> estimates</p>
+</section>
+
+<section class="band band--paper" id="work">
   <div class="wrap">
-    <h2>The Backdraft crew</h2>
-    <p class="lede">Straight off the job. <span class="sec">Tap any photo for a closer look.</span></p>
+    <h2>Our projects</h2>
+    <p class="lede">A selection of recent work. <span class="sec">Tap any photo for a closer look.</span></p>
+
     <div class="work">
     <div class="work__grid work__grid--three">
 
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-backhoes.jpg?v=1" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-backhoes.jpg?v=1" width="1500" height="1000"
              alt="Two backhoes parked side by side on a gravel yard, our name lettered along the boom of the rear machine"></span>
         <span class="pj__bar"><b>Our backhoes</b><i>A CAT 416 and a John Deere 510D</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-drain-trench.jpg?v=1" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-drain-trench.jpg?v=1" width="1500" height="1000"
              alt="A man in a hi-viz green shirt down in a fresh drain trench beside a white house, a loader clearing spoil behind him"></span>
         <span class="pj__bar"><b>Drain line going in</b><i>Trench cut &middot; pipe set &middot; spoil loaded out</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-concrete-pad.jpg?v=1" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-concrete-pad.jpg?v=1" width="1500" height="1000"
              alt="A man kneeling at the edge of a freshly poured concrete pad against a house wall, finishing it with a trowel"></span>
         <span class="pj__bar"><b>Finishing a concrete pad</b><i>Troweled edge to edge by hand</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-skid-steer.jpg?v=1" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-skid-steer.jpg?v=1" width="1500" height="1000"
              alt="A CAT high-flow skid steer with our fire-cross mark and unit number 228 on the door"></span>
         <span class="pj__bar"><b>Our skid steer, unit 228</b><i>High-flow loader with our mark on the door</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-townhouse-drive.jpg?v=1" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-townhouse-drive.jpg?v=1" width="1500" height="1000"
              alt="One of our crew in a Backdraft shirt walking up a finished driveway at a row of brick townhouses, cones set out at the street"></span>
         <span class="pj__bar"><b>The drive at the townhouses</b><i>Cones out front while we work</i></span>
       </div>
@@ -100,31 +108,8 @@
 </section>
 
 <!-- band order is LAW (Grady: "every other"): work=brand, reviews/faq=paper, quote=brand — bb-v4's exact rhythm -->
-<section class="band band--paper" id="reviews">
+<section class="band band--brand" id="reviews">
   <div class="wrap">
-    <h2>What we do</h2>
-    <div class="revs">
-
-      <article class="rev">
-        <blockquote>Basements, grading, site prep, septic and sand mound systems and more.</blockquote>
-        <cite>Excavating</cite>
-      </article>
-      <article class="rev">
-        <blockquote>Site prep, trenching, fences, retaining walls, driveways and more.</blockquote>
-        <cite>Construction</cite>
-      </article>
-      <article class="rev">
-        <blockquote>Walks, retaining walls, floors, slabs and more.</blockquote>
-        <cite>Concrete</cite>
-      </article>
-      <article class="rev">
-        <blockquote>Mowing, trimming, hardscaping, mulch and more.</blockquote>
-        <cite>Landscaping and lawn maintenance</cite>
-      </article>
-      
-    </div>
-
-    <hr class="hair">
 
     <h2 id="faq">Commonly asked questions</h2>
     <div class="faq">
@@ -154,39 +139,38 @@
   </div>
 </section>
 
-<section class="band band--brand" id="quote">
+<section class="band band--paper" id="quote">
   <div class="wrap">
     <h2>Send us the job</h2>
     <div class="cta">
       <div class="cta__intro">
-        <p class="cta__lede">Tell the crew what the ground looks like and what needs to move &mdash; photos of the site are the most useful thing you can send.</p>
+        <p class="cta__lede">Tell Backdraft about the job &mdash; photos help.</p>
         <p class="cta__lede sec"></p>
-        <p class="cta__ring"><a href="tel:+17178530850">Or ring Backdraft</a></p>
+        <p class="cta__ring"><a href="tel:+17178530850">Or call Backdraft</a></p>
       </div>
 
       <form id="submit" action="https://formsubmit.co/gradymreisinger@gmail.com" method="post" enctype="multipart/form-data">
-          <div class="fld"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="fld"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
           <div class="fld"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email"></div>
           <div class="fld"><label for="f-tel">Phone</label><input id="f-tel" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="fld"><label for="f-adr">Job address</label><input id="f-adr" name="address" type="text" autocomplete="street-address"></div>
+          <div class="fld"><label for="f-adr">Address</label><input id="f-adr" name="address" type="text" autocomplete="street-address"></div>
 
-          <div class="fld fld--wide"><label for="f-pic">Photos help more than words</label><input id="f-pic" name="photos" type="file" accept="image/*" multiple></div>
+          <div class="fld fld--wide"><label for="f-pic">Add photos</label><input id="f-pic" name="photos" type="file" accept="image/*" multiple></div>
 
           <input type="hidden" id="f-products" name="products" value="">
           <p class="picked" id="picked" hidden></p>
           <fieldset class="opts">
-            <legend>What do you need done?</legend>
+            <legend>What do you need?</legend>
 
           <label class="opt"><input type="checkbox" name="job" value="Excavating or site prep"><span>Excavating or site prep</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Drainage and grading"><span>Drainage and grading</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Driveway, stone or paving"><span>Driveway, stone or paving</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Concrete"><span>Concrete</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Septic or sand mound"><span>Septic or sand mound</span></label>
-          <label class="opt"><input type="checkbox" name="job" value="Not sure yet"><span>Not sure yet</span></label>
         
           </fieldset>
 
-          <div class="fld fld--wide"><label for="f-note">Anything else</label><textarea id="f-note" name="notes" rows="3"></textarea></div>
+          <div class="fld fld--wide"><label for="f-note">Notes</label><textarea id="f-note" name="notes" rows="3"></textarea></div>
 
           <div class="fld fld--wide send">
             <button class="btn btn--big" type="submit">Send it to Backdraft</button>
@@ -205,7 +189,7 @@
   <div class="wrap">
     <div class="foot__top">
       <div class="foot__brand">
-        <img class="foot__mark" src="img/logo.png" width="512" height="512" alt="">
+        <img loading="lazy" decoding="async" class="foot__mark" src="img/logo.png" width="512" height="512" alt="">
         <span class="foot__legal">Backdraft Excavating LLC</span>
       </div>
       <div class="foot__cols">
@@ -248,6 +232,6 @@
 {"@type":"Question","name":"Are you registered in Pennsylvania?","acceptedAnswer":{"@type":"Answer","text":"Yes. We hold Pennsylvania Home Improvement Contractor registration PA112106, which is the state registration a contractor needs to do home improvement work here."}},
 {"@type":"Question","name":"What areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We are based in Duncannon and serve communities throughout Perry County, Dauphin County and Cumberland County, and the surrounding region. Our team knows the terrain and soil conditions across Central Pennsylvania."}}]}
 </script>
-<script defer src="js/site.js?v=4"></script>
-<div class="stickycta" id="stickycta"><a class="btn" href="#quote">Get your free estimate</a><a class="stickycta__call" href="tel:+17178530850">Call Backdraft</a></div><script>(function(){var b=document.getElementById("stickycta"),h=document.querySelector(".hero");if(!b||!h)return;addEventListener("scroll",function(){b.classList.toggle("on",scrollY>h.offsetHeight*0.8)},{passive:true})})();</script></body>
+<script defer src="js/site.js?v=jf535293"></script>
+<a class="quote-bubble" id="quotebubble" href="#quote"><img class="avatar" src="img/avatar.jpg" width="192" height="192" alt="" loading="lazy">Get a free quote</a><div class="stickycta" id="stickycta"><a class="btn" href="#quote">Get your free estimate</a><a class="stickycta__call" href="tel:+17178530850">Call Backdraft</a></div><script>(function(){var b=document.getElementById("stickycta"),q=document.getElementById("quotebubble"),h=document.querySelector(".hero");if(!h)return;addEventListener("scroll",function(){var on=scrollY>h.offsetHeight*0.8;if(b)b.classList.toggle("on",on);},{passive:true})})();</script></body>
 </html>

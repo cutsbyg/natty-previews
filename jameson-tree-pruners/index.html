@@ -12,7 +12,7 @@
 <link rel="preload" as="image" href="img/hero-w.jpg?v=1" media="(min-width:861px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/hero-p.jpg?v=1" media="(max-width:600px)" fetchpriority="high">
 <!-- bb-law: system stack only (Segoe UI). No webfonts — the reference build dropped them. -->
-<link rel="stylesheet" href="css/site.css?v=c91cc39f">
+<link rel="stylesheet" href="css/site.css?v=c317ed08">
 </head>
 <body data-site="jameson-tree-pruners">
 <a class="skip" href="#work">Skip to JR &amp; the crew</a>
@@ -25,7 +25,7 @@
     </a>
     <nav class="nav__links" aria-label="Sections">
       <a href="#work">JR &amp; the crew</a>
-      <a href="#reviews">Reviews</a>
+      <a href="#reviews"></a>
       <a href="#faq">Questions</a>
     </nav>
     <a class="nav__tel" href="tel:+17176360926" aria-label="7 1 7. 6 3 6. 0 9 2 6">(717)&nbsp;636-0926</a>
@@ -37,11 +37,14 @@
 
 <section class="hero">
   <div class="hero__media">
+    <div class="hero__shot">
     <picture>
       <source media="(min-width:861px)" srcset="img/hero-w.jpg?v=1">
       <source media="(min-width:601px)" srcset="img/hero-m.jpg?v=1">
       <img class="hero__img" src="img/hero-p.jpg?v=1" width="934" height="640" fetchpriority="high" alt="An arborist in full climbing gear roped high into a bare hardwood crown against a deep blue sky">
     </picture>
+
+    </div>
     <a class="hero__cue" href="#work" aria-label="JR &amp; the crew"><span aria-hidden="true">&#8595;</span></a>
     <div class="glass hero__panel">
       <div class="hero__words">
@@ -59,36 +62,41 @@
   </div>
 </section>
 
-<section class="band band--brand" id="work">
+<section class="freebar">
+  <p><strong>FREE</strong> estimates</p>
+</section>
+
+<section class="band band--paper" id="work">
   <div class="wrap">
-    <h2>Jameson and the crew</h2>
-    <p class="lede">Straight off the job. <span class="sec">Tap any photo for a closer look.</span></p>
+    <h2>Our projects</h2>
+    <p class="lede">A selection of recent work. <span class="sec">Tap any photo for a closer look.</span></p>
+
     <div class="work">
     <div class="work__grid work__grid--three">
 
       <div class="pj">
-        <span class="pj__ph"><img src="img/ba-before.jpg?v=4" width="1200" height="900"
-             alt="A storm-felled tree lying across a blue pickup truck in a driveway"><img class="pj-after" src="img/ba-after.jpg?v=4" width="1200" height="900"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/ba-before.jpg?v=4" width="1200" height="900"
+             alt="A storm-felled tree lying across a blue pickup truck in a driveway"><img loading="lazy" decoding="async" class="pj-after" src="img/ba-after.jpg?v=4" width="1200" height="900"
              alt="Illustration: the same driveway cleared, the tree gone and the truck free"></span>
         <span class="pj__bar"><b>The storm job &mdash; before &amp; after</b><i>Hover to see it cleared</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-face-cut.jpg?v=4" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-face-cut.jpg?v=4" width="1500" height="1000"
              alt="A sawyer in a hi-viz helmet making the face cut on a big leaning trunk, sawdust flying"></span>
         <span class="pj__bar"><b>The face cut</b><i>Saw in the wood &middot; dropped on target</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-climber-rigging.jpg?v=4" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-climber-rigging.jpg?v=4" width="1500" height="1000"
              alt="A climber roped high into a bare hardwood over a fenced backyard, rigging block overhead"></span>
         <span class="pj__bar"><b>Roped in, forty feet up</b><i>Rigging line set &middot; one limb at a time</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-limb-walk.jpg?v=4" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-limb-walk.jpg?v=4" width="1500" height="1000"
              alt="A climber out on a high limb with rigging lines and a throw bag"></span>
         <span class="pj__bar"><b>Out on the limb</b><i>Ropes doing the work</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-winter-climb.jpg?v=4" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-winter-climb.jpg?v=4" width="1500" height="1000"
              alt="A climber roped into the crown of a bare oak, rigging lines running to the ground"></span>
         <span class="pj__bar"><b>Up in the bare oaks</b><i>Roped, rigged, climbing</i></span>
       </div>
@@ -100,34 +108,8 @@
 </section>
 
 <!-- band order is LAW (Grady: "every other"): work=brand, reviews/faq=paper, quote=brand — bb-v4's exact rhythm -->
-<section class="band band--paper" id="reviews">
+<section class="band band--brand" id="reviews">
   <div class="wrap">
-    <h2>Reviews</h2>
-    <div class="revs">
-
-      <article class="rev">
-        <p class="stars" aria-label="Recommends on Facebook">✔ Recommends</p>
-        <blockquote>Called on a Sunday after storms. Prompt call back, came Sunday to give estimate.
-          Monday did job. Excellent job!</blockquote>
-        <cite>Chloe Fletcher</cite>
-      </article>
-      <article class="rev">
-        <p class="stars" aria-label="Recommends on Facebook">✔ Recommends</p>
-        <blockquote>JR was great! Most reasonable and efficient tree company I have ever
-          worked with. I would recommend him to anyone.</blockquote>
-        <cite>Chris Eaton</cite>
-      </article>
-      <article class="rev">
-        <p class="stars" aria-label="Recommends on Facebook">✔ Recommends</p>
-        <blockquote>Called and met JR. Gave a very reasonable price to drop a tree on a
-          Saturday morning. On Wednesday (4 days later) tree was down. Excellent job and very
-          pleased. Strongly recommend.</blockquote>
-        <cite>Brent Reifsnyder</cite>
-      </article>
-      
-    </div>
-
-    <hr class="hair">
 
     <h2 id="faq">Commonly asked questions</h2>
     <div class="faq">
@@ -158,37 +140,36 @@
   </div>
 </section>
 
-<section class="band band--brand" id="quote">
+<section class="band band--paper" id="quote">
   <div class="wrap">
     <h2>Send JR the job</h2>
     <div class="cta">
       <div class="cta__intro">
-        <p class="cta__lede">Tell JR where the tree is and what worries you about it &mdash; a photo of the tree is the most useful thing you can send.</p>
+        <p class="cta__lede">Tell JR about the job &mdash; photos help.</p>
         <p class="cta__lede sec"></p>
-        <p class="cta__ring"><a href="tel:+17176360926">Or ring JR</a></p>
+        <p class="cta__ring"><a href="tel:+17176360926">Or call JR</a></p>
       </div>
 
       <form id="submit" action="https://formsubmit.co/gradymreisinger@gmail.com" method="post" enctype="multipart/form-data">
-          <div class="fld"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="fld"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
           <div class="fld"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email"></div>
           <div class="fld"><label for="f-tel">Phone</label><input id="f-tel" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="fld"><label for="f-adr">Job address</label><input id="f-adr" name="address" type="text" autocomplete="street-address"></div>
+          <div class="fld"><label for="f-adr">Address</label><input id="f-adr" name="address" type="text" autocomplete="street-address"></div>
 
-          <div class="fld fld--wide"><label for="f-pic">Photos help more than words</label><input id="f-pic" name="photos" type="file" accept="image/*" multiple></div>
+          <div class="fld fld--wide"><label for="f-pic">Add photos</label><input id="f-pic" name="photos" type="file" accept="image/*" multiple></div>
 
           <input type="hidden" id="f-products" name="products" value="">
           <p class="picked" id="picked" hidden></p>
           <fieldset class="opts">
-            <legend>What do you need done?</legend>
+            <legend>What do you need?</legend>
 
           <label class="opt"><input type="checkbox" name="job" value="Tree pruning"><span>Tree pruning</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Tree removal"><span>Tree removal</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Storm damage"><span>Storm damage</span></label>
-          <label class="opt"><input type="checkbox" name="job" value="Not sure yet"><span>Not sure yet</span></label>
         
           </fieldset>
 
-          <div class="fld fld--wide"><label for="f-note">Anything else</label><textarea id="f-note" name="notes" rows="3"></textarea></div>
+          <div class="fld fld--wide"><label for="f-note">Notes</label><textarea id="f-note" name="notes" rows="3"></textarea></div>
 
           <div class="fld fld--wide send">
             <button class="btn btn--big" type="submit">Send it to JR</button>
@@ -207,7 +188,7 @@
   <div class="wrap">
     <div class="foot__top">
       <div class="foot__brand">
-        <img class="foot__mark" src="img/logo.png" width="512" height="512" alt="">
+        <img loading="lazy" decoding="async" class="foot__mark" src="img/logo.png" width="512" height="512" alt="">
         <span class="foot__legal">Jameson Tree Pruning and Removal</span>
       </div>
       <div class="foot__cols">
@@ -243,6 +224,6 @@
 {"@type":"Question","name":"Are you insured?","acceptedAnswer":{"@type":"Answer","text":"Fully insured."}},
 {"@type":"Question","name":"What areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We are based out of Newport and work across Perry, Cumberland and Dauphin counties, travelling to Harrisburg, Mechanicsburg and Carlisle."}}]}
 </script>
-<script defer src="js/site.js?v=4"></script>
-<div class="stickycta" id="stickycta"><a class="btn" href="#quote">Get your free estimate</a><a class="stickycta__call" href="tel:+17176360926">Call JR</a></div><script>(function(){var b=document.getElementById("stickycta"),h=document.querySelector(".hero");if(!b||!h)return;addEventListener("scroll",function(){b.classList.toggle("on",scrollY>h.offsetHeight*0.8)},{passive:true})})();</script></body>
+<script defer src="js/site.js?v=jf535293"></script>
+<a class="quote-bubble" id="quotebubble" href="#quote"><img class="avatar" src="img/avatar.jpg" width="192" height="192" alt="" loading="lazy">Get a free quote</a><div class="stickycta" id="stickycta"><a class="btn" href="#quote">Get your free estimate</a><a class="stickycta__call" href="tel:+17176360926">Call JR</a></div><script>(function(){var b=document.getElementById("stickycta"),q=document.getElementById("quotebubble"),h=document.querySelector(".hero");if(!h)return;addEventListener("scroll",function(){var on=scrollY>h.offsetHeight*0.8;if(b)b.classList.toggle("on",on);},{passive:true})})();</script></body>
 </html>

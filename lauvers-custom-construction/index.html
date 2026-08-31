@@ -12,7 +12,7 @@
 <link rel="preload" as="image" href="img/hero-w.jpg?v=1" media="(min-width:861px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/hero-p.jpg?v=1" media="(max-width:600px)" fetchpriority="high">
 <!-- bb-law: system stack only (Segoe UI). No webfonts — the reference build dropped them. -->
-<link rel="stylesheet" href="css/site.css?v=cec2ca5c">
+<link rel="stylesheet" href="css/site.css?v=cd2008b1">
 </head>
 <body data-site="lauvers-custom-construction">
 <a class="skip" href="#work">Skip to Projects</a>
@@ -25,7 +25,7 @@
     </a>
     <nav class="nav__links" aria-label="Sections">
       <a href="#work">Projects</a>
-      <a href="#reviews">What we do</a>
+      <a href="#reviews"></a>
       <a href="#faq">Questions</a>
     </nav>
     <a class="nav__tel" href="tel:+17172756806" aria-label="7 1 7. 2 7 5. 6 8 0 6">(717)&nbsp;275-6806</a>
@@ -37,11 +37,14 @@
 
 <section class="hero">
   <div class="hero__media">
+    <div class="hero__shot">
     <picture>
       <source media="(min-width:861px)" srcset="img/hero-w.jpg?v=1">
       <source media="(min-width:601px)" srcset="img/hero-m.jpg?v=1">
       <img class="hero__img" src="img/hero-p.jpg?v=1" width="934" height="640" fetchpriority="high" alt="A heavy timber-frame porch over the front door of a ranch house, standing-seam metal roof and brown composite deck, garden beds beside it and a wide green lawn to the left under a blue summer sky">
     </picture>
+
+    </div>
     <a class="hero__cue" href="#work" aria-label="Projects"><span aria-hidden="true">&#8595;</span></a>
     <div class="glass hero__panel">
       <div class="hero__words">
@@ -60,58 +63,63 @@
   </div>
 </section>
 
-<section class="band band--brand" id="work">
+<section class="freebar">
+  <p><strong>FREE</strong> estimates</p>
+</section>
+
+<section class="band band--paper" id="work">
   <div class="wrap">
-    <h2>Projects we've done</h2>
-    <p class="lede">Straight off the job. <span class="sec">Tap any photo for a closer look.</span></p>
+    <h2>Our projects</h2>
+    <p class="lede">A selection of recent work. <span class="sec">Tap any photo for a closer look.</span></p>
+
     <div class="work">
     <div class="work__grid work__grid--three">
 
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-porch.jpg?v=1" width="1500" height="1000"
-             alt="A finished timber-frame porch with a stone-wrapped post and brown composite decking at the front door of a ranch house"><img class="pj-after" src="img/job-porch-ceiling.jpg?v=1" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-porch.jpg?v=1" width="1500" height="1000"
+             alt="A finished timber-frame porch with a stone-wrapped post and brown composite decking at the front door of a ranch house"><img loading="lazy" decoding="async" class="pj-after" src="img/job-porch-ceiling.jpg?v=1" width="1500" height="1000"
              alt="The underside of the same porch roof: stained timber trusses and a tongue-and-groove pine ceiling over the front door"></span>
         <span class="pj__bar"><b>The timber-frame porch</b><i>Hover: the ceiling they got</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-newbuild.jpg?v=1" width="1500" height="1000"
-             alt="A new two-story custom home wrapped and roofed, the Lauver's Custom Construction pickup parked out front"><img class="pj-after" src="img/job-roof-crew.jpg?v=1" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-newbuild.jpg?v=1" width="1500" height="1000"
+             alt="A new two-story custom home wrapped and roofed, the Lauver's Custom Construction pickup parked out front"><img loading="lazy" decoding="async" class="pj-after" src="img/job-roof-crew.jpg?v=1" width="1500" height="1000"
              alt="The crew sheathing the same roof deck, one man walking the underlayment down under a blue sky"></span>
         <span class="pj__bar"><b>A home from the ground up</b><i>Hover: the crew on the roof</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-addition.jpg?v=1" width="1500" height="1000"
-             alt="A blue two-story home finished after its second-story addition, stone-faced garage and fresh siding under a sunny sky"><img class="pj-after" src="img/job-addition-build.jpg?v=1" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-addition.jpg?v=1" width="1500" height="1000"
+             alt="A blue two-story home finished after its second-story addition, stone-faced garage and fresh siding under a sunny sky"><img loading="lazy" decoding="async" class="pj-after" src="img/job-addition-build.jpg?v=1" width="1500" height="1000"
              alt="The same house mid-build: the new second story wrapped in Typar over the garage wing, ladders on the lawn"></span>
         <span class="pj__bar"><b>The second-story addition</b><i>Hover: mid-build</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-deck-build.jpg?v=1" width="1500" height="1000"
-             alt="A crew member rolling deck boards down along the back of a dark blue house mid-build"><img class="pj-after" src="img/job-deck.jpg?v=1" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-deck-build.jpg?v=1" width="1500" height="1000"
+             alt="A crew member rolling deck boards down along the back of a dark blue house mid-build"><img loading="lazy" decoding="async" class="pj-after" src="img/job-deck.jpg?v=1" width="1500" height="1000"
              alt="The same deck finished: light-grey composite wrapping the house, furniture already out under a summer sky"></span>
         <span class="pj__bar"><b>The back deck</b><i>Hover: how it finished</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-garage.jpg?v=1" width="1500" height="1000"
-             alt="A timber-framed three-bay garage with wood-look carriage doors, stone post bases and a standing-seam metal roof"><img class="pj-after" src="img/job-garage-side.jpg?v=1" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-garage.jpg?v=1" width="1500" height="1000"
+             alt="A timber-framed three-bay garage with wood-look carriage doors, stone post bases and a standing-seam metal roof"><img loading="lazy" decoding="async" class="pj-after" src="img/job-garage-side.jpg?v=1" width="1500" height="1000"
              alt="The side bay and attached carport of the same timber garage from the driveway"></span>
         <span class="pj__bar"><b>Three-bay timber garage</b><i>Hover: the carport side</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-glasswall.jpg?v=1" width="1500" height="1000"
-             alt="A two-story wall of windows going into a custom build, new decking laid below and the wrap still on the walls"><img class="pj-after" src="img/job-glasswall-2.jpg?v=1" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-glasswall.jpg?v=1" width="1500" height="1000"
+             alt="A two-story wall of windows going into a custom build, new decking laid below and the wrap still on the walls"><img loading="lazy" decoding="async" class="pj-after" src="img/job-glasswall-2.jpg?v=1" width="1500" height="1000"
              alt="The same window wall from the far corner of the new deck"></span>
         <span class="pj__bar"><b>The window wall</b><i>Hover: from the corner</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-kitchen.jpg?v=1" width="1500" height="1000"
-             alt="A remodeled kitchen with a big quartz-topped island, oak cabinets and new plank flooring"><img class="pj-after" src="img/job-greatroom.jpg?v=1" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-kitchen.jpg?v=1" width="1500" height="1000"
+             alt="A remodeled kitchen with a big quartz-topped island, oak cabinets and new plank flooring"><img loading="lazy" decoding="async" class="pj-after" src="img/job-greatroom.jpg?v=1" width="1500" height="1000"
              alt="The open great room the same kitchen serves, bar seating along the island"></span>
         <span class="pj__bar"><b>Kitchen &amp; great room</b><i>Hover: the room it opens into</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-pavilion-crew.jpg?v=1" width="1500" height="1000"
-             alt="Two crew members up on a timber pavilion frame going up over a fresh pool patio, ladders and tools below"><img class="pj-after" src="img/job-pool-patio.jpg?v=1" width="1500" height="1000"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-pavilion-crew.jpg?v=1" width="1500" height="1000"
+             alt="Two crew members up on a timber pavilion frame going up over a fresh pool patio, ladders and tools below"><img loading="lazy" decoding="async" class="pj-after" src="img/job-pool-patio.jpg?v=1" width="1500" height="1000"
              alt="The finished pool patio at the same property, poured, cured and landscaped"></span>
         <span class="pj__bar"><b>The pool pavilion</b><i>Hover: the patio it stands on</i></span>
       </div>
@@ -123,31 +131,8 @@
 </section>
 
 <!-- band order is LAW (Grady: "every other"): work=brand, reviews/faq=paper, quote=brand — bb-v4's exact rhythm -->
-<section class="band band--paper" id="reviews">
+<section class="band band--brand" id="reviews">
   <div class="wrap">
-    <h2>What we do</h2>
-    <div class="revs">
-
-      <article class="rev">
-        <blockquote>High-end new builds from the ground up &mdash; footers, framing, roof, siding, the whole house.</blockquote>
-        <cite>New builds</cite>
-      </article>
-      <article class="rev">
-        <blockquote>Structural additions, timber-frame porches, decks and pole barns that match the home they join.</blockquote>
-        <cite>Additions, decks &amp; porches</cite>
-      </article>
-      <article class="rev">
-        <blockquote>Kitchens and baths remodeled with premium finishes and upgrades that actually get used.</blockquote>
-        <cite>Kitchen &amp; bath remodeling</cite>
-      </article>
-      <article class="rev">
-        <blockquote>Roofing, siding and exterior work &mdash; durable, quality-tested and installed right.</blockquote>
-        <cite>Roofing &amp; siding</cite>
-      </article>
-      
-    </div>
-
-    <hr class="hair">
 
     <h2 id="faq">Commonly asked questions</h2>
     <div class="faq">
@@ -173,28 +158,28 @@
   </div>
 </section>
 
-<section class="band band--brand" id="quote">
+<section class="band band--paper" id="quote">
   <div class="wrap">
     <h2>Send Ira the job</h2>
     <div class="cta">
       <div class="cta__intro">
-        <p class="cta__lede">Tell Ira what you want built &mdash; photos and rough measurements are the most useful thing you can send.</p>
+        <p class="cta__lede">Tell Ira about the job &mdash; photos help.</p>
         <p class="cta__lede sec"></p>
-        <p class="cta__ring"><a href="tel:+17172756806">Or ring Ira</a></p>
+        <p class="cta__ring"><a href="tel:+17172756806">Or call Ira</a></p>
       </div>
 
       <form id="submit" action="https://formsubmit.co/gradymreisinger@gmail.com" method="post" enctype="multipart/form-data">
-          <div class="fld"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="fld"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
           <div class="fld"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email"></div>
           <div class="fld"><label for="f-tel">Phone</label><input id="f-tel" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="fld"><label for="f-adr">Job address</label><input id="f-adr" name="address" type="text" autocomplete="street-address"></div>
+          <div class="fld"><label for="f-adr">Address</label><input id="f-adr" name="address" type="text" autocomplete="street-address"></div>
 
-          <div class="fld fld--wide"><label for="f-pic">Photos help more than words</label><input id="f-pic" name="photos" type="file" accept="image/*" multiple></div>
+          <div class="fld fld--wide"><label for="f-pic">Add photos</label><input id="f-pic" name="photos" type="file" accept="image/*" multiple></div>
 
           <input type="hidden" id="f-products" name="products" value="">
           <p class="picked" id="picked" hidden></p>
           <fieldset class="opts">
-            <legend>What do you need done?</legend>
+            <legend>What do you need?</legend>
 
           <label class="opt"><input type="checkbox" name="job" value="New build"><span>New build</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Addition"><span>Addition</span></label>
@@ -202,11 +187,10 @@
           <label class="opt"><input type="checkbox" name="job" value="Roofing or siding"><span>Roofing or siding</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Deck or porch"><span>Deck or porch</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Pole barn or garage"><span>Pole barn or garage</span></label>
-          <label class="opt"><input type="checkbox" name="job" value="Not sure yet"><span>Not sure yet</span></label>
         
           </fieldset>
 
-          <div class="fld fld--wide"><label for="f-note">Anything else</label><textarea id="f-note" name="notes" rows="3"></textarea></div>
+          <div class="fld fld--wide"><label for="f-note">Notes</label><textarea id="f-note" name="notes" rows="3"></textarea></div>
 
           <div class="fld fld--wide send">
             <button class="btn btn--big" type="submit">Send it to Ira</button>
@@ -225,7 +209,7 @@
   <div class="wrap">
     <div class="foot__top">
       <div class="foot__brand">
-        <img class="foot__mark" src="img/logo.png" width="512" height="512" alt="">
+        <img loading="lazy" decoding="async" class="foot__mark" src="img/logo.png" width="512" height="512" alt="">
         <span class="foot__legal">Lauver's Custom Construction</span>
       </div>
       <div class="foot__cols">
@@ -274,6 +258,6 @@
 {"@type":"Question","name":"Are you licensed and insured?","acceptedAnswer":{"@type":"Answer","text":"Yes - licensed and insured, with full protection for your home and your project. Materials and hardware carry their full manufacturer warranties."}},
 {"@type":"Question","name":"Who will I be dealing with?","acceptedAnswer":{"@type":"Answer","text":"Ira Lauver started the company on his own in 2010 and still runs it. It is family owned - you deal with the man whose name is on the truck."}}]}
 </script>
-<script defer src="js/site.js?v=4"></script>
-<div class="stickycta" id="stickycta"><a class="btn" href="#quote">Get your free estimate</a><a class="stickycta__call" href="tel:+17172756806">Call Ira</a></div><script>(function(){var b=document.getElementById("stickycta"),h=document.querySelector(".hero");if(!b||!h)return;addEventListener("scroll",function(){b.classList.toggle("on",scrollY>h.offsetHeight*0.8)},{passive:true})})();</script></body>
+<script defer src="js/site.js?v=jf535293"></script>
+<a class="quote-bubble" id="quotebubble" href="#quote"><img class="avatar" src="img/avatar.jpg" width="192" height="192" alt="" loading="lazy">Get a free quote</a><div class="stickycta" id="stickycta"><a class="btn" href="#quote">Get your free estimate</a><a class="stickycta__call" href="tel:+17172756806">Call Ira</a></div><script>(function(){var b=document.getElementById("stickycta"),q=document.getElementById("quotebubble"),h=document.querySelector(".hero");if(!h)return;addEventListener("scroll",function(){var on=scrollY>h.offsetHeight*0.8;if(b)b.classList.toggle("on",on);},{passive:true})})();</script></body>
 </html>

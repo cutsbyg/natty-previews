@@ -12,7 +12,7 @@
 <link rel="preload" as="image" href="img/hero-w.jpg?v=1" media="(min-width:861px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/hero-p.jpg?v=1" media="(max-width:600px)" fetchpriority="high">
 <!-- bb-law: system stack only (Segoe UI). No webfonts — the reference build dropped them. -->
-<link rel="stylesheet" href="css/site.css?v=ce93b2c9">
+<link rel="stylesheet" href="css/site.css?v=c45ac971">
 </head>
 <body data-site="d-and-e-auto-body">
 <a class="skip" href="#work">Skip to Our work</a>
@@ -25,7 +25,7 @@
     </a>
     <nav class="nav__links" aria-label="Sections">
       <a href="#work">Our work</a>
-      <a href="#reviews">What we do</a>
+      <a href="#reviews"></a>
       <a href="#faq">Questions</a>
     </nav>
     <a class="nav__tel" href="tel:+17175677264" aria-label="7 1 7. 5 6 7. 7 2 6 4">(717)&nbsp;567-7264</a>
@@ -37,11 +37,14 @@
 
 <section class="hero">
   <div class="hero__media">
+    <div class="hero__shot">
     <picture>
       <source media="(min-width:861px)" srcset="img/hero-w.jpg?v=1">
       <source media="(min-width:601px)" srcset="img/hero-m.jpg?v=1">
       <img class="hero__img" src="img/hero-p.jpg?v=1" width="934" height="640" fetchpriority="high" alt="Custom-painted metallic blue motorcycle fenders, tank and covers arranged on a clean steel workbench in the shop">
     </picture>
+
+    </div>
     <a class="hero__cue" href="#work" aria-label="Our work"><span aria-hidden="true">&#8595;</span></a>
     <div class="glass hero__panel">
       <div class="hero__words">
@@ -62,42 +65,42 @@
   </div>
 </section>
 
-<section class="band band--brand" id="work">
+<section class="freebar">
+  <p><strong>FREE</strong> estimates</p>
+</section>
+
+<section class="band band--paper" id="work">
   <div class="wrap">
-    <h2>Out of our shop</h2>
-    <p class="lede">Straight off the bench and the frame rack. <span class="sec">Tap any photo for a closer look.</span></p>
+    <h2>Our projects</h2>
+    <p class="lede">A selection of recent work. <span class="sec">Tap any photo for a closer look.</span></p>
+
     <div class="work">
     <div class="work__grid work__grid--three">
 
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-flames-done.jpg?v=1" width="590" height="590"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-flames-done.jpg?v=1" width="590" height="590"
              alt="A finished tailgate in glossy black with candy red flames under deep clearcoat, a classic car behind it"></span>
         <span class="pj__bar"><b>Flames, finished</b><i>Candy red over black &middot; buried in clear</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-flames-layout.jpg?v=1" width="590" height="590"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-flames-layout.jpg?v=1" width="590" height="590"
              alt="The same tailgate mid-job, flame layout in green over a dark red base"></span>
         <span class="pj__bar"><b>The same tailgate, mid-job</b><i>Layout down &middot; every flame cut by hand</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-tins-truckbed.jpg?v=1" width="720" height="960"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-tins-truckbed.jpg?v=1" width="720" height="960"
              alt="Freshly painted metallic blue motorcycle fenders, tank and covers laid out in a truck bed"></span>
         <span class="pj__bar"><b>Motorcycle tins, done</b><i>Kandy blue over black &middot; headed home</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-frame-rebuild.jpg?v=1" width="526" height="705"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-frame-rebuild.jpg?v=1" width="526" height="705"
              alt="A car on the frame rack with its front end stripped, welder and tools out mid-repair"></span>
         <span class="pj__bar"><b>Front end, rebuilt</b><i>Stripped to the frame &middot; welded &middot; made straight</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-collision.jpg?v=1" width="526" height="705"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-collision.jpg?v=1" width="526" height="705"
              alt="A red SUV in the shop with the front clip off, mid collision repair"></span>
         <span class="pj__bar"><b>Collision work in progress</b><i>What it looks like before we make it disappear</i></span>
-      </div>
-      <div class="pj">
-        <span class="pj__ph"><img src="img/job-rust-repair.jpg?v=1" width="526" height="705"
-             alt="A pickup in the shop with the rusted rear wheel arch cut out, ready for new metal"></span>
-        <span class="pj__bar"><b>Rust, cut out for good</b><i>Bad metal out &middot; new metal in</i></span>
       </div>
       
     </div>
@@ -107,27 +110,8 @@
 </section>
 
 <!-- band order is LAW (Grady: "every other"): work=brand, reviews/faq=paper, quote=brand — bb-v4's exact rhythm -->
-<section class="band band--paper" id="reviews">
+<section class="band band--brand" id="reviews">
   <div class="wrap">
-    <h2>What we do</h2>
-    <div class="revs">
-
-      <article class="rev">
-        <blockquote>Crash damage pulled, panels replaced, everything lined up and painted so it never happened.</blockquote>
-        <cite>Collision repair</cite>
-      </article>
-      <article class="rev">
-        <blockquote>Rusted metal cut out, new metal welded in, sealed and painted to match.</blockquote>
-        <cite>Rust repair</cite>
-      </article>
-      <article class="rev">
-        <blockquote>Flames, kandy colors, motorcycle tins, tailgates &mdash; laid out by hand and buried in clear.</blockquote>
-        <cite>Custom paint</cite>
-      </article>
-      
-    </div>
-
-    <hr class="hair">
 
     <h2 id="faq">Commonly asked questions</h2>
     <div class="faq">
@@ -157,38 +141,37 @@
   </div>
 </section>
 
-<section class="band band--brand" id="quote">
+<section class="band band--paper" id="quote">
   <div class="wrap">
     <h2>Send us the damage</h2>
     <div class="cta">
       <div class="cta__intro">
-        <p class="cta__lede">Tell us what happened to it and what you want it to become &mdash; photos of the damage are the most useful thing you can send.</p>
+        <p class="cta__lede">Tell the shop about the job &mdash; photos help.</p>
         <p class="cta__lede sec"></p>
-        <p class="cta__ring"><a href="tel:+17175677264">Or ring the shop</a></p>
+        <p class="cta__ring"><a href="tel:+17175677264">Or call the shop</a></p>
       </div>
 
       <form id="submit" action="https://formsubmit.co/gradymreisinger@gmail.com" method="post" enctype="multipart/form-data">
-          <div class="fld"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="fld"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
           <div class="fld"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email"></div>
           <div class="fld"><label for="f-tel">Phone</label><input id="f-tel" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="fld"><label for="f-adr">Job address</label><input id="f-adr" name="address" type="text" autocomplete="street-address"></div>
+          <div class="fld"><label for="f-adr">Address</label><input id="f-adr" name="address" type="text" autocomplete="street-address"></div>
 
-          <div class="fld fld--wide"><label for="f-pic">Photos help more than words</label><input id="f-pic" name="photos" type="file" accept="image/*" multiple></div>
+          <div class="fld fld--wide"><label for="f-pic">Add photos</label><input id="f-pic" name="photos" type="file" accept="image/*" multiple></div>
 
           <input type="hidden" id="f-products" name="products" value="">
           <p class="picked" id="picked" hidden></p>
           <fieldset class="opts">
-            <legend>What do you need done?</legend>
+            <legend>What do you need?</legend>
 
           <label class="opt"><input type="checkbox" name="job" value="Collision repair"><span>Collision repair</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Rust repair"><span>Rust repair</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Custom paint"><span>Custom paint</span></label>
           <label class="opt"><input type="checkbox" name="job" value="Motorcycle work"><span>Motorcycle work</span></label>
-          <label class="opt"><input type="checkbox" name="job" value="Not sure yet"><span>Not sure yet</span></label>
         
           </fieldset>
 
-          <div class="fld fld--wide"><label for="f-note">Anything else</label><textarea id="f-note" name="notes" rows="3"></textarea></div>
+          <div class="fld fld--wide"><label for="f-note">Notes</label><textarea id="f-note" name="notes" rows="3"></textarea></div>
 
           <div class="fld fld--wide send">
             <button class="btn btn--big" type="submit">Send it to the shop</button>
@@ -207,7 +190,7 @@
   <div class="wrap">
     <div class="foot__top">
       <div class="foot__brand">
-        <img class="foot__mark" src="img/logo.png" width="512" height="512" alt="">
+        <img loading="lazy" decoding="async" class="foot__mark" src="img/logo.png" width="512" height="512" alt="">
         <span class="foot__legal">D & E Auto Body</span>
       </div>
       <div class="foot__cols">
@@ -249,6 +232,6 @@
 {"@type":"Question","name":"How long have you been at this?","acceptedAnswer":{"@type":"Answer","text":"D & E Auto Body has been fixing and painting vehicles in Newport since 1975."}},
 {"@type":"Question","name":"What areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We are on Old Limekiln Lane in Newport and work for people across Perry County and the surrounding area."}}]}
 </script>
-<script defer src="js/site.js?v=4"></script>
-<div class="stickycta" id="stickycta"><a class="btn" href="#quote">Get your free estimate</a><a class="stickycta__call" href="tel:+17175677264">Call the shop</a></div><script>(function(){var b=document.getElementById("stickycta"),h=document.querySelector(".hero");if(!b||!h)return;addEventListener("scroll",function(){b.classList.toggle("on",scrollY>h.offsetHeight*0.8)},{passive:true})})();</script></body>
+<script defer src="js/site.js?v=jf535293"></script>
+<a class="quote-bubble" id="quotebubble" href="#quote"><img class="avatar" src="img/avatar.jpg" width="192" height="192" alt="" loading="lazy">Get a free quote</a><div class="stickycta" id="stickycta"><a class="btn" href="#quote">Get your free estimate</a><a class="stickycta__call" href="tel:+17175677264">Call the shop</a></div><script>(function(){var b=document.getElementById("stickycta"),q=document.getElementById("quotebubble"),h=document.querySelector(".hero");if(!h)return;addEventListener("scroll",function(){var on=scrollY>h.offsetHeight*0.8;if(b)b.classList.toggle("on",on);},{passive:true})})();</script></body>
 </html>

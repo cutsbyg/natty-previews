@@ -12,7 +12,7 @@
 <link rel="preload" as="image" href="img/hero-w.jpg?v=1" media="(min-width:861px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/hero-p.jpg?v=1" media="(max-width:600px)" fetchpriority="high">
 <!-- bb-law: system stack only (Segoe UI). No webfonts — the reference build dropped them. -->
-<link rel="stylesheet" href="css/site.css?v=c8cbee8f">
+<link rel="stylesheet" href="css/site.css?v=c01c2cb3">
 </head>
 <body data-site="command-site">
 <a class="skip" href="#work">Skip to Josh &amp; the crew</a>
@@ -25,7 +25,7 @@
     </a>
     <nav class="nav__links" aria-label="Sections">
       <a href="#work">Josh &amp; the crew</a>
-      <a href="#reviews">What we do</a>
+      <a href="#reviews"></a>
       <a href="#faq">Questions</a>
     </nav>
     <a class="nav__tel" href="tel:+17175820230" aria-label="7 1 7. 5 8 2. 0 2 3 0">(717)&nbsp;582-0230</a>
@@ -37,11 +37,14 @@
 
 <section class="hero">
   <div class="hero__media">
+    <div class="hero__shot">
     <picture>
       <source media="(min-width:861px)" srcset="img/hero-w.jpg?v=1">
       <source media="(min-width:601px)" srcset="img/hero-m.jpg?v=1">
       <img class="hero__img" src="img/hero-p.jpg?v=1" width="934" height="640" fetchpriority="high" alt="An orange CASE 850M dozer parked on a freshly graded dirt pad beside a steel building, blade down, treeline behind under a blue sky">
     </picture>
+
+    </div>
     <a class="hero__cue" href="#work" aria-label="Josh &amp; the crew"><span aria-hidden="true">&#8595;</span></a>
     <div class="glass hero__panel">
       <div class="hero__words">
@@ -60,40 +63,45 @@
   </div>
 </section>
 
-<section class="band band--brand" id="work">
+<section class="freebar">
+  <p><strong>FREE</strong> estimates</p>
+</section>
+
+<section class="band band--paper" id="work">
   <div class="wrap">
-    <h2>Josh and the crew</h2>
-    <p class="lede">Straight off the job. <span class="sec">Tap any photo for a closer look.</span></p>
+    <h2>Our projects</h2>
+    <p class="lede">A selection of recent work. <span class="sec">Tap any photo for a closer look.</span></p>
+
     <div class="work">
     <div class="work__grid work__grid--three">
 
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-chambers.jpg?v=1" width="1440" height="1080"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-chambers.jpg?v=1" width="1440" height="1080"
              alt="A worker in a Command hi-vis vest raking stone over rows of stormwater infiltration chambers while an excavator dumps stone"></span>
         <span class="pj__bar"><b>Stormwater going underground</b><i>Infiltration chambers &middot; crew on the stone</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-graderod.jpg?v=1" width="1920" height="1440"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-graderod.jpg?v=1" width="1920" height="1440"
              alt="A man in a red Command Site Contractors shirt holding a grade rod over an open cut with two excavators behind"></span>
         <span class="pj__bar"><b>Checking grade on the cut</b><i>Their own iron on a ridge job</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-crew.jpg?v=1" width="2048" height="1536"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-crew.jpg?v=1" width="2048" height="1536"
              alt="A four-man crew in hi-vis around a mini excavator with a Command Site dump truck on a commercial site"></span>
         <span class="pj__bar"><b>Four men and a mini-ex</b><i>Commercial site, summer</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-vaults.jpg?v=1" width="1440" height="960"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-vaults.jpg?v=1" width="1440" height="960"
              alt="A drone view of two large underground stormwater vaults open in a parking lot with a conveyor feeding stone"></span>
         <span class="pj__bar"><b>Twin storm vaults, open</b><i>The drone view</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-survey.jpg?v=1" width="1920" height="1440"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-survey.jpg?v=1" width="1920" height="1440"
              alt="A worker setting a GPS rover on a tripod along a new segmental block retaining wall"></span>
         <span class="pj__bar"><b>Surveyed before it's dug</b><i>GPS rover on the wall line</i></span>
       </div>
       <div class="pj">
-        <span class="pj__ph"><img src="img/job-dozer.jpg?v=1" width="2048" height="1536"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/job-dozer.jpg?v=1" width="2048" height="1536"
              alt="A CASE dozer cresting a freshly rolled earth pad with a treeline behind"></span>
         <span class="pj__bar"><b>Pad rolled and ready</b><i>Fresh earthwork, track-rolled</i></span>
       </div>
@@ -104,26 +112,8 @@
 </section>
 
 <!-- band order is LAW (Grady: "every other"): work=brand, reviews/faq=paper, quote=brand — bb-v4's exact rhythm -->
-<section class="band band--paper" id="reviews">
+<section class="band band--brand" id="reviews">
   <div class="wrap">
-    <h2>What we do</h2>
-    <div class="revs">
-
-       <article class="rev">
-         <blockquote>Site development &middot; excavating and grading &middot; light clearing and grubbing &middot; perc and probes &middot; snow removal.</blockquote>
-         <cite>Site work</cite>
-       </article>
-       <article class="rev">
-         <blockquote>Foundations &middot; curb and flatwork &middot; utility installation and repairs.</blockquote>
-         <cite>Concrete &amp; utilities</cite>
-       </article>
-       <article class="rev">
-         <blockquote>Well pad construction &middot; concrete foundations and supports &middot; RUMA upgrades &middot; slip repairs &middot; erosion and maintenance crews.</blockquote>
-         <cite>Energy services</cite>
-       </article>
-    </div>
-
-    <hr class="hair">
 
     <h2 id="faq">Commonly asked questions</h2>
     <div class="faq">
@@ -148,28 +138,28 @@
   </div>
 </section>
 
-<section class="band band--brand" id="quote">
+<section class="band band--paper" id="quote">
   <div class="wrap">
     <h2>Send Josh the job</h2>
     <div class="cta">
       <div class="cta__intro">
-        <p class="cta__lede">Tell Josh where the job is and what needs done &mdash; photos of the site are the most useful thing you can send.</p>
+        <p class="cta__lede">Tell Josh about the job &mdash; photos help.</p>
         <p class="cta__lede sec"></p>
-        <p class="cta__ring"><a href="tel:+17175820230">Or ring Josh</a></p>
+        <p class="cta__ring"><a href="tel:+17175820230">Or call Josh</a></p>
       </div>
 
       <form id="submit" action="https://formsubmit.co/gradymreisinger@gmail.com" method="post" enctype="multipart/form-data">
-          <div class="fld"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="fld"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
           <div class="fld"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email"></div>
           <div class="fld"><label for="f-tel">Phone</label><input id="f-tel" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="fld"><label for="f-adr">Job address</label><input id="f-adr" name="address" type="text" autocomplete="street-address"></div>
+          <div class="fld"><label for="f-adr">Address</label><input id="f-adr" name="address" type="text" autocomplete="street-address"></div>
 
-          <div class="fld fld--wide"><label for="f-pic">Photos help more than words</label><input id="f-pic" name="photos" type="file" accept="image/*" multiple></div>
+          <div class="fld fld--wide"><label for="f-pic">Add photos</label><input id="f-pic" name="photos" type="file" accept="image/*" multiple></div>
 
           <input type="hidden" id="f-products" name="products" value="">
           <p class="picked" id="picked" hidden></p>
           <fieldset class="opts">
-            <legend>What do you need done?</legend>
+            <legend>What do you need?</legend>
 
            <label class="opt"><input type="checkbox" name="job" value="Site development"><span>Site development</span></label>
            <label class="opt"><input type="checkbox" name="job" value="Excavating &amp; grading"><span>Excavating &amp; grading</span></label>
@@ -181,7 +171,7 @@
            <label class="opt"><input type="checkbox" name="job" value="An on-site look"><span>An on-site look</span></label>
           </fieldset>
 
-          <div class="fld fld--wide"><label for="f-note">Anything else</label><textarea id="f-note" name="notes" rows="3"></textarea></div>
+          <div class="fld fld--wide"><label for="f-note">Notes</label><textarea id="f-note" name="notes" rows="3"></textarea></div>
 
           <div class="fld fld--wide send">
             <button class="btn btn--big" type="submit">Send it to Josh</button>
@@ -200,7 +190,7 @@
   <div class="wrap">
     <div class="foot__top">
       <div class="foot__brand">
-        <img class="foot__mark" src="img/logo.png" width="512" height="512" alt="">
+        <img loading="lazy" decoding="async" class="foot__mark" src="img/logo.png" width="512" height="512" alt="">
         <span class="foot__legal">Command Site Contractors LLC</span>
       </div>
       <div class="foot__cols">
@@ -219,6 +209,6 @@
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does Command Site Contractors do?", "acceptedAnswer": {"@type": "Answer", "text": "Excavating and grading, site development, foundations, curb and flatwork, utility installation, light clearing and grubbing, and snow removal - residential and commercial."}}, {"@type": "Question", "name": "Do you handle site development for a new build?", "acceptedAnswer": {"@type": "Answer", "text": "That is the core of the work: taking a raw lot through clearing, grading, utilities and foundation so it is ready to build on."}}, {"@type": "Question", "name": "Do you do commercial and energy work?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Alongside residential and commercial site work, the energy side covers well pad construction, concrete foundations and supports, RUMA upgrades and maintenance, slip repairs, and erosion and maintenance crews."}}, {"@type": "Question", "name": "How do I get a price?", "acceptedAnswer": {"@type": "Answer", "text": "Call (717) 582-0230 or send the job through the form and Josh will get back to you."}}]}
 </script>
-<script defer src="js/site.js?v=4"></script>
-<div class="stickycta" id="stickycta"><a class="btn" href="#quote">Get your free estimate</a><a class="stickycta__call" href="tel:+17175820230">Call Josh</a></div><script>(function(){var b=document.getElementById("stickycta"),h=document.querySelector(".hero");if(!b||!h)return;addEventListener("scroll",function(){b.classList.toggle("on",scrollY>h.offsetHeight*0.8)},{passive:true})})();</script></body>
+<script defer src="js/site.js?v=jf535293"></script>
+<a class="quote-bubble" id="quotebubble" href="#quote"><img class="avatar" src="img/avatar.jpg" width="192" height="192" alt="" loading="lazy">Get a free quote</a><div class="stickycta" id="stickycta"><a class="btn" href="#quote">Get your free estimate</a><a class="stickycta__call" href="tel:+17175820230">Call Josh</a></div><script>(function(){var b=document.getElementById("stickycta"),q=document.getElementById("quotebubble"),h=document.querySelector(".hero");if(!h)return;addEventListener("scroll",function(){var on=scrollY>h.offsetHeight*0.8;if(b)b.classList.toggle("on",on);},{passive:true})})();</script></body>
 </html>

@@ -111,6 +111,97 @@
     });
   }
 
+  /* ---- a CTA under the LEAD project only (Grady 8/31) ---- */
+  (function () {
+    var bar = document.querySelector('.pj:first-child .pj__bar');
+    if (!bar) return;
+    var a = document.createElement('a');
+    a.className = 'pj__cta';
+    a.href = '#quote';
+    a.textContent = 'Get a free estimate';
+    bar.appendChild(a);
+  })();
+
+  /* ---- the word "free" in the form heading goes gold ---- */
+  (function () {
+    var h = document.querySelector('#quote h2');
+    if (h) h.innerHTML = h.textContent.replace(/free/i, function (m) { return '<span class="gold">' + m + '</span>'; });
+  })();
+
+  /* ---- before/after slider ---- */
+  [].forEach.call(document.querySelectorAll('.ba'), function (ba) {
+    var r = ba.querySelector('.ba__range'), after = ba.querySelector('.ba__after'),
+        bar = ba.querySelector('.ba__bar'), knob = ba.querySelector('.ba__knob');
+    if (!r || !after) return;
+    function set(v) {
+      after.style.clipPath = 'inset(0 0 0 ' + v + '%)';
+      if (bar) bar.style.left = v + '%';
+      if (knob) knob.style.left = v + '%';
+    }
+    r.addEventListener('input', function () { auto = false; set(r.value); });
+    /* direct pointer drive - follows the finger anywhere on the photo. The panel cap (min)
+       only applies when the glass panel actually overlays the photo (desktop). */
+    var dragging = false, settleTimer = null, settleAnim = null;
+    function bounds() {
+      var glass = document.querySelector('.glass');
+      var overlaid = glass && getComputedStyle(glass).position === 'absolute';
+      return [overlaid ? (+r.min || 0) : 0, +r.max || 100];
+    }
+    function drive(e) {
+      var rect = ba.getBoundingClientRect();
+      var b = bounds();
+      var v = Math.max(b[0], Math.min(b[1], (e.clientX - rect.left) / rect.width * 100));
+      r.value = v;
+      set(v);
+    }
+    function settleToAfter() {
+      var b = bounds(), from = +r.value, to = b[1], t0 = null;
+      if (settleAnim) cancelAnimationFrame(settleAnim);
+      var step = function (ts) {
+        if (dragging) return;
+        if (t0 === null) t0 = ts;
+        var k = Math.min(1, (ts - t0) / 600);
+        var v = from + (to - from) * (1 - Math.pow(1 - k, 3));
+        r.value = v;
+        set(v);
+        if (k < 1) settleAnim = requestAnimationFrame(step);
+      };
+      settleAnim = requestAnimationFrame(step);
+    }
+    ba.addEventListener('pointerdown', function (e) {
+      auto = false; dragging = true;
+      if (settleTimer) clearTimeout(settleTimer);
+      if (settleAnim) cancelAnimationFrame(settleAnim);
+      if (ba.setPointerCapture) { try { ba.setPointerCapture(e.pointerId); } catch (x) {} }
+      drive(e);
+    });
+    ba.addEventListener('pointermove', function (e) { if (dragging) drive(e); });
+    function release() {
+      dragging = false;
+      if (settleTimer) clearTimeout(settleTimer);
+      settleTimer = setTimeout(settleToAfter, 1000);   /* one beat, then glide to the AFTER */
+    }
+    ba.addEventListener('pointerup', release);
+    ba.addEventListener('pointercancel', release);
+    set(r.value || 50);
+    /* slow pulse between the endpoints until the viewer takes over (reduced-motion: off) */
+    var auto = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (auto) {
+      var lo = +r.min || 0, hi = +r.max || 100, t0 = null;
+      var loop = function (ts) {
+        if (!auto) return;
+        if (t0 === null) t0 = ts;
+        // two reveal passes (1.5 cycles), then rest on the AFTER
+        if (ts - t0 >= 10500) { r.value = hi; set(hi); auto = false; return; }
+        var v = lo + (hi - lo) * (0.5 - 0.5 * Math.cos((ts - t0) / 7000 * 2 * Math.PI));
+        r.value = v;
+        set(v);
+        requestAnimationFrame(loop);
+      };
+      requestAnimationFrame(loop);
+    }
+  });
+
   /* ---- dwell: one beacon per view with seconds on page (3s..30min) ------- */
   var t0 = Date.now(), dwelled = false;
   function dwell() {

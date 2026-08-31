@@ -56,7 +56,9 @@ li{list-style:none}
          display:flex;align-items:center;gap:1.25rem}
 .nav__brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;min-height:44px;
             min-width:0;overflow:hidden}
-.nav__mark{width:52px;height:52px;filter:brightness(0) invert(1);
+/* logo chip: real logos keep their colors on a white chip - the old invert filter
+   turned dark logos into white blobs (Grady 8/31, Smucker) */
+.nav__mark{width:52px;height:52px;background:#fff;border-radius:10px;padding:5px;object-fit:contain;
            transition:transform 200ms ease}
 .nav__brand:hover .nav__mark{transform:scale(1.06)}
 .nav__name{font-weight:900;font-size:1.15rem;letter-spacing:-.01em;white-space:nowrap;
@@ -65,6 +67,7 @@ li{list-style:none}
 .nav__links{display:flex;gap:1.25rem;margin-left:auto}
 .nav__links a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;
               font-size:1.02rem;text-decoration:none;border-bottom:2px solid transparent}
+.nav__links a:empty{display:none}
 .nav__links a:hover,.nav__links a:focus-visible{border-bottom-color:#fff}
 .nav__links a[aria-current="true"]{border-bottom-color:#fff}
 .nav__tel{display:inline-flex;align-items:center;min-height:44px;font-weight:800;
@@ -75,7 +78,7 @@ li{list-style:none}
 /* ---------- hero ---------- */
 .hero{background:var(--ink)}
 .hero__media{position:relative;aspect-ratio:2200/859;overflow:hidden;max-width:100%}
-.hero__img{width:100%;height:100%;object-fit:cover}
+.hero__img{width:100%;height:auto}
 
 .hero__cue{position:absolute;left:50%;bottom:1.1rem;transform:translateX(-50%);
   width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;
@@ -84,11 +87,15 @@ li{list-style:none}
 .hero__cue:hover{background:rgba(255,255,255,.42)}
 @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
 
-.glass{position:absolute;left:4%;top:54%;transform:translateY(-50%);width:50%;
-  display:grid;grid-template-columns:1fr 44%;gap:2.4%;align-items:center;
-  /* MAXIMIZE-THE-PANEL LAW (Grady 2026-08-30, set on Smucker): the headline and the founder
-     photo fill the glass box - minimal air between content and the box edges, every site. */
-  padding:1.15rem 2.4%;
+.glass{
+  /* BLUEPRINT-LAW SS2: GEOMETRY DIALS - the ONLY place these numbers exist. Tiers below
+     override dial VALUES only; no tier may restate a component rule. */
+  --cut-col:44%;
+  --pad-y:1.5rem;--panel-pad:var(--pad-y) 2.6%;
+  --h1-size:min(6.6rem,16.5cqw);
+  position:absolute;left:4%;top:54%;transform:translateY(-50%);width:50%;max-height:92%;
+  display:grid;grid-template-columns:1fr var(--cut-col);gap:2.4%;align-items:center;
+  padding:var(--panel-pad);
   background-color:rgba(247,244,239,.80);
   backdrop-filter:blur(14px) saturate(115%);-webkit-backdrop-filter:blur(14px) saturate(115%);
   border:1px solid rgba(28,26,23,.20);border-radius:18px;
@@ -98,17 +105,20 @@ li{list-style:none}
 .hero__words{container-type:inline-size;min-width:0}
 .hero__eyebrow{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
                color:var(--brand-deep);margin-bottom:.35rem}
-.glass h1{font-size:min(7.5rem,18.5cqw);line-height:.86;font-weight:900;letter-spacing:-.03em;
+.glass h1{font-size:var(--h1-size);line-height:.86;font-weight:900;letter-spacing:-.03em;
           text-transform:uppercase;color:var(--ink)}
 .hero__sub{font-size:clamp(12px,3.5cqw,1.2rem);font-weight:700;margin-top:.55rem;line-height:1.25}
 .hero__where{font-size:clamp(11px,2.9cqw,.98rem);color:var(--ink-60);margin-top:.15rem;line-height:1.25}
-.hero__btn{margin-top:.85rem;font-size:1.3rem;min-height:60px;padding:.9rem 2.2rem;
+.hero__btn{margin-top:.85rem;font-size:min(1.3rem,4.4cqw);min-height:56px;
+           padding:.8rem min(2.2rem,4.5cqw);white-space:nowrap;
            box-shadow:7px 7px 0 var(--ink)}
-.hero__cut{width:100%;height:auto;object-fit:contain;
+.hero__cut{width:100%;height:calc(100% + 2*var(--pad-y));margin-block:calc(-1*var(--pad-y));
+  display:flex;align-items:flex-end;justify-content:center;
   -webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
           mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
   filter:drop-shadow(0 10px 18px rgba(0,0,0,.45)) drop-shadow(0 2px 3px rgba(0,0,0,.4));
   transition:transform 220ms ease}
+.hero__cut img{width:auto;max-width:100%;height:auto;max-height:90%;object-fit:contain;margin-inline:auto}
 .glass:hover .hero__cut{transform:translateY(-4px)}
 
 /* ---------- marquee ---------- */
@@ -125,9 +135,12 @@ li{list-style:none}
 .band{padding-block:var(--pad);background-size:64px 64px;
       animation:drift 44s linear infinite}
 @keyframes drift{to{background-position:64px 64px,64px 64px}}
-.band--brand{background-color:var(--brand);color:#fff;
-  background-image:linear-gradient(rgba(255,255,255,.18) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,255,255,.18) 1px,transparent 1px)}
+/* CONTRAST DOCTRINE (Grady 8/31, from acquisition.com): dark bands are near-black so the
+   BRAND color is scarce - it appears only on buttons, chips, the bubble and the nav.
+   Scarce color = every CTA is the loudest object in view. */
+.band--brand{background-color:#101318;color:#fff;
+  background-image:linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px)}
 .band--paper{background-color:var(--paper);color:var(--ink);
   background-image:linear-gradient(rgba(51,128,36,.18) 1px,transparent 1px),
                    linear-gradient(90deg,rgba(51,128,36,.18) 1px,transparent 1px)}
@@ -146,6 +159,11 @@ li{list-style:none}
 /* one larger card leads full-width, then 6 even: two clean rows of three, no orphans */
 .work__grid--three .card:first-child{grid-column:1/-1}
 .work__grid--three .card:first-child .card__ph{aspect-ratio:5/2}
+/* PROJECT GRID (Grady 8/31 final): ONE wide shallow lead (css-cropped, never screen-tall),
+   then the rest in a 2x2 grid. Lead + 2n cards rows out even. */
+.work__grid--three:has(.pj){grid-template-columns:repeat(2,1fr)}
+.work__grid--three .pj:first-child{grid-column:1/-1}
+.work__grid--three .pj:first-child .pj__ph{aspect-ratio:21/8}
 .work__all{margin-top:var(--gut)}
 .card__add{display:block;width:calc(100% - 1.8rem);margin:.75rem auto .9rem;padding:.7rem 1rem;
            background:var(--brand);color:#fff;font:inherit;font-weight:800;font-size:1rem;
@@ -163,8 +181,8 @@ li{list-style:none}
 /* quote band is brand (alternation law) — recolor form text for the dark ground (ported from
    bb-v4 style.css L279, which the generalization dropped — that miss shipped 10 sites wrong) */
 .band--brand .fld label{color:#fff}
-.band--brand .opts legend{color:rgba(255,255,255,.8)}
-.opts .opt span{color:var(--ink)}
+.band--brand 
+.opts 
 .band--brand .send__alt{color:rgba(255,255,255,.85)}
 .band--brand .send__alt a,.band--brand .cta__ring a{color:#fff;text-decoration:underline}
 /* project cards on a dark band: caption text flips white or it vanishes */
@@ -268,8 +286,10 @@ li{list-style:none}
 form{margin-top:1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut)}
 .fld{display:flex;flex-direction:column;gap:.3rem;min-width:0}
 .fld--wide{grid-column:1/-1}
-.fld label,.opts legend{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;
-                        font-weight:700;color:var(--ink-60)}
+/* labels are TEXT, never boxes - they were grouped with inputs and rendered as white
+   bars with white text on dark bands (Grady 8/31: "blank white boxes") */
+.fld label{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  padding:0;border:0;background:transparent;min-height:0;width:auto}
 input,select,textarea{font:inherit;font-size:1rem;padding:.7rem .8rem;min-height:48px;
   border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:0;
   -webkit-appearance:none;appearance:none;width:100%}
@@ -279,15 +299,12 @@ select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),
        background-size:6px 6px,6px 6px;background-repeat:no-repeat}
 textarea{min-height:96px}
 input[type=file]{padding:.55rem}
-.opts{grid-column:1/-1;border:2px solid var(--ink);background:#fff;padding:1rem;margin:0;
-      display:grid;grid-template-columns:1fr 1fr;column-gap:1rem}
-.opts legend{padding:0 .4rem}
-.opt{display:flex;align-items:center;gap:.7rem;min-height:44px;padding:.2rem .4rem;
-     cursor:pointer;border-bottom:1px solid var(--rule);min-width:0}
-.opt:hover{background:rgba(51,128,36,.09)}
-.opt input{width:22px;height:22px;min-height:22px;flex:none;accent-color:var(--brand);
-           -webkit-appearance:auto;appearance:auto;border:0;padding:0}
-.opt span{font-size:1.05rem;font-weight:600}
+
+
+
+
+
+
 .send{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
 .send__alt{font-size:1.05rem;color:var(--ink-60)}
 .send__alt a{display:inline-flex;align-items:center;min-height:44px;font-weight:800;
@@ -298,7 +315,7 @@ input[type=file]{padding:.55rem}
 .foot__top{display:grid;grid-template-columns:26% 1fr;gap:clamp(1.5rem,4vw,3rem);
            align-items:start}
 .foot__brand{display:flex;align-items:center;gap:.8rem}
-.foot__mark{width:104px;height:104px;filter:brightness(0) invert(1)}
+.foot__mark{background:#fff;border-radius:10px;padding:5px;object-fit:contain;width:104px;height:104px}
 .foot__legal{font-size:1.5rem;font-weight:900;line-height:1.1}
 .foot__cols{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gut)}
 /* a grid child defaults to min-width:auto, so one long unbreakable run (an email,
@@ -316,30 +333,34 @@ input[type=file]{padding:.55rem}
               font-weight:900;line-height:.9;letter-spacing:-.03em;text-transform:uppercase}
 .foot__adm{margin-top:1.4rem;font-size:.82rem;color:rgba(255,255,255,.72)}
 .foot__adm a{text-decoration:underline}
+/* visual-issues sweep 8/31: footer links are 44px tap targets (research: cramped mobile taps) */
+.frun a,.foot__adm a{display:inline-flex;align-items:center;min-height:44px;margin-block:-.55rem}
 
 /* ================= BAND TIER — the panel leaves the photograph (§1.0b-H) ================= */
 @media (max-width:860px){
-  .hero__media{aspect-ratio:auto;overflow:visible}
-  .hero__img{height:auto;object-fit:fill}
+    .hero__media{aspect-ratio:auto;overflow:visible}
+  .hero__img{width:100%;height:100%;object-fit:cover}
   .hero__cue{display:none}
-  .glass{position:static;transform:none;width:100%;left:auto;top:auto;
-    grid-template-columns:1fr 35%;gap:4%;padding:1.3rem 5%;
+  .glass{--cut-col:36%;--pad-y:.9rem;--panel-pad:var(--pad-y) 4%;--h1-size:min(4.6rem,14cqw);
+    position:static;transform:none;width:100%;left:auto;top:auto;max-height:none;
     background-color:var(--paper);
     backdrop-filter:none;-webkit-backdrop-filter:none;
     border:0;border-radius:0;box-shadow:none}
   .glass:hover,.glass:focus-within{box-shadow:none;border-color:transparent}
-  .glass h1{font-size:min(4.6rem,17cqw);letter-spacing:-.04em}
   .hero__cut{filter:none}
   .glass:hover .hero__cut{transform:none}
 
   .work__grid--three{grid-template-columns:repeat(2,1fr)}
+  .work__grid--three:has(.pj){grid-template-columns:repeat(2,1fr)}
+  .work__grid--three .pj{grid-column:span 1}
+  .work__grid--three .pj:first-child{grid-column:1/-1}
   .revs{grid-template-columns:1fr}
   .people{grid-template-columns:1fr}
   .card__s{min-height:2.6em}
   .card__m{min-height:2.6em}
   .cta{grid-template-columns:1fr;grid-template-rows:none}
   .cta__intro,.cta__fig,.cta form{grid-column:1;grid-row:auto;align-self:auto}
-  .opts{grid-template-columns:1fr}
+  
   .stats{grid-template-columns:repeat(2,1fr)}
   .foot__top{grid-template-columns:1fr}
   .foot__cols{grid-template-columns:repeat(2,1fr)}
@@ -350,6 +371,10 @@ input[type=file]{padding:.55rem}
 @media (max-width:600px){
   .work__grid--three{grid-template-columns:1fr}
   .work__grid--three .card:first-child{grid-column:auto}
+  .work__grid--three:has(.pj){grid-template-columns:repeat(2,1fr)}
+  .work__grid--three .pj{grid-column:auto}
+  .work__grid--three .pj:first-child{grid-column:1/-1}
+  .work__grid--three .pj:first-child .pj__ph{aspect-ratio:16/9}
   .work__grid--three .card:first-child .card__ph{aspect-ratio:3/2}
   :root{--pad:clamp(1.6rem,6vw,2.4rem)}
   .band{animation:none}
@@ -361,8 +386,8 @@ input[type=file]{padding:.55rem}
   .nav__name{font-size:1.05rem}
   .nav__tel{margin-left:auto;font-size:1.05rem}
 
-  .glass{grid-template-columns:1fr 38%;gap:4%;padding:1.1rem 4.5%}
-  .glass h1{font-size:min(3.9rem,17.5cqw)}
+  /* BLUEPRINT-LAW SS2 phone dials (aq.com lesson: headlines smaller than you think) */
+  .glass{--cut-col:46%;--pad-y:.8rem;--panel-pad:var(--pad-y) 3%;--h1-size:min(3.8rem,17cqw)}
   .hero__eyebrow{margin-bottom:.25rem}
   .hero__sub{margin-top:.4rem}
   .hero__btn{margin-top:.6rem;min-height:44px;padding:.5rem 1.1rem;font-size:1rem;
@@ -407,7 +432,7 @@ input[type=file]{padding:.55rem}
 
   .foot__cols{grid-template-columns:1fr 1fr;gap:1rem}
   .foot__col p{font-size:1.05rem;line-height:1.45}
-  .foot__mark{width:80px;height:80px}
+  .foot__mark{background:#fff;border-radius:10px;padding:5px;object-fit:contain;width:80px;height:80px}
   .foot__legal{font-size:1.3rem}
 }
 
@@ -416,7 +441,7 @@ input[type=file]{padding:.55rem}
 }
 
 /* Amendment 13: sticky mobile CTA */
-@media(max-width:600px){.stickycta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:.6rem;padding:.6rem .8rem max(.7rem, env(safe-area-inset-bottom));background:rgba(20,24,20,.92);backdrop-filter:blur(8px);transform:translateY(110%);transition:transform .25s ease}.stickycta.on{transform:none}.stickycta .btn{flex:1;text-align:center;margin:0}.stickycta__call{flex:1;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;font-weight:700;border:1px solid rgba(255,255,255,.35);border-radius:10px}}@media(min-width:601px){.stickycta{display:none}}
+.stickycta{display:none}
 /* Grady: grid lines in the hero panel */
 .glass{background-image:linear-gradient(rgba(51,128,36,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(51,128,36,.14) 1px,transparent 1px);background-size:44px 44px}
 /* mobile hero is centered in the image itself now */
@@ -448,7 +473,7 @@ input[type=file]{padding:.55rem}
              box-shadow:10px 10px 0 var(--ink)}
 .cta__family img{width:100%}
 .cta__family figcaption{background-color:var(--paper);color:var(--ink);padding:.6rem .9rem;font-size:.95rem}
-.stickycta__call::before{content:"\260E";font-size:1.15rem}
+/* no emoji in the sticky bar (Grady 8/31: reads AI-generated) */
 
 /* ---------- SERVICES variant of the reviews band (opt in: .rev--svc) ----------
    These entries are SERVICES, not testimonials. The card, the italics and the
@@ -467,3 +492,127 @@ input[type=file]{padding:.55rem}
   .revs:has(.rev--svc){grid-template-columns:repeat(2,1fr);
                        gap:clamp(1.5rem,3.4vw,2.8rem);margin-top:1.8rem}
 }
+
+/* ---- job chips (Grady 8/31: extremely simple, fun UI - the old fieldset legend clipped) ---- */
+.opts{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.6rem;grid-column:1/-1}
+.opts legend{float:left;width:100%;padding:0 0 .55rem;font-size:.82rem;font-weight:800;
+             letter-spacing:.14em;text-transform:uppercase}
+.band--brand .opts legend{color:#fff}
+.opt{position:relative;display:inline-flex;align-items:center;min-height:48px;
+     padding:.55rem 1.25rem;border:2px solid var(--ink);border-radius:999px;
+     background:var(--paper);color:var(--ink);font-weight:700;cursor:pointer;
+     transition:transform 140ms ease,background-color 140ms ease,color 140ms ease;
+     user-select:none}
+.opt:hover{transform:translateY(-2px)}
+.opt:has(input:checked){background:var(--brand);color:#fff;border-color:var(--ink)}
+.opt:has(input:checked) span::before{content:"\2713  ";font-weight:900}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt span{font-size:1rem;line-height:1.2}
+
+/* ---- before/after slider (BLUEPRINT-LAW 7d: every deck build ships one) ---- */
+.ba{position:relative;margin-top:1.3rem;border-radius:12px;overflow:hidden;
+    box-shadow:0 10px 24px rgba(0,0,0,.28);user-select:none}
+.ba img{display:block;width:100%;height:auto;pointer-events:none}
+.ba__after{position:absolute;inset:0}
+.ba__after img{height:100%;object-fit:cover}
+.ba__range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;
+           -webkit-appearance:none;touch-action:pan-y;pointer-events:none}  /* JS pointer-drives; range kept for keyboard */
+.ba__bar{position:absolute;top:0;bottom:0;width:3px;background:#fff;pointer-events:none;
+         box-shadow:0 0 8px rgba(0,0,0,.5)}
+.ba__knob{position:absolute;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;
+          border-radius:50%;background:#fff;color:var(--ink);display:flex;align-items:center;
+          justify-content:center;font-weight:900;pointer-events:none;
+          box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.ba__tag{position:absolute;top:.7rem;font-size:.72rem;font-weight:800;letter-spacing:.12em;
+         text-transform:uppercase;background:rgba(0,0,0,.55);color:#fff;
+         padding:.3rem .7rem;border-radius:999px;pointer-events:none}
+.ba__tag--b{left:.7rem}.ba__tag--a{right:.7rem}
+
+/* ---- centered content law (Grady 8/31: "the entire website should be centered") ---- */
+.band h2{text-align:center}
+.lede{margin-inline:auto;text-align:center}
+.cta__intro{text-align:center}
+.cta__ring{text-align:center}
+.revs{justify-content:center}
+.faq{max-width:46rem;margin-inline:auto}
+.foot__slogan{text-align:center}
+
+/* ---- hero-as-slider (Grady 8/31: the slider IS the hero) ---- */
+.ba--hero{position:absolute;inset:0;margin:0;border-radius:0;box-shadow:none;overflow:visible}
+.ba--hero .ba__after{position:absolute;inset:0}
+.ba--hero .ba__after img{width:100%;height:100%;object-fit:cover}
+.ba--hero .ba__tag--a{top:auto;bottom:.8rem;right:.8rem}
+
+/* ---- center the REST (Grady 8/31) ---- */
+.wrap>h2,.cta__lede,.picked{text-align:center}
+
+.pj__bar{text-align:center}
+.card__cap{text-align:center}
+.frun{text-align:center}
+.foot__top{justify-items:center;text-align:center}
+.foot__brand{justify-content:center}
+.foot__adm{text-align:center}
+.opts{justify-content:center}
+.send{text-align:center}
+.send .btn{margin-inline:auto}
+.faq summary{text-align:left}
+
+/* hero slider: track occupies only the reveal zone right of the panel (54%..100%) */
+.ba--hero .ba__range{left:54%;width:46%;right:0}
+
+/* CTA = one centered column (Grady 8/31: section still wasn't centered) */
+.cta{display:grid;grid-template-columns:minmax(0,46rem);grid-template-rows:none;
+     justify-content:center;gap:1.2rem}
+.cta__intro,.cta form,.cta__fig{grid-column:1;grid-row:auto;align-self:auto}
+
+/* desktop sticky quote bubble (Grady 8/31) - mobile keeps the bar instead */
+.quote-bubble{position:fixed;right:1.4rem;bottom:1.4rem;z-index:60;
+  background:#fff;color:var(--ink);font-weight:800;font-size:1.05rem;
+  padding:.9rem 1.5rem;border:2px solid var(--ink);
+  border-radius:999px 999px 4px 999px;box-shadow:6px 6px 0 var(--ink);
+  text-decoration:none}
+.quote-bubble:hover{background:var(--paper)}
+/* bubble is THE sticky CTA on every size (Grady 8/31: one sticky, the new one) */
+
+/* tiny founder avatars (Grady 8/31: the face builds trust - small, everywhere) */
+.avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:top;
+        border:2px solid var(--ink);background:#fff;flex:none;display:inline-block;
+        vertical-align:middle}
+.quote-bubble{display:flex;align-items:center;gap:.6rem}
+.quote-bubble .avatar{border-color:var(--ink)}
+.avatar--lede{width:40px;height:40px;margin-right:.35rem}
+.faq__ask{display:flex;justify-content:center;margin-top:1.6rem}
+.faq__ask .avatar{width:52px;height:52px}
+
+/* H1 keyword highlight (contrast doctrine): one phrase per headline gets the marker */
+/* H1 marker removed entirely (Grady 8/31: no yellow highlights) */
+.glass h1 em{font-style:normal}
+/* 3. supporting text dims so headings and CTAs own the page */
+.lede,.pj__bar i,.faq p,.cta__lede,.send__alt,.hero__sub{opacity:.78}
+
+/* the owner figure is a SMALL card inside the section, never a full-width portrait (Grady 8/31) */
+.cta__family{max-width:190px;margin:1.1rem auto 0}
+.cta__family img{width:100%;height:auto;border-radius:10px}
+.cta__family figcaption{font-size:.8rem;padding:.4rem .6rem;text-align:center}
+
+/* FREE bar under the hero (Grady 8/31, the Hormozi value strip) */
+.freebar{background:#101318;border-block:1px solid var(--rule);padding:1.1rem 1rem;
+         text-align:center}
+.freebar p{font-family:inherit;font-weight:800;font-size:clamp(1.2rem,3vw,1.9rem);
+           letter-spacing:-.01em;color:#fff}
+.freebar strong{font-weight:900;letter-spacing:.02em;color:#f2a900}
+/* CTA under every project card (js-injected, uniform) */
+.pj__cta{display:inline-block;margin-top:.5rem;font-weight:800;font-size:.85rem;
+         background:#f2a900;color:var(--ink);padding:.42rem .95rem;border-radius:999px;
+         border:2px solid var(--ink);text-decoration:none;
+         transition:transform 140ms ease}
+.pj__cta:hover{transform:translateY(-2px)}
+
+/* the slider lives on the PHOTO only - it was anchored to the whole hero and painted over
+   the mobile text panel + left a zoomed black edge (Grady 8/31 screenshots) */
+.hero__shot{position:relative}
+.ba--hero .ba__tag--a{left:.7rem;right:auto}
+
+.ba{touch-action:pan-y}  /* thumb: horizontal drives the slider, vertical scrolls */
+
+.gold{color:#f2a900}

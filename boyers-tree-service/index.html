@@ -12,7 +12,7 @@
 <link rel="preload" as="image" href="img/hero-w.jpg?v=1" media="(min-width:861px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/hero-p.jpg?v=1" media="(max-width:600px)" fetchpriority="high">
 <!-- bb-law: system stack only (Segoe UI). No webfonts — the reference build dropped them. -->
-<link rel="stylesheet" href="css/site.css?v=cbd94b19">
+<link rel="stylesheet" href="css/site.css?v=c774cb6d">
 </head>
 <body data-site="boyers-tree-service">
 <a class="skip" href="#work">Skip to Boyer's &amp; the crew</a>
@@ -25,7 +25,7 @@
     </a>
     <nav class="nav__links" aria-label="Sections">
       <a href="#work">Boyer's &amp; the crew</a>
-      <a href="#reviews">Reviews</a>
+      <a href="#reviews"></a>
       <a href="#faq">Questions</a>
     </nav>
     <a class="nav__tel" href="tel:+17175676943" aria-label="7 1 7. 5 6 7. 6 9 4 3">(717)&nbsp;567-6943</a>
@@ -37,11 +37,14 @@
 
 <section class="hero">
   <div class="hero__media">
+    <div class="hero__shot">
     <picture>
       <source media="(min-width:861px)" srcset="img/hero-w.jpg?v=1">
       <source media="(min-width:601px)" srcset="img/hero-m.jpg?v=1">
       <img class="hero__img" src="img/hero-p.jpg?v=1" width="934" height="640" fetchpriority="high" alt="A climber in harness working high in an oak canopy against a clear blue sky">
     </picture>
+
+    </div>
     <a class="hero__cue" href="#work" aria-label="Boyer's &amp; the crew"><span aria-hidden="true">&#8595;</span></a>
     <div class="glass hero__panel">
       <div class="hero__words">
@@ -60,15 +63,20 @@
   </div>
 </section>
 
-<section class="band band--brand" id="work">
+<section class="freebar">
+  <p><strong>FREE</strong> estimates</p>
+</section>
+
+<section class="band band--paper" id="work">
   <div class="wrap">
-    <h2>On the job</h2>
-    <p class="lede">Straight off the job. <span class="sec">Tap any photo for a closer look.</span></p>
+    <h2>Our projects</h2>
+    <p class="lede">A selection of recent work. <span class="sec">Tap any photo for a closer look.</span></p>
+
     <div class="work">
     <div class="work__grid work__grid--three">
 
       <div class="pj">
-        <span class="pj__ph"><img src="img/crew-logs.jpg?v=1" width="930" height="1235"
+        <span class="pj__ph"><img loading="lazy" decoding="async" src="img/crew-logs.jpg?v=1" width="930" height="1235"
              alt="Two men loading big hardwood logs onto a flatbed trailer in a pine woods beside a house, one cinching a ratchet strap"></span>
         <span class="pj__bar"><b>Loading out the logs</b><i>The crew on a removal job</i></span>
       </div>
@@ -79,24 +87,8 @@
 </section>
 
 <!-- band order is LAW (Grady: "every other"): work=brand, reviews/faq=paper, quote=brand — bb-v4's exact rhythm -->
-<section class="band band--paper" id="reviews">
+<section class="band band--brand" id="reviews">
   <div class="wrap">
-    <h2>Reviews</h2>
-    <div class="revs">
-
-       <article class="rev">
-         <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
-         <blockquote>He was the first to call back, so he got the job after storm damage. He came out promptly, gave me an estimate on the spot and came back two days later and took the rest of the tree down, chipped the tops and hauled away the chips. We requested to leave the tree for us, which he did. Bottom line, he did a great job for a fair price.</blockquote>
-         <cite>Sara George &middot; Google</cite>
-       </article>
-       <article class="rev">
-         <p class="stars" aria-label="5 out of 5 stars">★★★★★</p>
-         <blockquote>Great work and great price. Jeff was very easy to work with.</blockquote>
-         <cite>Aner Baltic &middot; Google</cite>
-       </article>
-    </div>
-
-    <hr class="hair">
 
     <h2 id="faq">Commonly asked questions</h2>
     <div class="faq">
@@ -121,28 +113,28 @@
   </div>
 </section>
 
-<section class="band band--brand" id="quote">
+<section class="band band--paper" id="quote">
   <div class="wrap">
     <h2>Send us the job</h2>
     <div class="cta">
       <div class="cta__intro">
-        <p class="cta__lede">Tell the crew where the tree is and what worries you about it &mdash; a photo of the tree is the most useful thing you can send.</p>
+        <p class="cta__lede">Tell Boyer's about the job &mdash; photos help.</p>
         <p class="cta__lede sec"></p>
-        <p class="cta__ring"><a href="tel:+17175676943">Or ring Boyer's</a></p>
+        <p class="cta__ring"><a href="tel:+17175676943">Or call Boyer's</a></p>
       </div>
 
       <form id="submit" action="https://formsubmit.co/gradymreisinger@gmail.com" method="post" enctype="multipart/form-data">
-          <div class="fld"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="fld"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
           <div class="fld"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email"></div>
           <div class="fld"><label for="f-tel">Phone</label><input id="f-tel" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="fld"><label for="f-adr">Job address</label><input id="f-adr" name="address" type="text" autocomplete="street-address"></div>
+          <div class="fld"><label for="f-adr">Address</label><input id="f-adr" name="address" type="text" autocomplete="street-address"></div>
 
-          <div class="fld fld--wide"><label for="f-pic">Photos help more than words</label><input id="f-pic" name="photos" type="file" accept="image/*" multiple></div>
+          <div class="fld fld--wide"><label for="f-pic">Add photos</label><input id="f-pic" name="photos" type="file" accept="image/*" multiple></div>
 
           <input type="hidden" id="f-products" name="products" value="">
           <p class="picked" id="picked" hidden></p>
           <fieldset class="opts">
-            <legend>What do you need done?</legend>
+            <legend>What do you need?</legend>
 
            <label class="opt"><input type="checkbox" name="job" value="Tree trimming"><span>Tree trimming</span></label>
            <label class="opt"><input type="checkbox" name="job" value="Tree removal"><span>Tree removal</span></label>
@@ -152,7 +144,7 @@
            <label class="opt"><input type="checkbox" name="job" value="A free estimate visit"><span>A free estimate visit</span></label>
           </fieldset>
 
-          <div class="fld fld--wide"><label for="f-note">Anything else</label><textarea id="f-note" name="notes" rows="3"></textarea></div>
+          <div class="fld fld--wide"><label for="f-note">Notes</label><textarea id="f-note" name="notes" rows="3"></textarea></div>
 
           <div class="fld fld--wide send">
             <button class="btn btn--big" type="submit">Send it to Boyer's</button>
@@ -171,7 +163,7 @@
   <div class="wrap">
     <div class="foot__top">
       <div class="foot__brand">
-        <img class="foot__mark" src="img/logo.png" width="512" height="512" alt="">
+        <img loading="lazy" decoding="async" class="foot__mark" src="img/logo.png" width="512" height="512" alt="">
         <span class="foot__legal">Boyer's Tree Service, LLC</span>
       </div>
       <div class="foot__cols">
@@ -190,6 +182,6 @@
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What tree work do you do?", "acceptedAnswer": {"@type": "Answer", "text": "Trimming, removal, stump removal, tree and shrub care, and land clearing - residential and commercial, with a 65 ft. bucket truck for the large jobs."}}, {"@type": "Question", "name": "Do you handle storm damage?", "acceptedAnswer": {"@type": "Answer", "text": "Yes - 24 hour emergency service is available after storms."}}, {"@type": "Question", "name": "Are you insured, and what does an estimate cost?", "acceptedAnswer": {"@type": "Answer", "text": "The company is fully insured, and every job gets a free estimate."}}, {"@type": "Question", "name": "Where are you based?", "acceptedAnswer": {"@type": "Answer", "text": "Duncannon, Pennsylvania, in Perry County. Call (717) 567-6943."}}]}
 </script>
-<script defer src="js/site.js?v=4"></script>
-<div class="stickycta" id="stickycta"><a class="btn" href="#quote">Get your free estimate</a><a class="stickycta__call" href="tel:+17175676943">Call Boyer's</a></div><script>(function(){var b=document.getElementById("stickycta"),h=document.querySelector(".hero");if(!b||!h)return;addEventListener("scroll",function(){b.classList.toggle("on",scrollY>h.offsetHeight*0.8)},{passive:true})})();</script></body>
+<script defer src="js/site.js?v=jf535293"></script>
+<a class="quote-bubble" id="quotebubble" href="#quote"><img class="avatar" src="img/avatar.jpg" width="192" height="192" alt="" loading="lazy">Get a free quote</a><div class="stickycta" id="stickycta"><a class="btn" href="#quote">Get your free estimate</a><a class="stickycta__call" href="tel:+17175676943">Call Boyer's</a></div><script>(function(){var b=document.getElementById("stickycta"),q=document.getElementById("quotebubble"),h=document.querySelector(".hero");if(!h)return;addEventListener("scroll",function(){var on=scrollY>h.offsetHeight*0.8;if(b)b.classList.toggle("on",on);},{passive:true})})();</script></body>
 </html>
