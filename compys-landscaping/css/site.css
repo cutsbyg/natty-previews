@@ -447,3 +447,21 @@ input[type=file]{padding:.55rem}
 .cta__family img{width:100%}
 .cta__family figcaption{background-color:var(--paper);color:var(--ink);padding:.6rem .9rem;font-size:.95rem}
 .stickycta__call::before{content:"\260E";font-size:1.15rem}
+
+/* ---------- SERVICES variant of the reviews band (opt in: .rev--svc) ----------
+   These entries are SERVICES, not testimonials. The card, the italics and the
+   decorative quote glyph all say "a customer said this", which is untrue when the
+   copy is our own. This strips the testimonial signals and reads as a capability
+   list: name first, then what it covers.
+   The 2-up grid is scoped to min-width so the phone tier's single column still
+   applies -- a bare `.revs:has(...)` rule would out-specify it and never collapse. */
+.rev--svc{background:none;color:inherit;border:0;box-shadow:none;padding:0;
+          border-top:3px solid var(--brand);padding-top:.9rem}
+.rev--svc:hover{transform:none;box-shadow:none}
+.svc__t{font-size:clamp(1.15rem,1.9vw,1.45rem);font-weight:800;line-height:1.15;
+        margin:0 0 .35rem;color:var(--ink)}
+.svc__d{margin:0;font-size:1.06rem;line-height:1.5;color:var(--ink-60);max-width:38ch}
+@media (min-width:861px){
+  .revs:has(.rev--svc){grid-template-columns:repeat(2,1fr);
+                       gap:clamp(1.5rem,3.4vw,2.8rem);margin-top:1.8rem}
+}
