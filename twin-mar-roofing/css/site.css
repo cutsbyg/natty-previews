@@ -317,7 +317,7 @@ input[type=file]{padding:.55rem}
 .foot__top{display:grid;grid-template-columns:26% 1fr;gap:clamp(1.5rem,4vw,3rem);
            align-items:start}
 .foot__brand{display:flex;align-items:center;gap:.8rem}
-.foot__mark{background:#fff;border-radius:10px;padding:5px;object-fit:contain;width:104px;height:104px;filter:brightness(0) invert(1)}
+.foot__mark{background:#fff;border-radius:10px;padding:5px;object-fit:contain;width:104px;height:104px}
 .foot__legal{font-size:1.5rem;font-weight:900;line-height:1.1}
 .foot__cols{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gut)}
 /* a grid child defaults to min-width:auto, so one long unbreakable run (an email,
@@ -516,7 +516,7 @@ input[type=file]{padding:.55rem}
 .ba__after{position:absolute;inset:0}
 .ba__after img{height:100%;object-fit:cover}
 .ba__range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;
-           -webkit-appearance:none;touch-action:pan-y}  /* horizontal = slider, vertical = page scroll */
+           -webkit-appearance:none;touch-action:pan-y;pointer-events:none}  /* JS pointer-drives; range kept for keyboard */
 .ba__bar{position:absolute;top:0;bottom:0;width:3px;background:#fff;pointer-events:none;
          box-shadow:0 0 8px rgba(0,0,0,.5)}
 .ba__knob{position:absolute;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;
@@ -610,3 +610,5 @@ input[type=file]{padding:.55rem}
    the mobile text panel + left a zoomed black edge (Grady 8/31 screenshots) */
 .hero__shot{position:relative}
 .ba--hero .ba__tag--a{left:.7rem;right:auto}
+
+.ba{touch-action:pan-y}  /* thumb: horizontal drives the slider, vertical scrolls */

@@ -131,7 +131,23 @@
       if (knob) knob.style.left = v + '%';
     }
     r.addEventListener('input', function () { auto = false; set(r.value); });
-    ba.addEventListener('pointerdown', function () { auto = false; }, true);
+    /* direct pointer drive - invisible range inputs are unreliable under thumbs (iOS) */
+    var dragging = false;
+    function drive(e) {
+      var rect = ba.getBoundingClientRect();
+      var lo2 = +r.min || 0, hi2 = +r.max || 100;
+      var v = Math.max(lo2, Math.min(hi2, (e.clientX - rect.left) / rect.width * 100));
+      r.value = v;
+      set(v);
+    }
+    ba.addEventListener('pointerdown', function (e) {
+      auto = false; dragging = true;
+      if (ba.setPointerCapture) { try { ba.setPointerCapture(e.pointerId); } catch (x) {} }
+      drive(e);
+    });
+    ba.addEventListener('pointermove', function (e) { if (dragging) drive(e); });
+    ba.addEventListener('pointerup', function () { dragging = false; });
+    ba.addEventListener('pointercancel', function () { dragging = false; });
     set(r.value || 50);
     /* slow pulse between the endpoints until the viewer takes over (reduced-motion: off) */
     var auto = !matchMedia('(prefers-reduced-motion: reduce)').matches;
