@@ -372,7 +372,7 @@ input[type=file]{padding:.55rem}
 @media (max-width:600px){
   .work__grid--three{grid-template-columns:1fr}
   .work__grid--three .card:first-child{grid-column:auto}
-  .work__grid--three:has(.pj){grid-template-columns:1fr}
+  .work__grid--three:has(.pj){grid-template-columns:repeat(2,1fr)}
   .work__grid--three .pj,.work__grid--three .pj:nth-child(-n+2){grid-column:auto}
   .work__grid--three .pj:nth-child(-n+2) .pj__ph{aspect-ratio:3/2}
   .work__grid--three .card:first-child .card__ph{aspect-ratio:3/2}
@@ -596,11 +596,11 @@ input[type=file]{padding:.55rem}
 .cta__family figcaption{font-size:.8rem;padding:.4rem .6rem;text-align:center}
 
 /* FREE bar under the hero (Grady 8/31, the Hormozi value strip) */
-.freebar{background:#f2a900;border-block:2px solid var(--ink);padding:1.1rem 1rem;
+.freebar{background:var(--paper);border-block:1px solid var(--rule);padding:1.1rem 1rem;
          text-align:center}
 .freebar p{font-family:inherit;font-weight:800;font-size:clamp(1.2rem,3vw,1.9rem);
            letter-spacing:-.01em;color:var(--ink)}
-.freebar strong{font-weight:900;letter-spacing:.02em}
+.freebar strong{font-weight:900;letter-spacing:.02em;color:#f2a900}
 /* CTA under every project card (js-injected, uniform) */
 .pj__cta{display:inline-block;margin-top:.45rem;font-weight:800;font-size:.95rem;
          color:inherit;text-decoration:underline;text-underline-offset:3px}
