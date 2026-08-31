@@ -565,3 +565,13 @@ input[type=file]{padding:.55rem}
 .cta{display:grid;grid-template-columns:minmax(0,46rem);grid-template-rows:none;
      justify-content:center;gap:1.2rem}
 .cta__intro,.cta form,.cta__fig{grid-column:1;grid-row:auto;align-self:auto}
+
+/* desktop sticky quote bubble (Grady 8/31) - mobile keeps the bar instead */
+.quote-bubble{position:fixed;right:1.4rem;bottom:1.4rem;z-index:60;
+  background:var(--brand);color:#fff;font-weight:800;font-size:1.05rem;
+  padding:.9rem 1.5rem;border:2px solid var(--ink);
+  border-radius:999px 999px 4px 999px;box-shadow:6px 6px 0 var(--ink);
+  text-decoration:none;transform:translateY(180%);transition:transform .25s ease}
+.quote-bubble.on{transform:none}
+.quote-bubble:hover{background:var(--brand-deep)}
+@media(max-width:600px){.quote-bubble{display:none}}

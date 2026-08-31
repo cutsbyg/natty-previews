@@ -121,8 +121,23 @@
       if (bar) bar.style.left = v + '%';
       if (knob) knob.style.left = v + '%';
     }
-    r.addEventListener('input', function () { set(r.value); });
+    r.addEventListener('input', function () { auto = false; set(r.value); });
+    ba.addEventListener('pointerdown', function () { auto = false; }, true);
     set(r.value || 50);
+    /* slow pulse between the endpoints until the viewer takes over (reduced-motion: off) */
+    var auto = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (auto) {
+      var lo = +r.min || 0, hi = +r.max || 100, t0 = null;
+      var loop = function (ts) {
+        if (!auto) return;
+        if (t0 === null) t0 = ts;
+        var v = lo + (hi - lo) * (0.5 - 0.5 * Math.cos((ts - t0) / 7000 * 2 * Math.PI));
+        r.value = v;
+        set(v);
+        requestAnimationFrame(loop);
+      };
+      requestAnimationFrame(loop);
+    }
   });
 
   /* ---- dwell: one beacon per view with seconds on page (3s..30min) ------- */
