@@ -118,7 +118,7 @@ li{list-style:none}
           mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
   filter:drop-shadow(0 10px 18px rgba(0,0,0,.45)) drop-shadow(0 2px 3px rgba(0,0,0,.4));
   transition:transform 220ms ease}
-.hero__cut img{width:auto;max-width:100%;height:auto;max-height:100%;object-fit:contain;margin-inline:auto}
+.hero__cut img{width:auto;max-width:100%;height:auto;max-height:90%;object-fit:contain;margin-inline:auto}
 .glass:hover .hero__cut{transform:translateY(-4px)}
 
 /* ---------- marquee ---------- */
@@ -534,3 +534,23 @@ input[type=file]{padding:.55rem}
 .revs{justify-content:center}
 .faq{max-width:46rem;margin-inline:auto}
 .foot__slogan{text-align:center}
+
+/* ---- hero-as-slider (Grady 8/31: the slider IS the hero) ---- */
+.ba--hero{position:absolute;inset:0;margin:0;border-radius:0;box-shadow:none;overflow:visible}
+.ba--hero .ba__after{position:absolute;inset:0}
+.ba--hero .ba__after img{width:100%;height:100%;object-fit:cover}
+.ba--hero .ba__tag--a{top:auto;bottom:.8rem;right:.8rem}
+
+/* ---- center the REST (Grady 8/31) ---- */
+.wrap>h2,.cta__lede,.picked{text-align:center}
+.work__grid--three:has(.pj){justify-content:center}
+.pj__bar{text-align:center}
+.card__cap{text-align:center}
+.frun{text-align:center}
+.foot__top{justify-items:center;text-align:center}
+.foot__brand{justify-content:center}
+.foot__adm{text-align:center}
+.opts{justify-content:center}
+.send{text-align:center}
+.send .btn{margin-inline:auto}
+.faq summary{text-align:left}
