@@ -593,3 +593,8 @@ input[type=file]{padding:.55rem}
 .glass h1 em{font-style:normal;background:linear-gradient(transparent 62%, var(--brand) 62%, var(--brand) 94%, transparent 94%)}
 /* 3. supporting text dims so headings and CTAs own the page */
 .lede,.pj__bar i,.faq p,.cta__lede,.send__alt,.hero__sub{opacity:.78}
+
+/* the owner figure is a SMALL card inside the section, never a full-width portrait (Grady 8/31) */
+.cta__family{max-width:190px;margin:1.1rem auto 0}
+.cta__family img{width:100%;height:auto;border-radius:10px}
+.cta__family figcaption{font-size:.8rem;padding:.4rem .6rem;text-align:center}
