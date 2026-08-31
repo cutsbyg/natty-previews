@@ -594,3 +594,14 @@ input[type=file]{padding:.55rem}
 .cta__family{max-width:190px;margin:1.1rem auto 0}
 .cta__family img{width:100%;height:auto;border-radius:10px}
 .cta__family figcaption{font-size:.8rem;padding:.4rem .6rem;text-align:center}
+
+/* FREE bar under the hero (Grady 8/31, the Hormozi value strip) */
+.freebar{background:var(--paper);border-block:1px solid var(--rule);padding:1.1rem 1rem;
+         text-align:center}
+.freebar p{font-family:inherit;font-weight:800;font-size:clamp(1.2rem,3vw,1.9rem);
+           letter-spacing:-.01em;color:var(--ink)}
+.freebar strong{font-weight:900;color:var(--brand);letter-spacing:.02em}
+/* CTA under every project card (js-injected, uniform) */
+.pj__cta{display:inline-block;margin-top:.45rem;font-weight:800;font-size:.95rem;
+         color:inherit;text-decoration:underline;text-underline-offset:3px}
+.band--brand .pj__cta{color:#fff}

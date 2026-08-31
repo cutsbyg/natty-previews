@@ -111,6 +111,15 @@
     });
   }
 
+  /* ---- a CTA under every project card ---- */
+  [].forEach.call(document.querySelectorAll('.pj .pj__bar'), function (bar) {
+    var a = document.createElement('a');
+    a.className = 'pj__cta';
+    a.href = '#quote';
+    a.textContent = 'Get a free estimate';
+    bar.appendChild(a);
+  });
+
   /* ---- before/after slider ---- */
   [].forEach.call(document.querySelectorAll('.ba'), function (ba) {
     var r = ba.querySelector('.ba__range'), after = ba.querySelector('.ba__after'),
