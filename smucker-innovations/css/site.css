@@ -181,8 +181,6 @@ li{list-style:none}
 /* quote band is brand (alternation law) — recolor form text for the dark ground (ported from
    bb-v4 style.css L279, which the generalization dropped — that miss shipped 10 sites wrong) */
 .band--brand .fld label{color:#fff}
-.band--brand 
-.opts 
 .band--brand .send__alt{color:rgba(255,255,255,.85)}
 .band--brand .send__alt a,.band--brand .cta__ring a{color:#fff;text-decoration:underline}
 /* project cards on a dark band: caption text flips white or it vanishes */
@@ -247,6 +245,17 @@ li{list-style:none}
             font-weight:800;font-style:normal;color:var(--brand);margin-bottom:.45rem}
 .rev__who{margin-top:.9rem;font-size:1.05rem;font-weight:800}
 .rev__src{font-size:.9rem;color:var(--ink-60)}
+/* SureCritic-style trust signals (Grady 9/1): rounded cards, reviewer letter-avatars,
+   and a write-a-review pill (renders only when the client's real review link is known) */
+.rev{border-radius:14px}
+.rev__who{display:flex;align-items:center}
+.rev__av{display:inline-flex;align-items:center;justify-content:center;flex:none;
+  width:34px;height:34px;border-radius:50%;color:#fff;font-weight:800;font-style:normal;
+  margin-right:.55rem;font-size:1rem}
+.rev__cta{text-align:center;margin:1.6rem 0 .4rem}
+.rev__write{display:inline-block;font-weight:800;text-decoration:none;color:inherit;
+  border:2px solid currentColor;border-radius:999px;padding:.55rem 1.4rem}
+.rev__write:hover{background:#fff;color:var(--ink)}
 .revs__count{margin-top:1.2rem;font-size:1.125rem;font-weight:400}
 .hair{border:0;border-top:1px solid rgba(255,255,255,.4);margin:1.1rem 0}
 .faq{margin-top:.9rem;max-width:60rem}
@@ -488,6 +497,9 @@ input[type=file]{padding:.55rem}
 .svc__t{font-size:clamp(1.15rem,1.9vw,1.45rem);font-weight:800;line-height:1.15;
         margin:0 0 .35rem;color:var(--ink)}
 .svc__d{margin:0;font-size:1.06rem;line-height:1.5;color:var(--ink-60);max-width:38ch}
+/* On the near-black band--brand, ink-on-ink is unreadable (Martin build 9/1) */
+.band--brand .svc__t{color:#fff}
+.band--brand .svc__d{color:rgba(255,255,255,.72)}
 @media (min-width:861px){
   .revs:has(.rev--svc){grid-template-columns:repeat(2,1fr);
                        gap:clamp(1.5rem,3.4vw,2.8rem);margin-top:1.8rem}
@@ -573,6 +585,10 @@ input[type=file]{padding:.55rem}
   text-decoration:none}
 .quote-bubble:hover{background:var(--paper)}
 /* bubble is THE sticky CTA on every size (Grady 8/31: one sticky, the new one) */
+/* hidden until the visitor scrolls (Grady 9/1: nothing sticky on first load) */
+.quote-bubble{opacity:0;transform:translateY(14px);pointer-events:none;
+  transition:opacity .25s ease,transform .25s ease}
+.quote-bubble.show{opacity:1;transform:none;pointer-events:auto}
 
 /* tiny founder avatars (Grady 8/31: the face builds trust - small, everywhere) */
 .avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:top;

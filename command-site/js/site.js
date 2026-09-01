@@ -224,4 +224,12 @@
       if (card && !card.classList.contains('is-flip')) { e.preventDefault(); card.classList.add('is-flip'); }
     });
   }
+
+  /* ---- sticky CTA waits for a scroll (Grady 9/1: invisible on first load) - */
+  var qb = document.querySelector('.quote-bubble');
+  if (qb) {
+    var qbUpd = function () { qb.classList.toggle('show', window.scrollY > 160); };
+    window.addEventListener('scroll', qbUpd, { passive: true });
+    qbUpd();
+  }
 })();
