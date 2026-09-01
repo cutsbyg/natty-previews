@@ -181,8 +181,6 @@ li{list-style:none}
 /* quote band is brand (alternation law) — recolor form text for the dark ground (ported from
    bb-v4 style.css L279, which the generalization dropped — that miss shipped 10 sites wrong) */
 .band--brand .fld label{color:#fff}
-.band--brand 
-.opts 
 .band--brand .send__alt{color:rgba(255,255,255,.85)}
 .band--brand .send__alt a,.band--brand .cta__ring a{color:#fff;text-decoration:underline}
 /* project cards on a dark band: caption text flips white or it vanishes */
