@@ -93,7 +93,9 @@ li{list-style:none}
   --cut-col:44%;
   --pad-y:1.5rem;--panel-pad:var(--pad-y) 2.6%;
   --h1-size:min(6.6rem,16.5cqw);
-  position:absolute;left:4%;top:54%;transform:translateY(-50%);width:50%;max-height:92%;
+  /* §15: --panel-w is the per-site clip dial (client JSON PANEL_W). Narrow it when the
+     hero subject sits under the panel; the panel grows taller on its own as text wraps. */
+  position:absolute;left:4%;top:54%;transform:translateY(-50%);width:var(--panel-w,50%);max-height:92%;
   display:grid;grid-template-columns:1fr var(--cut-col);gap:2.4%;align-items:center;
   padding:var(--panel-pad);
   background-color:rgba(247,244,239,.80);
@@ -581,7 +583,7 @@ input[type=file]{padding:.55rem}
 .faq summary{text-align:left}
 
 /* hero slider: track occupies only the reveal zone right of the panel (54%..100%) */
-.ba--hero .ba__range{left:54%;width:46%;right:0}
+.ba--hero .ba__range{left:calc(4% + var(--panel-w,50%));width:calc(96% - var(--panel-w,50%));right:0}
 
 /* CTA = one centered column (Grady 8/31: section still wasn't centered) */
 .cta{display:grid;grid-template-columns:minmax(0,46rem);grid-template-rows:none;

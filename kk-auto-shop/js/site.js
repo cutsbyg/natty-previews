@@ -118,7 +118,7 @@
     var a = document.createElement('a');
     a.className = 'pj__cta';
     a.href = '#quote';
-    a.textContent = 'Get a free estimate';
+    a.textContent = document.body.dataset.pill || 'Get a free estimate';
     bar.appendChild(a);
   })();
 
