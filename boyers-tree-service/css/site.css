@@ -144,15 +144,13 @@ li{list-style:none}
 .band--brand{background-color:var(--brand-deep,var(--brand-dark,var(--brand)));color:#fff;
   background-image:linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),
                    linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px)}
-/* FAQ band: soft brand tint, distinct from BOTH paper and the brand band (Grady 9/1:
-   reviews and FAQ never share a color, and every band carries the grid). Ink text. */
-.band--soft{background-color:#dfe4f0;background-color:color-mix(in srgb,var(--brand) 18%,#fff);
-  color:var(--ink);
-  background-image:linear-gradient(rgba(16,19,24,.10) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(16,19,24,.10) 1px,transparent 1px)}
-.band--soft .faq details{border-top-color:rgba(16,19,24,.25)}
-.band--soft .faq details:last-child{border-bottom-color:rgba(16,19,24,.25)}
-.band--soft .faq summary::before{color:var(--brand)}
+/* FAQ can now sit on the paper band (Grady 9/1: strict red/white alternation) —
+   its default chrome was built white-on-dark, so re-ink it for paper. */
+.band--paper .faq details{border-top-color:rgba(16,19,24,.25)}
+.band--paper .faq details:last-child{border-bottom-color:rgba(16,19,24,.25)}
+.band--paper .faq summary::before{color:var(--brand)}
+/* checked service chip on the brand band: white beats brand-on-brand */
+.band--brand .opt:has(input:checked){background:#fff;color:var(--ink)}
 .band--paper{background-color:var(--paper);color:var(--ink);
   background-image:linear-gradient(rgba(51,128,36,.18) 1px,transparent 1px),
                    linear-gradient(90deg,rgba(51,128,36,.18) 1px,transparent 1px)}

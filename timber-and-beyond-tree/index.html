@@ -12,7 +12,7 @@
 <link rel="preload" as="image" href="img/hero-w.jpg?v=1" media="(min-width:861px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/hero-p.jpg?v=1" media="(max-width:600px)" fetchpriority="high">
 <!-- bb-law: system stack only (Segoe UI). No webfonts — the reference build dropped them. -->
-<link rel="stylesheet" href="css/site.css?v=cca53284">
+<link rel="stylesheet" href="css/site.css?v=c238ab29">
 </head>
 <body data-site="timber-and-beyond-tree">
 <a class="skip" href="#work">Skip to Dan &amp; the crew</a>
@@ -159,7 +159,10 @@
   </div>
 </section>
 <!--/REVIEWS_BAND-->
-<section class="band band--soft" id="faq-band">
+<!-- Strict red/white alternation (Grady 9/1): reviews=brand, faq=paper, quote=brand.
+     On a site with no reviews, render.py flips faq->brand and quote->paper so two
+     whites never touch. -->
+<section class="band band--paper" id="faq-band">
   <div class="wrap">
     <h2 id="faq">Questions we get asked</h2>
     <div class="faq">
@@ -196,7 +199,7 @@
   </div>
 </section>
 
-<section class="band band--paper" id="quote">
+<section class="band band--brand" id="quote">
   <div class="wrap">
     <h2>Send Dan the job</h2>
     <div class="cta">
