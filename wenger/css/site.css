@@ -661,11 +661,11 @@ h1,h2,h3{font-family:var(--disp);font-weight:900;line-height:.86;letter-spacing:
 .ba__line{position:absolute;top:0;bottom:0;left:calc(100% - var(--ba,100%));width:3px;background:var(--paper);
   z-index:2;box-shadow:0 0 0 1px rgba(0,0,0,.35);pointer-events:none;transform:translateX(-1.5px)}
 .ba__line::after{content:"◀ ▶";position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--paper);
-  color:var(--ink);display:grid;place-items:center;font:700 .6rem/1 var(--body);
-  letter-spacing:.02em;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+  transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--brand);
+  color:#fff;display:grid;place-items:center;font:700 .6rem/1 var(--body);
+  letter-spacing:.02em;box-shadow:0 2px 10px rgba(0,0,0,.4);border:2px solid #fff}
 .ba__range{position:absolute;inset:0;z-index:3;width:100%;height:100%;margin:0;opacity:0;
-  cursor:ew-resize;-webkit-appearance:none;appearance:none;background:transparent}
+  cursor:ew-resize;-webkit-appearance:none;appearance:none;background:transparent;touch-action:pan-y}
 .ba__range::-webkit-slider-thumb{-webkit-appearance:none;width:46px;height:46px}
 .ba__range::-moz-range-thumb{width:46px;height:46px;border:0;background:transparent}
 .ba__range:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
@@ -805,3 +805,13 @@ html{scroll-padding-bottom:96px}
 @media (min-width:901px){.stick{display:none}html{scroll-padding-bottom:0}
   .foot{padding-block:var(--pad) 1.4rem}}
 @media (prefers-reduced-motion:reduce){.stick{transition:none}}
+
+/* Grady 9/2 "projects section is uneven": on desktop the scroll-strip left a 2-card row
+   half empty next to a full 3-card row. Rows now fill the band width as even grids;
+   the phone keeps its 2-up grid (max-width:900 rule above). Last in file on purpose -
+   it must out-cascade the base .row flex rule. */
+@media(min-width:901px){
+  .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));
+       overflow-x:visible;overflow-y:visible;scroll-snap-type:none;padding-bottom:0}
+  .row>.card{flex:none;width:auto}
+}

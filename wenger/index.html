@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="css/site.css?v=20260818f">
+<link rel="stylesheet" href="css/site.css?v=20260902a">
 <link rel="preload" as="image" href="img/hero-after.webp?v=20260815a" fetchpriority="high">
 </head>
 <body>
@@ -24,7 +24,6 @@
     </a>
     <ul class="nav__links">
       <li><a href="#work">Projects</a></li>
-      <li><a href="#people">Our People</a></li>
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#submit">Get A Quote</a></li>
     </ul>
@@ -233,31 +232,10 @@
   </div>
 </section>
 
-<!-- ══ 2. THE PEOPLE — paper ══ -->
-<section class="band band--paper" id="people">
-  <div class="wrap">
-    <p class="eyebrow">Our People</p>
-    <h2>Since 2005</h2>
-    <div class="people">
-      <figure class="people__fig">
-        <a href="https://www.facebook.com/people/Wengers-Flooring/61557128852239/" rel="noopener">
-          <img src="img/person.webp?v=20260815a" width="1000" height="563"
-               alt="A man in an orange T-shirt smiling over his shoulder, sitting on a mountain bike on a gravel trail.">
-        </a>
-        <figcaption>Off the clock.</figcaption>
-      </figure>
-      <div>
-        <blockquote class="people__q">&ldquo;We uphold a standard of integrity bound by fairness, honesty and personal responsibility.&rdquo;
-          <cite>Wenger&rsquo;s Flooring</cite></blockquote>
-        <div class="people__meta">
-          <span><b>2005</b>the year we started</span>
-          <span><b>Six</b>counties we cover</span>
-          <span><b>PA048201</b>our PA registration</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ══ 2. THE PEOPLE — DELETED (Grady 2026-09-02: "the since 2005 section is weird,
+     get rid of it"). The mountain-bike photo + quote band never earned its scroll. Its
+     one hard fact, PA048201, still ships in the footer and the schema. Removing it also
+     ended two paper bands touching (people + reviews) after the process band died. -->
 
 <!-- ══ 3. WHAT HAPPENS NEXT — brand (spine, §9a/§7c). Three steps, all three sourced
         verbatim to their homepage's "Our Simple Process". No fourth step invented. ══ -->
@@ -430,7 +408,7 @@
   <a class="stick__b stick__b--cta" href="#submit">Free quote</a>
 </div>
 
-<script src="js/site.js?v=20260818a"></script>
+<script src="js/site.js?v=20260902a"></script>
 <script defer src="a.js?v=20260815a"></script>
 <script>
 /* §9.2 — the drag. The <input type=range> is the whole control surface, so touch, mouse,
@@ -441,6 +419,15 @@
   /* the range reads as HOW MUCH BEFORE TO REVEAL (0 = finished), and --ba is its complement */
   function paint(){ ba.classList.remove('is-hinting'); ba.style.setProperty('--ba', (100 - r.value) + '%'); }
   r.addEventListener('input', paint);
+  /* Grady 9/2 "easier to use": tap or drag ANYWHERE on the photo and the line goes
+     there. Native range thumbs (especially iOS) only respond at the thumb itself. */
+  function setFromX(x){
+    var rect = ba.getBoundingClientRect();
+    r.value = Math.max(0, Math.min(100, (x - rect.left) / rect.width * 100));
+    paint();
+  }
+  r.addEventListener('pointerdown', function(e){ setFromX(e.clientX); try{ r.setPointerCapture(e.pointerId); }catch(_){} });
+  r.addEventListener('pointermove', function(e){ if (e.buttons) setFromX(e.clientX); });
   ba.addEventListener('animationend', function(){
     ba.classList.remove('is-hinting'); ba.style.setProperty('--ba','100%');
   });

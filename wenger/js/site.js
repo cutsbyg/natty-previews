@@ -6,7 +6,9 @@
      The track slides -100% of ONE copy's own width, so one copy must be at
      least as wide as the container or blank paper scrolls past. No fixed copy
      count in HTML can satisfy that, so: clone to fill from one stored seed. */
-  var mq = document.getElementById('mq'), bar = mq.parentNode;
+  /* Grady 9/2 sweep: the marquee was removed from the page but this line still ran —
+     mq.parentNode on null KILLED this whole file (nav rail, lightbox, the quote form). */
+  var mq = document.getElementById('mq'), bar = mq && mq.parentNode;
   var SEED = ['Elliottsburg', 'Quality. Satisfaction.', 'Perry County', 'Cumberland County',
     'Reliable. Integrity.', 'Dauphin County', 'Franklin County', 'Juniata County',
     'Mifflin County', 'Carpet, hardwood, vinyl and tile'];
@@ -23,8 +25,10 @@
     for (var i = 1; i < reps; i++) mq.insertAdjacentHTML('beforeend', seedHTML);
     bar.appendChild(mq.cloneNode(true));               // second copy -> seamless loop
   }
-  fillMarquee();
-  var t; addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fillMarquee, 180); });
+  if (mq) {
+    fillMarquee();
+    var t; addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fillMarquee, 180); });
+  }
 
   /* ── NAV: section-aware, progress rail, idle nudge ───────────────────────── */
   var rail = document.getElementById('rail'), nav = document.getElementById('nav');
