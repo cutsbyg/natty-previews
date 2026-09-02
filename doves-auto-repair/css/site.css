@@ -1,0 +1,647 @@
+/* Double B Farm Supply — style.css
+   Desktop-first. The band tier and then the phone tier live LAST (§8.16). */
+
+:root{
+  /* --brand sampled from the isolated mark: hue 110deg covers ~40% of the logo's
+     opaque pixels. Held to the brightness ceiling: HSV sat 72%, HSL lightness 32%.
+     White on --brand = 6.91:1. --brand on --paper = 6.30:1. (computed at render) */
+  --brand:#b3122b;
+  --brand-deep:#8f1020;
+  --paper:#f7f4ef;
+  --ink:#1c1a17;
+  --ink-60:#6b6862;
+  --ink-30:#b4b0a9;
+  --dusk:#121a24;
+  --rule:rgba(28,26,23,.14);
+  /* no --star token: Double B has no rating on any platform, so no star ever renders. */
+  --wrap:78rem;
+  --pad:clamp(1.6rem,3.4vw,2.1rem);
+  --gut:clamp(.75rem,1.6vw,1.25rem);
+  --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+     font-size:1.125rem;line-height:1.55;-webkit-text-size-adjust:100%}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3{margin:0;letter-spacing:-.02em}
+p{margin:0}
+ul,ol,dl,dd{margin:0;padding:0}
+li{list-style:none}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gut)}
+.skip{position:absolute;left:-9999px;top:0;z-index:99;background:var(--ink);color:#fff;padding:.6rem 1rem}
+.skip:focus{left:0}
+
+:focus-visible{outline:3px solid var(--brand-deep);outline-offset:3px}
+.band--brand :focus-visible{outline-color:#fff}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;
+     padding:.6rem 1.5rem;background:var(--brand);color:#fff;font-weight:800;
+     font-size:1.05rem;letter-spacing:.02em;text-decoration:none;border:2px solid var(--ink);
+     border-radius:2px;box-shadow:6px 6px 0 var(--ink);
+     transition:transform 200ms ease,box-shadow 200ms ease,background-color 140ms ease}
+.btn:hover,.btn:focus-visible{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--ink);
+     background:var(--brand-deep)}
+.btn--ghost{background:var(--paper);color:var(--ink)}
+.btn--ghost:hover,.btn--ghost:focus-visible{background:var(--brand);color:#fff}
+.btn--big{font-size:1.25rem;min-height:56px;padding:.8rem 2rem;box-shadow:8px 8px 0 var(--ink)}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:40;background:var(--brand);color:#fff}
+.nav__in{max-width:var(--wrap);margin:0 auto;padding:.5rem var(--gut);
+         display:flex;align-items:center;gap:1.25rem}
+.nav__brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;min-height:44px;
+            min-width:0;overflow:hidden}
+/* logo chip: real logos keep their colors on a white chip - the old invert filter
+   turned dark logos into white blobs (Grady 8/31, Smucker) */
+.nav__mark{width:52px;height:52px;background:#fff;border-radius:10px;padding:5px;object-fit:contain;
+           transition:transform 200ms ease}
+.nav__brand:hover .nav__mark{transform:scale(1.06)}
+.nav__name{font-weight:900;font-size:1.15rem;letter-spacing:-.01em;white-space:nowrap;
+           min-width:0;overflow:hidden;text-overflow:ellipsis}
+.nav__name-short{display:none}
+.nav__links{display:flex;gap:1.25rem;margin-left:auto}
+.nav__links a{display:inline-flex;align-items:center;min-height:44px;font-weight:700;
+              font-size:1.02rem;text-decoration:none;border-bottom:2px solid transparent}
+.nav__links a:empty{display:none}
+.nav__links a:hover,.nav__links a:focus-visible{border-bottom-color:#fff}
+.nav__links a[aria-current="true"]{border-bottom-color:#fff}
+.nav__tel{display:inline-flex;align-items:center;min-height:44px;font-weight:800;
+          font-size:1.15rem;text-decoration:none;white-space:nowrap}
+.nav__tel:hover{text-decoration:underline}
+.nav__rail{height:2px;background:var(--ink);width:0}
+
+/* ---------- hero ---------- */
+.hero{background:var(--ink)}
+.hero__media{position:relative;aspect-ratio:2200/859;overflow:hidden;max-width:100%}
+.hero__img{width:100%;height:auto}
+
+.hero__cue{position:absolute;left:50%;bottom:1.1rem;transform:translateX(-50%);
+  width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.24);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.5);
+  color:#fff;font-size:1.3rem;text-decoration:none;animation:bob 2.4s ease-in-out infinite}
+.hero__cue:hover{background:rgba(255,255,255,.42)}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+
+.glass{
+  /* BLUEPRINT-LAW SS2: GEOMETRY DIALS - the ONLY place these numbers exist. Tiers below
+     override dial VALUES only; no tier may restate a component rule. */
+  --cut-col:44%;
+  --pad-y:1.5rem;--panel-pad:var(--pad-y) 2.6%;
+  --h1-size:min(6.6rem,16.5cqw);
+  /* §15: --panel-w is the per-site clip dial (client JSON PANEL_W). Narrow it when the
+     hero subject sits under the panel; the panel grows taller on its own as text wraps. */
+  position:absolute;left:4%;top:54%;transform:translateY(-50%);width:var(--panel-w,50%);max-height:92%;
+  display:grid;grid-template-columns:1fr var(--cut-col);gap:2.4%;align-items:center;
+  padding:var(--panel-pad);
+  background-color:rgba(247,244,239,.80);
+  backdrop-filter:blur(14px) saturate(115%);-webkit-backdrop-filter:blur(14px) saturate(115%);
+  border:1px solid rgba(28,26,23,.20);border-radius:18px;
+  box-shadow:0 18px 46px rgba(0,0,0,.34);
+  transition:box-shadow 220ms ease,border-color 220ms ease}
+.glass:hover,.glass:focus-within{box-shadow:0 24px 56px rgba(0,0,0,.42);border-color:rgba(28,26,23,.34)}
+.hero__words{container-type:inline-size;min-width:0}
+.hero__eyebrow{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+               color:var(--brand-deep);margin-bottom:.35rem}
+.glass h1{font-size:var(--h1-size);line-height:.86;font-weight:900;letter-spacing:-.03em;
+          text-transform:uppercase;color:var(--ink)}
+.hero__sub{font-size:clamp(12px,3.5cqw,1.2rem);font-weight:700;margin-top:.55rem;line-height:1.25}
+.hero__where{font-size:clamp(11px,2.9cqw,.98rem);color:var(--ink-60);margin-top:.15rem;line-height:1.25}
+.hero__btn{margin-top:.85rem;font-size:min(1.3rem,4.4cqw);min-height:56px;
+           padding:.8rem min(2.2rem,4.5cqw);white-space:nowrap;
+           box-shadow:7px 7px 0 var(--ink)}
+.hero__cut{width:100%;height:calc(100% + 2*var(--pad-y));margin-block:calc(-1*var(--pad-y));
+  display:flex;align-items:flex-end;justify-content:center;
+  -webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
+          mask-image:linear-gradient(to bottom,#000 78%,transparent 99%);
+  filter:drop-shadow(0 10px 18px rgba(0,0,0,.45)) drop-shadow(0 2px 3px rgba(0,0,0,.4));
+  transition:transform 220ms ease}
+.hero__cut img{width:auto;max-width:100%;height:auto;max-height:90%;object-fit:contain;margin-inline:auto}
+.glass:hover .hero__cut{transform:translateY(-4px)}
+
+/* ---------- marquee ---------- */
+.marquee{overflow:hidden;background:var(--paper);border-block:1px solid var(--rule);
+         display:flex;height:52px;align-items:center}
+.mq{display:flex;flex:0 0 auto;align-items:center;gap:1.4rem;padding-right:1.4rem;
+    animation:slide 46s linear infinite}
+.mq li{flex:none;white-space:nowrap;font-size:.95rem;font-weight:800;letter-spacing:.06em;
+       text-transform:uppercase}
+.mq .dia{color:var(--ink-30);font-weight:400}
+@keyframes slide{to{transform:translateX(-100%)}}
+
+/* ---------- bands ---------- */
+.band{padding-block:var(--pad);background-size:64px 64px;
+      animation:drift 44s linear infinite}
+@keyframes drift{to{background-position:64px 64px,64px 64px}}
+/* CONTRAST DOCTRINE (Grady 8/31, from acquisition.com): dark bands are near-black so the
+   BRAND color is scarce - it appears only on buttons, chips, the bubble and the nav.
+   Scarce color = every CTA is the loudest object in view. */
+/* Grady 9/1: the dark band is the BRAND color, never black - "every other section
+   in the different color, not black". White text is safe: every site's nav already
+   proves white-on-brand contrast. */
+.band--brand{background-color:var(--brand-deep,var(--brand-dark,var(--brand)));color:#fff;
+  background-image:linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px)}
+/* FAQ can now sit on the paper band (Grady 9/1: strict red/white alternation) —
+   its default chrome was built white-on-dark, so re-ink it for paper. */
+.band--paper .faq details{border-top-color:rgba(16,19,24,.25)}
+.band--paper .faq details:last-child{border-bottom-color:rgba(16,19,24,.25)}
+.band--paper .faq summary::before{color:var(--brand)}
+/* checked service chip on the brand band: white beats brand-on-brand */
+.band--brand .opt:has(input:checked){background:#fff;color:var(--ink)}
+.band--paper{background-color:var(--paper);color:var(--ink);
+  background-image:linear-gradient(rgba(51,128,36,.18) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(51,128,36,.18) 1px,transparent 1px)}
+
+.band h2{font-size:clamp(1.9rem,5vw,2.9rem);line-height:.9;font-weight:800;text-transform:uppercase}
+.band--brand h2{text-shadow:0 1px 2px rgba(0,0,0,.45),0 0 1px rgba(0,0,0,.55)}
+.lede{max-width:34ch;margin-top:.6rem;font-size:1.125rem;line-height:1.4}
+.eyebrow{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+         color:var(--brand-deep)}
+.sec{color:inherit}
+
+/* ---------- work ---------- */
+.work{margin-top:1.3rem}
+.work__grid{display:grid;grid-template-columns:1fr;gap:var(--gut)}
+.work__grid--three{grid-template-columns:repeat(3,1fr)}
+/* one larger card leads full-width, then 6 even: two clean rows of three, no orphans */
+.work__grid--three .card:first-child{grid-column:1/-1}
+.work__grid--three .card:first-child .card__ph{aspect-ratio:5/2}
+/* PROJECT GRID (Grady 8/31 final): ONE wide shallow lead (css-cropped, never screen-tall),
+   then the rest in a 2x2 grid. Lead + 2n cards rows out even. */
+.work__grid--three:has(.pj){grid-template-columns:repeat(2,1fr)}
+.work__grid--three .pj:first-child{grid-column:1/-1}
+.work__grid--three .pj:first-child .pj__ph{aspect-ratio:21/8}
+.work__all{margin-top:var(--gut)}
+.card__add{display:block;width:calc(100% - 1.8rem);margin:.75rem auto .9rem;padding:.7rem 1rem;
+           background:var(--brand);color:#fff;font:inherit;font-weight:800;font-size:1rem;
+           border:0;border-radius:999px;cursor:pointer;text-align:center;min-height:48px;
+           box-shadow:0 4px 0 var(--ink);
+           transition:transform 150ms ease,box-shadow 150ms ease,background 150ms ease}
+.card__add:hover,.card__add:focus-visible{background:var(--brand-deep);transform:translateY(2px);box-shadow:0 2px 0 var(--ink)}
+.card__add.on{background:var(--ink);color:#fff}
+.picked{grid-column:1/-1;font-weight:700;background:rgba(51,128,36,.1);
+        border:2px solid var(--brand);padding:.6rem .8rem}
+.card{min-width:0;background:var(--paper);border:2px solid var(--ink);
+      box-shadow:8px 8px 0 var(--ink);
+      transition:transform 200ms ease,box-shadow 200ms ease}
+.card:hover,.card:focus-within{transform:translate(4px,4px);box-shadow:4px 4px 0 var(--ink)}
+/* quote band is brand (alternation law) — recolor form text for the dark ground (ported from
+   bb-v4 style.css L279, which the generalization dropped — that miss shipped 10 sites wrong) */
+.band--brand .fld label{color:#fff}
+.band--brand .send__alt{color:rgba(255,255,255,.85)}
+.band--brand .send__alt a,.band--brand .cta__ring a{color:#fff;text-decoration:underline}
+/* project cards on a dark band: caption text flips white or it vanishes */
+.band--brand .pj__bar b{color:#fff}
+.band--brand .pj__bar i{color:rgba(255,255,255,.72)}
+/* project cards ({{PROJECT_CARDS}} uses .pj) — uniform tiles regardless of source photo shape.
+   The aspect-ratio + object-fit here is the LAW: mixed portrait/landscape/square photos may
+   never produce ragged rows or gaps (Grady 2026-08-29, D & E build). */
+.pj{min-width:0}
+.pj__ph{display:block;aspect-ratio:3/2;overflow:hidden;border-radius:12px;background:var(--ink)}
+.pj__ph img{display:block;width:100%;height:100%;object-fit:cover}
+.pj__bar{display:block;padding:.65rem .2rem 0}
+.pj__bar b{display:block;font-weight:800;font-size:clamp(1rem,1.4vw,1.2rem);line-height:1.25}
+.pj__bar i{display:block;font-style:normal;color:var(--dusk);font-size:.9rem;margin-top:.15rem}
+.card__hit{display:block;text-decoration:none;color:var(--ink)}
+.card__ph{position:relative;display:block;aspect-ratio:3/2;overflow:hidden;background:var(--ink)}
+.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    transition:opacity 320ms ease}
+.ph--b{opacity:0}
+.card__hit:hover .ph--b,.card__hit:focus-visible .ph--b,.card.is-flip .ph--b{opacity:1}
+.card__cap{display:block;background-color:var(--paper);color:var(--ink);
+           padding:.8rem .9rem;border-top:2px solid var(--ink)}
+.card__t{display:block;font-size:clamp(1rem,1.4vw,1.35rem);font-weight:800;line-height:1.2;
+         min-height:1.2em}
+.arw{color:var(--brand-deep)}
+.card__s{display:block;font-size:.95rem;font-weight:600;line-height:1.3;min-height:1.3em;
+         margin-top:.15rem}
+.card__m{display:block;font-size:.82rem;color:var(--ink-60);line-height:1.3;min-height:1.3em}
+
+/* lightbox — the destination a tile promises */
+.lb{display:none}
+.lb:target{display:flex;position:fixed;inset:0;z-index:80;background:rgba(18,26,36,.92);
+  align-items:center;justify-content:center;padding:var(--gut);overflow:auto}
+.lb__box{max-width:70rem;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);
+         background:var(--paper);border:2px solid var(--ink);padding:var(--gut)}
+.lb__box p{grid-column:1/-1;font-weight:700}
+.lb__x{position:fixed;top:1rem;right:1rem;min-height:48px;display:inline-flex;align-items:center;
+       padding:0 1.2rem;background:var(--paper);color:var(--ink);font-weight:800;
+       text-decoration:none;border:2px solid var(--ink)}
+
+/* ---------- the people ---------- */
+.people{display:grid;grid-template-columns:44% 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:start}
+.people__fig{margin:0;border:2px solid var(--ink);box-shadow:10px 10px 0 var(--ink);
+             background:var(--paper)}
+.people__fig img{width:100%}
+.people__fig figcaption{background-color:var(--paper);color:var(--ink);padding:.7rem .9rem;
+                        font-size:.95rem;font-weight:600;border-top:2px solid var(--ink)}
+.people__txt h2{margin:.2rem 0 .9rem}
+.people__lead{font-size:1.3rem;font-weight:700;line-height:1.35;max-width:52ch}
+.people__txt p+p{margin-top:.7rem}
+.people__txt .btn{margin-top:1.1rem}
+.crew{margin-top:1.2rem;font-size:1.125rem;color:var(--ink-60);max-width:52ch}
+
+/* ---------- reviews + faq ---------- */
+.revs{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gut);margin-top:1.4rem}
+.rev{background:var(--paper);color:var(--ink);border:2px solid var(--ink);
+     box-shadow:8px 8px 0 var(--ink);padding:1.6rem;min-width:0;
+     transition:transform 200ms ease,box-shadow 200ms ease}
+.rev:hover{transform:translate(4px,4px);box-shadow:4px 4px 0 var(--ink)}
+.rev blockquote{margin:0;font-size:1.12rem;line-height:1.45;font-style:italic}
+.rev blockquote::before{content:"\201C";display:block;font-size:3.2rem;line-height:.6;
+            font-weight:800;font-style:normal;color:var(--brand);margin-bottom:.45rem}
+.rev__who{margin-top:.9rem;font-size:1.05rem;font-weight:800}
+.rev__src{font-size:.9rem;color:var(--ink-60)}
+/* SureCritic-style trust signals (Grady 9/1): rounded cards, reviewer letter-avatars,
+   and a write-a-review pill (renders only when the client's real review link is known) */
+.rev{border-radius:14px}
+.rev__who{display:flex;align-items:center}
+.rev__av{display:inline-flex;align-items:center;justify-content:center;flex:none;
+  width:34px;height:34px;border-radius:50%;color:#fff;font-weight:800;font-style:normal;
+  margin-right:.55rem;font-size:1rem}
+.rev__cta{text-align:center;margin:1.6rem 0 .4rem}
+.rev__write{display:inline-block;font-weight:800;text-decoration:none;color:inherit;
+  border:2px solid currentColor;border-radius:999px;padding:.55rem 1.4rem}
+.rev__write:hover{background:#fff;color:var(--ink)}
+.revs__count{margin-top:1.2rem;font-size:1.125rem;font-weight:400}
+.hair{border:0;border-top:1px solid rgba(255,255,255,.4);margin:1.1rem 0}
+.faq{margin-top:.9rem;max-width:60rem}
+.faq details{border-top:1px solid rgba(255,255,255,.4)}
+.faq details:last-child{border-bottom:1px solid rgba(255,255,255,.4)}
+.faq summary{cursor:pointer;list-style:none;padding:.95rem 0;font-size:1.2rem;font-weight:800;
+             min-height:44px;display:flex;align-items:center;gap:.6rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"+";font-weight:900;color:#fff}
+.faq details[open] summary::before{content:"\2013"}
+.faq summary:hover{text-decoration:underline}
+.faq details p{padding:0 0 1rem;max-width:60ch;font-size:1.125rem}
+
+/* ---------- stats + cta ---------- */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.2rem}
+.stat{background:#fff;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);
+      padding:.8rem 1rem;display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.stat b{font-size:clamp(1.9rem,2.8vw,2.8rem);font-weight:600;line-height:1;
+        font-variant-numeric:tabular-nums;color:var(--brand-deep)}
+.stat span{font-size:.95rem;color:var(--ink-60);line-height:1.25;flex:1 1 6rem}
+
+.cta{display:grid;grid-template-columns:1fr 38%;grid-template-rows:auto 1fr;
+     gap:clamp(1.2rem,3vw,2.4rem);align-items:start}
+.cta__intro{grid-column:2;grid-row:1}
+.cta__fig{grid-column:2;grid-row:2;align-self:end}
+.cta form{grid-column:1;grid-row:1/3;margin-top:0}
+.cta__lede{font-size:1.25rem;font-weight:700;line-height:1.35;max-width:52ch}
+.cta__ring{margin-top:.6rem}
+.cta__ring a{display:inline-flex;align-items:center;min-height:44px;font-weight:800;
+             font-size:1.125rem;color:var(--brand-deep)}
+.cta__fig{margin:1.2rem 0 0;border:2px solid var(--ink);box-shadow:10px 10px 0 var(--ink);
+          background:var(--paper)}
+.cta__fig img{width:100%}
+.cta__fig figcaption{background-color:var(--paper);color:var(--ink);padding:.7rem .9rem;
+                     font-size:.95rem;font-weight:600;border-top:2px solid var(--ink)}
+
+form{margin-top:1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut)}
+.fld{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.fld--wide{grid-column:1/-1}
+/* labels are TEXT, never boxes - they were grouped with inputs and rendered as white
+   bars with white text on dark bands (Grady 8/31: "blank white boxes") */
+.fld label{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  padding:0;border:0;background:transparent;min-height:0;width:auto}
+input,select,textarea{font:inherit;font-size:1rem;padding:.7rem .8rem;min-height:48px;
+  border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:0;
+  -webkit-appearance:none;appearance:none;width:100%;box-sizing:border-box}
+  /* border-box: width:100% + padding + 2px border overflowed the page 3-4px at 390 */
+select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),
+       linear-gradient(135deg,var(--ink) 50%,transparent 50%);
+       background-position:calc(100% - 18px) 22px,calc(100% - 12px) 22px;
+       background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+textarea{min-height:96px}
+input[type=file]{padding:.55rem}
+
+
+
+
+
+
+.send{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}
+.send__alt{font-size:1.05rem;color:var(--ink-60)}
+.send__alt a{display:inline-flex;align-items:center;min-height:44px;font-weight:800;
+             color:var(--brand-deep)}
+
+/* ---------- footer ---------- */
+.foot{background:var(--brand);color:#fff;padding-block:clamp(2rem,5vw,3rem)}
+.foot__top{display:grid;grid-template-columns:26% 1fr;gap:clamp(1.5rem,4vw,3rem);
+           align-items:start}
+.foot__brand{display:flex;align-items:center;gap:.8rem}
+.foot__mark{background:#fff;border-radius:10px;padding:5px;object-fit:contain;width:104px;height:104px}
+.foot__legal{font-size:1.5rem;font-weight:900;line-height:1.1}
+.foot__cols{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gut)}
+/* a grid child defaults to min-width:auto, so one long unbreakable run (an email,
+   a URL) widens the whole document instead of wrapping. Both halves needed. */
+.foot__cols>*{min-width:0}
+.frun{overflow-wrap:anywhere}
+.foot__brand{min-width:0}
+.foot__legal{overflow-wrap:anywhere}
+.foot__h{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+         color:rgba(255,255,255,.75);margin-bottom:.4rem}
+.foot__col p{font-size:1.125rem;line-height:1.5}
+.lnk{color:#fff}
+.lnk:hover{text-decoration:none}
+.foot__slogan{margin-top:clamp(1.5rem,4vw,2.5rem);font-size:clamp(1.75rem,5vw,2.9rem);
+              font-weight:900;line-height:.9;letter-spacing:-.03em;text-transform:uppercase}
+.foot__adm{margin-top:1.4rem;font-size:.82rem;color:rgba(255,255,255,.72)}
+.foot__adm a{text-decoration:underline}
+/* visual-issues sweep 8/31: footer links are 44px tap targets (research: cramped mobile taps) */
+.frun a,.foot__adm a{display:inline-flex;align-items:center;min-height:44px;margin-block:-.55rem}
+
+/* ================= BAND TIER — the panel leaves the photograph (§1.0b-H) ================= */
+@media (max-width:860px){
+    .hero__media{aspect-ratio:auto;overflow:visible}
+  .hero__img{width:100%;height:100%;object-fit:cover}
+  .hero__cue{display:none}
+  .glass{--cut-col:36%;--pad-y:.9rem;--panel-pad:var(--pad-y) 4%;--h1-size:min(4.6rem,14cqw);
+    position:static;transform:none;width:100%;left:auto;top:auto;max-height:none;
+    background-color:var(--paper);
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+    border:0;border-radius:0;box-shadow:none}
+  .glass:hover,.glass:focus-within{box-shadow:none;border-color:transparent}
+  .hero__cut{filter:none}
+  .glass:hover .hero__cut{transform:none}
+
+  .work__grid--three{grid-template-columns:repeat(2,1fr)}
+  .work__grid--three:has(.pj){grid-template-columns:repeat(2,1fr)}
+  .work__grid--three .pj{grid-column:span 1}
+  .work__grid--three .pj:first-child{grid-column:1/-1}
+  .revs{grid-template-columns:1fr}
+  .people{grid-template-columns:1fr}
+  .card__s{min-height:2.6em}
+  .card__m{min-height:2.6em}
+  .cta{grid-template-columns:1fr;grid-template-rows:none}
+  .cta__intro,.cta__fig,.cta form{grid-column:1;grid-row:auto;align-self:auto}
+  
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .foot__top{grid-template-columns:1fr}
+  .foot__cols{grid-template-columns:repeat(2,1fr)}
+  .lb__box{grid-template-columns:1fr}
+}
+
+/* ================= PHONE TIER — LAST IN THE FILE (§8.16) ================= */
+@media (max-width:600px){
+  .work__grid--three{grid-template-columns:1fr}
+  .work__grid--three .card:first-child{grid-column:auto}
+  .work__grid--three:has(.pj){grid-template-columns:repeat(2,1fr)}
+  .work__grid--three .pj{grid-column:auto}
+  .work__grid--three .pj:first-child{grid-column:1/-1}
+  .work__grid--three .pj:first-child .pj__ph{aspect-ratio:16/9}
+  .work__grid--three .card:first-child .card__ph{aspect-ratio:3/2}
+  :root{--pad:clamp(1.6rem,6vw,2.4rem)}
+  .band{animation:none}
+  .nav__links{display:none}
+  .nav__name-full{display:none}
+  .nav__name-short{display:inline}
+  .nav__in{gap:.8rem;padding:.5rem .7rem}
+  .nav__mark{width:44px;height:44px}
+  .nav__name{font-size:1.05rem}
+  .nav__tel{margin-left:auto;font-size:1.05rem}
+
+  /* BLUEPRINT-LAW SS2 phone dials (aq.com lesson: headlines smaller than you think) */
+  .glass{--cut-col:46%;--pad-y:.8rem;--panel-pad:var(--pad-y) 3%;--h1-size:min(3.8rem,17cqw)}
+  .hero__eyebrow{margin-bottom:.25rem}
+  .hero__sub{margin-top:.4rem}
+  .hero__btn{margin-top:.6rem;min-height:44px;padding:.5rem 1.1rem;font-size:1rem;
+             box-shadow:4px 4px 0 var(--ink)}
+
+  .marquee{height:46px}
+  .mq li{font-size:.85rem}
+
+  .band h2{font-size:clamp(1.6rem,7vw,2rem)}
+  .foot__slogan{font-size:clamp(1.5rem,5.5vw,1.75rem)}
+  .lede{font-size:1.125rem;line-height:1.35;margin-top:.5rem}
+  .sec{display:none}
+  .work{margin-top:1rem}
+  .people__fig img{aspect-ratio:2/1;object-fit:cover;object-position:50% 58%;width:100%}
+  .faq summary{font-size:1.05rem;padding:.7rem 0}
+  .faq details p{font-size:1.125rem;line-height:1.45;padding-bottom:.8rem}
+  .revs{gap:.8rem}
+  .revs__count{margin-top:.9rem}
+
+  .card{box-shadow:5px 5px 0 var(--ink)}
+  .card__cap{padding:.55rem .6rem}
+  .card__t{font-size:1rem}
+  .card__s{font-size:.85rem;min-height:2.4em}
+  .card__m{font-size:.78rem;min-height:2.4em}
+
+  .people__lead{font-size:1.2rem}
+  .people{gap:1rem}
+  .people__fig{box-shadow:6px 6px 0 var(--ink)}
+  .people__fig figcaption{font-size:.9rem;padding:.5rem .7rem}
+  .crew{font-size:1.125rem;margin-top:.9rem}
+
+  .rev{padding:1.6rem;box-shadow:5px 5px 0 var(--ink)}
+  .faq summary{font-size:1.1rem}
+
+  .stats{gap:.6rem}
+  .stat{padding:.7rem .8rem;box-shadow:4px 4px 0 var(--ink)}
+  .stat b{font-size:2rem}
+  .stat span{font-size:.85rem}
+  .cta__lede{font-size:1.2rem}
+  form{grid-template-columns:1fr}
+  .btn--big{width:100%}
+
+  .foot__cols{grid-template-columns:1fr 1fr;gap:1rem}
+  .foot__col p{font-size:1.05rem;line-height:1.45}
+  .foot__mark{background:#fff;border-radius:10px;padding:5px;object-fit:contain;width:80px;height:80px}
+  .foot__legal{font-size:1.3rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
+/* Amendment 13: sticky mobile CTA */
+.stickycta{display:none}
+/* Grady: grid lines in the hero panel */
+.glass{background-image:linear-gradient(rgba(51,128,36,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(51,128,36,.14) 1px,transparent 1px);background-size:44px 44px}
+/* mobile hero is centered in the image itself now */
+
+/* ===== template additions over the bb-v4 reference (rating clients + no-cut collapse) ===== */
+:root{--star:#d8a72b}  /* star glyphs ONLY */
+.hero .rate{display:flex;align-items:center;gap:.45rem;margin-top:.45rem;white-space:nowrap;
+  font-weight:700;font-size:clamp(.8rem,3.4cqw,1.15rem)}
+.hero .rate a{color:inherit;text-underline-offset:3px;display:inline-block}
+.hero .stars{color:var(--star);font-size:clamp(.9rem,3cqw,1.35rem);letter-spacing:.06em}
+.rev .stars{margin:0 0 .4rem;color:var(--star);font-size:clamp(.98rem,2.7vw,1.6rem)}
+/* a client with no sourced owner photo ships HERO_CUT as "" - panel collapses to one column */
+.glass:not(:has(.hero__cut)){grid-template-columns:1fr}
+
+
+/* ported from bb-v4 reference 2026-08-30 (selector diff): rise animation, hero stars row, FAQ chevrons, family figure, sticky-call icon */
+.hero__ctarow{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;margin-top:.85rem}
+.hero__ctarow .hero__btn{margin-top:0}
+.hero__stars{font-size:.84rem;font-weight:700;color:var(--ink-60);line-height:1.3}
+.hero__stars .stars{color:#f2a900;letter-spacing:.12em;font-size:1.15rem}
+.rise{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.rise.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rise{opacity:1;transform:none;transition:none}}
+#faq h2{text-align:center;font-size:clamp(1.6rem,3.5vw,2.2rem);text-transform:none;letter-spacing:0}
+.faq summary::after{content:"\25BE";font-weight:400;color:var(--ink-60);flex:none;
+                    transition:transform 180ms ease}
+.faq details[open] summary::after{transform:rotate(180deg)}
+.cta__family{margin:1.1rem 0 0;border:2px solid var(--ink);border-radius:12px;overflow:hidden;
+             box-shadow:10px 10px 0 var(--ink)}
+.cta__family img{width:100%}
+.cta__family figcaption{background-color:var(--paper);color:var(--ink);padding:.6rem .9rem;font-size:.95rem}
+/* no emoji in the sticky bar (Grady 8/31: reads AI-generated) */
+
+/* ---------- SERVICES variant of the reviews band (opt in: .rev--svc) ----------
+   These entries are SERVICES, not testimonials. The card, the italics and the
+   decorative quote glyph all say "a customer said this", which is untrue when the
+   copy is our own. This strips the testimonial signals and reads as a capability
+   list: name first, then what it covers.
+   The 2-up grid is scoped to min-width so the phone tier's single column still
+   applies -- a bare `.revs:has(...)` rule would out-specify it and never collapse. */
+.rev--svc{background:none;color:inherit;border:0;box-shadow:none;padding:0;
+          border-top:3px solid var(--brand);padding-top:.9rem}
+.rev--svc:hover{transform:none;box-shadow:none}
+.svc__t{font-size:clamp(1.15rem,1.9vw,1.45rem);font-weight:800;line-height:1.15;
+        margin:0 0 .35rem;color:var(--ink)}
+.svc__d{margin:0;font-size:1.06rem;line-height:1.5;color:var(--ink-60);max-width:38ch}
+/* On the near-black band--brand, ink-on-ink is unreadable (Martin build 9/1) */
+.band--brand .svc__t{color:#fff}
+.band--brand .svc__d{color:rgba(255,255,255,.72)}
+@media (min-width:861px){
+  .revs:has(.rev--svc){grid-template-columns:repeat(2,1fr);
+                       gap:clamp(1.5rem,3.4vw,2.8rem);margin-top:1.8rem}
+}
+
+/* ---- job chips (Grady 8/31: extremely simple, fun UI - the old fieldset legend clipped) ---- */
+.opts{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.6rem;grid-column:1/-1}
+.opts legend{float:left;width:100%;padding:0 0 .55rem;font-size:.82rem;font-weight:800;
+             letter-spacing:.14em;text-transform:uppercase}
+.band--brand .opts legend{color:#fff}
+.opt{position:relative;overflow:hidden;display:inline-flex;align-items:center;min-height:48px;
+     padding:.55rem 1.25rem;border:2px solid var(--ink);border-radius:999px;
+     background:var(--paper);color:var(--ink);font-weight:700;cursor:pointer;
+     transition:transform 140ms ease,background-color 140ms ease,color 140ms ease;
+     user-select:none}
+.opt:hover{transform:translateY(-2px)}
+.opt:has(input:checked){background:var(--brand);color:#fff;border-color:var(--ink)}
+.opt:has(input:checked) span::before{content:"\2713  ";font-weight:900}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt span{font-size:1rem;line-height:1.2}
+
+/* ---- before/after slider (BLUEPRINT-LAW 7d: every deck build ships one) ---- */
+.ba{position:relative;margin-top:1.3rem;border-radius:12px;overflow:hidden;
+    box-shadow:0 10px 24px rgba(0,0,0,.28);user-select:none}
+.ba img{display:block;width:100%;height:auto;pointer-events:none}
+.ba__after{position:absolute;inset:0}
+.ba__after img{height:100%;object-fit:cover}
+.ba__range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;
+           -webkit-appearance:none;touch-action:pan-y;pointer-events:none}  /* JS pointer-drives; range kept for keyboard */
+.ba__bar{position:absolute;top:0;bottom:0;width:3px;background:#fff;pointer-events:none;
+         box-shadow:0 0 8px rgba(0,0,0,.5)}
+.ba__knob{position:absolute;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;
+          border-radius:50%;background:#fff;color:var(--ink);display:flex;align-items:center;
+          justify-content:center;font-weight:900;pointer-events:none;
+          box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.ba__tag{position:absolute;top:.7rem;font-size:.72rem;font-weight:800;letter-spacing:.12em;
+         text-transform:uppercase;background:rgba(0,0,0,.55);color:#fff;
+         padding:.3rem .7rem;border-radius:999px;pointer-events:none}
+.ba__tag--b{left:.7rem}.ba__tag--a{right:.7rem}
+
+/* ---- centered content law (Grady 8/31: "the entire website should be centered") ---- */
+.band h2{text-align:center}
+.lede{margin-inline:auto;text-align:center}
+.cta__intro{text-align:center}
+.cta__ring{text-align:center}
+.revs{justify-content:center}
+.faq{max-width:46rem;margin-inline:auto}
+.foot__slogan{text-align:center}
+
+/* ---- hero-as-slider (Grady 8/31: the slider IS the hero) ---- */
+.ba--hero{position:absolute;inset:0;margin:0;border-radius:0;box-shadow:none;overflow:visible}
+.ba--hero .ba__after{position:absolute;inset:0}
+.ba--hero .ba__after img{width:100%;height:100%;object-fit:cover}
+.ba--hero .ba__tag--a{top:auto;bottom:.8rem;right:.8rem}
+
+/* ---- center the REST (Grady 8/31) ---- */
+.wrap>h2,.cta__lede,.picked{text-align:center}
+
+.pj__bar{text-align:center}
+.card__cap{text-align:center}
+.frun{text-align:center}
+.foot__top{justify-items:center;text-align:center}
+.foot__brand{justify-content:center}
+.foot__adm{text-align:center}
+.opts{justify-content:center}
+.send{text-align:center}
+.send .btn{margin-inline:auto}
+.faq summary{text-align:left}
+
+/* hero slider: track occupies only the reveal zone right of the panel (54%..100%) */
+.ba--hero .ba__range{left:calc(4% + var(--panel-w,50%));width:calc(96% - var(--panel-w,50%));right:0}
+
+/* CTA = one centered column (Grady 8/31: section still wasn't centered) */
+.cta{display:grid;grid-template-columns:minmax(0,46rem);grid-template-rows:none;
+     justify-content:center;gap:1.2rem}
+.cta__intro,.cta form,.cta__fig{grid-column:1;grid-row:auto;align-self:auto}
+
+/* desktop sticky quote bubble (Grady 8/31) - mobile keeps the bar instead */
+.quote-bubble{position:fixed;right:1.4rem;bottom:1.4rem;z-index:60;
+  background:#fff;color:var(--ink);font-weight:800;font-size:1.05rem;
+  padding:.9rem 1.5rem;border:2px solid var(--ink);
+  border-radius:999px 999px 4px 999px;box-shadow:6px 6px 0 var(--ink);
+  text-decoration:none}
+.quote-bubble:hover{background:var(--paper)}
+/* bubble is THE sticky CTA on every size (Grady 8/31: one sticky, the new one) */
+/* hidden until the visitor scrolls (Grady 9/1: nothing sticky on first load) */
+.quote-bubble{opacity:0;transform:translateY(14px);pointer-events:none;
+  transition:opacity .25s ease,transform .25s ease}
+.quote-bubble.show{opacity:1;transform:none;pointer-events:auto}
+
+/* tiny founder avatars (Grady 8/31: the face builds trust - small, everywhere) */
+.avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:top;
+        border:2px solid var(--ink);background:#fff;flex:none;display:inline-block;
+        vertical-align:middle}
+.quote-bubble{display:flex;align-items:center;gap:.6rem}
+.quote-bubble .avatar{border-color:var(--ink)}
+.avatar--lede{width:40px;height:40px;margin-right:.35rem}
+.faq__ask{display:flex;justify-content:center;margin-top:1.6rem}
+.faq__ask .avatar{width:52px;height:52px}
+
+/* H1 keyword highlight (contrast doctrine): one phrase per headline gets the marker */
+/* H1 marker removed entirely (Grady 8/31: no yellow highlights) */
+.glass h1 em{font-style:normal}
+/* 3. supporting text dims so headings and CTAs own the page */
+.lede,.pj__bar i,.faq p,.cta__lede,.send__alt,.hero__sub{opacity:.78}
+
+/* the owner figure is a SMALL card inside the section, never a full-width portrait (Grady 8/31) */
+.cta__family{max-width:190px;margin:1.1rem auto 0}
+.cta__family img{width:100%;height:auto;border-radius:10px}
+.cta__family figcaption{font-size:.8rem;padding:.4rem .6rem;text-align:center}
+
+/* FREE bar under the hero (Grady 8/31, the Hormozi value strip) */
+.freebar{background:#101318;border-block:1px solid var(--rule);padding:1.1rem 1rem;
+         text-align:center}
+.freebar p{font-family:inherit;font-weight:800;font-size:clamp(1.2rem,3vw,1.9rem);
+           letter-spacing:-.01em;color:#fff}
+.freebar strong{font-weight:900;letter-spacing:.02em;color:#f2a900}
+/* CTA under every project card (js-injected, uniform) */
+.pj__cta{display:inline-block;margin-top:.5rem;font-weight:800;font-size:.85rem;
+         background:#f2a900;color:var(--ink);padding:.42rem .95rem;border-radius:999px;
+         border:2px solid var(--ink);text-decoration:none;
+         transition:transform 140ms ease}
+.pj__cta:hover{transform:translateY(-2px)}
+
+/* the slider lives on the PHOTO only - it was anchored to the whole hero and painted over
+   the mobile text panel + left a zoomed black edge (Grady 8/31 screenshots) */
+.hero__shot{position:relative}
+.ba--hero .ba__tag--a{left:.7rem;right:auto}
+
+.ba{touch-action:pan-y}  /* thumb: horizontal drives the slider, vertical scrolls */
+
+.gold{color:#f2a900}
