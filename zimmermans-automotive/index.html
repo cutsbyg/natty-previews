@@ -12,11 +12,12 @@
 <link rel="preload" as="image" href="img/hero-w.jpg?v=1" media="(min-width:861px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/hero-p.jpg?v=1" media="(max-width:600px)" fetchpriority="high">
 <!-- bb-law: system stack only (Segoe UI). No webfonts — the reference build dropped them. -->
-<link rel="stylesheet" href="css/site.css?v=cdc4dd58">
+<link rel="stylesheet" href="css/site.css?v=ce2a5bc6">
 </head>
-<body data-site="zimmermans-automotive" data-pill="Get a free estimate">
+<body class="scheme-flip" data-site="zimmermans-automotive" data-pill="Get a free estimate">
 <a class="skip" href="#work">Skip to Our work</a>
 
+<div class="topstrip">Open Monday - Friday &middot; 8 AM - 6 PM &middot; Saturday 8 AM - 3:15 PM</div>
 <header class="nav" id="top">
   <div class="nav__in">
     <a class="nav__brand" href="#top">
@@ -66,7 +67,7 @@
   <p><strong>FREE</strong> estimates on auto repair &amp; tires</p>
 </section>
 
-<section class="band band--paper" id="work">
+<section class="band band--brand" id="work">
   <div class="wrap">
     <h2>Our projects</h2>
     <p class="lede">The work that comes through the twelve bays. <span class="sec">Tap any photo for a closer look.</span></p>
@@ -110,7 +111,7 @@
      a color — reviews on the brand band, FAQ on the soft brand tint. When a site has
      no reviews, render.py drops the reviews band entirely (markers below). -->
 <!--REVIEWS_BAND-->
-<section class="band band--brand" id="reviews">
+<section class="band band--paper" id="reviews">
   <div class="wrap">
 
     <h2>Reviews</h2>
@@ -143,7 +144,7 @@
 <!-- Strict red/white alternation (Grady 9/1): reviews=brand, faq=paper, quote=brand.
      On a site with no reviews, render.py flips faq->brand and quote->paper so two
      whites never touch. -->
-<section class="band band--paper" id="faq-band">
+<section class="band band--brand" id="faq-band">
   <div class="wrap">
     <h2 id="faq">Commonly asked questions</h2>
     <div class="faq">
@@ -186,7 +187,7 @@
   </div>
 </section>
 
-<section class="band band--brand" id="quote">
+<section class="band band--paper" id="quote">
   <div class="wrap">
     <h2>Tell us what it needs</h2>
     <div class="cta">

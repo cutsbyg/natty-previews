@@ -672,3 +672,7 @@ input[type=file]{padding:.55rem}
 .scheme-flip .freebar{background:var(--paper)}
 .scheme-flip .freebar p{color:var(--ink)}
 .scheme-flip .freebar strong{color:var(--brand)}
+/* SS16b topstrip (Grady 9/2, acquisition.com pattern): thin brand strip above the
+   nav carrying the shop's hours. Not sticky - the nav below it is. */
+.topstrip{background:var(--brand);color:#fff;text-align:center;font-weight:700;
+          font-size:.85rem;letter-spacing:.03em;padding:.4rem .75rem}

@@ -12,11 +12,12 @@
 <link rel="preload" as="image" href="img/hero-w.jpg?v=1" media="(min-width:861px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/hero-p.jpg?v=1" media="(max-width:600px)" fetchpriority="high">
 <!-- bb-law: system stack only (Segoe UI). No webfonts — the reference build dropped them. -->
-<link rel="stylesheet" href="css/site.css?v=c0410c75">
+<link rel="stylesheet" href="css/site.css?v=c6a41844">
 </head>
-<body data-site="within-you-farm" data-pill="Ask about the farm">
+<body class="scheme-flip" data-site="within-you-farm" data-pill="Ask about the farm">
 <a class="skip" href="#work">Skip to The farm</a>
 
+<div class="topstrip">Farm market open Friday 2 - 5 PM &middot; Saturday 10 AM - 12 PM</div>
 <header class="nav" id="top">
   <div class="nav__in">
     <a class="nav__brand" href="#top">
@@ -66,7 +67,7 @@
   <p><strong>FREE</strong> shipping on orders over $100</p>
 </section>
 
-<section class="band band--paper" id="work">
+<section class="band band--brand" id="work">
   <div class="wrap">
     <h2>Our projects</h2>
     <p class="lede">A selection of recent work.</p>
@@ -112,7 +113,7 @@
 <!-- Strict red/white alternation (Grady 9/1): reviews=brand, faq=paper, quote=brand.
      On a site with no reviews, render.py flips faq->brand and quote->paper so two
      whites never touch. -->
-<section class="band band--brand" id="faq-band">
+<section class="band band--paper" id="faq-band">
   <div class="wrap">
     <h2 id="faq">Commonly asked questions</h2>
     <div class="faq">
@@ -146,7 +147,7 @@
   </div>
 </section>
 
-<section class="band band--paper" id="quote">
+<section class="band band--brand" id="quote">
   <div class="wrap">
     <h2>Tell us what you&rsquo;re looking for</h2>
     <div class="cta">
