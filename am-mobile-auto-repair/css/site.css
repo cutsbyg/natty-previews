@@ -645,3 +645,30 @@ input[type=file]{padding:.55rem}
 .ba{touch-action:pan-y}  /* thumb: horizontal drives the slider, vertical scrolls */
 
 .gold{color:#f2a900}
+
+/* ================= SS16 FLIP SCHEME (Grady 9/2: white-background logo -> white nav,
+   brand hero box, bands inverted). render.py swaps the band classes when the client
+   JSON sets "SCHEME":"flip"; these rules cover the nav, hero panel and hero button. */
+.scheme-flip .nav{background:var(--paper);color:var(--ink);border-bottom:1px solid var(--rule)}
+.scheme-flip .nav__links a:hover,.scheme-flip .nav__links a:focus-visible,
+.scheme-flip .nav__links a[aria-current="true"]{border-bottom-color:var(--ink)}
+.scheme-flip .glass{
+  background-color:color-mix(in srgb,var(--brand-deep) 86%,transparent);
+  border-color:rgba(255,255,255,.28);
+  background-image:linear-gradient(rgba(255,255,255,.13) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.13) 1px,transparent 1px)}
+.scheme-flip .glass h1,.scheme-flip .hero__sub{color:#fff}
+.scheme-flip .hero__eyebrow{color:rgba(255,255,255,.88)}
+.scheme-flip .hero__where,.scheme-flip .hero .rate{color:rgba(255,255,255,.78)}
+.scheme-flip .hero__stars{color:rgba(255,255,255,.85)}
+.scheme-flip .hero__btn{background:#fff;color:var(--brand-deep)}
+.scheme-flip .hero__btn:hover,.scheme-flip .hero__btn:focus-visible{background:var(--paper);color:var(--brand-deep)}
+@media (max-width:860px){
+  /* band tier: the panel sits on paper, so translucent red would tint pink - solid brand */
+  .scheme-flip .glass{background-color:var(--brand-deep)}
+}
+/* SS16 addendum (Grady 9/2): on flip sites the FREE bar goes white too - the dark
+   strip broke the white gap between the red hero box and the red projects band. */
+.scheme-flip .freebar{background:var(--paper)}
+.scheme-flip .freebar p{color:var(--ink)}
+.scheme-flip .freebar strong{color:var(--brand)}
