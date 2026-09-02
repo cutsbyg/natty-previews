@@ -667,3 +667,8 @@ input[type=file]{padding:.55rem}
   /* band tier: the panel sits on paper, so translucent red would tint pink - solid brand */
   .scheme-flip .glass{background-color:var(--brand-deep)}
 }
+/* SS16 addendum (Grady 9/2): on flip sites the FREE bar goes white too - the dark
+   strip broke the white gap between the red hero box and the red projects band. */
+.scheme-flip .freebar{background:var(--paper)}
+.scheme-flip .freebar p{color:var(--ink)}
+.scheme-flip .freebar strong{color:var(--brand)}
