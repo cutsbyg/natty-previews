@@ -12,7 +12,7 @@
 <link rel="preload" as="image" href="img/hero-w.jpg?v=1" media="(min-width:861px)" fetchpriority="high">
 <link rel="preload" as="image" href="img/hero-p.jpg?v=1" media="(max-width:600px)" fetchpriority="high">
 <!-- bb-law: system stack only (Segoe UI). No webfonts — the reference build dropped them. -->
-<link rel="stylesheet" href="css/site.css?v=cf227569">
+<link rel="stylesheet" href="css/site.css?v=c67e2394">
 </head>
 <body data-site="mill-auto">
 <a class="skip" href="#work">Skip to Our work</a>
@@ -106,7 +106,10 @@
   </div>
 </section>
 
-<!-- band order is LAW (Grady: "every other"): work=brand, reviews/faq=paper, quote=brand — bb-v4's exact rhythm -->
+<!-- band order is LAW (Grady 9/1): reviews and FAQ are SEPARATE bands and never share
+     a color — reviews on the brand band, FAQ on the soft brand tint. When a site has
+     no reviews, render.py drops the reviews band entirely (markers below). -->
+<!--REVIEWS_BAND-->
 <section class="band band--brand" id="reviews">
   <div class="wrap">
 
@@ -137,6 +140,11 @@
     <hr class="hair">
 
     <p class="rev__cta"><a class="rev__write" href="https://www.surecritic.com/reviews/mill-auto" target="_blank" rel="noopener">Write us a review</a></p>
+  </div>
+</section>
+<!--/REVIEWS_BAND-->
+<section class="band band--soft" id="faq-band">
+  <div class="wrap">
     <h2 id="faq">Commonly asked questions</h2>
     <div class="faq">
 

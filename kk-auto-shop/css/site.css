@@ -144,6 +144,13 @@ li{list-style:none}
 .band--brand{background-color:var(--brand-deep,var(--brand-dark,var(--brand)));color:#fff;
   background-image:linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),
                    linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px)}
+/* FAQ band: soft brand tint, distinct from BOTH paper and the brand band (Grady 9/1:
+   reviews and FAQ never share a color). Ink text; FAQ chrome overridden below. */
+.band--soft{background-color:#eef0f5;background-color:color-mix(in srgb,var(--brand) 9%,#fff);
+  color:var(--ink)}
+.band--soft .faq details{border-top-color:rgba(16,19,24,.25)}
+.band--soft .faq details:last-child{border-bottom-color:rgba(16,19,24,.25)}
+.band--soft .faq summary::before{color:var(--brand)}
 .band--paper{background-color:var(--paper);color:var(--ink);
   background-image:linear-gradient(rgba(51,128,36,.18) 1px,transparent 1px),
                    linear-gradient(90deg,rgba(51,128,36,.18) 1px,transparent 1px)}
