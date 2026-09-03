@@ -688,3 +688,20 @@ input[type=file]{padding:.55rem}
   .hero__cut{justify-content:center;align-items:flex-end}
   .hero__cut img{margin-inline:auto;max-height:100%}
 }
+
+/* BJM phone pass 2 (Grady 9/3): gold FREE with an ink outline; William full-figure
+   in the quote bubble (no circle crop); hero cutout bigger and anchored right;
+   an odd last project card spans the row instead of leaving dead space. */
+.scheme-flip .freebar strong{color:#f2a900;-webkit-text-stroke:1.3px #111;
+  text-shadow:1px 1px 0 #111,-1px 1px 0 #111,1px -1px 0 #111,-1px -1px 0 #111}
+.quote-bubble .avatar--cut{width:auto;height:52px;border-radius:0;border:0;
+  background:none;object-fit:contain;object-position:bottom;align-self:flex-end;
+  margin:-14px 0 0 -4px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
+@media (max-width:860px){
+  .hero__cut{justify-content:flex-end}
+  .hero__cut img{transform:scale(1.16);transform-origin:bottom right}
+}
+@media (max-width:600px){
+  .work__grid--three .pj:last-child:nth-child(even){grid-column:1/-1}
+  .work__grid--three .pj:last-child:nth-child(even) .pj__ph{aspect-ratio:16/9}
+}
