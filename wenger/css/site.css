@@ -815,3 +815,7 @@ html{scroll-padding-bottom:96px}
        overflow-x:visible;overflow-y:visible;scroll-snap-type:none;padding-bottom:0}
   .row>.card{flex:none;width:auto}
 }
+
+/* §rev-orphan (Grady 9/3): on the 2-up phone grid, 3 reviews left a dead cell —
+   an odd last card now spans the full row instead. */
+@media(max-width:860px){ .rev__c:last-child:nth-child(odd){grid-column:1/-1} }
