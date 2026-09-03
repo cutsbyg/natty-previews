@@ -692,8 +692,7 @@ input[type=file]{padding:.55rem}
 /* BJM phone pass 2 (Grady 9/3): gold FREE with an ink outline; William full-figure
    in the quote bubble (no circle crop); hero cutout bigger and anchored right;
    an odd last project card spans the row instead of leaving dead space. */
-.scheme-flip .freebar strong{color:#f2a900;-webkit-text-stroke:1.3px #111;
-  text-shadow:1px 1px 0 #111,-1px 1px 0 #111,1px -1px 0 #111,-1px -1px 0 #111}
+.scheme-flip .freebar strong{color:#f2a900}
 .quote-bubble .avatar--cut{width:auto;height:52px;border-radius:0;border:0;
   background:none;object-fit:contain;object-position:bottom;align-self:flex-end;
   margin:-14px 0 0 -4px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
@@ -705,3 +704,8 @@ input[type=file]{padding:.55rem}
   .work__grid--three .pj:last-child:nth-child(even){grid-column:1/-1}
   .work__grid--three .pj:last-child:nth-child(even) .pj__ph{aspect-ratio:16/9}
 }
+
+/* BJM phone pass 3 (Grady 9/3): project captions were running title and body into
+   one line - title on its own line, body dimmed a step. */
+.pj__cap b{display:block;font-size:1.18rem;letter-spacing:.01em;margin-bottom:.2rem}
+.pj__cap span{display:block;font-size:.95rem;line-height:1.4;opacity:.82}
