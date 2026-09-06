@@ -1,1 +1,1 @@
-https://mean-fabrics-nominated-refined.trycloudflare.com
+https://api.trycloudflare.com
