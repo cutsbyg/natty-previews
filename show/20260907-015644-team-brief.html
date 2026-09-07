@@ -1,0 +1,86 @@
+<!doctype html><meta charset="utf-8"><title>snpz team brief</title>
+<style>body{margin:0;background:#fff8e6;color:#111;font:17px/1.5 system-ui,Segoe UI,sans-serif}.w{max-width:820px;margin:0 auto;padding:30px 22px 80px}
+h1{font-size:34px;margin:0 0 10px}h2{margin:28px 0 8px;padding:6px 12px;display:inline-block;background:#ffc629;border:2px solid #111;border-radius:999px;font-size:18px}
+li{margin:6px 0}code{background:#fff;border:1px solid #ccc;padding:1px 5px;border-radius:5px;font-size:14px}</style>
+<div class="w"><h1>snpz — team brief for William and Aiden (written Sunday night, Sept 6)</h1>
+<h2>What we&#x27;re selling this week</h2>
+<p>An <b>AI phone receptionist for barbershops.</b> It picks up when nobody at the shop does, answers</p>
+<p>questions, and books the cut. Booksy/Vagaro-style booking software is the bigger product, but</p>
+<p>until business texting is approved (carrier registration, a couple of weeks) the pitch is the</p>
+<p>receptionist only. Price: <b>$27.99/month for one chair, $20 for each extra chair</b>, 60</p>
+<p>receptionist minutes per chair. No contract, no free trial, no money-back. Never negotiate on</p>
+<p>the phone; the offer page holds each shop&#x27;s price for 30 days.</p>
+<h2>Who we call, in order</h2>
+<ul>
+<li><b>Phone-only shops</b> (about 1,900 in PA). No booking software at all. Nothing to integrate:</li>
+<p>   the receptionist books on the calendar that comes with it. Easiest yes.</p>
+<li><b>Square shops</b> (about 200). Square has a public API, so the receptionist can book straight</li>
+<p>   into their Square calendar.</p>
+<li><b>Booksy shops</b> (about 1,700). No API. For them it&#x27;s answer, quote prices/hours, take a</li>
+<p>   message. Weakest pitch until texting is live, so last.</p>
+<p>Squire, theCut, Vagaro, GlossGenius, Fresha: no usable API. Not on the list this week.</p>
+<p>About 1 in 6 &quot;phone-only&quot; shops is secretly on Booksy — so always ask.</p>
+</ul>
+<p>Monday is Labor Day. The list puts shops whose Google listing says &quot;open Monday&quot; first, then</p>
+<p>the ones showing regular hours, then the rest. Closed ones sink to the bottom.</p>
+<h2>The script (this is the whole thing)</h2>
+<ul>
+<li>&quot;Hey, is this <b>[owner]</b>, the owner?&quot; — not in? <b>Owner not in, call back</b> (pick the time).</li>
+<li>&quot;How many calls do you think you miss a week?&quot;</li>
+<li>&quot;How many chairs do you have?&quot; (skip if the card already knows)</li>
+<li>&quot;With three chairs you&#x27;re probably missing about three calls a week — about one</li>
+<p>   appointment. That&#x27;s about $120 by the end of the month.&quot; *(the panel does this math from</p>
+<p>   his chairs and his cut price; it&#x27;s an estimate, say &quot;probably&quot;, never &quot;on average shops…&quot;)*</p>
+<li>&quot;I built you an AI receptionist. I&#x27;m switching you over — ask it the hardest, most</li>
+<p>   confusing question you can, it&#x27;ll try to book you at your own shop.&quot; → **Put [owner] on the</p>
+<p>   AI<b>, listen, then </b>Bring him back**.</p>
+<li>&quot;When should I call you back to get this set up for you?&quot; → <b>Wants it, set up</b> (pick the</li>
+<p>   time). Then send him the Google Meet link with <b>Text from my phone</b>.</p>
+</ul>
+<p>Outcomes are only these: <b>No answer</b> (goes back in the list) · <b>Owner not in, call back</b> ·</p>
+<p><b>Wants it, set up</b> · <b>Not interested</b> (off the list). We never leave voicemails.</p>
+<h2>The tools</h2>
+<ul>
+<li><b>snpz.ai/sales → sign in with your Gmail address</b> (Grady has your password). Press</li>
+<p>  Ctrl+Shift+R the first time. You land on the <b>calling page</b>: next-up list top left</p>
+<p>  (shop, owner, chairs, software), leaderboard top right (answered calls, call-to-meeting %),</p>
+<p>  five buttons in the centre — **CALL / HANG UP · OWNER AWAY (set the time) · SWITCH TO AI /</p>
+<p>  SWITCH BACK · PHASE TWO (set the time) · NOT INTERESTED** — scheduled calls bottom left,</p>
+<p>  the script as chat bubbles bottom right. Keys: c, 1, a, 2, x. Hang up before anyone</p>
+<p>  answers = missed call, back in the list under &quot;Missed calls&quot;.</p>
+<li><b>Phase two</b> = the owner wants a second call after work to learn more. That is the meeting</li>
+<p>  the leaderboard counts. Only answered calls count as calls.</p>
+<li>Grady&#x27;s full admin screen is still at snpz.ai/sales → &quot;Sales&quot;; the simple addresses are</li>
+<p>  snpz.ai/sales, /calendar, /call, /start, /signup.</p>
+<li><b>Talk to each other without walking over:</b> &quot;show this to William&quot; puts a page, picture or</li>
+<p>  video in front of everything on his main monitor (both ways, Aiden too). Your Claude does</p>
+<p>  it: <code>hub\screen\show.ps1 grady &lt;https url&gt;</code> or <code>scripts\show-file.ps1 grady &lt;file&gt;</code>.</p>
+<p>  Your Claude can also ask Grady&#x27;s Claude anything about snpz on the inbox line (the repo&#x27;s</p>
+<p>  CLAUDE.md explains; it sets both lines up by itself the first time you open the repo).</p>
+<li><b>Each of us calls from our own number.</b> Grady ends in 5081, William 7167, Aiden 7245. All</li>
+<p>  three passed the spam check tonight.</p>
+<li><b>Next / Call claims the shop to you.</b> Nobody else can dial it. If you both click at the</li>
+<p>  same instant, the server hands out two different shops, guaranteed. Callbacks are open to</p>
+<p>  whoever is free when the time comes — the card carries everything we&#x27;ve learned.</p>
+<li><b>Notes box:</b> hold Right Alt and talk after the call (&quot;John, four chairs, seven years, call</li>
+<p>  back Thursday at five&quot;). It fills the profile.</p>
+<li><b>Links on the card:</b> website, Facebook, Google listing — use them to find the owner&#x27;s name</li>
+<p>  before you dial when the card says &quot;ask for the owner&quot;.</p>
+<li><b>Pay link</b> and <b>Meet invite</b> buttons close the deal on the setup call. The Meet room is</li>
+<p>  one fixed link; screen-share the calendar and set the shop up while they watch.</p>
+<li>Music: Grady&#x27;s PC pauses the room music the moment any of our calls is answered.</li>
+</ul>
+<h2>Rules</h2>
+<ul>
+<li>The demo receptionist says it&#x27;s a demo in its first sentence. Never let a shop think it&#x27;s</li>
+<p>  live.</p>
+<li>Never record a call. Pennsylvania needs everyone&#x27;s consent; our notes are what we heard.</li>
+<li>No made-up statistics. The money line is *their* numbers plus a rule of thumb, said as</li>
+<p>  &quot;probably&quot;.</p>
+<li>Don&#x27;t say &quot;I built one off your menu&quot; — most shops have no menu on file.</li>
+<li>Business lines are outside the Do Not Call list. If a number is clearly someone&#x27;s personal</li>
+<p>  cell, skip it.</p>
+</ul>
+<h2>Still coming</h2>
+<p>Texting (carrier approval), Acuity shops, New Jersey and Ohio lists, then the full booking</p>
+<p>switch pitch once texting is live.</p></div>
