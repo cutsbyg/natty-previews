@@ -1,0 +1,343 @@
+<title>Missed Call Meter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  /* Single visual world on purpose: this sits open beside the dark calling
+     screen, so it commits to one dark palette and paints every colour itself. */
+  :root {
+    --ground:  #14120E;
+    --panel:   #1E1A14;
+    --raised:  #272219;
+    --line:    #37301F;
+    --text:    #F6F1E4;
+    --muted:   #A2977F;
+    --accent:  #FFC93C;
+    --loss:    #FF6B4A;
+
+    --step--1: 0.78rem;
+    --step-0:  1rem;
+    --step-1:  1.35rem;
+    --step-2:  2.1rem;
+    --step-3:  3.4rem;
+
+    --sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --display: "Archivo", "IBM Plex Sans", ui-sans-serif, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: var(--step-0);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 34rem;
+    margin: 0 auto;
+    padding: clamp(1.25rem, 4vw, 2.5rem) clamp(1rem, 4vw, 1.5rem) 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 0.4rem;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: var(--step-2);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .sub {
+    color: var(--muted);
+    margin: 0.6rem 0 0;
+    max-width: 32ch;
+  }
+
+  /* ---- inputs ---- */
+  .inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  @media (max-width: 26rem) {
+    .inputs { grid-template-columns: 1fr; }
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 0.6rem;
+    padding: 0.9rem 1rem 1rem;
+  }
+
+  .field label {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .entry {
+    display: flex;
+    align-items: baseline;
+    gap: 0.15rem;
+  }
+
+  .prefix {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: var(--step-1);
+    color: var(--accent);
+  }
+
+  input[type="text"] {
+    width: 100%;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: var(--text);
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: var(--step-2);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  input[type="text"]:focus { outline: none; }
+  .field:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(255, 201, 60, 0.18);
+  }
+
+  /* ---- results ---- */
+  .results {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--line);
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 0.75rem 1rem;
+    padding: 0.95rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .row .term {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .row .calls {
+    grid-column: 1;
+    font-size: var(--step--1);
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .row .money {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    align-self: center;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: var(--step-1);
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* the year is the point of the page - it gets the weight and the one bold colour */
+  .row.year {
+    padding: 1.4rem 0 1.5rem;
+    border-bottom: 0;
+  }
+  .row.year .money {
+    font-size: var(--step-3);
+    line-height: 0.95;
+    color: var(--loss);
+  }
+  .row.year .term { color: var(--text); }
+
+  /* ---- the line he reads out ---- */
+  .say {
+    background: var(--raised);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 1rem 1.15rem;
+    margin: 0;
+    font-size: var(--step-1);
+    line-height: 1.4;
+    text-wrap: pretty;
+  }
+  .say b {
+    font-weight: 600;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    color: var(--muted);
+    font-size: var(--step--1);
+    line-height: 1.55;
+  }
+  footer p { margin: 0; }
+  footer .rule {
+    font-family: var(--mono);
+  }
+  .payback { color: var(--text); }
+  .payback b {
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">snpz &middot; on the call</p>
+    <h1>What the missed calls cost.</h1>
+    <p class="sub">Two numbers from the owner. The rest is arithmetic he can check in his head.</p>
+  </header>
+
+  <section class="inputs">
+    <div class="field">
+      <label for="calls">Missed calls a week</label>
+      <div class="entry">
+        <input id="calls" type="text" inputmode="numeric" autocomplete="off" value="10">
+      </div>
+    </div>
+    <div class="field">
+      <label for="rate">What a cut is worth</label>
+      <div class="entry">
+        <span class="prefix" aria-hidden="true">$</span>
+        <input id="rate" type="text" inputmode="decimal" autocomplete="off" value="35">
+      </div>
+    </div>
+  </section>
+
+  <section class="results" aria-live="polite">
+    <div class="row">
+      <span class="term">A week</span>
+      <span class="calls" id="callsWeek">10 calls</span>
+      <span class="money" id="moneyWeek">$350</span>
+    </div>
+    <div class="row">
+      <span class="term">A month</span>
+      <span class="calls" id="callsMonth">40 calls</span>
+      <span class="money" id="moneyMonth">$1,400</span>
+    </div>
+    <div class="row year">
+      <span class="term">A year</span>
+      <span class="calls" id="callsYear">480 calls</span>
+      <span class="money" id="moneyYear">$16,800</span>
+    </div>
+  </section>
+
+  <p class="say" id="say"></p>
+
+  <footer>
+    <p class="rule">week &times; 4 = month &nbsp;&middot;&nbsp; month &times; 12 = year</p>
+    <p class="payback" id="payback"></p>
+    <p>An estimate, not a quote &mdash; it is his own two numbers on a four-week month. If he says he only misses a couple, put in a couple; the number is his, which is what makes it land.</p>
+  </footer>
+</div>
+
+<script>
+  var callsEl = document.getElementById('calls');
+  var rateEl = document.getElementById('rate');
+
+  var money0 = new Intl.NumberFormat('en-US', {
+    style: 'currency', currency: 'USD', maximumFractionDigits: 0
+  });
+  var count = new Intl.NumberFormat('en-US');
+
+  function num(el) {
+    var v = parseFloat(String(el.value).replace(/[^0-9.]/g, ''));
+    return isFinite(v) && v > 0 ? v : 0;
+  }
+
+  function plural(n, one, many) {
+    return count.format(n) + ' ' + (n === 1 ? one : many);
+  }
+
+  function render() {
+    var perWeek = num(callsEl);
+    var rate = num(rateEl);
+
+    var weekCalls = perWeek;
+    var monthCalls = perWeek * 4;
+    var yearCalls = monthCalls * 12;
+
+    var weekMoney = weekCalls * rate;
+    var monthMoney = monthCalls * rate;
+    var yearMoney = monthMoney * 12;
+
+    document.getElementById('callsWeek').textContent = plural(weekCalls, 'call', 'calls');
+    document.getElementById('callsMonth').textContent = plural(monthCalls, 'call', 'calls');
+    document.getElementById('callsYear').textContent = plural(yearCalls, 'call', 'calls');
+
+    document.getElementById('moneyWeek').textContent = money0.format(weekMoney);
+    document.getElementById('moneyMonth').textContent = money0.format(monthMoney);
+    document.getElementById('moneyYear').textContent = money0.format(yearMoney);
+
+    var say = document.getElementById('say');
+    if (perWeek === 0 || rate === 0) {
+      say.textContent = 'Put his numbers in and the sentence writes itself.';
+    } else {
+      say.innerHTML = '&ldquo;' + plural(perWeek, 'missed call', 'missed calls') +
+        ' a week at <b>' + money0.format(rate) + '</b> a cut is about <b>' +
+        money0.format(monthMoney) + '</b> a month &mdash; <b>' +
+        money0.format(yearMoney) + '</b> a year.&rdquo;';
+    }
+
+    var payback = document.getElementById('payback');
+    var price = 75.99;
+    if (monthMoney >= price) {
+      var times = monthMoney / price;
+      payback.innerHTML = 'At four chairs snpz is <b>$75.99</b> a month &mdash; he is losing <b>' +
+        (times < 10 ? times.toFixed(1) : Math.round(times)) + '&times;</b> that.';
+    } else if (monthMoney > 0) {
+      payback.textContent = 'Under the $75.99 four-chair price. Ask how many he actually misses on a Saturday.';
+    } else {
+      payback.textContent = '';
+    }
+  }
+
+  callsEl.addEventListener('input', render);
+  rateEl.addEventListener('input', render);
+  [callsEl, rateEl].forEach(function (el) {
+    el.addEventListener('focus', function () { el.select(); });
+  });
+
+  render();
+</script>
