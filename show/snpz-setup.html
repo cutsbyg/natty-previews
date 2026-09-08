@@ -1,0 +1,25 @@
+<title>snpz — one thing to do</title>
+<style>
+:root{--bg:#f6f4ef;--ink:#1a1814;--mute:#6b6257;--line:#e2ddd3;--card:#fff;--acc:#1f5fbf;--yel:#f2c94c}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#15130f;--ink:#f1ede5;--mute:#a39a8c;--line:#2c2820;--card:#1e1b15;--acc:#7fb0ff}}
+:root[data-theme="dark"]{--bg:#15130f;--ink:#f1ede5;--mute:#a39a8c;--line:#2c2820;--card:#1e1b15;--acc:#7fb0ff}
+body{background:var(--bg);color:var(--ink);font:17px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;margin:0;padding:34px 6vw 60px}
+main{max-width:760px;margin:0 auto}
+h1{font-size:30px;margin:0 0 6px;text-wrap:balance}
+p.lead{color:var(--mute);margin:0 0 22px;max-width:60ch}
+ol{padding-left:22px} li{margin:0 0 16px}
+code{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:2px 7px;font-size:15px;display:inline-block;margin:2px 0}
+.big{background:var(--yel);color:#1a1814;border-radius:10px;padding:14px 18px;font-weight:700;margin:0 0 22px}
+.note{color:var(--mute);font-size:15px;border-top:1px solid var(--line);padding-top:16px;margin-top:26px}
+</style>
+<main>
+<h1>Your computer is still harvesting. Nothing is broken.</h1>
+<p class="lead">Grady moved our message line onto our own server this afternoon, because the free one started blocking us. Your machine needs one file to follow, and only a person can carry it.</p>
+<div class="big">Ask Grady to send you the file <code>ntfy.env</code>. Save it at<br><code>C:\Users\&lt;you&gt;\.reisinger\ntfy.env</code></div>
+<ol>
+<li><b>Make the folder if it isn't there.</b> Open File Explorer, type <code>%USERPROFILE%\.reisinger</code> in the address bar. If it doesn't exist, make a folder called <code>.reisinger</code> in your user folder.</li>
+<li><b>Drop the file in.</b> Exactly as Grady sends it, keep the name <code>ntfy.env</code>. Don't open it in Word, don't rename it, don't paste its contents anywhere.</li>
+<li><b>That's it.</b> Within a couple of minutes your computer switches over on its own and starts reporting again. You don't have to run anything.</li>
+</ol>
+<p class="note">Your harvest kept running the whole time and nothing was lost. The rows you've collected are still on your machine and go out on the first message that gets through. If your Claude session is open you can tell it "check the GitHub repo" and it will do the rest.</p>
+</main>
