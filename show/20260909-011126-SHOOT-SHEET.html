@@ -1,0 +1,707 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>snpz Shoot Sheet</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F4F5F3; --surface:#FFFFFF; --ink:#16181B; --muted:#5F6871; --rule:#D3D8D5; --rule-soft:#E6E9E6;
+  --rec:#D63A2A; --rec-soft:#FBE9E6; --blue:#2857C9; --blue-soft:#E4EBFB; --warn:#8A5A00; --warn-soft:#FBF1D8;
+  --display:'Bricolage Grotesque','Archivo',system-ui,sans-serif;
+  --body:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#141618; --surface:#1C1F22; --ink:#ECEEEA; --muted:#9AA3AB; --rule:#33393E; --rule-soft:#272C30;
+    --rec:#F0553F; --rec-soft:#3A201C; --blue:#7C9DF5; --blue-soft:#1E2A47; --warn:#E5B85C; --warn-soft:#332A14;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#141618; --surface:#1C1F22; --ink:#ECEEEA; --muted:#9AA3AB; --rule:#33393E; --rule-soft:#272C30;
+  --rec:#F0553F; --rec-soft:#3A201C; --blue:#7C9DF5; --blue-soft:#1E2A47; --warn:#E5B85C; --warn-soft:#332A14;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+.page{max-width:76ch;margin:0 auto;padding:40px 22px 96px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-size:clamp(38px,7vw,62px);font-weight:800;line-height:.98;letter-spacing:-.02em}
+h2{font-size:26px;font-weight:700;letter-spacing:-.01em;margin-top:56px;padding-top:18px;border-top:2px solid var(--ink)}
+h3{font-size:19px;font-weight:700;margin-top:28px}
+p{margin:12px 0;max-width:68ch}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.slate{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;border:1px solid var(--rule);margin:26px 0 8px;font-family:var(--mono);font-size:13px}
+.slate div{padding:10px 12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.slate div:last-child{border-right:0}
+.slate b{display:block;font-weight:500;color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.lede{font-size:19px;line-height:1.45;max-width:64ch;margin:18px 0 0}
+.rec{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--rec);vertical-align:middle;margin-right:8px}
+ul,ol{padding-left:22px;margin:10px 0}
+li{margin:6px 0;max-width:68ch}
+li::marker{color:var(--muted)}
+.callout{border-left:4px solid var(--rec);background:var(--rec-soft);padding:12px 16px;margin:18px 0}
+.callout.blue{border-color:var(--blue);background:var(--blue-soft)}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft)}
+.callout p{margin:4px 0}
+.tag{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:4px 7px;border:1px solid var(--rule);border-radius:3px;color:var(--muted);margin-right:6px;vertical-align:middle}
+.tag.rec{color:var(--rec);border-color:var(--rec);background:var(--rec-soft)}
+.tag.blue{color:var(--blue);border-color:var(--blue);background:var(--blue-soft)}
+.tablewrap{overflow-x:auto;margin:16px 0;border:1px solid var(--rule)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--rule-soft)}
+th{font:500 11px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--surface);border-bottom:1px solid var(--rule)}
+tr:last-child td{border-bottom:0}
+td.tc,th.tc{font-family:var(--mono);white-space:nowrap;font-variant-numeric:tabular-nums}
+/* six rules */
+.rules{counter-reset:r;display:grid;gap:0;border-top:1px solid var(--rule);margin-top:16px}
+.rule{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--rule)}
+.rule .n{font:800 30px/1 var(--display);color:var(--rec);padding-top:2px}
+.rule h3{margin:0 0 4px;font-size:17px}
+.rule p{margin:4px 0;font-size:15px}
+.rule .ours{font-size:14px;color:var(--muted)}
+.rule .ours b{color:var(--ink);font-weight:600}
+/* setups */
+.setup{border:1px solid var(--rule);background:var(--surface);margin:18px 0;padding:0}
+.setup header{display:flex;align-items:baseline;gap:12px;padding:14px 18px;border-bottom:1px solid var(--rule-soft)}
+.setup header h3{margin:0}
+.setup header .id{font:800 14px/1 var(--mono);color:var(--rec);letter-spacing:.06em}
+.setup .body{padding:6px 18px 16px;display:grid;grid-template-columns:1fr 1fr;gap:0 26px}
+.setup .body>div{min-width:0}
+.setup .body h4{font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
+.setup ul{margin:0;padding-left:18px;font-size:14.5px}
+.setup li{margin:4px 0}
+@media (max-width:640px){.setup .body{grid-template-columns:1fr}}
+/* diagram */
+.diagram{display:block;width:100%;max-width:520px;margin:14px auto 4px}
+.diagram text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.diagram .lbl{fill:var(--ink);font-weight:500}
+.diagram .cam{fill:var(--ink)}
+.diagram .cam.b{fill:var(--rec)}
+.diagram .subj{fill:var(--blue)}
+.diagram .wall{stroke:var(--rule);stroke-width:6;stroke-linecap:round}
+.diagram .ray{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3;fill:none}
+.diagram .ray.b{stroke:var(--rec)}
+.diagram .light{fill:none;stroke:var(--warn);stroke-width:1.5}
+/* concepts */
+.concept{border:1px solid var(--rule);background:var(--surface);margin:18px 0;padding:16px 18px 14px;position:relative}
+.concept .top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-bottom:8px}
+.concept .num{font:800 13px/1 var(--mono);color:var(--rec);letter-spacing:.06em}
+.concept .hook{font:700 24px/1.12 var(--display);letter-spacing:-.01em;text-wrap:balance;margin:6px 0 10px;padding:14px 16px;background:var(--ink);color:var(--paper);border-radius:2px;max-width:34ch}
+.concept .say{font-style:italic;border-left:2px solid var(--rule);padding-left:12px;margin:10px 0;color:var(--ink)}
+.concept .say b{font-style:normal;font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px}
+.beats{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14.5px;margin:10px 0}
+.beats .t{font-family:var(--mono);font-size:12.5px;color:var(--muted);white-space:nowrap;padding-top:2px;font-variant-numeric:tabular-nums}
+.concept .meta{font-size:13.5px;color:var(--muted);margin-top:10px}
+.concept .meta b{color:var(--ink);font-weight:600}
+.score{display:flex;gap:5px;margin:12px 0 2px}
+.score span{width:24px;height:24px;border:1.5px solid var(--rule);border-radius:3px;display:grid;place-items:center;font:600 11px/1 var(--mono);color:var(--muted)}
+.score span.hit{background:var(--rec);border-color:var(--rec);color:#fff}
+/* frame safe zone */
+.frame{display:grid;grid-template-columns:1fr 1.2fr;gap:20px;align-items:start;margin:14px 0}
+@media (max-width:640px){.frame{grid-template-columns:1fr}}
+.phone{aspect-ratio:9/16;max-width:220px;width:100%;border:2px solid var(--ink);border-radius:14px;position:relative;background:var(--surface);overflow:hidden;font-family:var(--mono);font-size:10px}
+.phone .z{position:absolute;left:0;right:0;display:flex;align-items:center;justify-content:center;color:var(--muted);background:repeating-linear-gradient(135deg,transparent 0 6px,var(--rule-soft) 6px 8px)}
+.phone .top{top:0;height:12%;border-bottom:1px dashed var(--rule)}
+.phone .bot{bottom:0;height:27%;border-top:1px dashed var(--rule)}
+.phone .rgt{position:absolute;right:0;top:40%;height:35%;width:16%;border-left:1px dashed var(--rule);display:flex;align-items:center;justify-content:center;color:var(--muted);background:repeating-linear-gradient(135deg,transparent 0 6px,var(--rule-soft) 6px 8px)}
+.phone .safe{position:absolute;left:8%;right:20%;top:20%;height:24%;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;background:var(--ink);color:var(--paper);font:700 11px/1.15 var(--display)}
+.phone .cap{position:absolute;left:8%;right:20%;top:52%;text-align:center;font-size:9px;color:var(--ink)}
+.phone .cap span{background:var(--surface);padding:1px 4px;outline:1px solid var(--rule)}
+/* checklist */
+.check{list-style:none;padding:0;margin:12px 0}
+.check li{display:grid;grid-template-columns:20px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--rule-soft);margin:0}
+.check li::before{content:"";width:14px;height:14px;border:1.5px solid var(--ink);border-radius:2px;margin-top:4px}
+.sources{font-size:13.5px;color:var(--muted)}
+.sources li{margin:4px 0}
+.small{font-size:13.5px;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+
+<div class="page">
+  <div class="eyebrow">snpz · founder content · call sheet</div>
+  <h1><span class="rec"></span>Shoot Sheet</h1>
+  <div class="slate">
+    <div><b>Shoot day</b>Tue, Sept 9, 2026</div>
+    <div><b>Crew</b>William · Grady · Aiden</div>
+    <div><b>Deliverable</b>5 reels a day, 30–60s, 9:16</div>
+    <div><b>Format</b>Polished yap + cold-call desk</div>
+    <div><b>Product line</b>AI phone receptionist for barbershops</div>
+  </div>
+  <p class="lede">What is winning right now is a founder on camera, talking to one person, about a problem everybody recognizes, shot well enough that it does not look like an accident. Not a brand video. Not a demo. This sheet turns the research and the six-rule framework into where to stand, what to say in the first three seconds, and eight videos to shoot in order.</p>
+  <div class="callout blue">
+    <p><b>The story is the asset.</b> Three 19-year-olds. Two quit their jobs. The third works part-time in a barbershop so the other two can eat while they cold-call barbershops. It is not sustainable unless subscriptions sell, and you should say that on camera, because that sentence is a better hook than anything about software. Every video below is allowed to carry it. The first one is only that.</p>
+  </div>
+
+  <div class="callout warn">
+    <p><b>Hard rule before anything with a phone in frame:</b> Pennsylvania is an all-party consent state and the repo rule is <i>never record a human call</i>. No prospect audio, no prospect name on a screen, ever. Every "call" on camera tomorrow is one of us playing the shop owner (Ant), and the caption says so. The reaction after a real call is fair game. The call itself is not.</p>
+  </div>
+
+  <h2>What the research says</h2>
+  <p>Pulled from creator-side data and platform write-ups from the last few months. The short version: raw beats polished, the first two seconds decide everything, and the cold-call genre you are already living in is its own viral lane.</p>
+  <ul>
+    <li><b>The decision is made in under two seconds.</b> Instagram measures 3-second hold, and reels that hold above 60% get 5 to 10 times the reach of reels under 40%. The floor for organic reach is a 50% hook rate. Watch time is the top ranking signal, then shares, then saves, then likes.</li>
+    <li><b>"Yap" is the highest-reach format for personal brands in 2026.</b> Selfie cam, one on-screen hook, subtitles, minimal edit. It works because the feed is flooded with AI and over-produced clips, so rawness reads as real. 30 to 60 seconds is the sweet spot for completion.</li>
+    <li><b>Young founders are growing on exactly this.</b> Eliza Wu (Corner) went from 10K to 150K to 1M views on a couch with a microphone after studying reels frame by frame. Myles Slayton (Cerca) posts several times a day walking NYC streets and rarely names the app. Lucious McDaniel (BiteSight) hit 18M with his sister saying "my brother built this app." Andreessen's Lester Chen: "the product no longer sells itself."</li>
+    <li><b>"Cold call with me" is a live TikTok trend.</b> Reps film weekly compilations at a standing desk with a headset. Juliano Massarelli, 18, life insurance, has a 16.3M-view call video. The viewer sees the rep's face, hears both sides, and the pre-call energy and post-rejection reaction are the content. Openers that went viral: "Would it absolutely ruin your day if I told you this was a cold call?" and "Quick question: do you wanna hear what I'm selling, or no?"</li>
+    <li><b>Series beat one-offs.</b> Storytelling sequences with open loops (build-in-public arcs, "day 1 of building X") and authentic everyday moments are the two formats rated best for founders documenting a new company. "Day 1" and "100 days from scratch" are their own hashtag genres.</li>
+    <li><b>Camera craft that holds people:</b> eye level, subject off-center looking into the open side of the frame, pulled away from the wall, two cameras on the same side of the room (a medium and a tight) so cuts never feel like a glitch. Cut visuals every 1 to 3 seconds in a yap. Captions matter because a large share of viewers are muted, so the first caption is frequently the real hook.</li>
+    <li><b>Saves and shares outrank views.</b> Micro-learning and one-idea clips earn saves. Specific and human beats a fake creator persona. Say the search keyword out loud early ("missed calls," "barbershop," "AI receptionist") because reels are now searched.</li>
+  </ul>
+
+  <h2>The six rules, applied to us</h2>
+  <p>Your framework from the 100+ reels that broke a million. The right column is what it means on our set tomorrow. The note that the biggest outliers all had 4, 5 and 6 is the reason topics below are wider than "barbershop software."</p>
+  <div class="rules">
+    <div class="rule"><div class="n">1</div><div><h3>Visual hook: movement or mid-sentence at frame one, angle change at 0:02–0:03</h3><p class="ours"><b>Ours:</b> every clip starts already talking or already walking. No snpz logo, no "so." B-cam cut lands between second 2 and 3, every single video. If we only have one camera, the second angle is a punch-in in the edit (shoot 4K, crop to 1080).</p></div></div>
+    <div class="rule"><div class="n">2</div><div><h3>Format: polished yap</h3><p class="ours"><b>Ours:</b> raw stream-of-consciousness delivery, but a real location (a barbershop chair, the desk with the dial screen, the car), a real camera or the good phone, and graphics reinforcing the number being said. Not a scripted read.</p></div></div>
+    <div class="rule"><div class="n">3</div><div><h3>Text hook is specific, pain- or identity-oriented</h3><p class="ours"><b>Ours:</b> never "how to start a business." Always "the kind of guy who…" or "the call you missed at 2:14 cost you…". Every hook below is written this way.</p></div></div>
+    <div class="rule"><div class="n">4</div><div><h3>Broad TAM topic</h3><p class="ours"><b>Ours:</b> the video is about money, phones, pride, being 20-something and starting something, getting told no. The barbershop is the setting, not the subject. A barber, a plumber and a college kid should all stay.</p></div></div>
+    <div class="rule"><div class="n">5</div><div><h3>Never "hi guys." Say "you."</h3><p class="ours"><b>Ours:</b> the first spoken word in every clip is "you," "your," or a question aimed at one person. Line 2 of the sales script already does this: "How many calls do you think you miss a week?" That is a hook, not just a script line.</p></div></div>
+    <div class="rule"><div class="n">6</div><div><h3>Text hook readable at a glance, never under the UI</h3><p class="ours"><b>Ours:</b> black box, white bold type, upper-middle of frame, on screen from frame one, stays until the angle change. Safe zone diagram in the delivery section.</p></div></div>
+  </div>
+
+  <h2>The room: six camera positions</h2>
+  <p>Will's video from the high front corner, Sept 8. One rectangle, window and door on the far wall, three desks, a whiteboard by the door, a purple LED strip along the ceiling line, dark floor. Everything gets shot here except V0 and V6. Positions are numbered on the map; the setups below say which ones each video uses.</p>
+  <svg class="diagram" viewBox="0 0 520 400" style="max-width:560px" role="img" aria-label="Top-down map of the work room with six numbered camera positions">
+    <defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="var(--muted)"/></marker></defs>
+    <rect x="60" y="40" width="400" height="320" fill="none" stroke="var(--ink)" stroke-width="2"/>
+    <rect x="63" y="43" width="394" height="4" fill="#8A3FD8" opacity=".6"/>
+    <text x="70" y="36">far wall · LED strip runs this line</text>
+    <rect x="150" y="34" width="90" height="12" fill="var(--surface)" stroke="var(--ink)"/><text x="153" y="60">window + curtain</text>
+    <rect x="360" y="34" width="60" height="12" fill="var(--ink)"/><text x="330" y="60">door (in)</text>
+    <rect x="452" y="70" width="8" height="70" fill="var(--warn)"/><text x="384" y="112" text-anchor="end">whiteboard →</text>
+    <rect x="66" y="80" width="80" height="130" fill="var(--rule-soft)" stroke="var(--rule)"/><text x="72" y="100" class="lbl">DESK 1</text><text x="72" y="114">2 monitors</text><text x="72" y="127">RGB keys</text><text x="72" y="140">gaming chair</text>
+    <rect x="66" y="240" width="80" height="110" fill="var(--rule-soft)" stroke="var(--rule)"/><text x="72" y="260" class="lbl">DESK 2</text><text x="72" y="274">boom mic</text><text x="72" y="287">Razer mat</text>
+    <rect x="380" y="180" width="76" height="120" fill="var(--rule-soft)" stroke="var(--rule)"/><text x="386" y="200" class="lbl">DESK 3</text><text x="386" y="214">calendar</text><text x="386" y="227">monitor</text>
+    <circle class="subj" cx="250" cy="190" r="13"/><text class="lbl" x="268" y="186">subject chair,</text><text x="268" y="199">pulled to room centre</text>
+    <g><circle class="cam" cx="440" cy="340" r="11"/><text x="440" y="344" text-anchor="middle" fill="var(--paper)" font-weight="700" style="fill:var(--paper)">1</text><text x="330" y="378">1 · the corner (where you filmed), high, wide</text></g>
+    <g><circle class="cam" cx="250" cy="330" r="11"/><text x="250" y="334" text-anchor="middle" style="fill:var(--paper)" font-weight="700">2</text><text x="180" y="358">2 · A-cam, eye level, 6 ft, faces window wall</text></g>
+    <g><circle class="cam b" cx="330" cy="300" r="11"/><text x="330" y="304" text-anchor="middle" style="fill:var(--paper)" font-weight="700">3</text><text x="345" y="322">3 · B-cam, tight, 30° right</text></g>
+    <g><circle class="cam" cx="345" cy="150" r="11"/><text x="345" y="154" text-anchor="middle" style="fill:var(--paper)" font-weight="700">4</text><text x="230" y="140">4 · over-shoulder at the calendar</text></g>
+    <g><circle class="cam" cx="400" cy="90" r="11"/><text x="400" y="94" text-anchor="middle" style="fill:var(--paper)" font-weight="700">5</text><text x="296" y="84">5 · whiteboard, from the door</text></g>
+    <g><circle class="cam" cx="390" cy="20" r="11"/><text x="390" y="24" text-anchor="middle" style="fill:var(--paper)" font-weight="700">6</text><text x="404" y="24">6 · doorway walk-in</text></g>
+    <line class="ray" x1="250" y1="317" x2="250" y2="206" marker-end="url(#ah)"/>
+    <line class="ray b" x1="322" y1="292" x2="262" y2="200" marker-end="url(#ah)"/>
+    <line class="ray" x1="430" y1="331" x2="270" y2="205"/>
+    <path class="light" d="M160 300 a12 12 0 1 0 0.1 0"/><line class="light" x1="170" y1="290" x2="238" y2="200"/><text x="108" y="322">key light / lamp</text>
+  </svg>
+  <div class="callout">
+    <p><b>The purple is a brand and a problem.</b> Keep it for position 1 wides and B-roll: nobody else on the feed has this room, and the overhead corner shot with someone looking up is a pattern interrupt on its own. But purple light on a face reads as sick, and a talking head under it will not hold. For every clip at positions 2 and 3, put one white light on the face (a desk lamp bounced off the wall, a ring light, or open the curtain and face the window during the day) and dim the strip to 20 percent or set it warm white. Face lit white, room glowing purple behind. That is the look.</p>
+  </div>
+  <ul>
+    <li><b>Position 1, the corner.</b> Phone taped or clamped high where you shot the video. This is the opener for the "three of us" wide and the day-1 series: someone mid-stride, someone typing, someone looking up at it. Angle change at 0:02 is a cut from here down to position 2. Same lens height every day so the series matches.</li>
+    <li><b>Position 2, A-cam.</b> Eye level on a tripod near desk 2, shooting toward the far wall. Pull the subject chair into the middle of the room so the window, door and LED line are five feet behind, soft. Sit on the right third of the frame looking left into the space. The purple line across the top of frame is the signature.</li>
+    <li><b>Position 3, B-cam.</b> Small tripod on the desk 3 edge, 30 degrees right of A, chest-up. Same side of the room as A. Open on this, cut to 2 at 0:02–0:03.</li>
+    <li><b>Position 4, the calendar.</b> Over the shoulder of whoever sits at desk 3, the booking calendar with its coloured blocks filling half the frame. Blur or use a demo shop's calendar. This is the money B-roll: the thing the receptionist fills.</li>
+    <li><b>Position 5, the whiteboard.</b> Stand at the door, shoot the board on the right wall for Setup D. Marker already moving at frame one.</li>
+    <li><b>Position 6, the doorway.</b> Phone at eye level just outside the door looking in. Walk in mid-sentence, straight at the lens, drop into the chair: movement at frame one, then cut to position 2.</li>
+    <li><b>Housekeeping before the wide:</b> shoes, cans, cooler and the water bottle out of frame. Three people at three desks, the middle of the floor clear. The boom mic on desk 2 records every talking head; run it to whichever camera is closest or record on the PC and sync.</li>
+  </ul>
+
+  <h2>Camera setups: where to shoot from</h2>
+  <p>Four setups cover the nine videos. Set each up once, shoot everything that uses it, then move. That order is the shoot order in the next section. Setup A in this room is positions 2 and 3; Setup B is 2, 3 and 4; Setup D is 5; V0 is at Grady's shop and V6 is outside.</p>
+
+  <div class="setup">
+    <header><span class="id">SETUP A</span><h3>Polished yap, two angles, same side</h3></header>
+    <svg class="diagram" viewBox="0 0 520 250" role="img" aria-label="Top-down diagram of setup A: subject 5 feet off the wall, A camera straight on at eye level, B camera 30 degrees to the same side and tighter, key light 45 degrees on the same side as the B camera">
+      <line class="wall" x1="40" y1="30" x2="480" y2="30"/>
+      <text x="40" y="20">wall / shop background (pulled 5+ ft back for depth)</text>
+      <circle class="subj" cx="260" cy="105" r="14"/>
+      <text class="lbl" x="280" y="100">subject, seated or standing</text>
+      <text x="280" y="114">eyes to A-cam, body ¼ turned toward B</text>
+      <line class="ray" x1="260" y1="119" x2="260" y2="205"/>
+      <line class="ray b" x1="260" y1="119" x2="360" y2="200"/>
+      <rect class="cam" x="246" y="205" width="28" height="18" rx="2"/>
+      <text class="lbl" x="205" y="240">A-CAM · medium · eye level · 6–7 ft</text>
+      <rect class="cam b" x="352" y="200" width="28" height="18" rx="2"/>
+      <text class="lbl" x="392" y="212">B-CAM · tight (chest up)</text>
+      <text x="392" y="226">30° to the right, 4–5 ft, slightly above eye</text>
+      <path class="light" d="M150 190 a14 14 0 1 0 0.1 0"/>
+      <line class="light" x1="160" y1="178" x2="245" y2="118"/>
+      <text x="90" y="228">key light 45° left, at eye height</text>
+      <text x="90" y="242">(window works; face the window)</text>
+    </svg>
+    <div class="body">
+      <div>
+        <h4>Where to stand</h4>
+        <ul>
+          <li>Subject 5 feet or more off the background so it goes soft. Any distance adds separation.</li>
+          <li>A-cam at eye level, 6 to 7 feet back, medium shot (waist up). Subject sits on one third of the frame, empty space on the side they look toward.</li>
+          <li>B-cam 30 degrees off to the same side, tighter (chest up), a touch above eye level. Same side as A so the cut does not flip the room.</li>
+          <li>No wide lens close to the face. Back up and zoom in instead.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>The angle-change rule</h4>
+        <ul>
+          <li>Open on B-cam (tight, already talking). Cut to A-cam at 0:02–0:03. Then alternate every 2 to 4 seconds or on every new idea.</li>
+          <li>One camera only: shoot 4K on A, use a 1.4× punch-in as B in the edit.</li>
+          <li>Hands in frame. Point at the text hook. Lean in on the number.</li>
+          <li>Roll 10 seconds of the subject silent and looking at the lens for a cover shot.</li>
+        </ul>
+        <h4>Location options</h4>
+        <ul><li>Default: the work room, positions 2 and 3, chair in the middle, purple line behind, white light on the face. For V0 only: the barbershop where Grady works, in his chair, Grady cutting soft-focus behind you. Ask his boss today; if it's a no, V0 is shot in the room from position 1 down to 2 with Grady's clippers on the desk.</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="setup">
+    <header><span class="id">SETUP B</span><h3>The cold-call desk</h3></header>
+    <div class="body">
+      <div>
+        <h4>Where to shoot from</h4>
+        <ul>
+          <li><b>Cam 1, face:</b> on the desk at eye level, phone-width away, tight. This is the reaction camera and the one that goes viral. Never turn it off between takes.</li>
+          <li><b>Cam 2, over the shoulder:</b> behind and above the caller, 45 degrees, showing the back of the phone and the room. Not the screen.</li>
+          <li><b>Cam 3, top-down (optional):</b> phone propped over the desk looking straight down at the notepad, the tally of calls, the hand hitting dial.</li>
+          <li>Headset or phone to the ear, standing desk if you have one. Movement between calls is part of the genre.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>What is on the desk</h4>
+        <ul>
+          <li>A paper tally: CALLS / OWNERS / NO / CALLBACK. Update it on camera. Numbers are hook material.</li>
+          <li>The dial page on the laptop, screen angled away from every camera. Blur any monitor that makes it into a shot.</li>
+          <li>The script on one card: "How many calls do you think you miss a week?" Visible, handwritten.</li>
+        </ul>
+        <h4>The call itself</h4>
+        <ul>
+          <li>Role-play only. Grady or Aiden plays Ant from the Sunday rehearsal, off-camera, on speaker. Caption: "re-enacted from a real call."</li>
+          <li>Real calls: camera on the face before and after, phone audio not recorded, and the video is the debrief ("he just said…").</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="setup">
+    <header><span class="id">SETUP C</span><h3>Walk and talk</h3></header>
+    <div class="body">
+      <div>
+        <h4>Where to shoot from</h4>
+        <ul>
+          <li>Phone on a short selfie stick or held at arm's length, lens at eye level or slightly above, subject on the left third, street or shopfronts sliding past on the right.</li>
+          <li>Walk toward the camera (second person walking backward filming) for the B angle. Cut between the two.</li>
+          <li>Golden hour or full daylight. Face the sun, not away from it.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Why it works</h4>
+        <ul>
+          <li>Movement at frame one for free. Location changes every second. This is the Myles Slayton format and needs zero setup.</li>
+          <li>Best for the "starting a business at 20-something" and "what kind of person" topics, which are the widest ones.</li>
+          <li>Walking past barbershops in town with the door visible is the location pattern interrupt.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="setup">
+    <header><span class="id">SETUP D</span><h3>Whiteboard / napkin math, top-down</h3></header>
+    <div class="body">
+      <div>
+        <h4>Where to shoot from</h4>
+        <ul>
+          <li>Phone clamped directly above a table, or over the shoulder at a whiteboard. Hand and marker in frame, face out of frame. Voice over the top.</li>
+          <li>Second angle: A-cam on the face for the punchline only ("that's a man who found another barber").</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Use for</h4>
+        <ul>
+          <li>The money video. Write the math as you say it: missed calls a week, times the value of a client who never comes back, versus the monthly price. The number appearing on paper is the graphic.</li>
+          <li>Anything with a comparison ($79 vs $75.99, 100 callers, 50 cents).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2>Five a day: the slots</h2>
+  <p>Five posts a day is a production line, not five ideas. Same five slots every day, same positions, same scorecard. A video ships only if it hits at least four of the six rules. Rules 4, 5 and 6 are the cheap ones (topic, "you," readable text) and the ones the outliers all had, so a script that misses one of those gets rewritten, not posted.</p>
+  <div class="tablewrap"><table>
+    <tr><th>Slot</th><th>What it is</th><th>Positions</th><th>Rules it always hits</th></tr>
+    <tr><td class="tc">1</td><td><b>Anchor.</b> The story or the series episode. Day N of the calls.</td><td>1 → 2/3, timelapse from 1</td><td>1, 4, 6</td></tr>
+    <tr><td class="tc">2</td><td><b>Reference yap.</b> Hormozi, Goggins, the Wolf, applied to one specific thing that happened today.</td><td>6 walk-in → 2/3</td><td>1, 2, 5</td></tr>
+    <tr><td class="tc">3</td><td><b>Told no.</b> The rejection, the reaction, what it changed. Face-cam after the call.</td><td>2 face, 4 tally</td><td>3, 4, 5</td></tr>
+    <tr><td class="tc">4</td><td><b>The count.</b> Timelapse with the tally ticking, one line of voice over. Under 20 seconds.</td><td>1 only</td><td>1, 4, 6</td></tr>
+    <tr><td class="tc">5</td><td><b>Wide topic.</b> Money, phones, luck, being 19, no backup plan. The product is a setting, not the subject.</td><td>2/3 or outside</td><td>4, 5, 6</td></tr>
+  </table></div>
+
+  <h3>Using the references without becoming a quote page</h3>
+  <ul>
+    <li><b>One reference per video, one sentence, then what you did with it.</b> "Hormozi's line is volume negates luck. So we're doing 500 calls before we let ourselves judge whether we're good." The second sentence is the video. The first is the hook.</li>
+    <li><b>Paraphrase and attribute; don't perform the quote.</b> "Goggins' whole thing is…" beats a word-for-word reading you may get wrong. Never cut their clips into yours: the originality score punishes it and it is not your footage.</li>
+    <li><b>Hormozi = volume, reps, "you're not bad, you're early."</b> Use him for the count, the calls, the not-good-yet honesty.</li>
+    <li><b>Goggins = doing the thing nobody wants to do, on repeat, until it stops hurting.</b> Use him for the told-no videos, the 40 rejections before lunch, the callus.</li>
+    <li><b>The Wolf of Wall Street = the phone-room energy, minus the crime.</b> Say the minus out loud every time: "the energy, not the lying." It is a sharper hook and it is your honesty floor on camera. Ant's line ("the guy with an answer for everything is lying") lives here.</li>
+    <li><b>The leap.</b> "If you're waiting to know what to do, you'll wait forever. You have to be in the room where you find out." That is the wide-topic slot, and the one that gets shared by people who will never buy a receptionist.</li>
+  </ul>
+
+  <div class="callout warn">
+    <p><b>On recording calls to people in one-party states:</b> that plan does not make it safe. Pennsylvania's wiretap law applies to the recording itself, and the recording happens here, on your desk, in PA. The usual lawyer advice is that the stricter state wins. Two routes are clean: (1) ask on the call, "Mind if I record this one? We're filming our first week," and a yes is consent in every state and a great four seconds of video; (2) role-play with one of you as the owner, captioned as re-enacted. Grady owns compliance and this is attorney-question territory (Part 5 of the cold-call rules). Until a human rules on it, the repo rule stands: no call audio without a yes on tape.</p>
+  </div>
+
+  <h2>Day 1: five scripts</h2>
+  <p>Shoot all five today. Post one now and one every three hours. The six boxes under each script are the rules; filled means the script hits it.</p>
+
+  <div class="concept">
+    <div class="top"><span class="num">S1 · ANCHOR</span><span class="tag">positions 1 → 2 → 3, timelapse</span><span class="tag blue">youth / risk / work nobody wants</span><span class="tag">45–55s</span></div>
+    <div class="hook">How long does it take 3 unemployed 19-year-olds to make 500 cold calls?</div>
+    <div class="say"><b>The opening motion, exactly as you described it</b>Camera starts low on the floor at the front of the room, looking across all three desks and the purple line. It is already lifting at frame one. Fast rise, into the corner holder, click. Do the click for real; it is the sound the cut lands on.</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Low, rising, hook on screen. All three at desks in the background. 1.5 seconds of lift.</span>
+      <span class="t">0:02</span><span>Click into the mount. Hard cut to position 2 wide: three chairs, one mic. Whoever holds it: "How long does it take three unemployed chuds to make five hundred cold calls?" Beat. "We're about to find out."</span>
+      <span class="t">0:06</span><span>Position 1 timelapse begins. Counter in the corner of the frame ticking from 0. Headsets on, tally marks going up, chairs spinning, someone standing up after a no.</span>
+      <span class="t">0:12</span><span>William, position 3 tight, white light on the face: "I quit my job for this. And you should know we're not good at it yet. Hormozi's line is volume negates luck. So we don't get to judge whether we're good until the number on that screen says five hundred."</span>
+      <span class="t">0:24</span><span>Aiden, same framing: "I quit mine too. Goggins' whole thing is you don't get calluses by reading about the fire. You put your hand in it every day until it stops hurting. That's what the five hundred is."</span>
+      <span class="t">0:34</span><span>Grady, same framing: "I cut hair part-time to pay for all of this. Our income does not match our expenses. If this doesn't sell, this ends. There's no backup plan."</span>
+      <span class="t">0:42</span><span>Back to the timelapse. Counter lands on the real number for the day, whatever it is. Say it honestly over the top: "Day one. [number]. Back tomorrow."</span>
+      <span class="t">0:48</span><span>Position 2 wide, all three, one of you: "If you're waiting till you're good enough to start, you'll wait forever." Cut.</span>
+    </div>
+    <div class="score" aria-label="rules hit: all six"><span class="hit">1</span><span class="hit">2</span><span class="hit">3</span><span class="hit">4</span><span class="hit">5</span><span class="hit">6</span></div>
+    <div class="meta"><b>Honesty check:</b> the number the counter lands on must be true. If the calls are still on hold for the DNC registration when you shoot, the timelapse is list-building and the counter counts shops on the list, and the line is "500 shops, and the calls start the day the registration clears." Same video, still true. Post the 500-calls version the day the phones go live.</div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">S2 · REFERENCE</span><span class="tag">position 6 walk-in → 2/3</span><span class="tag blue">luck vs volume</span><span class="tag">35s</span></div>
+    <div class="hook">You're not unlucky. You're just not doing enough volume.</div>
+    <div class="say"><b>First spoken line (walking through the door at the lens)</b>"You think the guy who landed the client got lucky. He made four hundred calls you didn't see."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Position 6, you coming through the door straight at the camera, mid-sentence. Hook on screen.</span>
+      <span class="t">0:03</span><span>Cut to position 2 as you drop into the chair. "Hormozi says volume negates luck. Here's what that means for three guys who are bad at this."</span>
+      <span class="t">0:10</span><span>Position 3 tight. "At ten calls, a no means we suck. At a hundred, a no is a data point. At five hundred, whoever's still saying no is just wrong for us, and the ones who said yes are the business."</span>
+      <span class="t">0:24</span><span>Position 4 B-roll: the tally sheet, today's real number, hand adding a mark.</span>
+      <span class="t">0:29</span><span>Face: "So if you're at ten and it feels like luck, that's because it is. Get to five hundred." Cut.</span>
+    </div>
+    <div class="score" aria-label="rules hit: all six"><span class="hit">1</span><span class="hit">2</span><span class="hit">3</span><span class="hit">4</span><span class="hit">5</span><span class="hit">6</span></div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">S3 · TOLD NO</span><span class="tag">position 2 face, 4 tally</span><span class="tag blue">rejection / hard things</span><span class="tag">40s</span></div>
+    <div class="hook">Told no 40 times before lunch. That's the whole point.</div>
+    <div class="say"><b>First spoken line (headset coming off, face cam)</b>"You want to know what forty no's before lunch does to a person? Nothing. That's the thing nobody tells you."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Position 2 tight on the face, headset coming off, already talking. Hook on screen. No call audio.</span>
+      <span class="t">0:03</span><span>Cut to position 4: tally sheet, the NO column, marker adding one. Back to face.</span>
+      <span class="t">0:06</span><span>"Goggins says the stuff nobody wants to do is where everybody else stops. Nobody wants to call a barbershop at 11am and get hung up on. So that's the job."</span>
+      <span class="t">0:16</span><span>The specific one: what the last owner actually said (paraphrased, no name, no shop). What it was really telling you. What you changed in the script because of it.</span>
+      <span class="t">0:30</span><span>"Forty no's. One callback. Tomorrow it's fifty and two." Real numbers. Cut.</span>
+    </div>
+    <div class="score" aria-label="rules hit: all six"><span class="hit">1</span><span class="hit">2</span><span class="hit">3</span><span class="hit">4</span><span class="hit">5</span><span class="hit">6</span></div>
+    <div class="meta"><b>Reaction-video version:</b> same slot, shot right after a real call with the audio not recorded. The content is your face and what you say happened. If the owner said yes to being recorded on the call, that clip can run under it.</div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">S4 · REFERENCE</span><span class="tag">positions 2/3, 1 for the room</span><span class="tag blue">honesty / sales</span><span class="tag">40s</span></div>
+    <div class="hook">Wolf of Wall Street energy. Minus the lying.</div>
+    <div class="say"><b>First spoken line (position 3 tight, mid-sentence)</b>"…and you've seen the phone-room scene. Everybody standing, everybody selling. We took that. We left the rest."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Position 3 tight, mid-sentence. Hook on screen.</span>
+      <span class="t">0:03</span><span>Cut to position 1 wide: all three standing at desks, headsets on, purple room. One second. Back to 2.</span>
+      <span class="t">0:06</span><span>"Here's the difference. A barber we called Sunday told us why he wasn't buying: 'every other guy has an answer for everything, and that's how I know he's lying.' So our rule is, if we don't know, we say so."</span>
+      <span class="t">0:20</span><span>"Our demo booked a guy with a barber who's off Wednesdays. We told him that before he found it. He gave us a second call because of it."</span>
+      <span class="t">0:32</span><span>"You can have the energy without the crime. The energy's the easy part." Cut.</span>
+    </div>
+    <div class="score" aria-label="rules hit: all six"><span class="hit">1</span><span class="hit">2</span><span class="hit">3</span><span class="hit">4</span><span class="hit">5</span><span class="hit">6</span></div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">S5 · WIDE</span><span class="tag">position 1 → 2</span><span class="tag blue">the leap / no backup plan</span><span class="tag">40s</span></div>
+    <div class="hook">If you're waiting for a sign to start, this is it. We didn't get one either.</div>
+    <div class="say"><b>First spoken line (position 1, you look up at the camera from the desk)</b>"You don't need to know what to do. You need to be in the room where you'll find out."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Position 1, three at desks, one looks up and starts talking to the corner. Hook on screen.</span>
+      <span class="t">0:03</span><span>Cut to position 2, chair in the middle, white light. "Two of us quit our jobs. One cuts hair part-time to pay for the other two. Our income is less than our expenses and we can say the number: we have about [X] months."</span>
+      <span class="t">0:15</span><span>"That's not brave. That's just what it costs to find out. Everybody who took the job also didn't find out."</span>
+      <span class="t">0:25</span><span>"You don't have to quit. You have to do the first ugly version of the thing today. Ours was a phone call to a barbershop."</span>
+      <span class="t">0:35</span><span>"Day one's up on the wall. Come back tomorrow and see if we're still here." Cut.</span>
+    </div>
+    <div class="score" aria-label="rules hit: all six"><span class="hit">1</span><span class="hit">2</span><span class="hit">3</span><span class="hit">4</span><span class="hit">5</span><span class="hit">6</span></div>
+    <div class="meta"><b>The number:</b> say the real runway in months if you're willing to. If not, "less than a year" is still true and still lands. Don't invent it.</div>
+  </div>
+
+  <h2>Day 2: five scripts</h2>
+  <p>Wednesday, Sept 10. Same slots, same positions, nothing repeated from Day 1. Every bracket is a real number you fill in that morning. The corner frame that opened S1 opens the anchor again, so the series matches shot for shot.</p>
+
+  <div class="concept">
+    <div class="top"><span class="num">D2-S1 · ANCHOR</span><span class="tag">position 1 → 2 → 3, timelapse</span><span class="tag blue">persistence / being found out</span><span class="tag">45s</span></div>
+    <div class="hook">Day 2. One barber called us back. Here's what he wanted.</div>
+    <div class="say"><b>First spoken line (position 1, taping yesterday's number to the wall, back half-turned, then up at the camera)</b>"You'd think the hard part is getting them on the phone. It's not. It's what you say when one of them calls <i>you</i>."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Position 1, the corner. Same frame as Day 1: three desks, one of you taping a sheet with yesterday's number to the wall by the whiteboard. Hook on screen. Motion is the tape going up.</span>
+      <span class="t">0:03</span><span>Cut to position 2, chair in the middle, white light. "Yesterday's number is on the wall. [N] calls. And one owner called us back this morning, which we did not have a plan for."</span>
+      <span class="t">0:10</span><span>Position 3 tight. What he asked, paraphrased, no name, no shop. It will be one of three: what happens to his phone number, whether it knows his barbers' days off, or the price. Answer it the way you answered him, including the part you didn't know.</span>
+      <span class="t">0:24</span><span>Position 4 B-roll, calendar on the monitor, hand on the mouse: "This is the part we're loading for him: his guys, his prices, his hours. Twenty minutes. That's the whole onboarding."</span>
+      <span class="t">0:32</span><span>Position 1 timelapse, counter ticking from yesterday's total. Five seconds.</span>
+      <span class="t">0:38</span><span>Face, position 2: "So if you're waiting until you're ready for the callback, you're not going to get one. Make the calls. Day 2." Cut.</span>
+    </div>
+    <div class="score" aria-label="rules hit: all six"><span class="hit">1</span><span class="hit">2</span><span class="hit">3</span><span class="hit">4</span><span class="hit">5</span><span class="hit">6</span></div>
+    <div class="meta"><b>If nobody called back:</b> the hook becomes "Day 2. Nobody called back. Here's what we changed." and the 0:10 beat is the one thing you rewrote in the script overnight. Same structure, still true.</div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">D2-S2 · REFERENCE</span><span class="tag">position 6 walk-in → 2/3</span><span class="tag blue">fear / doing the hard thing first</span><span class="tag">35s</span></div>
+    <div class="hook">The call you're scared of is the one you make first. Then the other 99 are easy.</div>
+    <div class="say"><b>First spoken line (through the door, straight at the lens)</b>"You've got one number on your list you keep skipping. I know, because I had one too. Until this morning."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Position 6, you coming through the door mid-sentence. Hook on screen.</span>
+      <span class="t">0:03</span><span>Drop into the chair at position 2. "Goggins' whole thing is the rep you don't want to do is the only one that changes you. Everything after it is just reps."</span>
+      <span class="t">0:10</span><span>Position 3 tight. The skipped call: the biggest shop on the list, or the one that hung up on you yesterday, or the one where the owner's a friend's dad. Say which, no names. "So I made it first. Eight in the morning. Before coffee."</span>
+      <span class="t">0:20</span><span>What happened, in one sentence. Good or bad. Then: "And then the next forty calls were the easiest forty we've done."</span>
+      <span class="t">0:30</span><span>"Whatever your version of that call is, it's tomorrow morning, first thing. Before coffee." Cut.</span>
+    </div>
+    <div class="score" aria-label="rules hit: all six"><span class="hit">1</span><span class="hit">2</span><span class="hit">3</span><span class="hit">4</span><span class="hit">5</span><span class="hit">6</span></div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">D2-S3 · TOLD NO</span><span class="tag">position 2 face, 4 tally</span><span class="tag blue">rejection / small changes</span><span class="tag">35s</span></div>
+    <div class="hook">He hung up in 4 seconds. We changed one word and called the next shop.</div>
+    <div class="say"><b>First spoken line (face cam, headset just off)</b>"You know what four seconds feels like on a cold call? Not enough time to say your own name."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Position 2 tight, headset coming off, already talking. Hook on screen. No call audio.</span>
+      <span class="t">0:02</span><span>Position 4: tally sheet, the NO column, marker adds one. Back to face.</span>
+      <span class="t">0:05</span><span>"We listened back to what we said. Not the call, our side, we don't record theirs. It was the opener." Say the old opener word for word. Then the new one. It is one word or one clause different, and you say which.</span>
+      <span class="t">0:18</span><span>"Next shop, new opener." What happened. If it also hung up, say so: "Two in a row. Third one stayed on for six minutes." Real.</span>
+      <span class="t">0:28</span><span>"You don't need a new script. You need to change one word and dial again." Cut.</span>
+    </div>
+    <div class="score" aria-label="rules hit: all six"><span class="hit">1</span><span class="hit">2</span><span class="hit">3</span><span class="hit">4</span><span class="hit">5</span><span class="hit">6</span></div>
+    <div class="meta"><b>Script lines you can use for the opener contrast:</b> the current line 1 is "Hey, is this [owner], the owner?" A one-word variant is "Hey, is this [owner]? Quick one." Test it; report what it did. If the rehearsal-proven line 2 ("How many calls do you think you miss a week?") is the change, say that instead.</div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">D2-S4 · THE COUNT</span><span class="tag">position 1 only</span><span class="tag blue">work</span><span class="tag">12–15s</span></div>
+    <div class="hook">[N] cold calls before you finished your coffee</div>
+    <div class="say"><b>Voice over, one line, dropped at 0:03</b>"You were still deciding whether to start. We're at [N]. Day 2."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Position 1 timelapse starts on motion: someone standing, someone pushing a chair back. Counter in the top-left corner, under the hook, starting at yesterday's total.</span>
+      <span class="t">0:03</span><span>Voice over lands. Counter keeps climbing. Nothing else.</span>
+      <span class="t">0:10</span><span>Counter freezes on the real number. One second hold. Cut to black on the click of the mount if you have it.</span>
+    </div>
+    <div class="score" aria-label="rules hit: 1, 3, 4, 5, 6; misses 2"><span class="hit">1</span><span>2</span><span class="hit">3</span><span class="hit">4</span><span class="hit">5</span><span class="hit">6</span></div>
+    <div class="meta"><b>Five of six.</b> It is not a yap, so rule 2 is missed on purpose. The counter is the whole graphic. Post this one mid-afternoon when the number is biggest.</div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">D2-S5 · WIDE</span><span class="tag">position 5 whiteboard, 2 for the punchline</span><span class="tag blue">money</span><span class="tag">35s</span></div>
+    <div class="hook">Your missed call is not one haircut. Here's the real number.</div>
+    <div class="say"><b>First spoken line (voice over a marker already writing "$30" on the whiteboard)</b>"You think a missed call costs you a thirty-dollar cut. Watch this."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Position 5, from the door, marker already moving. "$30" goes on the board. Hook on screen.</span>
+      <span class="t">0:03</span><span>Cut to position 2 face for one beat: "Wrong." Back to the board, the $30 crossed out.</span>
+      <span class="t">0:06</span><span>Write it as you say it, an example shop, clearly made up: a guy who rings, gets nobody, books the shop down the street. Cuts a year, times the years he'd have stayed. Circle it.</span>
+      <span class="t">0:20</span><span>"Now do that a few dozen times a month in the Saturday rush." Write the total. Let it sit in silence for a full second.</span>
+      <span class="t">0:28</span><span>Face: "That's why the phone is the most expensive thing in your shop. It's not the chair." Cut.</span>
+    </div>
+    <div class="score" aria-label="rules hit: all six"><span class="hit">1</span><span class="hit">2</span><span class="hit">3</span><span class="hit">4</span><span class="hit">5</span><span class="hit">6</span></div>
+    <div class="meta"><b>No invented statistics.</b> The example shop is labelled as an example on the board ("say a 3-chair shop"). The missed-call range from the brief is "about a third of calls in the rush," said as "about." Never a made-up industry number spoken as fact.</div>
+  </div>
+
+  <h3>Day 3 and every day after</h3>
+  <p>Same five slots. Change only: today's count (slots 1 and 4), today's best no (slot 3), one reference applied to one thing that happened (slot 2), one wide topic from the spare-hooks list (slot 5). Thirty minutes of shooting if the positions are taped on the floor. Score every script against the six before it's shot; four is the floor, and 4, 5 and 6 are the ones you never trade.</p>
+
+  <h2>Concept bank: nine more, in shoot order</h2>
+  <p>Days 1 and 2 are scripted above. These nine are the bank for Day 3 on; V0 is folded into S1 and V3 and V5 into Day 2. Each one has the on-screen text hook (rule 3 and 6), the first spoken line (rule 5), the setup, the angle change (rule 1), and the beats. Text hooks are written to fit in the black box in three lines or fewer. Speak at conversation speed. No intro, no outro, no "like and follow."</p>
+
+  <div class="concept">
+    <div class="top"><span class="num">V0</span><span class="tag">Setup A · Grady's shop</span><span class="tag blue">broad topic: risk / youth / family</span><span class="tag">50s</span></div>
+    <div class="hook">We're 19. Two of us quit our jobs. The third cuts hair so we can eat.</div>
+    <div class="say"><b>First spoken line (B-cam tight, Grady's clippers audible behind you)</b>"You hear that? That's my cofounder. He's cutting hair right now so the other two of us don't have to get a job."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>B-cam tight on Will in the chair, cape on or off, already talking. Hook on screen. Clippers in the background.</span>
+      <span class="t">0:03</span><span>A-cam wide: the shop, Grady working behind, Aiden in the waiting chair on a laptop. Hold the wide for one line: "Three of us. Nineteen."</span>
+      <span class="t">0:08</span><span>What each one gave up, one sentence each, no drama: "I quit. Aiden quit. Grady went part-time here."</span>
+      <span class="t">0:16</span><span>The honest part, to the lens: "This is not sustainable. We've got until the money we saved runs out to sell enough subscriptions to pay three people."</span>
+      <span class="t">0:28</span><span>What the thing is, in one breath, pointing at the shop phone on the wall: "It answers that. At 2 in the afternoon when he's mid-fade, at 11 at night when nobody's here. It books the cut."</span>
+      <span class="t">0:40</span><span>Turn to Grady, still cutting: "How many did you miss today?" Let him answer or shrug. Cut on the shrug.</span>
+    </div>
+    <div class="meta"><b>Why this one:</b> rules 4, 5 and 6 all at once, and the location is unrepeatable. Post it first and pin it. Everything after it is "the guys from the barbershop video." Shot list: this one needs Grady's boss to say yes, so ask today.</div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">V1</span><span class="tag">Setup A</span><span class="tag blue">broad topic: pride / phones</span><span class="tag">45s</span></div>
+    <div class="hook">The type of person who lets a phone ring is the type of person who shouldn't own a shop</div>
+    <div class="say"><b>First spoken line (already mid-thought on B-cam)</b>"…and you know exactly who I'm talking about, because you've called him."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>B-cam tight, mid-sentence, hand already up. Text hook on screen.</span>
+      <span class="t">0:02</span><span>Cut to A-cam. "You call a barbershop at 2 on a Saturday. Rings out. What do you do? You don't leave a voicemail. You call the next guy."</span>
+      <span class="t">0:10</span><span>Turn it: "That's not a missed call. That's a man who found another barber. And most shops lose that guy 30, 40 times a month during the rush."</span>
+      <span class="t">0:25</span><span>Identity flip: "The owners who get this aren't the ones with the nicest shop. They're the ones who hate losing more than they love the chair."</span>
+      <span class="t">0:38</span><span>Loop back: "So which one are you." Hard cut. No CTA.</span>
+    </div>
+    <div class="meta"><b>Why this one:</b> pain plus identity in the hook, "you" throughout, no product name. The comments will be barbers arguing. That is the goal.</div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">V2</span><span class="tag">Setup A</span><span class="tag blue">broad topic: getting told no</span><span class="tag">50s</span></div>
+    <div class="hook">The guy who told us NO taught us more than the 3 who said yes</div>
+    <div class="say"><b>First spoken line</b>"You ever have someone say no to you and then tell you exactly why? Sunday night a barber did that to us and it rewrote our whole pitch."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>B-cam, already talking. Hook in the box.</span>
+      <span class="t">0:03</span><span>A-cam. The story: rehearsal call, three chairs, he did not buy.</span>
+      <span class="t">0:12</span><span>Reason 1 on screen as a graphic: "the money was backwards." Say it in his words: "you told me the problem was worth $120 and asked me for $68."</span>
+      <span class="t">0:24</span><span>Reason 2: the demo booked with a barber who's off Wednesdays. Own it.</span>
+      <span class="t">0:34</span><span>His line, exact: "every other one of these calls, the guy has an answer for everything, and that's how I know he's lying."</span>
+      <span class="t">0:44</span><span>Close: "Three times we said 'you're right' instead of dancing. That's the only reason we got a second call." Cut.</span>
+    </div>
+    <div class="meta"><b>Why this one:</b> founder story, honesty, a quotable line. This is the save-and-share video. Name him "Ant," no shop name.</div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">V3</span><span class="tag">Setup D</span><span class="tag blue">broad topic: money</span><span class="tag">35s</span></div>
+    <div class="hook">Your missed call is not one haircut. Here's the real number.</div>
+    <div class="say"><b>First spoken line (voice over hand and marker, already writing)</b>"You think a missed call costs you a $30 cut. Watch this."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Top-down, marker already moving. Write "$30" and cross it out.</span>
+      <span class="t">0:03</span><span>Cut to A-cam face for one beat: "Wrong." Back to the paper.</span>
+      <span class="t">0:06</span><span>Write it out: a client who rings, gets nobody, goes elsewhere. Cuts a year × years he'd have stayed. Circle the number.</span>
+      <span class="t">0:20</span><span>"Now do that 30 times a month in the Saturday rush." Write the total. Let it sit for a second in silence.</span>
+      <span class="t">0:30</span><span>Face: "That's why the phone is the most expensive thing in your shop." Cut.</span>
+    </div>
+    <div class="meta"><b>Why this one:</b> the graphic is the hand writing. No invented statistics: use the missed-call range from the brief and say "about," and use a made-up example shop. Name nothing you can't back.</div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">V4</span><span class="tag">Setup B</span><span class="tag rec">role-play only</span><span class="tag blue">broad topic: awkwardness</span><span class="tag">40s</span></div>
+    <div class="hook">Cold calling barbershops at 19 with a script that's 100 words long</div>
+    <div class="say"><b>First spoken line (headset on, thumb over dial, looking at the lens)</b>"You've got about ten seconds before he hangs up on you. Ready?"</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Face cam, tight, hand hits dial. Hook on screen. Caption under it: "re-enacted from a real call."</span>
+      <span class="t">0:03</span><span>Cut over-the-shoulder for the ring. Back to face when "Ant" (Grady, off camera on speaker) picks up.</span>
+      <span class="t">0:06</span><span>"Hey, is this Ant, the owner?" … "How many calls do you think you miss a week?" Real script, real pauses.</span>
+      <span class="t">0:20</span><span>The objection ("I don't need a robot answering my phone"). Face cam catches the flinch. Answer honestly, short.</span>
+      <span class="t">0:32</span><span>Callback booked or a flat no. Either is the ending. Tally mark on the paper. Cut.</span>
+    </div>
+    <div class="meta"><b>Why this one:</b> "cold call with me" is the trend, and the face-cam reaction is the content. Shoot three of these in a row with three different objections and keep the best. Never a real prospect on the audio.</div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">V5</span><span class="tag">Setup B</span><span class="tag blue">broad topic: rejection / persistence</span><span class="tag">30s</span></div>
+    <div class="hook">He hung up in 4 seconds. This is what we did next.</div>
+    <div class="say"><b>First spoken line (face cam, just took the headset off)</b>"You know what four seconds feels like? That."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Face cam, headset coming off, already talking. Hook on screen.</span>
+      <span class="t">0:02</span><span>Over-the-shoulder: tally mark under NO. Back to face.</span>
+      <span class="t">0:05</span><span>What we did: looked at the card, realized we opened wrong, changed one line. Say the old line and the new line.</span>
+      <span class="t">0:18</span><span>Next dial, on camera, energy up (the genre demands it). Cut before the pickup.</span>
+      <span class="t">0:26</span><span>"Same shop, next week. Different opener. I'll show you what happens." Open loop, cut.</span>
+    </div>
+    <div class="meta"><b>Why this one:</b> post-rejection reaction is the top-performing beat in the cold-call genre, and the open loop makes it a series. Real rejection is fine here because the call audio is not in it.</div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">V6</span><span class="tag">Setup C</span><span class="tag blue">broad topic: starting something young</span><span class="tag">45s</span></div>
+    <div class="hook">What kind of 19-year-old quits a job to get rich instead of getting a degree</div>
+    <div class="say"><b>First spoken line (walking, shopfronts sliding by)</b>"You're not braver than the people who stayed. I'll tell you what's actually different, and it's not what you think."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Selfie-stick angle, already walking, already talking.</span>
+      <span class="t">0:03</span><span>Cut to the reverse (friend walking backward). Keep the pace.</span>
+      <span class="t">0:06</span><span>Three traits, one per angle change, none of them "hustle": tolerates being bad at something in public; counts money in someone else's terms; would rather hear no than wonder. Then the one that's true for you: "and you've got a cofounder who'll cut hair for eight hours so you can make calls for eight hours."</span>
+      <span class="t">0:30</span><span>Pass a barbershop door. Point at it without stopping: "That guy's the customer. Three of us, a phone, and a spreadsheet of every shop in Pennsylvania."</span>
+      <span class="t">0:42</span><span>"That's it. That's the whole company right now." Cut.</span>
+    </div>
+    <div class="meta"><b>Why this one:</b> widest topic on the sheet, identity hook, movement at frame one. Rarely names the product, like the founders growing fastest.</div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">V7</span><span class="tag">Setup A</span><span class="tag blue">broad topic: trust / who you buy from</span><span class="tag">40s</span></div>
+    <div class="hook">We charge $3 less than the market leader and this is the exact reason it's $3</div>
+    <div class="say"><b>First spoken line</b>"You've been sold to by a guy who wouldn't explain his price. Here's ours, every dollar."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>B-cam tight, mid-sentence. Hook on screen.</span>
+      <span class="t">0:03</span><span>A-cam. Goodcall answers a barbershop phone for $79 flat. Graphic: 79.</span>
+      <span class="t">0:10</span><span>"Our rule is we're always cheaper. We looked at $78.99 and the owner said a cent isn't a saving." Graphic: 78.99 crossed out, 75.99.</span>
+      <span class="t">0:22</span><span>Same terms, three dollars less, booking calendar included. A six-chair shop pays the same as four.</span>
+      <span class="t">0:34</span><span>"If you want to know what the $3 is buying, it's this: you'll never catch us hiding a number." Cut.</span>
+    </div>
+    <div class="meta"><b>Why this one:</b> price transparency is a broad trust topic and the brief says this is "the strongest thing we have." Say it out loud on camera. Only public prices, only ours and theirs.</div>
+  </div>
+
+  <div class="concept">
+    <div class="top"><span class="num">V8</span><span class="tag">Setup A</span><span class="tag">Setup B</span><span class="tag blue">series opener: day 1</span><span class="tag">55s</span></div>
+    <div class="hook">Day 1 of calling every barbershop in Pennsylvania</div>
+    <div class="say"><b>First spoken line</b>"You're watching the first day. There are about 3,800 shops on this list and we've called none of them."</div>
+    <div class="beats">
+      <span class="t">0:00</span><span>Position 1, the corner: all three at three desks, Will looks up at the camera mid-sentence. Hook on screen. This exact frame opens every day of the series.</span>
+      <span class="t">0:03</span><span>Cut down to position 2, list on paper held up, no names visible (fold it, or use the count only). Who we call first and why: phone-only shops, nothing to integrate, easiest yes. Then Square. Booksy last.</span>
+      <span class="t">0:18</span><span>Setup B cutaways: headset on, tally sheet blank, hand on dial. The compliance beat, said honestly: "we're registered before we ring anyone."</span>
+      <span class="t">0:35</span><span>The goal for the series, one line. Not revenue. Number of owners who say "call me back."</span>
+      <span class="t">0:48</span><span>"Day 2 tomorrow. Tally goes on the wall." Cut.</span>
+    </div>
+    <div class="meta"><b>Why this one:</b> the "day 1" format is a genre of its own and gives you a reason to post every day. If calls are still on hold when this posts, the video is still true: day 1 is the list and the registration. Say that, don't fake dials.</div>
+  </div>
+
+  <h3>Spare hooks from the story, for the ones you shoot on the fly</h3>
+  <p>All pain- or identity-shaped, all "you," all wide. Pick one, say it mid-sentence, cut at 0:03.</p>
+  <ul>
+    <li>"My cofounder cuts hair part-time so the other two of us can cold-call barbershops. You'd do the same, or you wouldn't."</li>
+    <li>"Your barber misses a call at 2pm. The kid who built the thing that answers it is 19 and hasn't paid himself yet."</li>
+    <li>"It's not sustainable. That's the point. Sustainable is a job."</li>
+    <li>"Nobody picks up at 11pm. Ours does. It's the only employee we can afford."</li>
+    <li>"The type of person who quits at 19 is not the type of person you think."</li>
+    <li>"We have until the savings run out. Here's the number." (Setup D, write it.)</li>
+  </ul>
+
+  <h2>Things to do and say that keep people watching</h2>
+  <ul>
+    <li><b>Start mid-thought.</b> Roll the camera, count three in your head, then say the line as if you've been talking already. Cut the first second in the edit.</li>
+    <li><b>Hold the hook with your hand.</b> Point at the text box as you say it. Eyes go where hands go.</li>
+    <li><b>One idea per clip.</b> If there's a second idea, it's the next video. Micro-learning earns saves.</li>
+    <li><b>Say the number, show the number.</b> Every dollar figure or count gets a graphic in the same second it's spoken.</li>
+    <li><b>Turn on the pivot early.</b> The "but here's the thing" needs to land by 0:10 to 0:12 in a 45-second clip. If hold rate dies in the middle, the pivot was too late.</li>
+    <li><b>Leave the pause in.</b> One second of silence after the punchline reads as confidence and pulls the eye back to the screen.</li>
+    <li><b>Answer the objection before they type it.</b> "And yeah, it says it's a demo in its first sentence" kills the "AI is creepy" comment.</li>
+    <li><b>End on a question or an open loop.</b> "Which one are you." "Same shop, next week." Never "follow for more." Completion and replays are the signal; the loop earns both.</li>
+    <li><b>Say the search words out loud early.</b> "barbershop," "missed calls," "cold calling." Reels are searched now.</li>
+    <li><b>Don't know? Say so.</b> The honesty that saved the rehearsal call is the same honesty that earns comments. It also keeps you clear of the no-invented-statistics rule.</li>
+    <li><b>Reply to every comment for the first hour.</b> The March 2026 two-way signal ranks the next post on how much you answered the last one.</li>
+  </ul>
+
+  <h2>Delivery and edit specs</h2>
+  <div class="frame">
+    <div class="phone" aria-label="Diagram of the 9:16 frame with the areas the app UI covers marked off">
+      <div class="z top">status bar</div>
+      <div class="safe">TEXT HOOK LIVES HERE</div>
+      <div class="cap"><span>word-synced captions</span></div>
+      <div class="rgt">icons</div>
+      <div class="z bot">caption / audio / buttons</div>
+    </div>
+    <div>
+      <ul>
+        <li><b>1080 × 1920, 9:16, 30 fps, shoot 4K</b> so a punch-in is a second angle.</li>
+        <li><b>Text hook</b> in the upper third: black box, white bold sans, three lines max, on from frame one until the first angle change. Never in the top 12% or bottom 27% of the frame, never in the right 16% where the icons sit.</li>
+        <li><b>Captions</b> word-synced, mid-frame, small. A large share of viewers are muted; the caption is the hook for them.</li>
+        <li><b>Cuts</b> every 1 to 3 seconds in yap; every beat change at the desk. Both cameras same side of the room.</li>
+        <li><b>Length</b> 30 to 60 seconds. Under 15 seconds only for the rejection clip. Targets: 50%+ hook rate, 40%+ completion at 30 to 60s.</li>
+        <li><b>Originality</b> no TikTok watermark on the Instagram upload and no recycled trend audio verbatim; Instagram's originality score cuts reach for both.</li>
+        <li><b>Blur</b> any screen with a name, number, or shop on it. Fold the list. Blur monitors in the over-the-shoulder.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Tomorrow, before the first take</h2>
+  <ul class="check">
+    <li><span>Two phones or a camera plus a phone, both charged, both set to 4K/30. A third phone for top-down at the desk.</span></li>
+    <li><span>Lav or shotgun mic. If neither, record voice on a phone in your pocket and sync in the edit. Bad audio kills yap.</span></li>
+    <li><span>Tripod or clamp for A-cam, something to prop B-cam at 30 degrees, and a clamp or tape for the corner phone at position 1. Tape marks on the floor for the chair and both tripods so every day matches.</span></li>
+    <li><span>One white light for faces (desk lamp bounced off the wall, ring light, or the window by day). LED strip to 20 percent or warm white for every talking head.</span></li>
+    <li><span>Grady's boss says yes to 30 minutes in the chair with Grady cutting behind. Ask today. Fallback for V0 is Grady in the frame at the desk, clippers on the table.</span></li>
+    <li><span>The paper tally (CALLS / OWNERS / NO / CALLBACK) and the one-line script card, both handwritten, big marker.</span></li>
+    <li><span>Whiteboard or a legal pad and a fat marker for V3.</span></li>
+    <li><span>Whoever plays Ant has the objections from the rewritten brief in front of them and stays off camera.</span></li>
+    <li><span>Confirm with Grady where DNC registration stands so V8 says the true thing about day 1.</span></li>
+    <li><span>Shoot order: A at the shop (V0 first, then V1, V2, V7, V8 talking parts), then D (V3), then B (V4 ×3, V5, V8 cutaways), then C (V6) in the last good light.</span></li>
+    <li><span>Before wrap: 10 seconds silent to lens on every setup, 30 seconds of B-roll at each (hands, phone, tally, door, chair). Three times more B-roll than you think.</span></li>
+  </ul>
+
+  <h2>Sources</h2>
+  <ul class="sources">
+    <li><a href="https://www.fastcompany.com/91480562/cold-call-with-me-the-new-tiktok-trend-built-on-phone-call-awkwardness">Fast Company: "Cold call with me," the TikTok trend built on phone-call awkwardness</a> (read via <a href="https://ralionline.com/newsinsights/cold-call-with-me-the-new-tiktok-trend-built-on-phone-call-awkwardness/">RALI</a>)</li>
+    <li><a href="https://www.aol.com/articles/young-founders-selfie-sticks-vital-081101000.html">AOL / Business Insider: Young founders are going viral mode</a></li>
+    <li><a href="https://creatorhouse.app/blog/instagram-reel-hook-rate-hold-rate-completion-rate-benchmarks">CreatorHouse: hook rate, hold rate, completion rate benchmarks 2026</a></li>
+    <li><a href="https://www.dataslayer.ai/blog/instagram-algorithm-2025-complete-guide-for-marketers">Dataslayer: Instagram algorithm 2026, five ranking signals</a> · <a href="https://creatorflow.so/blog/instagram-algorithm-2026/">CreatorFlow: what changed in 2026</a> · <a href="https://retensis.com/blog/good-instagram-reels-retention-rate">Retensis: retention benchmarks</a></li>
+    <li><a href="https://invideo.io/blog/instagram-reels-guide/">InVideo: Reels guide 2026 (the "YAP" format)</a> · <a href="https://klap.app/blog/videos-on-instagram">Klap: Instagram video formats 2026</a></li>
+    <li><a href="https://www.tokportal.com/post/the-10-best-formats-to-go-viral-on-tiktok-and-instagram-in-2026">TokPortal: 10 best formats for 2026</a> · <a href="https://blog.mean.ceo/viral-trends-on-social-media-july-2026/">mean.ceo: viral trends, July 2026 startup edition</a></li>
+    <li><a href="https://vidpros.com/interview-camera-angle-settings/">Vidpros: camera angle and two-camera setup</a> · <a href="https://www.kometmedia.com/blogs/100-b-roll-shot-ideas-for-beginners-for-b2b-founders-and-marketers">Komet Media: 100 B-roll ideas for B2B founders</a> · <a href="https://vloggingpro.com/vlogging-tips/">VloggingPro: 50 vlogging tips</a></li>
+    <li><a href="https://kineclip.com/blog/how-to-write-viral-hooks-short-form-2026/">Kineclip: writing viral hooks 2026</a> · <a href="https://cloudixdigital.com/short-form-video-mastery-how-the-3-second-hook-rule-drives-social-discovery-and-roi/">Cloudix: the 3-second hook rule</a> · <a href="https://www.tiktok.com/discover/day-1-starting-a-business">TikTok: "day 1 starting a business"</a></li>
+    <li>Internal: <code>docs/TEAM-BRIEF.md</code> (the sale, the rehearsal, pricing), <code>hub/william/COLD-CALL-RULES.md</code> (recording consent, DNC).</li>
+  </ul>
+  <p class="small">Prices and the rehearsal story are from the team brief as of Sept 7. Numbers said on camera must be ones we can back; "about" is fine, invented is not.</p>
+</div>
+</body></html>
