@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>Barbershop Upsell & Ads Plan</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5,700;87.5,900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #f3f5f7; --paper-2: #e9edf1; --line: #cfd6dd; --ink: #17202a; --ink-2: #4a5764; --ink-3: #6f7c88;
+    --pole: #c8323b; --steel: #2d5f8a; --good: #2f7d5b; --good-bg: #e3f1ea; --warn-bg: #fbeaea;
+    --display: "Archivo", "Arial Narrow", Arial, sans-serif; --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif; --mono: "IBM Plex Mono", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --paper: #121820; --paper-2: #1a222c; --line: #2c3743; --ink: #e6ebf0; --ink-2: #b4bfc9; --ink-3: #8593a0;
+    --pole: #e2555d; --steel: #7fb0da; --good: #6cc59a; --good-bg: #1c3129; --warn-bg: #3a2024; } }
+  :root[data-theme="dark"] {
+    --paper: #121820; --paper-2: #1a222c; --line: #2c3743; --ink: #e6ebf0; --ink-2: #b4bfc9; --ink-3: #8593a0;
+    --pole: #e2555d; --steel: #7fb0da; --good: #6cc59a; --good-bg: #1c3129; --warn-bg: #3a2024; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 var(--body); }
+  a { color: var(--steel); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--pole); outline-offset: 2px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px 80px; }
+  header.top { padding: 40px 0 28px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+  h1 { font: 900 clamp(34px, 5.2vw, 56px)/1.02 var(--display); letter-spacing: -.01em; margin: 10px 0 14px; text-wrap: balance; max-width: 18ch; }
+  .thesis { display: grid; grid-template-columns: 6px 1fr; gap: 18px; margin: 22px 0 0; max-width: 72ch; }
+  .thesis .rule { background: repeating-linear-gradient(-45deg, var(--pole) 0 10px, var(--paper) 10px 14px, var(--steel) 14px 24px, var(--paper) 24px 28px); border-radius: 3px; }
+  .thesis p { margin: 0; font-size: 19px; line-height: 1.45; }
+  .thesis p b { font-weight: 600; }
+  nav.jump { position: sticky; top: 0; z-index: 2; background: var(--paper); border-bottom: 1px solid var(--line); display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 0; margin-bottom: 8px; }
+  nav.jump a { font: 500 13px/1 var(--mono); color: var(--ink-2); text-decoration: none; padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; }
+  nav.jump a:hover { border-color: var(--ink); color: var(--ink); }
+  section { padding: 34px 0 6px; }
+  h2 { font: 800 26px/1.15 var(--display); margin: 0 0 6px; text-wrap: balance; }
+  h2 small { display: block; font: 500 12px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+  h3 { font: 700 18px/1.25 var(--display); margin: 26px 0 8px; }
+  p, li { max-width: 72ch; }
+  p.lede { color: var(--ink-2); margin: 0 0 14px; }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; margin: 14px 0 6px; background: var(--paper); }
+  table { border-collapse: collapse; width: 100%; min-width: 860px; font-size: 14.5px; }
+  th { text-align: left; font: 500 12px/1.3 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); background: var(--paper-2); padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.45; }
+  tr:last-child td { border-bottom: 0; }
+  td.n, th.n { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.rank { font: 700 15px/1.2 var(--display); color: var(--ink-3); width: 34px; }
+  td b.name { font-weight: 600; }
+  .price { font: 500 14px/1.2 var(--mono); color: var(--pole); white-space: nowrap; }
+  .tag { display: inline-block; font: 500 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 4px 7px; border-radius: 3px; border: 1px solid var(--line); color: var(--ink-2); white-space: nowrap; }
+  .tag.good { background: var(--good-bg); color: var(--good); border-color: transparent; }
+  .tag.built { background: var(--paper-2); }
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-top: 12px; }
+  .note { border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; background: var(--paper-2); }
+  .note h4 { margin: 0 0 6px; font: 700 15px/1.2 var(--display); }
+  .note p, .note li { font-size: 14.5px; margin: 0; }
+  .note ul { margin: 6px 0 0; padding-left: 18px; }
+  .rules { border-left: 3px solid var(--pole); padding: 4px 0 4px 16px; margin: 18px 0; }
+  .rules li { margin: 6px 0; }
+  .timeline td.day { font: 700 14px/1.2 var(--display); white-space: nowrap; color: var(--steel); }
+  .good-look { background: var(--good-bg); border-radius: 6px; padding: 14px 16px; margin: 14px 0; max-width: 72ch; }
+  .good-look b { color: var(--good); }
+  ol.week li { margin: 8px 0; }
+  .sources { font-size: 13px; color: var(--ink-2); columns: 2; column-gap: 28px; }
+  .sources li { break-inside: avoid; margin: 0 0 6px; }
+  @media (max-width: 640px) { .sources { columns: 1; } }
+  @media (prefers-reduced-motion: no-preference) { nav.jump a { transition: border-color .15s, color .15s; } }
+</style>
+</head><body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">snpz · for Grady, William, Aiden · 10 Sep 2026</div>
+    <h1>What else a barbershop buys from us, and how we run their ads for almost nothing</h1>
+    <div class="thesis">
+      <div class="rule" aria-hidden="true"></div>
+      <p><b>The receptionist is what stops a barbershop's ad money leaking.</b> Every ad ends at a ringing phone or a booking page. An ad that rings a phone nobody picks up is money on fire. We answer it, book it, and can say which ad booked which cut. Booksy's Boost takes 30% of every new client's first visit; we take a flat fee and the barber keeps the client.</p>
+    </div>
+  </header>
+
+  <nav class="jump" aria-label="Sections">
+    <a href="#upsells">1 · Upsells</a><a href="#ads">2 · Ads that work</a><a href="#first">3 · First campaign</a><a href="#cheap">4 · Cheapest way</a><a href="#week">5 · This week</a><a href="#sources">Sources</a>
+  </nav>
+
+  <section id="upsells">
+    <h2><small>Section 1</small>Upsells, ranked by fit with the receptionist</h2>
+    <p class="lede">Ranked on three things at once: does it feed the receptionist or harvest what it already knows, how much of the price is margin, and how much we have to build. Today's sheet is two packages only: Receptionist $35.99 (150 min) and snpz Premium $65.99 (300 min).</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>#</th><th>Product</th><th>What the barber gets</th><th class="n">Our cost</th><th>Price</th><th>Build</th></tr></thead>
+      <tbody>
+        <tr><td class="rank">1</td><td><b class="name">Review engine</b></td><td>The day after every cut the receptionist booked, one text: "How was it at Tony's? Leave Tony a review." SMS review asks convert about 34% against 4% by email. Reviews are a top-3 local ranking factor and the gate to Local Services Ads (20+ at 4.5 stars). The legacy sheet already carries a review-ask toggle at $1.75 a chair; this makes it a real line.</td><td class="n">~2.5¢ / client</td><td class="price">$19/mo</td><td>Small. One scheduled text per completed booking. Waits on shop-texting carrier approval.</td></tr>
+        <tr><td class="rank">2</td><td><b class="name">Come-back nudge</b></td><td>The receptionist knows when each client last booked. At three weeks: "Due for a cut? Tap to call and we'll fit you in." The call lands on the receptionist. Chair-side rebooking runs 40 to 60% higher than passive; this automates it for shops that don't do it.</td><td class="n">~1.25¢ / nudge</td><td class="price">$19/mo · $29 with #1</td><td>Small. Cadence from booking history; consent captured on the call ("can we text you when you're due?").</td></tr>
+        <tr><td class="rank">3</td><td><b class="name">Missed-call text-back</b></td><td>When the receptionist is off by the owner's rule and the shop misses the call anyway, the caller gets a text in ten seconds. Recovers 20 to 40% of callers who would otherwise never call back.</td><td class="n">~1.25¢ / text</td><td class="price">In Premium · $9/mo on tier 1</td><td>Small. We already see the missed call on our number.</td></tr>
+        <tr><td class="rank">4</td><td><b class="name">Open-chair blast</b></td><td>A cancellation at 2 pm becomes one text to opted-in clients: "Chair open at 3, first reply gets it."</td><td class="n">pennies</td><td class="price">$19/mo</td><td>Medium. Needs #2's opt-in list and a reply handler that books the first yes.</td></tr>
+        <tr><td class="rank">5</td><td><b class="name">Memberships</b></td><td>"Unlimited cuts $X a month" on a card through our Stripe; the receptionist explains it and books members first. Membership barbershops grow revenue about 4x faster with about 4% churn.</td><td class="n">Stripe's cut, theirs</td><td class="price">$29/mo flat, no cut of their revenue</td><td>Medium. Our Stripe subscriptions exist; a per-shop plan and a member flag are new.</td></tr>
+        <tr><td class="rank">6</td><td><b class="name">Ads + Google listing</b></td><td>We make the phone ring: Google Business Profile done right, Local Services Ads, one Meta call ad, and a monthly "booked per dollar" number. Section 2 is the spec.</td><td class="n">an hour + $1.15/mo</td><td class="price">$99/mo + the shop's own spend</td><td>Medium-low. A checklist and templates, not software.</td></tr>
+        <tr><td class="rank">7</td><td><b class="name">Reels, edited</b></td><td>The barber shoots 10 to 20 second cut clips on his phone; we cut, caption and post three a week with the same rig we built for our own reels.</td><td class="n">our time</td><td class="price">$149/mo · $99 with #6</td><td>Low tech, high time. Only where #6 is on: the reel is the ad creative.</td></tr>
+        <tr><td class="rank">8</td><td><b class="name">Website + SEO</b></td><td>The existing Reisinger Media product, $57 a month with a 30-day trial. For phone-only shops it is the landing page an ad needs.</td><td class="n">~$1/mo</td><td class="price">$57/mo, as priced</td><td><span class="tag built">built</span> Say it after the close, never in the four-line script.</td></tr>
+        <tr><td class="rank">9</td><td><b class="name">Already built, never pitched</b></td><td>Busy line +$39 (300 more minutes), minute top-up $20 (150, carries over), Sharp voice model (+5.5¢ a minute). A shop that runs out of minutes is a shop that needs them.</td><td class="n">cost + fee</td><td class="price">as priced</td><td><span class="tag built">built</span> The gap is that nobody says them.</td></tr>
+        <tr><td class="rank">10</td><td><b class="name">Monthly call report</b></td><td>"Your phone rang 212 times, we answered 61 after hours, booked 38, the top question was 'do you do kids' cuts'." It is retention for the $35.99 and the setup for everything above.</td><td class="n">$0</td><td class="price">Free</td><td><span class="tag good">this week</span> The rows already exist.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="grid2">
+      <div class="note"><h4>Order to build</h4><p>10 and 9 this week (free, and already built). Then 1 + 2 as one "Reviews + Come-backs, $29" bundle the day shop-texting approval lands. Then 6, then 3, 5, 4, and 7 or 8 as video and web capacity allows.</p></div>
+      <div class="note"><h4>Do not build</h4><ul><li>Loyalty punch cards and gift cards. Booksy gives them away at $30 a month.</li><li>A booking app. Retired on 09-10.</li><li>"AI social captions." Nobody pays for it.</li></ul></div>
+      <div class="note"><h4>The pricing rule</h4><p>Every upsell is a flat round number with our cost under 15% of it. Receptionist + Reviews/Come-backs + Ads management is $35.99 + $29 + $99 = $163.99 <em>with the ads run</em>, against Booksy Executive at $150 without.</p></div>
+    </div>
+  </section>
+
+  <section id="ads">
+    <h2><small>Section 2</small>Ads for barbershops: what works, in order</h2>
+    <p class="lede">Ranked by cost per booked cut, not per click. Barbers live on the phone, and the cheapest high-intent ads point at a phone. That is our home ground.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Rank</th><th>Channel</th><th>Why</th><th class="n">What it costs</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td class="rank">0</td><td><b class="name">Google Business Profile, done properly</b></td><td>Map-pack position 1 to 3 for "barber near me" sends 30 to 80 calls and booking requests a month. Photos, hours, services with prices, a weekly post, every review answered. Also the prerequisite for row 1.</td><td class="n">$0, two hours</td><td><span class="tag good">always first</span></td></tr>
+        <tr><td class="rank">1</td><td><b class="name">Google Local Services Ads</b></td><td>Barber shop is now an eligible category nationwide. Pay per lead (a call or message), not per click; sits above every other result; wants 20+ reviews at 4.5 stars. Beauty verticals run "pre-badge" ads for now.</td><td class="n">$5 to $30 a lead</td><td><span class="tag good">core paid channel</span> The lead is a call. We answer it.</td></tr>
+        <tr><td class="rank">2</td><td><b class="name">Meta call ads</b> (Facebook + Instagram)</td><td>Calls convert 10 to 15x website clicks for appointment businesses. Meta now optimises for 60-second calls: 21% cheaper per call, 25% more conversions when scheduled to shop hours. Five-mile radius, $5 to $10 a day is a real test.</td><td class="n">$5 to $20 a call</td><td><span class="tag good">second channel</span> The one with creative.</td></tr>
+        <tr><td class="rank">3</td><td><b class="name">Boost the best Reel</b></td><td>$5 to $10 a day behind the organic post that already beat the shop's average by 2x. 20 to 30% cheaper CPM than a built ad. Instagram over TikTok for bookings.</td><td class="n">$150 to $300/mo</td><td>Cheapest creative there is.</td></tr>
+        <tr><td class="rank">4</td><td><b class="name">Google Search ads</b></td><td>"Barber near me" at $2 to $8 a click; needs a landing page and weekly tending.</td><td class="n">$8 to $22 a lead, tuned</td><td>Later. Only once rows 1 and 2 are booking.</td></tr>
+        <tr><td class="rank">5</td><td><b class="name">Giveaway</b> ("free cuts for a year")</td><td>Cheap list-building, low intent. Giveaway framing is a house no for our own outreach; for a barber's own page it is a list-builder for #2, with written rules and "no purchase necessary."</td><td class="n">almost free</td><td>Last, and only for a shop that asks.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>The ad that works: one shape, three variants</h3>
+    <div class="grid2">
+      <div class="note"><h4>Format</h4><p>10 to 20 seconds, vertical, real barber, real chair, same angle before and after. Storefront stills lose. Review-screenshot cards and team photos beat stock.</p></div>
+      <div class="note"><h4>One offer, said once</h4><p>"$5 off your first cut, say you saw this" or "free beard line-up with a cut this week." A discount on a $30 cut is cheap against a client worth about $510 a year at a three-week cadence.</p></div>
+      <div class="note"><h4>One button</h4><p><b>Call now</b> to the receptionist, which books it. <b>Book</b> only where the shop has a page. Call now wins for phone-only shops, which is most of our list.</p></div>
+      <div class="note"><h4>Targeting and variants</h4><p>Five miles, men 18 to 55, scheduled to shop hours for call ads, a lead form outside them. Three variants per shop: (A) before/after cut, (B) the barber talking to camera for eight seconds, (C) the review card. Kill the worst after seven days.</p></div>
+    </div>
+  </section>
+
+  <section id="first">
+    <h2><small>Section 3</small>The first campaign: two shops, two weeks</h2>
+    <p class="lede">Pilot on two shops we already bill. No selling until the day-19 number exists; that number is the pitch for every shop after.</p>
+    <div class="tablewrap"><table class="timeline">
+      <thead><tr><th>Day</th><th>Do</th><th>Who</th></tr></thead>
+      <tbody>
+        <tr><td class="day">1</td><td>Pick two pilot shops we already bill. Alpha Studios is one.</td><td>Grady</td></tr>
+        <tr><td class="day">1–2</td><td>Google Business Profile pass: claim, 20 photos, hours, services with prices, book link, weekly post scheduled, every review answered. Turn on the review engine so reviews climb during the test.</td><td>William's or Aiden's Claude, from a checklist</td></tr>
+        <tr><td class="day">2</td><td>Apply for Local Services Ads in the shop's own Google account (background check and documents; days to weeks). Weekly budget $50 to $75.</td><td>Owner + us, 20-minute screen share</td></tr>
+        <tr><td class="day">3</td><td>Tracking number: a second Twilio number per shop, $1.15 a month, used only in ads and forwarded into the receptionist. Every ad call is now a row with a source.</td><td>Us, five minutes</td></tr>
+        <tr><td class="day">4</td><td>Shoot three clips on the barber's phone. Edit with our rig.</td><td>Barber + William</td></tr>
+        <tr><td class="day">5</td><td>Meta call ad: $10 a day, five miles, three variants, scheduled to hours, tracking number as the destination. On the shop's own Business Manager and card.</td><td>Us</td></tr>
+        <tr><td class="day">5–19</td><td>Let it run 14 days. Do not touch it for the first seven.</td><td>Nobody</td></tr>
+        <tr><td class="day">12</td><td>Kill the worst variant, move its budget to the best.</td><td>Us</td></tr>
+        <tr><td class="day">19</td><td>The report: calls per channel, calls the receptionist answered, cuts booked per dollar.</td><td>Us</td></tr>
+      </tbody>
+    </table></div>
+    <div class="good-look"><b>What good looks like at day 19:</b> about $140 of Meta spend, 10 to 25 calls, 5 to 12 booked cuts, plus whatever Local Services delivered. A first cut at $12 to $30 all-in, against a $510-a-year client. Under five calls means the creative is wrong (reshoot variant B), not the channel.</div>
+    <ul class="rules">
+      <li><b>The shop's money on the shop's accounts.</b> We never front spend or run it through our card; we are added as a manager. That also keeps our Facebook accounts off the ban line.</li>
+      <li><b>No shop-facing texting until the carrier approval for shop texting lands.</b> Today's approval covers only our own prospect texting. Ads and the Google listing do not wait.</li>
+      <li><b>Reviews are asked for, never paid for or steered.</b></li>
+      <li><b>Giveaways get written rules and "no purchase necessary."</b></li>
+      <li><b>Before/after haircuts are fine on Meta.</b> The restriction is for health and body products. Keep skin and bodies out of frame anyway.</li>
+      <li><b>Recording consent</b> for anything filmed in the shop with clients in it, same as our own reels.</li>
+    </ul>
+  </section>
+
+  <section id="cheap">
+    <h2><small>Section 4</small>The cheapest way to do all of it</h2>
+    <p class="lede">Every line below is a place an agency would sell us a subscription. We already own the plumbing.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Need</th><th>The expensive way</th><th>Our way</th><th class="n">Costs us</th></tr></thead>
+      <tbody>
+        <tr><td>Ad manager tools</td><td>GoHighLevel $97 to $497 a month plus SMS; agency retainers $500 to $1,500 a shop</td><td>Meta Business Suite and the Local Services dashboard, both free; our CRM for the numbers</td><td class="n">$0</td></tr>
+        <tr><td>Knowing which ad booked</td><td>Call-tracking software $45 to $100 a month</td><td>One more Twilio number per shop, into the receptionist</td><td class="n">$1.15/mo</td></tr>
+        <tr><td>Creative</td><td>Agency video $300 to $1,000 a spot</td><td>The barber's phone plus our OBS, CLIP and upload-post rig; Claude writes the three copy variants</td><td class="n">~1 h / shop / mo</td></tr>
+        <tr><td>Texting products (#1 to #4)</td><td>GHL SMS add-ons, $16 to $63 a month per client on top of the plan</td><td>Our Twilio at 1.25¢ a segment, already provisioned per shop</td><td class="n">$1 to $3/mo</td></tr>
+        <tr><td>Reviews</td><td>Review software $50 to $100 a month</td><td>One scheduled text</td><td class="n">pennies</td></tr>
+        <tr><td>Memberships</td><td>Squire or Boulevard membership tiers, $100+ a month</td><td>Our Stripe, a plan per shop</td><td class="n">Stripe's cut, theirs</td></tr>
+        <tr><td>A landing page</td><td>$1,500 site build</td><td>The $57 product we already sell, hosted at about $1 a month</td><td class="n">~$1/mo</td></tr>
+        <tr><td>Lead cost</td><td>Booksy Boost: 30% of every new client's first visit, forever</td><td>Local Services pay-per-lead plus one Meta ad at $10 a day, flat $99 management</td><td class="n">the shop's spend + an hour</td></tr>
+      </tbody>
+    </table></div>
+    <div class="grid2">
+      <div class="note"><h4>Where not to cut</h4><ul><li>The video. A phone clip is fine; a stock image is not, and a shaky vertical in bad light loses to the shop next door.</li><li>Listing photos and review replies. They are the whole organic engine.</li><li>Hours-scheduling on call ads. A call into a closed shop with the receptionist off is a wasted lead.</li><li>The tracking number. Without it "booked per dollar" is a promise, not a number.</li></ul></div>
+      <div class="note"><h4>All-in for one shop</h4><p>The shop pays $300 to $450 a month of spend on its own card (Meta $10 a day plus Local Services $50 to $75 a week) and $99 to us. Our marginal cost is $1.15 and an hour. The margin is the same 85%+ every other line carries.</p></div>
+    </div>
+  </section>
+
+  <section id="week">
+    <h2><small>Section 5</small>This week</h2>
+    <ol class="week">
+      <li>Ship the monthly call report to every live shop, free. It is the proof for everything else.</li>
+      <li>Grady picks the two pilot shops. Run Section 3 exactly, starting with the listing pass and the Local Services application, which is the slow part.</li>
+      <li>Write the "$99 ads" line into the price sheet as an after-the-close add-on. The cold-call script stays four lines.</li>
+      <li>The day shop-texting approval lands: Reviews + Come-backs at $29 goes live for every shop, with opt-in captured by the receptionist on the call.</li>
+    </ol>
+    <p class="lede">The same plan lives in the repo at <code>docs/UPSELLS-ADS.md</code> with file references.</p>
+  </section>
+
+  <section id="sources">
+    <h2><small>Cited</small>Sources</h2>
+    <ul class="sources">
+      <li><a href="https://www.facebook.com/business/ads/ad-objectives/lead-generation/lead-ads-with-calling">Meta: lead ads with calling</a></li>
+      <li><a href="https://pix-vu.com/blog/facebook-ads-feature-click-to-call">Pix-Vu: click-to-call ads guide</a></li>
+      <li><a href="https://www.get-ryze.ai/blog/meta-ads-cost-local-business-what-spend-2026">Ryze: Meta ads cost for local business, 2026</a></li>
+      <li><a href="https://www.thewojomedia.com/post/barbershop-advertising">Wojo Media: barbershop advertising playbook</a></li>
+      <li><a href="https://biz.booksy.com/blog/barbershop-marketing">Booksy: barbershop marketing, 2026</a></li>
+      <li><a href="https://www.stackmatix.com/blog/tiktok-growth-strategies-2026">Stackmatix: Spark Ads and boosting, 2026</a></li>
+      <li><a href="https://insidea.com/blog/marketing/barber-shops/google-ads-strategy-for-barber-shops">INSIDEA: Google Ads for barber shops</a></li>
+      <li><a href="https://clicksgeek.com/industries/barbershops/">Clicks Geek: barbershop PPC costs</a></li>
+      <li><a href="https://www.primelsa.ai/post/what-industry-categories-can-advertise-on-google-local-services">PrimeLSA: Local Services eligible categories, 2026</a></li>
+      <li><a href="https://www.seroundtable.com/google-lsa-prebadge-new-verticals-41920.html">SERoundtable: LSA pre-badge ads and new verticals</a></li>
+      <li><a href="https://www.themediacaptain.com/google-local-service-ad-statistics/">The Media Captain: Local Services cost per lead</a></li>
+      <li><a href="https://www.apptoto.com/best-practices/sms-review-requests">Apptoto: SMS review requests</a></li>
+      <li><a href="https://glossred.com/blog/ask-for-barbershop-reviews-ethically">GlossRed: asking for reviews ethically</a></li>
+      <li><a href="https://academy.cadmen.ca/post/barber-client-retention-tips">Cadmen: barber client retention</a></li>
+      <li><a href="https://www.zenoti.com/thecheckin/barbershop-membership-programme-guide">Zenoti: barbershop membership guide</a></li>
+      <li><a href="https://hlgrowthpartner.com/post/gohighlevel-missed-call-text-back-setup-2026">HL Growth Partner: missed-call text-back</a></li>
+      <li><a href="https://www.truereview.co/post/gohighlevel-sms-email-cost">TrueReview: what GoHighLevel really costs</a></li>
+      <li><a href="https://koalendar.com/blog/booksy-pricing">Koalendar: Booksy pricing and Boost commission</a></li>
+      <li><a href="https://www.promotionalproductinc.com/blog/marketing/barbershop-marketing-ideas-grow-clients">Promotional Product Inc: barbershop giveaways</a></li>
+    </ul>
+  </section>
+</div>
+
+</body></html>
