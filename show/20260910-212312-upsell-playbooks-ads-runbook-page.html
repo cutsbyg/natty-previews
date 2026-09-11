@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>Upsell Playbooks & Ads Runbook</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5,700;87.5,900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #f3f5f7; --paper-2: #e9edf1; --line: #cfd6dd; --ink: #17202a; --ink-2: #4a5764; --ink-3: #6f7c88;
+    --pole: #c8323b; --steel: #2d5f8a; --good: #2f7d5b; --good-bg: #e3f1ea; --warn-bg: #fbeaea; --say-bg: #edf2f8;
+    --display: "Archivo", "Arial Narrow", Arial, sans-serif; --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif; --mono: "IBM Plex Mono", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --paper: #121820; --paper-2: #1a222c; --line: #2c3743; --ink: #e6ebf0; --ink-2: #b4bfc9; --ink-3: #8593a0;
+    --pole: #e2555d; --steel: #7fb0da; --good: #6cc59a; --good-bg: #1c3129; --warn-bg: #3a2024; --say-bg: #1b2634; } }
+  :root[data-theme="dark"] {
+    --paper: #121820; --paper-2: #1a222c; --line: #2c3743; --ink: #e6ebf0; --ink-2: #b4bfc9; --ink-3: #8593a0;
+    --pole: #e2555d; --steel: #7fb0da; --good: #6cc59a; --good-bg: #1c3129; --warn-bg: #3a2024; --say-bg: #1b2634; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 var(--body); }
+  a { color: var(--steel); text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--pole); outline-offset: 2px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px 80px; }
+  header.top { padding: 40px 0 26px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+  h1 { font: 900 clamp(32px, 5vw, 52px)/1.03 var(--display); letter-spacing: -.01em; margin: 10px 0 12px; text-wrap: balance; max-width: 20ch; }
+  .filter { display: grid; grid-template-columns: 6px 1fr; gap: 18px; margin: 18px 0 0; max-width: 74ch; }
+  .filter .rule { background: repeating-linear-gradient(-45deg, var(--pole) 0 10px, var(--paper) 10px 14px, var(--steel) 14px 24px, var(--paper) 24px 28px); border-radius: 3px; }
+  .filter p { margin: 0; font-size: 18px; line-height: 1.45; }
+  nav.jump { position: sticky; top: 0; z-index: 2; background: var(--paper); border-bottom: 1px solid var(--line); display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 0; margin-bottom: 8px; }
+  nav.jump a { font: 500 13px/1 var(--mono); color: var(--ink-2); text-decoration: none; padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; }
+  nav.jump a:hover { border-color: var(--ink); color: var(--ink); }
+  section { padding: 34px 0 6px; }
+  h2 { font: 800 26px/1.15 var(--display); margin: 0 0 6px; text-wrap: balance; }
+  h2 small { display: block; font: 500 12px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+  h3 { font: 700 19px/1.25 var(--display); margin: 30px 0 6px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  h3 .price { font: 500 14px/1.2 var(--mono); color: var(--pole); }
+  h3 .who { font: 500 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); border: 1px solid var(--line); border-radius: 3px; padding: 4px 7px; }
+  p, li { max-width: 74ch; }
+  p.lede { color: var(--ink-2); margin: 0 0 12px; }
+  .meta { font-size: 14.5px; color: var(--ink-2); margin: 0 0 8px; }
+  .meta b { color: var(--ink); font-weight: 600; }
+  ol.steps { margin: 6px 0 0; padding-left: 22px; }
+  ol.steps li { margin: 6px 0; }
+  .say { background: var(--say-bg); border-left: 3px solid var(--steel); padding: 10px 14px; margin: 8px 0; font-style: italic; max-width: 74ch; border-radius: 0 4px 4px 0; }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; margin: 14px 0 6px; background: var(--paper); }
+  table { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 14.5px; }
+  th { text-align: left; font: 500 12px/1.3 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); background: var(--paper-2); padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.45; }
+  tr:last-child td { border-bottom: 0; }
+  td.yes { color: var(--ink-3); }
+  td.no { color: var(--good); font-weight: 600; }
+  td.n { font-family: var(--mono); white-space: nowrap; }
+  .phase { border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px; margin: 14px 0; }
+  .phase h3 { margin: 0 0 4px; }
+  .phase .time { font: 500 12px/1 var(--mono); color: var(--ink-3); letter-spacing: .06em; text-transform: uppercase; }
+  .phase ul, .phase ol { margin: 8px 0 0; padding-left: 22px; }
+  .phase li { margin: 5px 0; }
+  .rules { border-left: 3px solid var(--pole); padding: 4px 0 4px 16px; margin: 14px 0; }
+  .rules li { margin: 6px 0; }
+  .target { background: var(--good-bg); border-radius: 6px; padding: 12px 16px; margin: 12px 0; max-width: 74ch; }
+  .target b { color: var(--good); }
+  pre.card { font: 13px/1.6 var(--mono); background: var(--paper-2); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; overflow-x: auto; margin: 12px 0 0; }
+  .dropped { font-size: 14.5px; color: var(--ink-2); }
+</style>
+</head><body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">snpz · for Grady, William, Aiden · 10 Sep 2026</div>
+    <h1>How to sell each add-on, and how to run a barbershop's ads</h1>
+    <div class="filter">
+      <div class="rule" aria-hidden="true"></div>
+      <p><b>The filter:</b> nothing Booksy, Square or Squire already does. To a shop on an app we sell only what lives on the phone or off the app. To a phone-only shop, the top of our list, nothing is taken care of yet.</p>
+    </div>
+  </header>
+
+  <nav class="jump" aria-label="Sections">
+    <a href="#filter">The filter</a><a href="#rules">Rules</a><a href="#playbooks">Playbooks</a><a href="#order">Order per shop</a><a href="#runbook">Ads runbook</a><a href="#card">Checklist card</a>
+  </nav>
+
+  <section id="filter">
+    <h2><small>Part 1 · Upsells</small>What the booking apps already do</h2>
+    <p class="lede">Read a shop's platform off its row before pitching anything. A Booksy shop already has every row marked "yes" for $30 a month; we would be selling him a second copy.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Already in the app</th><th>Booksy ($30)</th><th>Square Appointments</th><th>Squire ($100+)</th></tr></thead>
+      <tbody>
+        <tr><td>Text and email reminders, confirmations</td><td class="yes">yes</td><td class="yes">yes</td><td class="yes">yes</td></tr>
+        <tr><td>Waitlist, fill a cancellation</td><td class="yes">yes</td><td class="yes">yes</td><td class="yes">yes, $150 add-on</td></tr>
+        <tr><td>Marketing texts, promos, rebook nudges</td><td class="yes">yes</td><td class="yes">Square Marketing, paid</td><td class="yes">yes</td></tr>
+        <tr><td>Review prompts</td><td class="yes">its own reviews</td><td class="yes">Square Reviews</td><td class="yes">yes</td></tr>
+        <tr><td>Memberships, loyalty, gift cards</td><td class="yes">Executive tier, $150</td><td class="yes">yes</td><td class="yes">loyalty $250</td></tr>
+        <tr><td>A booking page</td><td class="yes">yes</td><td class="yes">Square Online</td><td class="yes">yes</td></tr>
+        <tr><td><b>Answering the phone</b></td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
+        <tr><td><b>Anything that starts with a phone call</b></td><td class="no">no</td><td class="no">no</td><td class="no">no</td></tr>
+        <tr><td><b>Ads, the Google listing, content</b></td><td class="no">Boost, 30% of the client</td><td class="no">no</td><td class="no">no</td></tr>
+      </tbody>
+    </table></div>
+    <p class="dropped"><b>Dropped from the earlier list because of this:</b> come-backs, reminders and review texts as separate lines to app shops; the open-chair blast (every app has a waitlist); memberships, loyalty and gift cards. Phone-only shops still get the texts, as one bundle.</p>
+  </section>
+
+  <section id="rules">
+    <h2><small>Part 1 · Upsells</small>Rules that cover every playbook</h2>
+    <ul class="rules">
+      <li><b>Never in the cold call.</b> The script is four lines. An upsell is said to a shop already paying $35.99 that has seen it answer.</li>
+      <li><b>Three moments only:</b> the go-live call, the day-7 check-in, and the monthly call report with one line under it. One upsell per moment, never a menu.</li>
+      <li><b>The report is the salesman.</b> Every trigger below is a number in it.</li>
+      <li><b>Check the shop's platform first.</b> The playbook says which shops it is for.</li>
+      <li><b>Billing today is a Stripe dashboard step.</b> The pay link sells the two packages only. Grady adds the add-on as a recurring line on the shop's subscription, two minutes. Say "it's on your next bill."</li>
+      <li><b>Shop-facing texting waits for the carrier.</b> Playbooks 1 and 2 text customers; they start the day shop texting is approved. Until then: "the day it's on, you're first," and take no money.</li>
+      <li><b>One person owns the after-the-close</b> for each shop, written on the row.</li>
+    </ul>
+  </section>
+
+  <section id="playbooks">
+    <h2><small>Part 1 · Upsells</small>The playbooks</h2>
+
+    <h3>1 · Texts for phone-only shops <span class="price">$29/mo</span> <span class="who">phone-only only</span></h3>
+    <p class="meta"><b>Pain not taken care of:</b> no-shows, regulars drifting to the shop down the street, eleven Google reviews, and no software doing any of it. <b>Trigger:</b> "no-shows: 6", "not back in 5 weeks: 41", or "reviews: 11". <b>Moment:</b> day-7 check-in.</p>
+    <ol class="steps">
+      <li>Read the row first: platform phone-only, review count, no-shows and lapsed clients from the booking log.</li>
+      <li>Say it once:</li>
+    </ol>
+    <div class="say">"Every cut we book for you, the guy gets a reminder the day before and two hours out, a 'due for a cut?' text at three weeks that rings back to the receptionist, and a 'leave Tony a review' text the morning after. Booksy charges thirty a month for the app to do that, and you'd still have no one on the phone. Twenty-nine on top, all from your shop's number."</div>
+    <ol class="steps" start="3">
+      <li>"My guys don't want texts": the receptionist asks each caller if it's okay; a no is a no, forever.</li>
+      <li>Yes: Stripe line "Texts $29". Switch the existing texting module on for the shop (reminders, confirmations, reschedule links, nurture, review requests), consent question on, review link is the shop's Google link. Never a prewritten review, never an incentive.</li>
+      <li>Done when the first reminder goes out and the first review lands after go-live. Text the owner the screenshot.</li>
+      <li>Next report: no-shows, lapsed count, reviews, month over month.</li>
+    </ol>
+
+    <h3>2 · Missed-call text-back <span class="price">free on Premium · $9/mo on tier 1</span> <span class="who">any platform</span></h3>
+    <p class="meta"><b>Pain not taken care of:</b> no app texts a caller who rang and got nothing; apps only know people who booked in the app. <b>Trigger:</b> "calls nobody answered: 14". <b>Moment:</b> day-7.</p>
+    <div class="say">"Fourteen calls last week rang out. You weren't busy, so the receptionist stayed off. Nine a month and anyone who rings out gets a text in ten seconds: 'sorry we missed you, here's how to book.' Or go Premium and it just answers every call."</div>
+    <ol class="steps">
+      <li>This is a fork. Premium at $65.99 is the better sale; text-back is the consolation on tier 1.</li>
+      <li>Yes: Stripe line "Text-back $9", or the package change through the pay link.</li>
+      <li>Fulfil: one text on a missed call to the shop's number; the owner picks the sentence.</li>
+      <li>Metric: missed calls that booked within the hour.</li>
+    </ol>
+
+    <h3>3 · The wait-time line <span class="price">$9/mo</span> <span class="who">walk-in shops, any platform</span></h3>
+    <p class="meta"><b>Pain not taken care of:</b> "how long's the wait?" is the most common call a walk-in shop gets, and no booking app can pick up a phone to answer it. The barber answers it with clippers in his hand, or nobody does. <b>Trigger:</b> the report's top questions include "how long is the wait". <b>Moment:</b> monthly report.</p>
+    <div class="say">"'How long's the wait' was your number-one question last month, thirty-one times. Tap a number on your phone, 'about 25 minutes', and the receptionist tells every caller the wait and how many are ahead, and offers to hold them a spot. Nine a month."</div>
+    <ol class="steps">
+      <li>Yes: Stripe line "Wait line $9".</li>
+      <li>Fulfil: a one-tap page for the shop (0 / 15 / 30 / 45 / 60+ minutes, closed); the receptionist reads it and offers the walk-in queue. Build item: the tap page and one fact line in the shop's prompt, two days.</li>
+      <li>Metric: wait questions answered without the barber; walk-ins held.</li>
+    </ol>
+
+    <h3>4 · Ads + Google listing <span class="price">$99/mo + the shop's own spend</span> <span class="who">any platform</span></h3>
+    <p class="meta"><b>Pain not taken care of:</b> no app brings new customers except Booksy Boost, which takes 30% of every one it sends, and no app answers the phone the ad makes ring. <b>Trigger:</b> "can you get me more customers?" or over five empty slots a week. <b>Moment:</b> the monthly report, after a month of booked cuts.</p>
+    <div class="say">"We can make the phone ring. Google's pay-per-lead ads take barbershops now, and a Facebook ad in a five-mile circle is about ten dollars a day. The difference with us: the receptionist answers every one of those calls and we can tell you which ad booked which cut. Ninety-nine a month to run it; the ad money goes on your card, three to four hundred a month to start; stop any day."</div>
+    <ol class="steps">
+      <li>"Tried Facebook ads, wasted money": most shops send the ad to a phone nobody picks up. That's the leak.</li>
+      <li>Yes: Stripe line "Ads $99", and the runbook below, Phase 0, the same day.</li>
+      <li>Metric: cuts booked per dollar, every month, on the report.</li>
+    </ol>
+
+    <h3>5 · Reels, edited <span class="price">$149/mo · $99 with ads</span> <span class="who">any platform</span></h3>
+    <p class="meta"><b>Pain not taken care of:</b> no app posts for them, and the barber's reels are the ad creative anyway. <b>Moment:</b> the day the first ad goes live.</p>
+    <div class="say">"The clips we shot for the ad, we keep cutting them: three reels a week on your Instagram, captioned and posted. You shoot twenty seconds when a good cut walks out."</div>
+    <ol class="steps">
+      <li>Yes: Stripe line "Reels $99". Shared album → our OBS/CLIP rig → posted to the shop's account with granted access, never his password. Consent for anyone in frame is the barber's, in writing.</li>
+      <li>Metric: three a week posted; the best one is next month's boosted ad.</li>
+    </ol>
+
+    <h3>6 · Website + SEO <span class="price">$57/mo, 30-day trial</span> <span class="who">phone-only only · existing product</span></h3>
+    <p class="meta"><b>Pain not taken care of:</b> a phone-only shop has no page at all. App shops have one; skip them. <b>Trigger:</b> "callers who asked for your website: 6". <b>Moment:</b> day-7.</p>
+    <div class="say">"Six callers asked for a website last week and you don't have one. Fifty-seven a month, first month free, built this week; the book button rings the receptionist."</div>
+    <ol class="steps"><li>Yes: the existing Stripe payment link, his card on his phone. Fulfil through the existing build pipeline.</li></ol>
+
+    <h3>7 · Already built, never pitched <span class="price">Busy line +$39 · top-up $20 · Sharp model +5.5¢/min</span> <span class="who">any platform</span></h3>
+    <p class="meta"><b>Pain:</b> the minutes ran out and the phone went back to ringing. <b>Trigger:</b> the meter at 80%. By text, same day.</p>
+    <div class="say">"You're at 138 of 150 minutes with nine days left. When it runs out the phone just rings like before. Twenty adds 150 and they carry over; thirty-nine a month adds 300 every month. Which?"</div>
+    <ol class="steps">
+      <li>Yes: Stripe line "Busy line $39" or a one-time "Top-up $20"; flip the shop's busy-line flag or add the bonus minutes.</li>
+      <li>Sharp model only when a report shows a wrong answer the owner cared about: "the sharper brain is five and a half cents a minute more, about eight dollars a month for you."</li>
+    </ol>
+
+    <h3>8 · The monthly call report <span class="price">free</span> <span class="who">every live shop</span></h3>
+    <p class="meta">The 1st, by text, one screen: calls answered, after-hours, cuts booked, top three questions, missed calls, minutes used; for phone-only shops also no-shows, lapsed clients, reviews. Under it <b>one</b> line from the playbook the numbers point to. Log which line was sent so next month's is different.</p>
+  </section>
+
+  <section id="order">
+    <h2><small>Part 1 · Upsells</small>The order, per shop</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>When</th><th>Phone-only shop</th><th>Square / Booksy / Squire shop</th></tr></thead>
+      <tbody>
+        <tr><td class="n">go-live day</td><td>nothing, make sure it answers</td><td>nothing</td></tr>
+        <tr><td class="n">day 7</td><td>Texts $29 (1), or website (6), or text-back / Premium (2)</td><td>text-back / Premium (2)</td></tr>
+        <tr><td class="n">day 30 report</td><td>ads (4) or wait line (3)</td><td>wait line (3) or ads (4)</td></tr>
+        <tr><td class="n">day 60 report</td><td>whichever of 3 / 4 was not said</td><td>reels (5) if ads are on</td></tr>
+        <tr><td class="n">meter at 80%</td><td>busy line / top-up (7)</td><td>same</td></tr>
+        <tr><td class="n">day ads go live</td><td>reels (5)</td><td>reels (5)</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="runbook">
+    <h2><small>Part 2 · Ads</small>Running ads for one barbershop, phase by phase</h2>
+    <p class="lede">Budget four hours of our time for the first shop, about an hour a month after. Two rules first: the shop's money stays on the shop's own accounts and card, we are a manager and never the payer; and nothing here texts a shop's customers, so none of it waits on the carrier.</p>
+
+    <div class="phase"><h3>Phase 0 · Is this shop ready?</h3><div class="time">10 minutes, before anything is promised</div>
+      <ul>
+        <li><b>Empty chairs.</b> "How many open slots a week?" Under five means no ads; ads fill chairs, they don't create them.</li>
+        <li><b>The phone gets answered.</b> The receptionist is on for the hours the ad runs, or Premium. An ad into a phone nobody answers is the whole leak.</li>
+        <li><b>20+ Google reviews at 4.5.</b> Under that, run Texts (Playbook 1) or ask in person for a month first.</li>
+        <li><b>A clear offer he will honour</b>, written down with an end date: "$5 off your first cut" or "free beard line-up with a cut this week."</li>
+        <li><b>Someone on camera.</b> The barber, twenty seconds. If nobody will, the creative is a review card and a storefront clip, which is weaker. Say so.</li>
+        <li><b>Money:</b> $300 to $450 a month of spend on his card plus our $99. He says yes out loud.</li>
+      </ul></div>
+
+    <div class="phase"><h3>Phase 1 · Accounts and access</h3><div class="time">day 1–2 · 45 minutes on a screen share · his accounts, us added</div>
+      <ol>
+        <li><b>Google Business Profile.</b> Owner signs in at business.google.com; claim if unclaimed (postcard or phone, days). Add our Google account as Manager.</li>
+        <li><b>Google Ads account</b> under his login, billing his card; add us as Admin. No spend here yet; Local Services hangs off it.</li>
+        <li><b>Local Services Ads application</b> in his account: business details, service area (towns within ~15 miles), hours, background check, licence and insurance uploads. Beauty categories run pre-badge for now; leads still come. Days to weeks, so start today.</li>
+        <li><b>Meta.</b> A Facebook Page and an Instagram for the shop (create if missing). Business Manager on his login: add the Page and an ad account, payment his card, then Partners → add our Business Manager with Page and ad-account access. Never his password, never our personal accounts.</li>
+        <li>Write which accounts, which of us manages, the offer and the end date into the shop's notes.</li>
+      </ol></div>
+
+    <div class="phase"><h3>Phase 2 · The listing pass</h3><div class="time">day 1–2 · 2 hours · free, and worth more than the ads</div>
+      <ol>
+        <li>Twenty photos minimum: storefront, chairs, three barbers at work, six finished cuts, the waiting area, the sign. Real, taken this month.</li>
+        <li>Hours exact, including the early-close day. Services with prices as a list.</li>
+        <li>Primary phone: the receptionist's number. Website if Playbook 6 is on.</li>
+        <li>Two-sentence description in the owner's words, the town, the specialties.</li>
+        <li>Reply to every review, good and bad, in his voice; Claude drafts, he approves.</li>
+        <li>One post a week scheduled for four weeks: a cut, an offer, "open Saturday", a barber.</li>
+      </ol></div>
+
+    <div class="phase"><h3>Phase 3 · The tracking number</h3><div class="time">day 3 · 15 minutes</div>
+      <ol>
+        <li>Buy a second local number for the shop ($1.15 a month) and point it at the same receptionist agent as the main line. Tag it "ads" on the shop row.</li>
+        <li>That number goes in the ads and nowhere else. Not the listing, not the website.</li>
+        <li>Every call to it is a call-log row with the dialed number, so "booked from the ad" is a count, not a guess. Until the report groups by dialed number, count by hand on day 19; grouping is a build item.</li>
+      </ol></div>
+
+    <div class="phase"><h3>Phase 4 · Creative</h3><div class="time">day 4 · one visit · 30 minutes with the barber</div>
+      <p class="meta"><b>Shot list</b>, all vertical, phone held still, window light or the shop's brightest spot:</p>
+      <ol>
+        <li>Before: client in the chair, front, three seconds. After: same angle, same spot. Two clients.</li>
+        <li>The barber to camera, eight seconds: "I'm Tony, at Tony's on Market Street. Chair's open Thursday, call the number and we'll book you." Two takes.</li>
+        <li>Clippers detail, the line-up, the reveal in the mirror, five seconds each.</li>
+        <li>A still of the shop's best review.</li>
+        <li>Consent: anyone in frame says yes on camera or signs the one-line release; kids only with a parent's yes.</li>
+      </ol>
+      <p class="meta"><b>Edit spec:</b> 1080×1920, 10 to 20 seconds, the hook inside the first second, captions burned in, the offer as one line for the last three seconds, the tracking number on screen, no music we don't own. Three finished ads: <b>A</b> before/after, <b>B</b> barber to camera, <b>C</b> review card + storefront.</p></div>
+
+    <div class="phase"><h3>Phase 5 · Local Services Ads</h3><div class="time">when approval lands · 20 minutes</div>
+      <ol>
+        <li>Weekly budget $50 to $75. Service area from Phase 1. Hours = shop hours.</li>
+        <li>Business hours on; leads outside hours off, because a missed lead is still billed.</li>
+        <li>Phone = the tracking number if allowed; else the main line, and count LSA calls from Google's own lead list.</li>
+        <li>Every lead: mark booked or not a fit; dispute wrong numbers and spam inside the window, that money comes back.</li>
+        <li>Weekly: check the lead list against the receptionist's bookings.</li>
+      </ol></div>
+
+    <div class="phase"><h3>Phase 6 · The Meta call ad</h3><div class="time">day 5 · 30 minutes in Ads Manager, on his ad account</div>
+      <ol>
+        <li><b>Campaign:</b> objective Leads, conversion location Calls. Name it "{shop} · calls · Sep".</li>
+        <li><b>Ad set:</b> the shop's pin, five-mile radius; age 18 to 55; men (add women only if the shop cuts women); automatic placements; schedule = shop hours (needs a lifetime budget: 14 days × $10 = $140).</li>
+        <li><b>Ads:</b> three, A/B/C. One line of primary text with the offer; headline "Book a cut"; button Call now; phone = the tracking number.</li>
+        <li>Publish. Screenshot the campaign summary into the shop's notes.</li>
+        <li>Optional, outside hours: a second ad set with an Instant Form (name, phone, best time), same creative, $3 a day; the receptionist calls them back in the morning, only if the owner said yes to that.</li>
+      </ol></div>
+
+    <div class="phase"><h3>Phase 7 · Run rules</h3><div class="time">day 5–19</div>
+      <ul>
+        <li><b>Days 1 to 7: touch nothing.</b> Meta needs the week to learn; every edit resets it.</li>
+        <li><b>Day 8:</b> read the three ads, kill the worst by cost per call, move its money to the best.</li>
+        <li>Never pause to save money mid-flight; never widen past eight miles; never add a fourth offer.</li>
+        <li>Under five calls by day 8: the creative is wrong, not the channel. Reshoot B with a different barber or a stronger offer. Do not add budget.</li>
+      </ul></div>
+
+    <div class="phase"><h3>Phase 8 · Day 19: the report</h3><div class="time">the product</div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Line</th><th>Where it comes from</th></tr></thead>
+        <tbody>
+          <tr><td>Spend: Meta $140, LSA $X</td><td>Ads Manager, LSA dashboard</td></tr>
+          <tr><td>Calls from the ad number</td><td>call log, dialed = tracking number</td></tr>
+          <tr><td>Answered by the receptionist</td><td>same rows, answered flag</td></tr>
+          <tr><td><b>Cuts booked from ads</b></td><td>bookings whose call was on the tracking number, plus LSA leads marked booked</td></tr>
+          <tr><td><b>Cost per booked cut</b> = spend ÷ booked</td><td>the number he repeats to other barbers</td></tr>
+          <tr><td>Reviews now vs day 1</td><td>Google</td></tr>
+        </tbody>
+      </table></div>
+      <div class="target"><b>Targets:</b> 10 to 25 calls and 5 to 12 booked cuts from $140 of Meta; a cost per booked cut of $12 to $30. Against a client worth about $510 a year: "forty dollars bought you a guy worth five hundred."</div></div>
+
+    <div class="phase"><h3>Phase 9 · Scale or stop</h3><div class="time">month 2 on · one hour a month</div>
+      <ol>
+        <li><b>Under $30 a booked cut:</b> raise the winning ad's budget 20% a week, never more; add $25 a week to LSA first, Meta second.</li>
+        <li><b>$30 to $60:</b> hold budget; swap in a new variant B (new barber or new offer) every two weeks.</li>
+        <li><b>Over $60 for two weeks:</b> stop Meta, keep LSA and the listing, tell the owner in one line why; keep the $99 only if the listing work is worth it to him (usually: the map pack sends 30 to 80 calls a month for free).</li>
+        <li>Monthly, in the same hour: refresh the offer, post the four listing posts, reply to reviews, boost the best organic reel at $5 a day if reels are on, send the report.</li>
+      </ol></div>
+
+    <div class="phase"><h3>Phase 10 · What we bill, and what it costs us</h3><div class="time">per shop</div>
+      <div class="tablewrap"><table>
+        <thead><tr><th></th><th>The shop pays</th><th>We spend</th></tr></thead>
+        <tbody>
+          <tr><td>Meta call ad</td><td class="n">$300/mo, his card</td><td class="n">0</td></tr>
+          <tr><td>Local Services Ads</td><td class="n">$50–75/wk, his card, leads only</td><td class="n">0</td></tr>
+          <tr><td>Our management</td><td class="n">$99/mo</td><td class="n">~1 h/mo after setup</td></tr>
+          <tr><td>Tracking number</td><td class="n">—</td><td class="n">$1.15/mo</td></tr>
+          <tr><td>Creative</td><td class="n">—</td><td class="n">his phone + our rig</td></tr>
+        </tbody>
+      </table></div>
+      <p class="meta">Setup is four hours once. At ten shops the $99 line is $990 a month against ten hours and $11.50.</p></div>
+  </section>
+
+  <section id="card">
+    <h2><small>Part 2 · Ads</small>The checklist card</h2>
+<pre class="card">[ ] Phase 0  ready?  empty chairs · phone answered · 20 reviews · offer · face · money
+[ ] Phase 1  GBP manager · Google Ads admin · LSA application started · Meta partner access
+[ ] Phase 2  20 photos · hours · services · reviews answered · 4 posts scheduled
+[ ] Phase 3  tracking number bought, on the same receptionist, tagged ads
+[ ] Phase 4  6 clips + 1 review still · consent · 3 ads cut (A/B/C)
+[ ] Phase 5  LSA live: budget · hours on · lead disputes weekly
+[ ] Phase 6  Meta: Leads→Calls · 5 mi · 18–55 · hours · $140/14 days · A/B/C · Call now
+[ ] Phase 7  days 1–7 no touch · day 8 kill worst
+[ ] Phase 8  day 19 report: spend · calls · answered · booked · $/cut
+[ ] Phase 9  scale 20%/wk under $30 · swap B at $30–60 · stop Meta over $60</pre>
+    <p class="lede" style="margin-top:14px">Both plans live in the repo: <code>docs/UPSELL-PLAYBOOKS.md</code> and <code>docs/ADS-RUNBOOK.md</code>.</p>
+  </section>
+</div>
+
+</body></html>
