@@ -1,0 +1,1107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>snpz Landing Test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{
+  --bg:#fffdfa; --surface:#ffffff; --band:#fbf4ea; --ink:#16130f; --muted:#5e5850; --faint:#857e75;
+  --line:rgba(22,19,15,.10); --line-strong:rgba(22,19,15,.20);
+  --accent:#e0531f; --accent-hover:#c8461a; --accent-ink:#ffffff; --accent-soft:#fdebe3; --accent-text:#b43f14;
+  --good:#17824a; --good-soft:#e2f3e9; --test-bg:#fff2c4;
+  --bubble:#f2eee8; --pay-bg:#000000; --pay-ink:#ffffff;
+  --g1:#b97a00; --g2:#d99a00; --g3:#2b93c9; --g4:#155d92;
+  --grid:rgba(22,19,15,.055); --logo-filter:none;
+  --shadow:0 40px 80px -40px rgba(40,28,10,.35),0 10px 24px -16px rgba(40,28,10,.18);
+  --font:'Outfit',system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#12110f; --surface:#1b1916; --band:#181613; --ink:#f4eee5; --muted:#b4ab9f; --faint:#8b8378;
+    --line:rgba(244,238,229,.10); --line-strong:rgba(244,238,229,.22);
+    --accent:#ff7a45; --accent-hover:#ff9163; --accent-ink:#1a0c05; --accent-soft:rgba(255,122,69,.14); --accent-text:#ffa27c;
+    --good:#52c98f; --good-soft:rgba(82,201,143,.14); --test-bg:rgba(255,198,41,.13);
+    --bubble:#27231f; --pay-bg:#ffffff; --pay-ink:#000000;
+    --g1:#ffc629; --g2:#ffd35c; --g3:#5bc8e8; --g4:#8fd9f0;
+    --grid:rgba(244,238,229,.045); --logo-filter:invert(1);
+    --shadow:0 40px 80px -40px rgba(0,0,0,.75),0 10px 24px -16px rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#12110f; --surface:#1b1916; --band:#181613; --ink:#f4eee5; --muted:#b4ab9f; --faint:#8b8378;
+  --line:rgba(244,238,229,.10); --line-strong:rgba(244,238,229,.22);
+  --accent:#ff7a45; --accent-hover:#ff9163; --accent-ink:#1a0c05; --accent-soft:rgba(255,122,69,.14); --accent-text:#ffa27c;
+  --good:#52c98f; --good-soft:rgba(82,201,143,.14); --test-bg:rgba(255,198,41,.13);
+  --bubble:#27231f; --pay-bg:#ffffff; --pay-ink:#000000;
+  --g1:#ffc629; --g2:#ffd35c; --g3:#5bc8e8; --g4:#8fd9f0;
+  --grid:rgba(244,238,229,.045); --logo-filter:invert(1);
+  --shadow:0 40px 80px -40px rgba(0,0,0,.75),0 10px 24px -16px rgba(0,0,0,.5);
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--font);padding-inline:16px;-webkit-font-smoothing:antialiased}
+.bleed{margin-inline:-16px;padding-inline:16px}
+.wrap{max-width:1120px;margin-inline:auto}
+h1,h2,h3{font-family:var(--font);text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.num{font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+/* test ribbon */
+.testbar{background:var(--test-bg);font-size:13px;padding-block:8px;border-bottom:1px solid var(--line)}
+.testbar .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px}
+.testbar b{font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:12px}
+.testbar label{display:flex;align-items:center;gap:8px}
+.testbar select{font:inherit;font-size:13px;padding:4px 8px;border-radius:8px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:32px;height:64px}
+.logo{height:22px;width:auto;display:block;filter:var(--logo-filter)}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-weight:500;font-size:15px;color:var(--muted)}
+.nav ul a{text-decoration:none}
+.nav ul a:hover{color:var(--ink)}
+.nav .right{margin-left:auto;display:flex;gap:12px;align-items:center}
+.linkbtn{background:none;border:0;padding:8px 4px;font-weight:600;font-size:15px;cursor:pointer;color:var(--ink)}
+.linkbtn:hover{color:var(--accent-text)}
+@media (max-width:760px){.nav ul{display:none}.nav .wrap{gap:12px}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:10px;font:600 16px/1 var(--font);border:1px solid transparent;cursor:pointer;text-decoration:none;transition:background .15s,border-color .15s,transform .1s}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--accent);color:var(--accent-ink);box-shadow:0 1px 2px rgba(0,0,0,.08),inset 0 -1px 0 rgba(0,0,0,.14)}
+.btn-primary:hover{background:var(--accent-hover)}
+.btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line-strong)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-pay{background:var(--pay-bg);color:var(--pay-ink)}
+.btn-sm{min-height:38px;padding:0 14px;font-size:14px;border-radius:9px}
+.btn[disabled]{opacity:.6;cursor:progress}
+.btn svg{width:16px;height:16px;fill:currentColor}
+
+/* hero */
+.hero{position:relative;text-align:center;padding-block:64px 0}
+.hero::before{content:"";position:absolute;inset:0 -16px;pointer-events:none;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:48px 48px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 55% at 50% 0%,#000 35%,transparent 100%);
+  mask-image:radial-gradient(ellipse 70% 55% at 50% 0%,#000 35%,transparent 100%)}
+.hero > *{position:relative}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:4px 12px 4px 4px;border:1px solid var(--line-strong);border-radius:999px;background:var(--surface);font-size:14px;font-weight:500;cursor:pointer;color:var(--ink)}
+.badge .chip{background:var(--accent-soft);color:var(--accent-text);border-radius:999px;padding:3px 10px;font-size:13px;font-weight:600}
+.badge .arr{color:var(--muted)}
+.hero h1{margin:24px auto 0;max-width:15ch;font-size:clamp(2.5rem,6.4vw,4.4rem);line-height:1.02;letter-spacing:-.04em;font-weight:700}
+.grad{background:linear-gradient(100deg,var(--g1) 0%,var(--g2) 30%,var(--g3) 68%,var(--g4) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{margin:20px auto 0;max-width:38rem;color:var(--muted);font-size:clamp(1.05rem,1.7vw,1.22rem)}
+.cta{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:32px}
+.cta-note{margin-top:12px;font-size:14px;color:var(--faint)}
+
+/* device */
+.device{margin:56px auto 0;max-width:1040px;border:1px solid var(--line-strong);border-radius:20px;background:var(--surface);box-shadow:var(--shadow);padding:10px;text-align:left;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{transform:translateY(18px)}to{transform:none}}
+.device-bar{display:flex;align-items:center;gap:6px;padding:4px 6px 10px}
+.device-bar i{width:10px;height:10px;border-radius:50%;background:var(--line-strong)}
+.device-bar span{margin-left:10px;font-size:12px;color:var(--faint);font-weight:500}
+.screen{display:grid;grid-template-columns:1.45fr 1fr;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg)}
+.dash{padding:20px 22px;display:grid;gap:18px;align-content:start}
+.dash-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.dash-head h3{font-size:18px;font-weight:600}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:600;border:1px solid var(--line-strong);color:var(--muted);white-space:nowrap}
+.pill.good{border-color:transparent;background:var(--good-soft);color:var(--good)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--surface)}
+.kpi small{display:block;font-size:12px;color:var(--muted)}
+.kpi b{font-size:24px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.chart{border:1px solid var(--line);border-radius:10px;padding:12px 14px 8px;background:var(--surface)}
+.chart small{font-size:12px;color:var(--muted)}
+.bars{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;align-items:end;height:130px;margin-top:8px;border-bottom:1px solid var(--line)}
+.bar{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:4px}
+.bar i{display:block;width:100%;max-width:34px;border-radius:6px 6px 2px 2px;background:var(--accent)}
+.bar em{font-style:normal;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:6px;font-size:11px;color:var(--faint);text-align:center}
+.recent{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.recent li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 12px;font-size:13px;border-top:1px solid var(--line)}
+.recent li:first-child{border-top:0}
+.recent b{font-weight:500;color:var(--ink)}
+.convo{border-left:1px solid var(--line);background:var(--band);padding:16px;display:flex;flex-direction:column;gap:10px}
+.convo-head{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.convo-head .t{margin-left:auto;color:var(--muted);font-weight:500}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--good);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(82,201,143,.55)}70%{box-shadow:0 0 0 8px rgba(82,201,143,0)}100%{box-shadow:0 0 0 0 rgba(82,201,143,0)}}
+.who{font-size:11px;color:var(--faint);font-weight:500;margin-bottom:-6px}
+.b{max-width:88%;padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.4}
+.b.them{background:var(--surface);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px}
+.b.us{background:var(--accent-soft);align-self:flex-end;border-bottom-right-radius:4px}
+.who.us{align-self:flex-end}
+.booked{align-self:center;margin-top:4px}
+@media (max-width:760px){
+  .screen{grid-template-columns:1fr}
+  .dash{display:none}
+  .convo{border-left:0}
+  .device{max-width:420px;margin-top:40px}
+  .hero{padding-block:40px 0}
+}
+
+/* strip */
+.strip{margin-top:64px;background:var(--band);border-block:1px solid var(--line);padding-block:28px}
+.strip p.lbl{text-align:center;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.strip ul{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:14px 40px}
+.strip li{display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px}
+.ic{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.sq-logo{height:17px;width:auto;filter:var(--logo-filter)}
+
+/* sections */
+section.sec{padding-block:88px 0;scroll-margin-top:80px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--accent-text)}
+.sec-h{text-align:center;max-width:40rem;margin-inline:auto}
+.sec-h h2{margin-top:10px;font-size:clamp(1.9rem,4vw,2.8rem);line-height:1.08;letter-spacing:-.03em;font-weight:700}
+.steps3{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
+.steps3 li{border-top:2px solid var(--ink);padding-top:18px;counter-increment:s}
+.steps3 li::before{content:counter(s);display:block;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--accent-text);margin-bottom:10px}
+.steps3 h3{font-size:1.25rem;font-weight:600;letter-spacing:-.01em}
+.steps3 p{margin-top:8px;color:var(--muted)}
+@media (max-width:760px){.steps3{grid-template-columns:1fr;gap:28px}}
+
+.price{margin:44px auto 0;max-width:460px;border:1px solid var(--line-strong);border-radius:20px;background:var(--surface);padding:32px;box-shadow:var(--shadow)}
+.price .amt{display:flex;align-items:baseline;gap:6px}
+.price .amt b{font-size:3.4rem;font-weight:700;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.price .amt span{color:var(--muted);font-weight:500}
+.price .zero{margin-top:12px;font-size:1.08rem;font-weight:500}
+.price .zero mark{background:var(--accent-soft);color:var(--ink);padding:1px 6px;border-radius:6px}
+.checks{list-style:none;margin:22px 0 26px;padding:0;display:grid;gap:10px}
+.checks li{display:flex;gap:10px;align-items:flex-start}
+.ck{width:20px;height:20px;flex:none;margin-top:2px}
+.ck-c{fill:var(--good)}
+.ck-p{fill:none;stroke:var(--surface);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.price .btn{width:100%}
+
+.faq{max-width:760px;margin:40px auto 0;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 2px;font-weight:600;font-size:1.08rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-weight:400;font-size:1.5rem;line-height:1;color:var(--muted);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 2px 20px;color:var(--muted);max-width:62ch}
+
+.founders{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;max-width:960px;margin:0 auto}
+.photo{aspect-ratio:4/3;max-width:100%;border:1.5px dashed var(--line-strong);border-radius:16px;display:grid;place-items:center;text-align:center;padding:16px;color:var(--faint);font-size:14px;background:var(--band)}
+.founders h2{font-size:clamp(1.7rem,3.4vw,2.4rem);letter-spacing:-.03em;line-height:1.1;margin-top:10px}
+.founders p.t{margin-top:14px;color:var(--muted);font-size:1.08rem}
+.numrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+.numrow .n{font-family:var(--mono);font-weight:700;font-size:1.1rem;user-select:all}
+@media (max-width:760px){.founders{grid-template-columns:1fr;gap:24px}}
+
+footer{margin-top:96px;border-top:1px solid var(--line);padding-block:28px 40px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center}
+footer .fine{flex-basis:100%;color:var(--faint)}
+
+/* ---------- the step-by-step flow ---------- */
+.flow-top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.flow-top .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.progress{flex:1;height:6px;border-radius:99px;background:var(--line);overflow:hidden;max-width:520px;margin-inline:auto}
+.progress i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.flow-body{display:grid;grid-template-columns:230px minmax(0,560px);gap:56px;justify-content:center;padding-block:48px 32px}
+.rail{position:sticky;top:100px;align-self:start}
+.rail-h{font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
+.done-list{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:14px}
+.done-list li{display:flex;gap:9px;align-items:flex-start;line-height:1.35}
+.done-list li .ck{width:18px;height:18px;margin-top:0}
+.done-list small{display:block;color:var(--faint);font-size:12px}
+.rail-now{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:14px;font-weight:600}
+.rail-now span{display:block;font-size:12px;font-weight:500;color:var(--faint);letter-spacing:.07em;text-transform:uppercase;margin-bottom:2px}
+.rail-m{display:none}
+@media (max-width:860px){
+  .flow-body{grid-template-columns:minmax(0,1fr);gap:18px;padding-block:18px 24px}
+  .rail{display:none}
+  .rail-m{display:block;border:1px solid var(--line);border-radius:12px;background:var(--surface);font-size:14px}
+  .rail-m summary{cursor:pointer;padding:10px 14px;font-weight:500;color:var(--muted)}
+  .rail-m summary b{color:var(--ink);font-weight:600}
+  .rail-m .done-list{padding:0 14px 14px}
+}
+.step{outline:none}
+.step.in{animation:stepin .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes stepin{from{opacity:.25;transform:translateY(10px)}to{opacity:1;transform:none}}
+.step h2{margin-top:10px;font-size:clamp(1.75rem,4.6vw,2.35rem);line-height:1.1;letter-spacing:-.03em;font-weight:700}
+.step h2:focus{outline:none}
+.step .lead{margin-top:12px;color:var(--muted);font-size:1.08rem}
+.step .note{margin-top:14px;font-size:14px;color:var(--muted)}
+.step .note b{color:var(--ink);font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;align-items:center}
+@media (max-width:560px){.actions .btn{flex:1 1 100%}}
+.textlink{background:none;border:0;padding:4px 0;color:var(--muted);font-size:14px;font-weight:500;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.textlink:hover{color:var(--ink)}
+
+.field{display:grid;gap:6px;margin-top:22px}
+.field label{font-weight:600;font-size:14px}
+.field input{width:100%;min-height:52px;font:400 17px var(--font);padding:0 14px;border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);color:var(--ink)}
+.field input:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.err{color:var(--accent-text);font-size:14px;font-weight:500}
+.consent{display:grid;grid-template-columns:22px 1fr;gap:10px;margin-top:18px;font-size:13px;color:var(--muted);line-height:1.45}
+.consent input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--accent)}
+
+.known{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:22px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.known small{display:block;font-size:12px;color:var(--faint);font-weight:500}
+.known b{font-family:var(--mono);font-weight:700;font-size:1.05rem}
+
+.opts{display:grid;gap:10px;margin-top:22px}
+.opt{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:16px;border:1px solid var(--line-strong);border-radius:12px;background:var(--surface);cursor:pointer;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--ink)}
+.opt input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--accent)}
+.opt:has(input:checked){border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.opt:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:2px}
+.opt b{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:600;font-size:1.05rem}
+.opt .d{display:block;margin-top:2px;color:var(--muted);font-size:15px}
+.rec{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--good);background:var(--good-soft);padding:2px 8px;border-radius:99px}
+.says{margin-top:16px;padding:14px 16px;border-radius:12px;background:var(--band);border:1px solid var(--line);font-size:15px}
+.says small{display:block;font-size:12px;color:var(--faint);font-weight:500;margin-bottom:4px}
+
+.vrow{display:grid;grid-template-columns:1fr 56px;gap:8px}
+.play{border:1px solid var(--line-strong);border-radius:12px;background:var(--surface);cursor:pointer;display:grid;place-items:center;color:var(--ink)}
+.play:hover{border-color:var(--ink)}
+.play svg{width:18px;height:18px;fill:currentColor}
+.play[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+.box{margin-top:18px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--band)}
+.status{display:flex;align-items:center;gap:10px;font-weight:500}
+.status .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex:none;animation:blink 1s infinite}
+.status.ok .dot{background:var(--good);animation:none}
+@keyframes blink{50%{opacity:.25}}
+.okline{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--good)}
+
+.learned{display:grid;gap:12px;margin-top:14px}
+.learned small{display:block;font-size:12px;color:var(--faint);font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+.learned p{font-weight:500}
+
+.rows{margin-top:22px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:14px 16px;border-top:1px solid var(--line);align-items:center}
+.row:first-child{border-top:0}
+.row .k{font-size:12px;color:var(--faint);font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+.row .v{grid-column:1;font-weight:500}
+.row .chg{grid-row:1 / span 2;grid-column:2;background:none;border:0;color:var(--accent-text);font-weight:600;font-size:14px;cursor:pointer;padding:6px}
+.row .edit{grid-column:1 / -1;margin-top:8px;display:grid;gap:6px}
+.row .edit select,.row .edit input,.row .edit textarea{width:100%;min-height:46px;font:400 16px var(--font);padding:0 12px;border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);color:var(--ink)}
+.row .edit textarea{min-height:84px;padding:10px 12px;resize:vertical}
+
+.step h2.bigmoney{font-size:clamp(2.6rem,9vw,3.6rem)}
+.code{margin-top:12px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border:1.5px dashed var(--line-strong);border-radius:12px;background:var(--surface)}
+.code b{font-family:var(--mono);font-weight:700;font-size:clamp(1.5rem,6vw,2rem);letter-spacing:.03em;user-select:all}
+.summary{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.summary div{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--surface)}
+.summary small{display:block;font-size:12px;color:var(--faint);font-weight:500}
+.summary b{font-weight:600}
+@media (max-width:480px){.summary{grid-template-columns:1fr}}
+
+.flow-foot{border-top:1px solid var(--line);padding-block:18px 28px}
+.flow-foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;font-size:14px;color:var(--muted);max-width:846px}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;background:var(--ink);color:var(--bg);padding:11px 16px;border-radius:10px;font-size:14px;font-weight:500;max-width:calc(100% - 32px);box-shadow:var(--shadow)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+<div class="testbar bleed">
+  <div class="wrap">
+    <span><b>Test page</b> &nbsp;Not on snpz.ai. Nothing here rings a phone, sends a text or charges a card. Example shop: <span class="m-shop">Main Street Barbers</span>.</span>
+    <label for="jump">Jump to
+      <select id="jump">
+        <option value="landing">Landing page</option>
+        <option value="call">1. Hear it answer</option>
+        <option value="email">2. Sign-in email</option>
+        <option value="square">3. Connect Square</option>
+        <option value="mode">4. When it picks up</option>
+        <option value="walkin">5. Walk-ins</option>
+        <option value="voice">6. Its voice</option>
+        <option value="rest">7. The small stuff</option>
+        <option value="card">8. $0 today</option>
+        <option value="forward">9. Forwarding</option>
+        <option value="live">10. It's answering</option>
+        <option value="signin">Sign in</option>
+      </select>
+    </label>
+  </div>
+</div>
+
+<!-- ================= LANDING ================= -->
+<div id="landing">
+  <header class="nav bleed">
+    <div class="wrap">
+      <img class="logo" src="img/snpz-logo.png" alt="snpz" width="1439" height="555">
+      <ul>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#questions">Questions</a></li>
+      </ul>
+      <div class="right">
+        <button class="linkbtn" type="button" id="nav-signin">Sign in</button>
+        <button class="btn btn-primary btn-sm" type="button" data-start>Hear it</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <button class="badge" type="button" data-start>
+        <span class="chip">Ready</span>
+        <span><span class="m-shop">Main Street Barbers</span>' receptionist is built</span>
+        <span class="arr" aria-hidden="true">&rarr;</span>
+      </button>
+      <h1>Your phone, <span class="grad">answered by tonight.</span></h1>
+      <p class="sub">snpz picks up the calls you can't get to, mid-fade, after close or on your day off, and books them straight into Square. Hear it answer as your shop before you decide anything.</p>
+      <div class="cta">
+        <a class="btn btn-ghost" href="#how"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4l10 6-10 6z"/></svg>How it works</a>
+        <button class="btn btn-primary" type="button" data-start>Hear it answer</button>
+      </div>
+      <p class="cta-note">It rings your phone and answers as your shop.</p>
+
+      <div class="device" role="img" aria-label="Example of the snpz app: this week's calls, and a call being booked">
+        <div class="device-bar"><i></i><i></i><i></i><span>snpz &middot; Activity</span></div>
+        <div class="screen">
+          <div class="dash">
+            <div class="dash-head"><h3>This week at <span class="m-shop">Main Street Barbers</span></h3><span class="pill">Example</span></div>
+            <div class="kpis">
+              <div class="kpi"><small>Calls it answered</small><b>23</b></div>
+              <div class="kpi"><small>Booked</small><b>14</b></div>
+              <div class="kpi"><small>Booked value</small><b>$512</b></div>
+            </div>
+            <div class="chart">
+              <small>Calls it answered, by day</small>
+              <div class="bars" id="bars"></div>
+              <div class="days"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+            </div>
+            <ul class="recent">
+              <li><b>Sat 10:30 &middot; Skin fade with Dre</b><span class="pill good">Booked</span></li>
+              <li><b>Fri 7:12 pm &middot; After close, taper with Mike</b><span class="pill good">Booked</span></li>
+              <li><b>Thu 1:40 pm &middot; Asked the price of a beard trim</b><span class="pill">Answered</span></li>
+              <li><b>Wed 11:05 am &middot; Asked for Jay</b><span class="pill">Put through</span></li>
+            </ul>
+          </div>
+          <div class="convo">
+            <div class="convo-head"><span class="live-dot" aria-hidden="true"></span>Incoming call<span class="t num">0:48</span></div>
+            <span class="who us">snpz</span>
+            <div class="b us">Thanks for calling <span class="m-shop">Main Street Barbers</span>, how can I help?</div>
+            <span class="who">Caller</span>
+            <div class="b them">Hey, can I get a fade Saturday morning?</div>
+            <span class="who us">snpz</span>
+            <div class="b us">Dre has 10:30 or 11:15 on Saturday. Which works better?</div>
+            <span class="who">Caller</span>
+            <div class="b them">10:30. It's Marcus.</div>
+            <span class="who us">snpz</span>
+            <div class="b us">You're all set, Marcus. Skin fade with Dre, Saturday at 10:30.</div>
+            <span class="pill good booked">Booked in Square &middot; Sat 10:30 &middot; Dre</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="strip bleed" aria-label="Works with what you have">
+      <div class="wrap">
+        <p class="lbl">Works with what you already have</p>
+        <ul>
+          <li><svg class="ic" viewBox="0 0 22 22" aria-hidden="true"><path d="M5 3h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 12l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>Keeps your shop number</li>
+          <li><svg class="ic" viewBox="0 0 22 22" aria-hidden="true"><path d="M4 18v-3M9 18v-6M14 18v-9M19 18V5"/></svg>Any phone carrier</li>
+          <li>Books into <img class="sq-logo" src="img/logo-square-black.svg" alt="Square" width="2000" height="501"></li>
+          <li><svg class="ic" viewBox="0 0 22 22" aria-hidden="true"><path d="M4 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 3v-3H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/></svg>Texts you every booking</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec" id="how">
+      <div class="wrap">
+        <div class="sec-h">
+          <p class="eyebrow">How it works</p>
+          <h2>About ten minutes, all from your phone.</h2>
+        </div>
+        <ol class="steps3">
+          <li><h3>Hear it answer</h3><p>It rings your mobile and answers as your shop, before you've typed anything.</p></li>
+          <li><h3>Tell it about your shop</h3><p>Connect Square, say whether you take walk-ins and pick one of five voices. Every answer has a default.</p></li>
+          <li><h3>Send it the calls you miss</h3><p>One code on your shop phone. Your phone still rings first, and another code undoes it.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sec" id="pricing">
+      <div class="wrap">
+        <div class="sec-h">
+          <p class="eyebrow">Pricing</p>
+          <h2>One price, and nothing until it pays for itself.</h2>
+        </div>
+        <div class="price">
+          <div class="amt"><b>$97.89</b><span>a month</span></div>
+          <p class="zero"><mark>$0</mark> until your receptionist has booked you $97.89 of cuts.</p>
+          <ul class="checks">
+            <li><svg class="ck" viewBox="0 0 20 20" aria-hidden="true"><circle class="ck-c" cx="10" cy="10" r="9"/><path class="ck-p" d="M6 10.2l2.6 2.6L14 7.4"/></svg>Unlimited minutes</li>
+            <li><svg class="ck" viewBox="0 0 20 20" aria-hidden="true"><circle class="ck-c" cx="10" cy="10" r="9"/><path class="ck-p" d="M6 10.2l2.6 2.6L14 7.4"/></svg>Books straight into Square</li>
+            <li><svg class="ck" viewBox="0 0 20 20" aria-hidden="true"><circle class="ck-c" cx="10" cy="10" r="9"/><path class="ck-p" d="M6 10.2l2.6 2.6L14 7.4"/></svg>Texts you every booking</li>
+            <li><svg class="ck" viewBox="0 0 20 20" aria-hidden="true"><circle class="ck-c" cx="10" cy="10" r="9"/><path class="ck-p" d="M6 10.2l2.6 2.6L14 7.4"/></svg>All five voices, same price</li>
+            <li><svg class="ck" viewBox="0 0 20 20" aria-hidden="true"><circle class="ck-c" cx="10" cy="10" r="9"/><path class="ck-p" d="M6 10.2l2.6 2.6L14 7.4"/></svg>No contract, cancel whenever</li>
+          </ul>
+          <button class="btn btn-primary" type="button" data-start>Hear it answer</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="questions">
+      <div class="wrap">
+        <div class="sec-h">
+          <p class="eyebrow">Questions</p>
+          <h2>What barbers ask us</h2>
+        </div>
+        <div class="faq">
+          <details><summary>My clients won't want to talk to a robot.</summary>
+            <p>Then set it to take only the calls you miss. Your phone rings first every time, and anyone who asks for a person gets put through to you.</p></details>
+          <details><summary>I already answer my own phone.</summary>
+            <p>Keep doing that. It never touches a call you pick up. It's there for when you're mid-fade, closed or off.</p></details>
+          <details><summary>What if it books something wrong?</summary>
+            <p>It books out of your own Square calendar, with each barber's days and breaks, and texts you every booking it makes.</p></details>
+          <details><summary>I use Booksy, not Square.</summary>
+            <p>On Square it books into the calendar you already use. On Booksy it can't get into your calendar, so it answers and takes a message for you.</p></details>
+          <details><summary>What if it can't answer something?</summary>
+            <p>It never makes up a price or a time. It passes the call to the number you pick.</p></details>
+          <details><summary>How do I cancel?</summary>
+            <p>Text us and billing stops that day. There's no contract.</p></details>
+          <details><summary>We're walk-in only.</summary>
+            <p>If your phone rarely rings, you probably don't need us. If people call to ask about the wait, it can tell them to come on in.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="wrap founders">
+        <div class="photo">Photo of Will, Aiden and Grady goes here</div>
+        <div>
+          <p class="eyebrow">Who you'd be trusting</p>
+          <h2>Made in Elliottsburg, Pennsylvania.</h2>
+          <p class="t">We're Will, Aiden and Grady. Grady still cuts hair, and snpz answers the phone at the shop where he works. If you get stuck, text us and one of us answers.</p>
+          <div class="numrow"><span class="n">(717) 210-5081</span><button class="btn btn-ghost btn-sm copy" type="button" data-copy="(717) 210-5081">Copy</button></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bleed">
+    <div class="wrap">
+      <img class="logo" src="img/snpz-logo.png" alt="snpz" width="1439" height="555" style="height:18px">
+      <a href="https://snpz.ai/privacy">Privacy</a>
+      <a href="https://snpz.ai/terms">Terms</a>
+      <span>&copy; 2026 Reisinger Media LLC, Elliottsburg, Pennsylvania</span>
+      <span class="fine">snpz is not affiliated with, endorsed by or sponsored by Square.</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ================= FLOW ================= -->
+<div id="flow" hidden>
+  <div class="flow-top bleed">
+    <div class="wrap">
+      <img class="logo" src="img/snpz-logo.png" alt="snpz" width="1439" height="555">
+      <div class="progress" id="progress" role="progressbar" aria-label="Setup progress" aria-valuemin="0" aria-valuemax="100"><i id="progress-bar"></i></div>
+      <button class="linkbtn" type="button" id="finish-later">Finish later</button>
+    </div>
+  </div>
+
+  <div class="flow-body">
+    <aside class="rail" id="rail">
+      <p class="rail-h">Done so far</p>
+      <ul class="done-list" id="done-d"></ul>
+      <p class="rail-now" id="rail-now"></p>
+    </aside>
+
+    <div>
+      <details class="rail-m" id="rail-m"><summary id="rail-m-sum"></summary><ul class="done-list" id="done-m"></ul></details>
+
+      <!-- 1. hear it -->
+      <section class="step" data-step="call" hidden>
+        <p class="eyebrow">Hear it first</p>
+        <h2 tabindex="-1">Hear <span class="m-shop">Main Street Barbers</span>' receptionist answer.</h2>
+        <p class="lead">We ring your mobile and it answers as your shop. Ask it for a fade on Saturday, or what a beard trim costs.</p>
+        <div class="known">
+          <div><small>We'll ring</small><b class="m-mobile num">(717) 555-0199</b></div>
+          <button class="btn btn-ghost btn-sm" type="button" id="m-change">Change</button>
+        </div>
+        <div class="field" id="m-edit" hidden>
+          <label for="m-input">Your mobile</label>
+          <input id="m-input" type="tel" inputmode="tel" autocomplete="tel">
+        </div>
+        <div class="actions" id="call-start">
+          <button class="btn btn-primary" type="button" id="call-go">Call my phone</button>
+        </div>
+        <div class="box" id="call-box" hidden>
+          <p class="status" id="call-status" role="status" aria-live="polite"><span class="dot"></span><span id="call-text"></span></p>
+          <div class="actions" id="call-after" hidden>
+            <button class="btn btn-primary" type="button" id="call-done">Sounded good, next</button>
+            <button class="btn btn-ghost" type="button" id="call-again">Call me again</button>
+          </div>
+        </div>
+        <p class="note">We call from <b class="num">(717) 204-4500</b>. If your iPhone screens it, it says "snpz test call for <span class="m-shop">Main Street Barbers</span>."</p>
+        <p class="note">Can't pick up right now? Call it yourself: <b class="num">(717) 204-4500</b></p>
+        <div class="actions"><button class="textlink" type="button" data-skip="call">Skip, I'll hear it later</button></div>
+      </section>
+
+      <!-- 2. email, no password -->
+      <section class="step" data-step="email" hidden>
+        <p class="eyebrow">Your account</p>
+        <h2 tabindex="-1">Where should we email your sign-in link?</h2>
+        <p class="lead">There's no password. Whenever you need to sign in, we email you a link.</p>
+        <div class="field">
+          <label for="e-input">Email</label>
+          <input id="e-input" type="email" inputmode="email" autocomplete="email" value="mike@mainstreetbarbers.com">
+          <p class="err" id="e-err" hidden>That doesn't look like an email address. Check it for a typo.</p>
+        </div>
+        <label class="consent" for="e-sms"><input type="checkbox" id="e-sms">
+          <span>Text me at this mobile to set my shop up: the forwarding code for my phone, and how the set-up is going. From snpz (Reisinger Media LLC). Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase.</span>
+        </label>
+        <div class="actions"><button class="btn btn-primary" type="button" id="e-go">Continue</button></div>
+      </section>
+
+      <!-- 3. square -->
+      <section class="step" data-step="square" hidden>
+        <p class="eyebrow">Your calendar</p>
+        <h2 tabindex="-1">Connect your Square.</h2>
+        <div id="sq-pre">
+          <p class="lead">One tap on Square's own page, and it's free. We read your barbers, services, prices and hours, and every booking goes straight into Square.</p>
+          <div class="actions">
+            <button class="btn btn-primary" type="button" id="sq-go">Connect Square</button>
+            <button class="btn btn-ghost" type="button" id="sq-later">Do it later on the shop computer</button>
+          </div>
+          <div class="box" id="sq-later-box" hidden>
+            <p>We'll text a link to <b class="m-mobile num">(717) 555-0199</b> so you can finish Square on the shop computer. You can keep going here in the meantime.</p>
+            <div class="actions">
+              <button class="btn btn-primary" type="button" id="sq-text">Text me the link</button>
+              <button class="btn btn-ghost" type="button" data-skip="square">Keep going without it</button>
+            </div>
+          </div>
+          <p class="note">Not on Square? It books onto a snpz calendar instead. <button class="textlink" type="button" data-skip="square">Skip this</button></p>
+        </div>
+        <div id="sq-wait" class="box" hidden><p class="status"><span class="dot"></span>Waiting for Square&hellip;</p></div>
+        <div id="sq-done" hidden>
+          <div class="box">
+            <p class="okline"><svg class="ck" viewBox="0 0 20 20" aria-hidden="true"><circle class="ck-c" cx="10" cy="10" r="9"/><path class="ck-p" d="M6 10.2l2.6 2.6L14 7.4"/></svg>Connected. Here's what it learned.</p>
+            <div class="learned">
+              <div><small>Barbers</small><p>Dre, Mike, Jay</p></div>
+              <div><small>Services</small><p>Skin fade $35 &middot; Taper $30 &middot; Beard trim $15 &middot; Kids cut $25 &middot; 8 more</p></div>
+              <div><small>Hours</small><p>Tue to Sat, 9 am to 7 pm</p></div>
+            </div>
+          </div>
+          <div class="actions"><button class="btn btn-primary" type="button" id="sq-next">Looks right</button></div>
+        </div>
+      </section>
+
+      <!-- 4. when it picks up -->
+      <section class="step" data-step="mode" hidden>
+        <p class="eyebrow">Your receptionist</p>
+        <h2 tabindex="-1">When should it pick up?</h2>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="mode" value="Only the calls I miss" checked>
+            <span><b>Only the calls I miss <span class="rec">Recommended</span></b><span class="d">Your phone rings first, every time. It takes the ones that would ring out.</span></span></label>
+          <label class="opt"><input type="radio" name="mode" value="Every call, right away">
+            <span><b>Every call, right away</b><span class="d">It answers straight away. Anyone who asks for you gets put through to your mobile.</span></span></label>
+        </div>
+        <p class="note">You can change this any time in the app.</p>
+        <div class="actions"><button class="btn btn-primary" type="button" id="mode-go">Continue</button></div>
+      </section>
+
+      <!-- 5. walk-ins -->
+      <section class="step" data-step="walkin" hidden>
+        <p class="eyebrow">Your receptionist</p>
+        <h2 tabindex="-1">Do you take walk-ins?</h2>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="walkin" value="yes"><span><b>Yes, walk-ins welcome</b></span></label>
+          <label class="opt"><input type="radio" name="walkin" value="no"><span><b>No, by appointment only</b></span></label>
+          <label class="opt"><input type="radio" name="walkin" value="gaps" checked><span><b>Only when there's a gap</b></span></label>
+        </div>
+        <div class="says"><small>When a caller asks, it says</small><span id="walk-say"></span></div>
+        <div class="actions"><button class="btn btn-primary" type="button" id="walk-go">Continue</button></div>
+      </section>
+
+      <!-- 6. voice -->
+      <section class="step" data-step="voice" hidden>
+        <p class="eyebrow">Your receptionist</p>
+        <h2 tabindex="-1">Pick its voice.</h2>
+        <p class="lead">All five cost the same. Press play to hear each one.</p>
+        <div class="opts" id="voices"></div>
+        <div class="actions"><button class="btn btn-primary" type="button" id="voice-go">Continue</button></div>
+      </section>
+
+      <!-- 7. the small stuff, pre-answered -->
+      <section class="step" data-step="rest" hidden>
+        <p class="eyebrow">Your receptionist</p>
+        <h2 tabindex="-1">The small stuff is already set.</h2>
+        <p class="lead">Change anything that's wrong, or keep it and move on.</p>
+        <div class="rows">
+          <div class="row">
+            <span class="k">It answers with</span>
+            <span class="v" id="r-greet-v">"Thanks for calling <span class="m-shop">Main Street Barbers</span>, how can I help?"</span>
+            <button class="chg" type="button" data-edit="r-greet">Change</button>
+            <div class="edit" id="r-greet" hidden><label class="k" for="r-greet-i">Shop name it says</label><input id="r-greet-i" type="text" maxlength="60"></div>
+          </div>
+          <div class="row">
+            <span class="k">Someone asks for a person</span>
+            <span class="v" id="r-xfer-v">Puts them through to <span class="m-mobile num">(717) 555-0199</span></span>
+            <button class="chg" type="button" data-edit="r-xfer">Change</button>
+            <div class="edit" id="r-xfer" hidden><label class="k" for="r-xfer-i">Number it rings</label><input id="r-xfer-i" type="tel" inputmode="tel"></div>
+          </div>
+          <div class="row">
+            <span class="k">Someone's running late</span>
+            <span class="v" id="r-late-v">Holds the chair up to 15 minutes</span>
+            <button class="chg" type="button" data-edit="r-late">Change</button>
+            <div class="edit" id="r-late" hidden><label class="k" for="r-late-i">How long a chair is held</label>
+              <select id="r-late-i">
+                <option value="Late may mean rebooking">No grace: late may mean rebooking</option>
+                <option value="Holds the chair up to 15 minutes" selected>Up to 15 minutes</option>
+                <option value="Holds the chair up to 30 minutes">Up to 30 minutes</option>
+                <option value="Holds the chair up to an hour">Up to an hour</option>
+              </select></div>
+          </div>
+          <div class="row">
+            <span class="k">Cancelling</span>
+            <span class="v" id="r-cancel-v">Up to 2 hours before</span>
+            <button class="chg" type="button" data-edit="r-cancel">Change</button>
+            <div class="edit" id="r-cancel" hidden><label class="k" for="r-cancel-i">Notice needed to cancel</label>
+              <select id="r-cancel-i">
+                <option>Any time</option>
+                <option>Up to 1 hour before</option>
+                <option selected>Up to 2 hours before</option>
+                <option>Up to 24 hours before</option>
+              </select></div>
+          </div>
+          <div class="row">
+            <span class="k">Anything else it should know</span>
+            <span class="v" id="r-notes-v">Nothing yet</span>
+            <button class="chg" type="button" data-edit="r-notes">Add</button>
+            <div class="edit" id="r-notes" hidden><label class="k" for="r-notes-i">Tell your receptionist</label>
+              <textarea id="r-notes-i" maxlength="1200" placeholder="Cash only. Parking is round the back. Dre is best with fades."></textarea></div>
+          </div>
+        </div>
+        <div class="actions"><button class="btn btn-primary" type="button" id="rest-go">Looks right</button></div>
+      </section>
+
+      <!-- 8. card -->
+      <section class="step" data-step="card" hidden>
+        <p class="eyebrow">Before it goes live</p>
+        <h2 tabindex="-1" class="bigmoney">$0 today.</h2>
+        <p class="lead">We charge $97.89 a month, and only once your receptionist has booked you $97.89 of cuts. If it never books you that, you're never charged. No contract, cancel whenever.</p>
+        <div class="actions" id="pay-btns">
+          <button class="btn btn-pay" type="button" id="pay-apple">Add with Apple Pay</button>
+          <button class="btn btn-ghost" type="button" id="pay-card">Add a card</button>
+        </div>
+        <div class="box" id="pay-box" hidden><p class="status" id="pay-status" role="status" aria-live="polite"><span class="dot"></span><span id="pay-text"></span></p></div>
+        <p class="note">Stripe keeps the card, not us. Nothing before this step cost you anything.</p>
+      </section>
+
+      <!-- 9. forwarding -->
+      <section class="step" data-step="forward" hidden>
+        <p class="eyebrow">Last step</p>
+        <h2 tabindex="-1">Send the calls you miss to your receptionist.</h2>
+        <p class="lead">Its own number is ready: <b class="num">(717) 555-0188</b>. Your shop phone keeps ringing first. Only the calls you don't answer go to it.</p>
+        <div class="actions" id="fw-choice">
+          <button class="btn btn-primary" type="button" id="fw-call">Call me and walk me through it</button>
+          <button class="btn btn-ghost" type="button" id="fw-show">Just show me the code</button>
+        </div>
+        <p class="note" id="fw-time">The walk-through takes about 2 minutes.</p>
+        <div class="box" id="fw-calling" hidden><p class="status"><span class="dot"></span><span>Calling <span class="m-mobile num">(717) 555-0199</span>. Stay on and we'll read the code with you.</span></p></div>
+        <div id="fw-code" hidden>
+          <p class="note">Your shop line is on <b>Verizon</b>. Type this into the shop phone and press call:</p>
+          <div class="code"><b>*71 717 555 0188</b><button class="btn btn-ghost btn-sm copy" type="button" data-copy="*717175550188">Copy</button></div>
+          <p class="note"><b>Type it in.</b> Tapping a code with * in it won't dial on an iPhone.</p>
+          <p class="note"><b>Shop line is an iPhone?</b> Turn off Live Voicemail first, in your Phone settings. Otherwise it can catch the calls before we do.</p>
+          <p class="note">To undo it any time, dial <b class="num">*73</b>.</p>
+          <div class="actions"><button class="btn btn-primary" type="button" id="fw-check">I dialed it, check it</button></div>
+          <div class="box" id="fw-check-box" hidden><p class="status" id="fw-check-status" role="status" aria-live="polite"><span class="dot"></span><span id="fw-check-text"></span></p></div>
+          <div class="actions" id="fw-next-row" hidden><button class="btn btn-primary" type="button" id="fw-next">Continue</button></div>
+        </div>
+      </section>
+
+      <!-- 10. live -->
+      <section class="step" data-step="live" hidden>
+        <p class="eyebrow">Done</p>
+        <h2 tabindex="-1">It's answering.</h2>
+        <p class="lead">Your phone still rings first. When you can't get to it, <span class="m-shop">Main Street Barbers</span>' receptionist picks up, books into Square and texts you every booking.</p>
+        <div class="summary">
+          <div><small>Its number</small><b class="num">(717) 555-0188</b></div>
+          <div><small>Voice</small><b id="s-voice"></b></div>
+          <div><small>Picks up</small><b id="s-mode"></b></div>
+          <div><small>Walk-ins</small><b id="s-walk"></b></div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" id="open-shop">Open my shop</button>
+          <button class="btn btn-ghost" type="button" id="restart">Start the test over</button>
+        </div>
+      </section>
+
+      <!-- sign in (no password) -->
+      <section class="step" data-step="signin" hidden>
+        <p class="eyebrow">Sign in</p>
+        <h2 tabindex="-1">Sign in with your email.</h2>
+        <p class="lead">We email you a link that signs you in. There's no password to remember.</p>
+        <div id="si-form">
+          <div class="field">
+            <label for="si-input">Email</label>
+            <input id="si-input" type="email" inputmode="email" autocomplete="email" placeholder="you@yourshop.com">
+            <p class="err" id="si-err" hidden>That doesn't look like an email address. Check it for a typo.</p>
+          </div>
+          <div class="actions"><button class="btn btn-primary" type="button" id="si-go">Email me a sign-in link</button></div>
+        </div>
+        <div class="box" id="si-done" hidden>
+          <p class="okline"><svg class="ck" viewBox="0 0 20 20" aria-hidden="true"><circle class="ck-c" cx="10" cy="10" r="9"/><path class="ck-p" d="M6 10.2l2.6 2.6L14 7.4"/></svg>Check your email.</p>
+          <p class="note">The link in it signs you in on this phone. Test page: nothing was sent.</p>
+          <div class="actions"><button class="textlink" type="button" id="si-again">Use a different email</button></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="flow-foot bleed">
+    <div class="wrap">
+      <button class="textlink" type="button" id="text-link">Text me this link to finish later</button>
+      <span>Stuck? Text us at <b class="num">(717) 210-5081</b> and a person answers.</span>
+      <button class="textlink" type="button" id="flow-back">Back</button>
+    </div>
+  </div>
+</div>
+
+<p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
+
+<script>
+(function () {
+  const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+
+  const ORDER = ['call', 'email', 'square', 'mode', 'walkin', 'voice', 'rest', 'card', 'forward', 'live'];
+  const NAMES = { call: 'Hear it answer', email: 'Your sign-in email', square: 'Connect Square', mode: 'When it picks up',
+    walkin: 'Walk-ins', voice: 'Its voice', rest: 'The small stuff', card: '$0 today', forward: 'Send it your missed calls',
+    live: "It's answering", signin: 'Sign in' };
+  // the same three sentences the live receptionist uses (server/receptionist-choices.js)
+  const WALKIN = {
+    yes: { label: 'Welcome', say: 'Walk-ins welcome — come on in, or I can put you in the book.' },
+    no: { label: 'Appointment only', say: 'By appointment — I can put you in the book right now.' },
+    gaps: { label: "When there's a gap", say: 'Walk-ins when there is a gap — I can check what is open today, or put you in the book.' }
+  };
+  // the five live voices (agent/voices.js)
+  const VOICES = [
+    { name: 'Tamsin', who: "Woman's voice", blurb: 'Warm and steady, like a front desk that has been there years.' },
+    { name: 'Chloe', who: "Woman's voice", blurb: 'Bright and quick. Younger.' },
+    { name: 'Nico', who: "Man's voice", blurb: 'The relaxed guy behind the counter.' },
+    { name: 'Leland', who: "Man's voice", blurb: 'Easygoing and young.' },
+    { name: 'Alejandro', who: "Man's voice", blurb: 'A Latino accent, for a bilingual shop.' }
+  ];
+  const TOTAL = 11; // two things known from the call, plus nine steps
+
+  const st = { shop: 'Main Street Barbers', mobile: '(717) 555-0199', email: 'mike@mainstreetbarbers.com',
+    done: new Map(), cur: null, timers: [] };
+
+  function seedDone() {
+    st.done = new Map();
+    st.done.set('shop', ['Your shop', st.shop + ', from our call']);
+    st.done.set('mobile', ['Your mobile', st.mobile]);
+  }
+  seedDone();
+
+  const CHECK = '<svg class="ck" viewBox="0 0 20 20" aria-hidden="true"><circle class="ck-c" cx="10" cy="10" r="9"/><path class="ck-p" d="M6 10.2l2.6 2.6L14 7.4"/></svg>';
+  const PLAY = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4l10 6-10 6z"/></svg>';
+  const PAUSE = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 4h3.5v12H5zM11.5 4H15v12h-3.5z"/></svg>';
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+  function later(fn, ms) { const t = setTimeout(fn, ms); st.timers.push(t); return t; }
+  function every(fn, ms) { const t = setInterval(fn, ms); st.timers.push(t); return t; }
+  function clearTimers() { st.timers.forEach(t => { clearTimeout(t); clearInterval(t); }); st.timers = []; }
+  function pick(name) { const r = $('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  let toastT = null;
+  function toast(msg) {
+    const el = $('#toast');
+    el.textContent = msg; el.hidden = false;
+    clearTimeout(toastT); toastT = setTimeout(() => { el.hidden = true; }, 3600);
+  }
+
+  function paintShared() {
+    $$('.m-shop').forEach(e => { e.textContent = st.shop; });
+    $$('.m-mobile').forEach(e => { e.textContent = st.mobile; });
+  }
+
+  /* ---------- hero chart: one scale, value on every bar ---------- */
+  (function bars() {
+    const v = [0, 3, 4, 2, 6, 7, 1], max = 7;
+    $('#bars').innerHTML = v.map(n => '<div class="bar"><em>' + (n || 'Closed') + '</em>' +
+      (n ? '<i style="height:calc((100% - 20px) * ' + (n / max).toFixed(3) + ')"></i>' : '') + '</div>').join('');
+  })();
+
+  /* ---------- done list + progress ---------- */
+  function renderDone() {
+    const items = Array.from(st.done.values()).map(([k, v]) =>
+      '<li>' + CHECK + '<span>' + esc(k) + '<small>' + esc(v) + '</small></span></li>').join('');
+    $('#done-d').innerHTML = items; $('#done-m').innerHTML = items;
+    const inOrder = ORDER.includes(st.cur);
+    const now = inOrder && st.cur !== 'live';
+    $('#rail-now').innerHTML = now ? '<span>Now</span>' + esc(NAMES[st.cur]) : '';
+    $('#rail-m-sum').innerHTML = '<b>' + st.done.size + ' done</b>' + (now ? ' &middot; Now: ' + esc(NAMES[st.cur]) : '');
+    const pct = st.cur === 'live' ? 100 : Math.round(st.done.size / TOTAL * 100);
+    $('#progress-bar').style.width = pct + '%';
+    $('#progress').setAttribute('aria-valuenow', pct);
+    $('#progress').style.visibility = inOrder ? 'visible' : 'hidden';
+    $('#rail').style.visibility = inOrder ? 'visible' : 'hidden';
+    $('#rail-m').hidden = !inOrder;
+  }
+
+  /* ---------- moving between screens, one at a time ---------- */
+  function show(key) {
+    clearTimers(); stopAudio();
+    st.cur = key;
+    if (RESET[key]) RESET[key]();
+    $$('.step').forEach(s => { s.hidden = s.dataset.step !== key; });
+    const el = $('.step[data-step="' + key + '"]');
+    el.classList.remove('in'); void el.offsetWidth; el.classList.add('in');
+    renderDone();
+    const i = ORDER.indexOf(key);
+    $('#flow-back').hidden = key === 'live' || i === 0;
+    $('#text-link').hidden = key === 'live' || key === 'signin';
+    $('#jump').value = key;
+    window.scrollTo(0, 0);
+    const h = $('h2', el); if (h) h.focus({ preventScroll: true });
+  }
+  function next(key) { show(ORDER[ORDER.indexOf(key) + 1]); }
+  function complete(key, label, value) { st.done.set(key, [label, value]); next(key); }
+
+  function startFlow(key) {
+    $('#landing').hidden = true; $('#flow').hidden = false;
+    show(key || (ORDER.includes(st.cur) && st.cur !== 'live' ? st.cur : 'call'));
+  }
+  function endFlow() {
+    clearTimers(); stopAudio();
+    $('#flow').hidden = true; $('#landing').hidden = false;
+    $('#jump').value = 'landing';
+    window.scrollTo(0, 0);
+  }
+
+  $$('[data-start]').forEach(b => b.addEventListener('click', () => startFlow()));
+  $('#nav-signin').addEventListener('click', () => startFlow('signin'));
+  $('#finish-later').addEventListener('click', () => {
+    endFlow();
+    toast("We'll email you a link that picks up right where you left off.");
+  });
+  $('#flow-back').addEventListener('click', () => {
+    if (st.cur === 'signin') { endFlow(); return; }
+    const i = ORDER.indexOf(st.cur); if (i > 0) show(ORDER[i - 1]);
+  });
+  $('#text-link').addEventListener('click', () => toast('Test page: this would text the link to ' + st.mobile + '. Nothing was sent.'));
+  $$('[data-skip]').forEach(b => b.addEventListener('click', () => next(b.dataset.skip)));
+
+  // test bar: jump anywhere; the steps before it count as done with their defaults
+  function defaultDone() {
+    return {
+      call: ['Heard it answer', 'Test call to ' + st.mobile],
+      email: ['Sign-in email', st.email],
+      square: ['Square connected', '3 barbers, 12 services'],
+      mode: ['Picks up', pick('mode')],
+      walkin: ['Walk-ins', WALKIN[pick('walkin')].label],
+      voice: ['Voice', pick('voice')],
+      rest: ['The small stuff', 'Defaults kept'],
+      card: ['Card on file', '$0 charged'],
+      forward: ['Missed calls forward', 'Checked by our own call']
+    };
+  }
+  $('#jump').addEventListener('change', e => {
+    const to = e.target.value;
+    if (to === 'landing') { endFlow(); return; }
+    if (to !== 'signin') {
+      const idx = ORDER.indexOf(to), d = defaultDone();
+      ORDER.forEach((k, i) => {
+        if (i < idx && !st.done.has(k) && d[k]) st.done.set(k, d[k]);
+        if (i >= idx) st.done.delete(k);
+      });
+    }
+    startFlow(to);
+  });
+
+  /* ---------- per-screen resets, so Back and Jump always land clean ---------- */
+  const RESET = {
+    call() { $('#call-box').hidden = true; $('#call-after').hidden = true; $('#call-start').hidden = false; },
+    square() { $('#sq-pre').hidden = false; $('#sq-wait').hidden = true; $('#sq-done').hidden = true; $('#sq-later-box').hidden = true; },
+    walkin() { paintWalk(); },
+    card() { $('#pay-box').hidden = true; $('#pay-btns').hidden = false; $('#pay-status').classList.remove('ok'); },
+    forward() {
+      $('#fw-choice').hidden = false; $('#fw-time').hidden = false; $('#fw-calling').hidden = true; $('#fw-code').hidden = true;
+      $('#fw-check-box').hidden = true; $('#fw-next-row').hidden = true; $('#fw-check').disabled = false;
+      $('#fw-check-status').classList.remove('ok');
+    },
+    live() { $('#s-voice').textContent = pick('voice'); $('#s-mode').textContent = pick('mode'); $('#s-walk').textContent = WALKIN[pick('walkin')].label; },
+    signin() { $('#si-form').hidden = false; $('#si-done').hidden = true; $('#si-err').hidden = true; }
+  };
+
+  /* ---------- 1. the test call ---------- */
+  $('#m-change').addEventListener('click', () => {
+    const f = $('#m-edit'); f.hidden = !f.hidden;
+    if (!f.hidden) { $('#m-input').value = st.mobile; $('#m-input').focus(); }
+  });
+  $('#m-input').addEventListener('input', e => {
+    const v = e.target.value.trim(); if (!v) return;
+    st.mobile = v; st.done.set('mobile', ['Your mobile', v]); paintShared(); renderDone();
+  });
+  function ringTest() {
+    clearTimers();
+    $('#call-start').hidden = true; $('#call-box').hidden = false; $('#call-after').hidden = true;
+    $('#call-status').classList.remove('ok');
+    $('#call-text').textContent = 'Calling ' + st.mobile + '…';
+    later(() => {
+      let s = 0;
+      $('#call-status').classList.add('ok');
+      const tick = () => { $('#call-text').textContent = 'On the call with your receptionist · ' + Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); s++; };
+      tick(); every(tick, 1000);
+      later(() => { $('#call-after').hidden = false; }, 2500);
+    }, 1800);
+  }
+  $('#call-go').addEventListener('click', ringTest);
+  $('#call-again').addEventListener('click', ringTest);
+  $('#call-done').addEventListener('click', () => complete('call', 'Heard it answer', 'Test call to ' + st.mobile));
+
+  /* ---------- 2. email ---------- */
+  $('#e-go').addEventListener('click', () => {
+    const v = $('#e-input').value.trim(), ok = EMAIL_RE.test(v);
+    $('#e-err').hidden = ok; if (!ok) { $('#e-input').focus(); return; }
+    st.email = v; complete('email', 'Sign-in email', v);
+  });
+
+  /* ---------- 3. Square ---------- */
+  $('#sq-go').addEventListener('click', () => {
+    $('#sq-pre').hidden = true; $('#sq-wait').hidden = false;
+    later(() => { $('#sq-wait').hidden = true; $('#sq-done').hidden = false; }, 1500);
+  });
+  $('#sq-later').addEventListener('click', () => { $('#sq-later-box').hidden = false; });
+  $('#sq-text').addEventListener('click', () => { toast('Test page: this would text the Square link to ' + st.mobile + '.'); next('square'); });
+  $('#sq-next').addEventListener('click', () => complete('square', 'Square connected', '3 barbers, 12 services'));
+
+  /* ---------- 4. when it picks up ---------- */
+  $('#mode-go').addEventListener('click', () => complete('mode', 'Picks up', pick('mode')));
+
+  /* ---------- 5. walk-ins ---------- */
+  function paintWalk() { $('#walk-say').textContent = '“' + WALKIN[pick('walkin')].say + '”'; }
+  $$('input[name="walkin"]').forEach(r => r.addEventListener('change', paintWalk));
+  $('#walk-go').addEventListener('click', () => complete('walkin', 'Walk-ins', WALKIN[pick('walkin')].label));
+
+  /* ---------- 6. voice ---------- */
+  $('#voices').innerHTML = VOICES.map((v, i) =>
+    '<div class="vrow"><label class="opt"><input type="radio" name="voice" value="' + v.name + '"' + (i === 0 ? ' checked' : '') + '>' +
+    '<span><b>' + v.name + (i === 0 ? ' <span class="rec">Default</span>' : '') + '</b><span class="d">' + v.who + '. ' + esc(v.blurb) + '</span></span></label>' +
+    '<button class="play" type="button" data-voice="' + v.name + '" aria-pressed="false" aria-label="Play ' + v.name + '">' + PLAY + '</button></div>').join('');
+  const audio = new Audio(); audio.preload = 'none';
+  let playing = null;
+  function stopAudio() {
+    audio.pause();
+    $$('.play').forEach(b => { b.setAttribute('aria-pressed', 'false'); b.innerHTML = PLAY; });
+    playing = null;
+  }
+  audio.addEventListener('ended', stopAudio);
+  $$('.play').forEach(b => b.addEventListener('click', () => {
+    const name = b.dataset.voice;
+    if (playing === name) { stopAudio(); return; }
+    stopAudio();
+    audio.src = 'voices/retell-' + name + '.mp3';
+    audio.play().then(() => {
+      playing = name; b.setAttribute('aria-pressed', 'true'); b.innerHTML = PAUSE;
+      const r = $('input[name="voice"][value="' + name + '"]'); if (r) r.checked = true;
+    }).catch(() => toast("That preview didn't play. Tap it again."));
+  }));
+  $('#voice-go').addEventListener('click', () => { stopAudio(); complete('voice', 'Voice', pick('voice')); });
+
+  /* ---------- 7. the small stuff ---------- */
+  $$('.chg').forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.edit, ed = $('#' + id);
+    ed.hidden = !ed.hidden;
+    b.textContent = ed.hidden ? (id === 'r-notes' ? 'Add' : 'Change') : 'Done';
+    if (!ed.hidden) {
+      if (id === 'r-greet' && !$('#r-greet-i').value) $('#r-greet-i').value = st.shop;
+      if (id === 'r-xfer' && !$('#r-xfer-i').value) $('#r-xfer-i').value = st.mobile;
+      const f = $('input,select,textarea', ed); if (f) f.focus();
+    }
+  }));
+  $('#r-greet-i').addEventListener('input', e => {
+    $('#r-greet-v').textContent = '"Thanks for calling ' + (e.target.value.trim() || st.shop) + ', how can I help?"';
+  });
+  $('#r-xfer-i').addEventListener('input', e => {
+    const v = e.target.value.trim(); if (v) $('#r-xfer-v').textContent = 'Puts them through to ' + v;
+  });
+  $('#r-late-i').addEventListener('change', e => { $('#r-late-v').textContent = e.target.value; });
+  $('#r-cancel-i').addEventListener('change', e => { $('#r-cancel-v').textContent = e.target.value; });
+  $('#r-notes-i').addEventListener('input', e => {
+    const v = e.target.value.trim();
+    $('#r-notes-v').textContent = v ? (v.length > 60 ? v.slice(0, 60) + '…' : v) : 'Nothing yet';
+  });
+  $('#rest-go').addEventListener('click', () => complete('rest', 'The small stuff', 'Set'));
+
+  /* ---------- 8. card ---------- */
+  function pay(how) {
+    $('#pay-btns').hidden = true; $('#pay-box').hidden = false;
+    $('#pay-text').textContent = how === 'apple' ? 'Opening Apple Pay…' : 'Opening Stripe…';
+    later(() => {
+      $('#pay-status').classList.add('ok');
+      $('#pay-text').textContent = 'Card added. Nothing charged.';
+      later(() => complete('card', 'Card on file', '$0 charged'), 1100);
+    }, 1400);
+  }
+  $('#pay-apple').addEventListener('click', () => pay('apple'));
+  $('#pay-card').addEventListener('click', () => pay('card'));
+
+  /* ---------- 9. forwarding ---------- */
+  $('#fw-call').addEventListener('click', () => {
+    $('#fw-choice').hidden = true; $('#fw-time').hidden = true; $('#fw-calling').hidden = false;
+    later(() => { $('#fw-code').hidden = false; }, 1200);
+  });
+  $('#fw-show').addEventListener('click', () => {
+    $('#fw-choice').hidden = true; $('#fw-time').hidden = true; $('#fw-code').hidden = false;
+  });
+  $('#fw-check').addEventListener('click', () => {
+    $('#fw-check').disabled = true; $('#fw-check-box').hidden = false;
+    $('#fw-check-status').classList.remove('ok');
+    $('#fw-check-text').textContent = 'Ringing your shop line from another number…';
+    later(() => {
+      $('#fw-check-status').classList.add('ok');
+      $('#fw-check-text').textContent = 'It came through to your receptionist. Missed calls now go to it.';
+      $('#fw-next-row').hidden = false;
+    }, 2400);
+  });
+  $('#fw-next').addEventListener('click', () => complete('forward', 'Missed calls forward', 'Checked by our own call'));
+
+  /* ---------- 10. live ---------- */
+  $('#open-shop').addEventListener('click', () => toast('Test page: this opens the shop app.'));
+  $('#restart').addEventListener('click', () => { seedDone(); st.cur = null; endFlow(); });
+
+  /* ---------- sign in ---------- */
+  $('#si-go').addEventListener('click', () => {
+    const v = $('#si-input').value.trim(), ok = EMAIL_RE.test(v);
+    $('#si-err').hidden = ok; if (!ok) { $('#si-input').focus(); return; }
+    $('#si-form').hidden = true; $('#si-done').hidden = false;
+  });
+  $('#si-again').addEventListener('click', () => RESET.signin());
+
+  /* ---------- copy buttons ---------- */
+  document.addEventListener('click', e => {
+    const b = e.target.closest('.copy'); if (!b) return;
+    const txt = b.dataset.copy;
+    const ok = () => { const o = b.textContent; b.textContent = 'Copied'; setTimeout(() => { b.textContent = o; }, 1400); };
+    try { navigator.clipboard.writeText(txt).then(ok).catch(() => selectNear(b)); }
+    catch (_) { selectNear(b); }
+  });
+  function selectNear(b) {
+    const t = b.parentElement.querySelector('.n, b'); if (!t) return;
+    const r = document.createRange(); r.selectNodeContents(t);
+    const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    toast('Selected. Copy it from here.');
+  }
+
+  paintShared(); paintWalk(); renderDone();
+})();
+</script>
+</body>
+</html>
