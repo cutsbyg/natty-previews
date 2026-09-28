@@ -302,6 +302,12 @@
     html{scroll-behavior:auto}   /* the Pricing link jumps, it does not glide (css/site.css does this for the other pages) */
   }
 
+  /* ---------- the box in the hero ---------- */
+  .hero-form{margin:22px 0 18px;max-width:560px;text-align:left}
+  .hero-form .msg{color:var(--muted);font-weight:600;font-size:13.5px}
+  .hero-form .msg.bad{color:#c4271a}
+  @media (max-width:999px){ .hero-form{margin-left:auto;margin-right:auto} }
+  @media (min-width:1000px){ header.top{min-height:auto;padding-block:5vh 6vh} }
   /* ---------- test bar ---------- */
   .testbar{background:var(--ink);color:var(--cream);font-size:13px;font-weight:600;padding:8px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px}
   .testbar b{font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:12px;color:var(--yellow)}
@@ -393,8 +399,16 @@
   <header class="top">
     <div class="hero-text">
       <p class="eyebrow" data-par="0.05">For barbershops</p>
-      <h1 data-par="0.12">The receptionist that picks up when you can&rsquo;t.</h1>
-      <p class="lede" data-par="0.2">Every call answered. Every booking in your Square calendar.</p>
+      <h1 data-par="0.12">Talk to the AI like it&rsquo;s your shop.</h1>
+      <p class="lede" data-par="0.2">It rings you in about a minute and answers as a barbershop. Ask it for a fade on Saturday, or what a beard trim costs. Nothing to sign up for.</p>
+      <form class="card f hero-form" id="callform" novalidate data-par="0.24">
+        <div class="two">
+          <label>Your mobile<input type="tel" name="mobile" id="c-mobile" inputmode="tel" autocomplete="tel" required placeholder="(717) 555-0148"></label>
+          <label>Your shop&rsquo;s name<input type="text" name="shop" id="c-shop" autocomplete="organization" maxlength="60" placeholder="Fades on Main (optional)"></label>
+        </div>
+        <button type="submit" id="c-go">Call me</button>
+        <p class="msg" id="c-msg" role="status" aria-live="polite">We ring from (717) 204-4500. One call, no texts.</p>
+      </form>
       <p style="margin:0" data-par="0.26"><span class="lockup"><img class="pillmark" src="img/snpz-pill.png" alt="snpz"><span class="plus"></span><img class="sqlogo" src="img/logo-square-black.svg" alt="Square"></span></p>
     </div>
     <!-- two calls at once, answered at once: the whole pitch on one screen (desktop only, see the css) -->
@@ -462,15 +476,12 @@
     <div class="in">
       <div>
         <h2 data-par="-0.08"><span class="grad">Hear it answer as your shop.</span></h2>
-        <p class="sub" data-par="-0.12">It rings you in about a minute, answering as a barbershop. Ask it for a fade on Saturday, or what a beard trim costs. Nothing to sign up for.</p>
-        <p class="alt" data-par="-0.14">We ring from <span style="font-weight:800;color:var(--text)">(717) 204-4500</span>. One call, no texts.</p>
+        <p class="sub" data-par="-0.12">Type your mobile at the top of the page and it rings you in about a minute. Then connect your Square and hear it as <em>your</em> shop.</p>
+        <div class="hear" data-par="-0.16">
+          <a class="btn-a" href="#top">Have it call you</a>
+          <span style="font-weight:700;color:var(--muted)">We ring from (717) 204-4500</span>
+        </div>
       </div>
-      <form class="card f" id="callform" novalidate>
-        <label>Your mobile<input type="tel" name="mobile" id="c-mobile" inputmode="tel" autocomplete="tel" required placeholder="(717) 555-0148"></label>
-        <label>Your shop&rsquo;s name <span style="font-weight:500;color:var(--muted)">(optional)</span><input type="text" name="shop" id="c-shop" autocomplete="organization" maxlength="60" placeholder="Fades on Main"></label>
-        <button type="submit" id="c-go">Call me</button>
-        <p class="msg" id="c-msg" role="status" aria-live="polite"></p>
-      </form>
     </div>
   </section>
 </main>
@@ -853,7 +864,7 @@
     ev.preventDefault();
     var m = fmtPhone($('#c-mobile').value);
     if (!m){ cmsg.textContent = 'A US mobile number, please. Ten digits, like 717 555 0148.'; cmsg.className = 'msg bad'; $('#c-mobile').focus(); return; }
-    cmsg.textContent = ''; st.mobile = m;
+    cmsg.textContent = 'We ring from (717) 204-4500. One call, no texts.'; cmsg.className = 'msg'; st.mobile = m;
     var shop = $('#c-shop').value.trim(); if (shop) st.shop = shop;
     paintShared();
     var ok = placeCall('demo');
