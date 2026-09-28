@@ -658,8 +658,10 @@ footer .fine{flex-basis:100%;color:var(--faint)}
 (function () {
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
-  const st = { shop: 'Main Street Barbers', mobile: '(717) 555-0199', calls: 0, cur: null, timers: [] };
-  const MAX_CALLS = 3;   // per number per day; the real build also holds one per hour and a few per IP
+  const st = { shop: 'Main Street Barbers', mobile: '(717) 555-0199', calls: { demo: 0, shop: 0 }, cur: null, timers: [] };
+  // per number per day, each kind on its own: the demo call and the call as their shop never eat each other's
+  // allowance. The real build also holds one an hour, a few per IP, US numbers only.
+  const MAX_CALLS = { demo: 3, shop: 2 };
   const CRUMB = { demo: 0, square: 1, consult: 2, booked: 3 };
 
   function later(fn, ms) { const t = setTimeout(fn, ms); st.timers.push(t); return t; }
@@ -705,7 +707,7 @@ footer .fine{flex-basis:100%;color:var(--faint)}
     if (to === 'square') { $('#sq-wait').hidden = true; $('#sq-done').hidden = false; }
   });
   const RESET = {
-    demo() { $('#d-link').hidden = true; $('#d-limit').hidden = st.calls < MAX_CALLS; },
+    demo() { $('#d-link').hidden = true; $('#d-limit').hidden = st.calls.demo < MAX_CALLS.demo; },
     square() { $('#sq-wait').hidden = false; $('#sq-done').hidden = true; $('#c2-before').hidden = false; $('#c2-box').hidden = true; $('#c2-after').hidden = true; $('#sq-newrow').hidden = true; $('#c2-status').classList.remove('ok'); },
     booked() { $('#b-meetlink').hidden = true; $('#b-meet').hidden = false; }
   };
@@ -722,9 +724,9 @@ footer .fine{flex-basis:100%;color:var(--faint)}
     }, 1800);
   }
   // the limit the real build enforces on the server: 3 a day per number (plus 1 an hour, and a few per IP)
-  function placeCall() {
-    if (st.calls >= MAX_CALLS) { $('#d-limit').hidden = false; return false; }
-    st.calls++;
+  function placeCall(kind) {
+    if (st.calls[kind] >= MAX_CALLS[kind]) { if (kind === 'demo') $('#d-limit').hidden = false; return false; }
+    st.calls[kind]++;
     return true;
   }
 
@@ -737,13 +739,13 @@ footer .fine{flex-basis:100%;color:var(--faint)}
     st.mobile = m;
     const shop = $('#c-shop').value.trim(); if (shop) st.shop = shop;
     paintShared();
-    const ok = placeCall();
+    const ok = placeCall('demo');
     startFlow('demo');
     if (ok) ring($('#d-status'), $('#d-text'), 'On the call with the demo receptionist');
     else { $('#d-status').classList.remove('ok'); $('#d-text').textContent = 'No call placed.'; }
   });
   $('#d-again').addEventListener('click', () => {
-    if (!placeCall()) return;
+    if (!placeCall('demo')) return;
     ring($('#d-status'), $('#d-text'), 'On the call with the demo receptionist');
   });
   $('#d-showlink').addEventListener('click', () => { $('#d-link').hidden = !$('#d-link').hidden; });
@@ -756,7 +758,7 @@ footer .fine{flex-basis:100%;color:var(--faint)}
 
   /* ---------- the second call: the receptionist books the set-up call itself ---------- */
   $('#c2-go').addEventListener('click', () => {
-    if (!placeCall()) { toast('That’s three calls today. Text us and we ring you.'); return; }
+    if (!placeCall('shop')) { toast('That’s two calls as your shop today. Text us and we ring you.'); return; }
     $('#c2-before').hidden = true; $('#c2-box').hidden = false;
     ring($('#c2-status'), $('#c2-text'), 'On the call with ' + st.shop + '’s receptionist', () => {
       later(() => { $('#sq-newrow').hidden = false; $('#c2-after').hidden = false; toast('It just booked Wednesday 4:30 into your Square.'); }, 4000);
@@ -775,7 +777,7 @@ footer .fine{flex-basis:100%;color:var(--faint)}
       : 'It’s in your Square calendar now, like any other appointment. One of the three of us calls you then to set up your shop.';
   }
   $('#b-meet').addEventListener('click', () => { $('#b-meet').hidden = true; $('#b-meetlink').hidden = false; });
-  $('#restart').addEventListener('click', () => { st.calls = 0; endFlow(); $('#c-mobile').value = ''; $('#c-shop').value = ''; });
+  $('#restart').addEventListener('click', () => { st.calls = { demo: 0, shop: 0 }; endFlow(); $('#c-mobile').value = ''; $('#c-shop').value = ''; });
 
   /* ---------- copy buttons ---------- */
   document.addEventListener('click', e => {
