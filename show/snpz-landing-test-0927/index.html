@@ -876,7 +876,8 @@ footer .fine{flex-basis:100%;color:var(--faint)}
   }
 
   /* ---------- hero: the headline colour slides in, the call clock runs ---------- */
-  requestAnimationFrame(() => requestAnimationFrame(() => $$('.grad').forEach(g => g.classList.add('show'))));
+  // a timer, not requestAnimationFrame: rAF never fires in a background tab, and the colour must arrive anyway
+  setTimeout(() => $$('.grad').forEach(g => g.classList.add('show')), 120);
   (function callClock() {
     let s = 41; const el = $('#ip-timer'); if (!el) return;
     setInterval(() => { s++; el.textContent = Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }, 1000);
