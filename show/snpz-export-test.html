@@ -1,0 +1,68 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>snpz export test</title>
+<style>
+  :root { --bg:#fbf7ee; --fg:#15130f; --accent:#f2c230; --accent2:#19b7c9; --muted:#6b665c; --card:#ffffff; }
+  html,body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.45 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width:420px; margin:0 auto; padding:20px 16px 48px; display:grid; gap:16px; }
+  h1 { font-size:22px; margin:0; font-weight:900; letter-spacing:-0.3px; }
+  p { margin:0; color:var(--muted); }
+  video { width:100%; max-width:100%; aspect-ratio:9/16; background:#000; border-radius:14px; display:block; }
+  .btn { display:block; width:100%; padding:16px; border:0; border-radius:14px; font:inherit; font-weight:800; font-size:17px; cursor:pointer; }
+  .tiktok { background:#15130f; color:#fff; }
+  .ig { background:var(--accent); color:#15130f; }
+  .copy { background:var(--card); color:var(--fg); border:1px solid #e3ddcf; }
+  .cap { background:var(--card); border:1px solid #e3ddcf; border-radius:12px; padding:12px; font-size:15px; white-space:pre-wrap; }
+  #status { min-height:1.4em; font-size:14px; }
+  .steps { padding-left:18px; color:var(--muted); font-size:14px; display:grid; gap:4px; }
+</style>
+<main>
+  <h1>snpz export test</h1>
+  <p>The button below is CapCut's "export to TikTok", done from a web page. Open this on your phone.</p>
+  <video id="v" src="snpz-export-test.mp4" controls playsinline preload="metadata"></video>
+  <div class="cap" id="caption">Burst fade, start to finish. Book at the link in bio. #burstfade #barber #snpz</div>
+  <button class="btn tiktok" id="tt">Export to TikTok</button>
+  <button class="btn ig" id="ig">Export to Instagram</button>
+  <button class="btn copy" id="cp">Copy caption</button>
+  <div id="status"></div>
+  <ol class="steps">
+    <li>Tap Export. The phone's share sheet opens with the video.</li>
+    <li>Pick TikTok (or Instagram). It opens with the video loaded.</li>
+    <li>Watch it there, then Post. Nothing else to do.</li>
+  </ol>
+</main>
+<script>
+  const status = document.getElementById('status');
+  const caption = document.getElementById('caption').textContent;
+  let fileCache = null;
+  async function getFile() {
+    if (fileCache) return fileCache;
+    status.textContent = 'Preparing the video…';
+    const r = await fetch('snpz-export-test.mp4');
+    const b = await r.blob();
+    fileCache = new File([b], 'snpz-burst-fade.mp4', { type: 'video/mp4' });
+    return fileCache;
+  }
+  async function exportTo(where) {
+    try {
+      const f = await getFile();
+      const data = { files: [f], text: caption, title: 'snpz reel' };
+      if (!navigator.share || !(navigator.canShare && navigator.canShare(data))) {
+        status.textContent = 'This browser cannot hand a video to ' + where + '. Open the page in Safari on iPhone or Chrome on Android.';
+        return;
+      }
+      status.textContent = 'Pick ' + where + ' in the sheet.';
+      await navigator.share(data);
+      status.textContent = 'Handed to the app. Watch it there, then Post.';
+    } catch (e) {
+      status.textContent = (e && e.name === 'AbortError') ? 'Cancelled.' : ('Could not share: ' + (e && e.message ? e.message : e));
+    }
+  }
+  document.getElementById('tt').onclick = () => exportTo('TikTok');
+  document.getElementById('ig').onclick = () => exportTo('Instagram');
+  document.getElementById('cp').onclick = async () => {
+    try { await navigator.clipboard.writeText(caption); status.textContent = 'Caption copied.'; }
+    catch (e) { status.textContent = 'Select the caption text and copy it.'; }
+  };
+</script>
