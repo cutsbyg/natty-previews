@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>snpz Video Site Test</title>
-
 <style>
   /* Outfit, served from snpz.ai itself (marketing/fonts, SIL Open Font License in OFL.txt): Google's stylesheet held
      the first paint about 0.7 s on a phone and handed Google every visitor (Lighthouse, 10-01). One variable file
@@ -329,17 +328,28 @@
      clean to the end. No end card and never a snpz mark inside the video: the app copies the reel the owner picked,
      and the Book ask lives in the caption and on the profile (snpz-app DECISIONS.md, 09-30, "No end card"). */
   .prog{position:absolute;top:calc(var(--pw)*.135);left:8%;right:8%;height:2px;background:#ffffff40;border-radius:2px;z-index:3;overflow:hidden}
-  .prog i{display:block;height:100%;width:0;background:#fff;animation:prog 6.4s linear infinite}
+  .prog i{display:block;height:100%;width:0;background:#fff;animation:prog 7.2s linear infinite}
   @keyframes prog{to{width:100%}}
   .capseq{position:absolute;left:5%;right:5%;top:57%;height:calc(var(--pw)*.2);z-index:3}
   .capseq span{position:absolute;inset:0;display:grid;place-items:center;text-align:center;opacity:0;
     font-weight:900;font-size:calc(var(--pw)*.112);line-height:.95;letter-spacing:-.01em;color:var(--yellow);
-    text-shadow:0 2px 0 rgba(0,0,0,.45),0 6px 16px rgba(0,0,0,.55);animation:word 6.4s infinite}
-  .capseq .w2{animation-delay:1.2s} .capseq .w3{animation-delay:2.4s} .capseq .w4{animation-delay:3.6s}
-  @keyframes word{0%{opacity:1;transform:scale(.84)}3.1%{transform:scale(1.08)}6.3%{transform:scale(1)}18.2%{opacity:1}18.8%{opacity:0}100%{opacity:0}}
+    text-shadow:0 2px 0 rgba(0,0,0,.45),0 6px 16px rgba(0,0,0,.55);animation:word 7.2s infinite}
+  .capseq .w2{animation-delay:1.2s} .capseq .w3{animation-delay:3.6s} .capseq .w4{animation-delay:4.8s}
+  @keyframes word{0%{opacity:1;transform:scale(.84)}2.8%{transform:scale(1.08)}5.6%{transform:scale(1)}16.2%{opacity:1}16.7%{opacity:0}100%{opacity:0}}
   .vmeta{position:absolute;left:8%;bottom:calc(var(--pw)*.1);z-index:3;color:#fff;font-weight:800;font-size:calc(var(--pw)*.05)}
   .vmeta small{display:block;font-weight:600;color:#d0d5dd;font-size:calc(var(--pw)*.042)}
-  /* Pick one: the feed (SCREENS.md 3) */
+  /* real video in the phones (js/reels.js): over the drawn stand-in, which stays underneath so a slow or missing
+     video never leaves a black phone; it fades in once its still has loaded */
+  video.reel{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0;transition:opacity .35s;pointer-events:none}
+  video.reel.on{opacity:1}
+  /* Pick one: the feed (SCREENS.md 3), four cards that swipe themselves like a real feed (js/reels.js) */
+  .feed{position:absolute;inset:0;z-index:1;overflow:hidden}
+  /* a shade under the status bar and "Videos", as real feeds have, so they read over a bright shop window */
+  .feed::after{content:"";position:absolute;left:0;right:0;top:0;height:26%;z-index:2;pointer-events:none;
+    background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,0) 100%)}
+  .feed .oncap{top:17%}   /* the hook sits high, over the shop, not on a face */
+  .feed .slide{position:absolute;inset:0;transition:transform .55s cubic-bezier(.22,.8,.24,1);will-change:transform}
+  .feed .slide+.slide{transform:translateY(100%)}
   .ftop{position:absolute;top:calc(var(--pw)*.15);left:8%;right:8%;display:flex;justify-content:space-between;align-items:center;z-index:3;
     color:#fff;font-weight:800;font-size:calc(var(--pw)*.06)}
   .ftop em{font-style:normal;font-size:calc(var(--pw)*.042);font-weight:700;padding:.25em .75em;border-radius:99px;background:#ffffff2e}
@@ -347,7 +357,8 @@
     color:var(--yellow);text-shadow:0 2px 0 rgba(0,0,0,.45),0 6px 16px rgba(0,0,0,.55)}
   .pager{position:absolute;right:4.5%;top:38%;display:grid;gap:calc(var(--pw)*.022);z-index:3}
   .pager i{width:calc(var(--pw)*.022);height:calc(var(--pw)*.022);border-radius:50%;background:#ffffff59}
-  .pager i:first-child{background:#fff;height:calc(var(--pw)*.06);border-radius:99px}
+  .pager i{transition:height .3s,background .3s}
+  .pager i.on{background:#fff;height:calc(var(--pw)*.06);border-radius:99px}
   .panel{position:absolute;left:0;right:0;bottom:0;z-index:3;color:#fff;padding:calc(var(--pw)*.34) 8% calc(var(--pw)*.1);
     background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.84) 42%)}
   .fname{font-weight:900;font-size:calc(var(--pw)*.088);letter-spacing:-.02em;line-height:1}
@@ -423,6 +434,7 @@
     [data-par]{transform:none!important;opacity:1!important}
     .wave i{animation:none}   /* the hero's bars pulse above the fold now; a reduced-motion reader cannot scroll past them */
     .notif{animation:none;transform:none;opacity:1}
+    .feed .slide,video.reel{transition:none}   /* the feed holds its first card; js/reels.js shows stills, never video */
     .grad{transition:none;background-position-x:0%}
     .glow,.static{display:none}
     .capseq span,.prog i{animation:none}   /* the hero video holds its first word */
@@ -485,6 +497,7 @@ window.fetch = function (url) {
       <div class="screen">
         <div class="status"><span>7:42</span><span class="ic"><span class="bars"><i></i><i></i><i></i><i></i></span><span class="batt"></span></span></div>
         <div class="footage"><i class="cape"></i><i class="head"></i><i class="hair"></i></div>
+        <video class="reel" data-reel="hero" muted playsinline loop preload="none" aria-hidden="true"></video>
         <div class="prog"><i></i></div>
         <div class="capseq"><span class="w1">WALKED IN</span><span class="w2">WITH THIS</span><span class="w3">WALKED OUT</span><span class="w4">WITH THAT</span></div>
         <div class="vmeta">@yourshop<small>Skin fade &middot; Hershey, PA</small></div>
@@ -503,17 +516,60 @@ window.fetch = function (url) {
       <span class="btn act"></span><span class="btn vup"></span><span class="btn vdn"></span><span class="btn pwr"></span>
       <div class="screen">
         <div class="status"><span>9:41</span><span class="ic"><span class="bars"><i></i><i></i><i></i><i></i></span><span class="batt"></span></span></div>
-        <div class="footage cool"><i class="cape"></i><i class="head"></i><i class="hair"></i></div>
-        <div class="ftop"><span>Videos</span><em>For you</em></div>
-        <div class="oncap">FIXED HIS<br>LINEUP</div>
-        <div class="pager"><i></i><i></i><i></i><i></i></div>
-        <div class="panel">
-          <div class="fname">The Rescue</div>
-          <div class="fmeta">You film 3 clips &middot; about 2 minutes</div>
-          <div class="lvl"><i class="on"></i><i class="on"></i><i></i>&nbsp;Medium</div>
-          <div class="make">Make this one</div>
-          <div class="orig">See the original &#8599;</div>
+        <!-- the feed, four of the seven live formats (engine/formats: shots, film_minutes, difficulty), swiping
+             itself every few seconds (js/reels.js); the hook on each is that format's own text overlay -->
+        <div class="feed" data-feed>
+          <div class="slide">
+            <div class="footage cool"><i class="cape"></i><i class="head"></i><i class="hair"></i></div>
+            <video class="reel" data-reel="feed-1" muted playsinline loop preload="none" aria-hidden="true"></video>
+            <div class="oncap">DID I<br>SAVE HIM?</div>
+            <div class="panel">
+              <div class="fname">Rescue transformation</div>
+              <div class="fmeta">You film 3 clips &middot; about 2 minutes</div>
+              <div class="lvl"><i class="on"></i><i></i><i></i>&nbsp;Easy</div>
+              <div class="make">Make this one</div>
+              <div class="orig">See the original &#8599;</div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="footage"><i class="cape"></i><i class="head"></i><i class="hair"></i></div>
+            <video class="reel" data-reel="feed-2" muted playsinline loop preload="none" aria-hidden="true"></video>
+            <div class="oncap">HE ASKED FOR<br>A TAPER</div>
+            <div class="panel">
+              <div class="fname">He asked for&hellip;</div>
+              <div class="fmeta">You film 3 clips &middot; about 2 minutes</div>
+              <div class="lvl"><i class="on"></i><i></i><i></i>&nbsp;Easy</div>
+              <div class="make">Make this one</div>
+              <div class="orig">See the original &#8599;</div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="footage cool"><i class="cape"></i><i class="head"></i><i class="hair"></i></div>
+            <video class="reel" data-reel="feed-3" muted playsinline loop preload="none" aria-hidden="true"></video>
+            <div class="oncap">WHEN WAS YOUR<br>LAST CUT?</div>
+            <div class="panel">
+              <div class="fname">Consultation to reveal</div>
+              <div class="fmeta">You film 4 clips &middot; about 3 minutes</div>
+              <div class="lvl"><i class="on"></i><i class="on"></i><i></i>&nbsp;Medium</div>
+              <div class="make">Make this one</div>
+              <div class="orig">See the original &#8599;</div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="footage"><i class="cape"></i><i class="head"></i><i class="hair"></i></div>
+            <video class="reel" data-reel="feed-4" muted playsinline loop preload="none" aria-hidden="true"></video>
+            <div class="oncap">&ldquo;JUST CLEAN<br>IT UP&rdquo;</div>
+            <div class="panel">
+              <div class="fname">Quote to reveal loop</div>
+              <div class="fmeta">You film 2 clips &middot; about 1 minute</div>
+              <div class="lvl"><i class="on"></i><i></i><i></i>&nbsp;Easy</div>
+              <div class="make">Make this one</div>
+              <div class="orig">See the original &#8599;</div>
+            </div>
+          </div>
         </div>
+        <div class="ftop"><span>Videos</span><em>For you</em></div>
+        <div class="pager"><i class="on"></i><i></i><i></i><i></i></div>
         <div class="sheen"></div><div class="vig"></div>
       </div>
       <div class="island"></div><div class="home"></div>
@@ -592,7 +648,7 @@ window.fetch = function (url) {
         <div class="ui">
           <div class="ph"><span>&lsaquo;</span>New post</div>
           <div class="comp">
-            <div class="thumb"><div class="footage"><i class="cape"></i><i class="head"></i><i class="hair"></i></div></div>
+            <div class="thumb"><div class="footage"><i class="cape"></i><i class="head"></i><i class="hair"></i></div><video class="reel" data-reel="hero" muted playsinline loop preload="none" aria-hidden="true"></video></div>
             <div class="capbox">Walked in with this, walked out with that. Skin fade in Hershey. Book on our profile. <em>#barber #skinfade #hersheypa</em></div>
           </div>
           <div class="plats">
@@ -1042,6 +1098,139 @@ window.fetch = function (url) {
       vform.hidden = true; document.getElementById('v-done').hidden = false;
     }).catch(function(){ vgo.disabled = false; vsay('No connection. Try again in a minute.', true); });
   });
+})();
+</script>
+<script>
+/* marketing/js/reels.js — the front page's phones play real video (William, 10-01: "we want it, the phones to like
+   play actual videos, like they're swiping through"). No framework, no build.
+
+   The feed phone (#pick) is four format cards that swipe themselves every few seconds, like a real feed; the hero
+   and the post screen's cover play the finished edit. Each <video class="reel" data-reel="NAME"> plays
+   /video/NAME.mp4 and shows /video/NAME.webp first.
+
+   FOOTAGE STAYS OFF UNTIL IT IS CLEARED. REELS is the footage version in marketing/video ('' = none): empty, the
+   phones keep their drawn stand-ins and nothing is fetched (the feed still swipes). A file goes in marketing/video
+   only with a signed release that names snpz.ai for everyone in it, one line per file in marketing/video/RELEASES.md
+   (server/selfcheck-site.js refuses a file without its line, and a REELS with a file missing).
+
+   Light on purpose: nothing is fetched before the page has loaded; a phone's video is fetched when the phone comes
+   near the screen and plays only while it is on screen; the drawn stand-in stays underneath, so a slow or failed
+   video never leaves a black phone. Reduced motion or Save-Data: the stills, never a video, and the feed holds. */
+(function () {
+  'use strict';
+  var REELS = '';
+  var calm = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var still = calm || !!(navigator.connection && navigator.connection.saveData);
+
+  function url(v, ext) { return '/video/' + v.getAttribute('data-reel') + '.' + ext + '?v=' + encodeURIComponent(REELS); }
+  function arm(v) {
+    if (!REELS || !v || v.getAttribute('data-armed')) return;
+    v.setAttribute('data-armed', '1');
+    var img = new Image();
+    img.onload = function () { v.poster = img.src; v.classList.add('on'); };
+    img.src = url(v, 'webp');
+    if (still) return;
+    v.muted = true;
+    v.preload = 'auto';
+    v.src = url(v, 'mp4');
+  }
+  function play(v) {
+    if (!v || !REELS || still || !v.getAttribute('data-armed')) return;
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});   // a browser that refuses autoplay keeps the still
+  }
+  function stop(v) { if (v && v.getAttribute('data-armed') && !v.paused) v.pause(); }
+
+  /* ---- the feed: slide k sits (k - i) cards below the one showing, wrapped so the card before is just above ---- */
+  var feed = document.querySelector('[data-feed]');
+  var slides = feed ? [].slice.call(feed.querySelectorAll('.slide')) : [];
+  var dots = [].slice.call(document.querySelectorAll('#pick .pager i'));
+  var n = slides.length, cur = 0, timer = null, feedOn = false;
+  var vid = function (k) { return slides[k] && slides[k].querySelector('video.reel'); };
+  function place(animate) {
+    for (var k = 0; k < n; k++) {
+      var off = ((k - cur) % n + n) % n;
+      if (off === n - 1) off = -1;
+      var el = slides[k], was = el.getAttribute('data-off');
+      // only a card moving up one place glides; the one wrapping round to the bottom jumps, off screen
+      el.style.transition = animate && was !== null && Number(was) - 1 === off ? '' : 'none';
+      el.style.transform = 'translateY(' + (off * 100) + '%)';
+      el.setAttribute('data-off', off);
+    }
+    for (var d = 0; d < dots.length; d++) dots[d].classList.toggle('on', d === cur);
+  }
+  function advance() {
+    var was = cur;
+    cur = (cur + 1) % n;
+    var v = vid(cur);
+    if (v && v.getAttribute('data-armed')) { try { v.currentTime = 0; } catch (e) {} }
+    play(v);
+    arm(vid((cur + 1) % n));   // the next card is ready before it is needed
+    place(true);
+    setTimeout(function () { if (was !== cur) stop(vid(was)); }, 600);
+  }
+  function feedLive(on) {
+    feedOn = on;
+    if (on) {
+      play(vid(cur));
+      if (!timer && !calm && n > 1) timer = setInterval(advance, 3400);
+    } else {
+      clearInterval(timer); timer = null;
+      for (var k = 0; k < n; k++) stop(vid(k));
+    }
+  }
+
+  /* ---- the hero: its captions restart with the edit, so the words land on the shots they belong to ---- */
+  function syncCaptions(v) {
+    var screen = v.parentNode, last = 0;
+    var anim = [].slice.call(screen.querySelectorAll('.capseq span, .prog i'));
+    if (!anim.length) return;
+    function restart() {
+      anim.forEach(function (el) { el.style.animation = 'none'; });
+      void screen.offsetWidth;
+      anim.forEach(function (el) { el.style.animation = ''; });
+    }
+    v.addEventListener('playing', function once() { v.removeEventListener('playing', once); restart(); });
+    v.addEventListener('timeupdate', function () { if (v.currentTime + 0.5 < last) restart(); last = v.currentTime; });
+  }
+
+  function go() {
+    if (feed) place(false);
+    if (!('IntersectionObserver' in window)) { if (feed) feedLive(true); return; }
+    var phones = [].slice.call(document.querySelectorAll('.iphone'));
+    var isFeed = function (p) { return feed && p.contains(feed); };
+    var near = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        near.unobserve(e.target);
+        if (isFeed(e.target)) { arm(vid(cur)); arm(vid((cur + 1) % n)); }
+        else [].forEach.call(e.target.querySelectorAll('video.reel'), function (v) {
+          if (v.parentNode.querySelector('.capseq')) syncCaptions(v);
+          arm(v);
+        });
+      });
+    }, { rootMargin: '400px 0px' });
+    var seen = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (isFeed(e.target)) return feedLive(e.isIntersecting);
+        [].forEach.call(e.target.querySelectorAll('video.reel'), function (v) { e.isIntersecting ? play(v) : stop(v); });
+      });
+    }, { threshold: 0.2 });
+    phones.forEach(function (p) {
+      if (!p.querySelector('video.reel') && !isFeed(p)) return;
+      near.observe(p); seen.observe(p);
+    });
+    // a video armed after its phone came into view starts once it can
+    [].forEach.call(document.querySelectorAll('video.reel'), function (v) {
+      v.addEventListener('canplay', function () {
+        var p = v.closest('.iphone'), r = p && p.getBoundingClientRect();
+        var inView = r && r.bottom > 0 && r.top < innerHeight && getComputedStyle(p).display !== 'none';
+        if (!inView) return;
+        if (feed && feed.contains(v)) { if (feedOn && v === vid(cur)) play(v); } else play(v);
+      });
+    });
+  }
+  if (document.readyState === 'complete') go(); else window.addEventListener('load', go);
 })();
 </script>
 
