@@ -325,24 +325,18 @@
   .footage .hair{left:33%;width:34%;top:17%;height:9%;border-radius:50% 50% 34% 34%;background:#120d0a;filter:blur(2.5px)}
   .footage::after{content:"";position:absolute;inset:0;opacity:.22;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-  /* the hero: a finished video, one word at a time in yellow capitals (docs/EDIT-PLAYBOOK.md), ending on
-     the shop's own Book card - never a snpz mark inside the video (Instagram demotes other apps' logos) */
+  /* the hero: a finished video, one word at a time in yellow capitals (docs/EDIT-PLAYBOOK.md), then the cut held
+     clean to the end. No end card and never a snpz mark inside the video: the app copies the reel the owner picked,
+     and the Book ask lives in the caption and on the profile (snpz-app DECISIONS.md, 09-30, "No end card"). */
   .prog{position:absolute;top:calc(var(--pw)*.135);left:8%;right:8%;height:2px;background:#ffffff40;border-radius:2px;z-index:3;overflow:hidden}
-  .prog i{display:block;height:100%;width:0;background:#fff;animation:prog 8s linear infinite}
+  .prog i{display:block;height:100%;width:0;background:#fff;animation:prog 6.4s linear infinite}
   @keyframes prog{to{width:100%}}
   .capseq{position:absolute;left:5%;right:5%;top:57%;height:calc(var(--pw)*.2);z-index:3}
   .capseq span{position:absolute;inset:0;display:grid;place-items:center;text-align:center;opacity:0;
     font-weight:900;font-size:calc(var(--pw)*.112);line-height:.95;letter-spacing:-.01em;color:var(--yellow);
-    text-shadow:0 2px 0 rgba(0,0,0,.45),0 6px 16px rgba(0,0,0,.55);animation:word 8s infinite}
+    text-shadow:0 2px 0 rgba(0,0,0,.45),0 6px 16px rgba(0,0,0,.55);animation:word 6.4s infinite}
   .capseq .w2{animation-delay:1.2s} .capseq .w3{animation-delay:2.4s} .capseq .w4{animation-delay:3.6s}
-  @keyframes word{0%{opacity:1;transform:scale(.84)}2.5%{transform:scale(1.08)}5%{transform:scale(1)}14.6%{opacity:1}15%{opacity:0}100%{opacity:0}}
-  .endcard{position:absolute;inset:0;z-index:3;display:grid;place-content:center;gap:calc(var(--pw)*.03);text-align:center;color:#fff;
-    background:rgba(8,8,10,.72);opacity:0;animation:endc 8s infinite}
-  .endcard b{font-weight:900;font-size:calc(var(--pw)*.088);line-height:1;letter-spacing:-.02em;padding:0 10%}
-  .endcard span{font-weight:700;font-size:calc(var(--pw)*.054);color:#d6dbe3}
-  .endcard em{font-style:normal;justify-self:center;background:#fff;color:#111;font-weight:800;border-radius:99px;
-    padding:calc(var(--pw)*.025) calc(var(--pw)*.08);font-size:calc(var(--pw)*.05);margin-top:calc(var(--pw)*.02)}
-  @keyframes endc{0%,59%{opacity:0}61.5%,97%{opacity:1}100%{opacity:0}}
+  @keyframes word{0%{opacity:1;transform:scale(.84)}3.1%{transform:scale(1.08)}6.3%{transform:scale(1)}18.2%{opacity:1}18.8%{opacity:0}100%{opacity:0}}
   .vmeta{position:absolute;left:8%;bottom:calc(var(--pw)*.1);z-index:3;color:#fff;font-weight:800;font-size:calc(var(--pw)*.05)}
   .vmeta small{display:block;font-weight:600;color:#d0d5dd;font-size:calc(var(--pw)*.042)}
   /* Pick one: the feed (SCREENS.md 3) */
@@ -392,8 +386,6 @@
   .ph span{color:#8f97a3;font-size:calc(var(--pw)*.08);line-height:.8}
   .comp{display:grid;grid-template-columns:34% minmax(0,1fr);gap:calc(var(--pw)*.035);align-items:start}
   .thumb{position:relative;aspect-ratio:9/16;border-radius:calc(var(--pw)*.035);overflow:hidden}
-  .thumb .tcard{position:absolute;inset:0;z-index:2;display:grid;place-content:center;text-align:center;background:rgba(8,8,10,.6);
-    font-weight:900;font-size:calc(var(--pw)*.043);line-height:1.05;padding:0 10%}
   .capbox{font-size:calc(var(--pw)*.043);line-height:1.35;color:#e8ebf0;font-weight:500;background:#161a22;border:1px solid #ffffff14;
     border-radius:calc(var(--pw)*.035);padding:calc(var(--pw)*.03)}
   .capbox em{font-style:normal;color:var(--cyan)}
@@ -433,7 +425,7 @@
     .notif{animation:none;transform:none;opacity:1}
     .grad{transition:none;background-position-x:0%}
     .glow,.static{display:none}
-    .capseq span,.endcard,.prog i{animation:none}   /* the hero video holds its first word */
+    .capseq span,.prog i{animation:none}   /* the hero video holds its first word */
     .capseq .w1{opacity:1} .prog i{width:40%}
     html{scroll-behavior:auto}   /* the Pricing link jumps, it does not glide (css/site.css does this for the other pages) */
   }
@@ -484,7 +476,7 @@ window.fetch = function (url) {
     <div class="hero-text">
       <p class="eyebrow" data-par="0.05">For barbershops <span class="early">Early access</span></p>
       <h1 data-par="0.12">Your next client is scrolling right now.</h1>
-      <p class="lede" data-par="0.2">Pick a video that&rsquo;s already working for other barbers. Film it in a few clips. Get it back edited, with your name on it, ready to post.</p>
+      <p class="lede" data-par="0.2">Pick a video that&rsquo;s already working for other barbers. Film it in a few clips. Get it back edited for you, ready to post.</p>
       <p style="margin:0" data-par="0.26"><span class="lockup"><img class="pillmark" src="img/snpz-pill-400.webp" width="400" height="209" alt="snpz"><span class="plus"></span><img class="sqlogo" src="img/logo-square-black.svg" width="88" height="22" alt="Square"></span></p>
     </div>
     <!-- the finished video, playing: the whole pitch on one screen (desktop only, see the css) -->
@@ -496,7 +488,6 @@ window.fetch = function (url) {
         <div class="prog"><i></i></div>
         <div class="capseq"><span class="w1">WALKED IN</span><span class="w2">WITH THIS</span><span class="w3">WALKED OUT</span><span class="w4">WITH THAT</span></div>
         <div class="vmeta">@yourshop<small>Skin fade &middot; Hershey, PA</small></div>
-        <div class="endcard"><b>Tap Book on our profile</b><span>@yourshop</span><em>Book</em></div>
         <div class="sheen"></div><div class="vig"></div>
       </div>
       <div class="island"></div><div class="home"></div>
@@ -590,7 +581,7 @@ window.fetch = function (url) {
       </div>
       <div class="island"></div><div class="home"></div>
     </div>
-    <div class="cap"><h2 data-par="-0.1"><span class="grad">We edit it.</span></h2><p data-par="-0.16">Drop in your clips. You get it back edited for you: cuts, captions, sound, your name at the end.</p></div>
+    <div class="cap"><h2 data-par="-0.1"><span class="grad">We edit it.</span></h2><p data-par="-0.16">Drop in your clips. You get it back edited for you, just like the one you picked.</p></div>
   </section>
 
   <section class="stage" id="post">
@@ -601,7 +592,7 @@ window.fetch = function (url) {
         <div class="ui">
           <div class="ph"><span>&lsaquo;</span>New post</div>
           <div class="comp">
-            <div class="thumb"><div class="footage"><i class="cape"></i><i class="head"></i><i class="hair"></i></div><div class="tcard">Tap Book on our profile</div></div>
+            <div class="thumb"><div class="footage"><i class="cape"></i><i class="head"></i><i class="hair"></i></div></div>
             <div class="capbox">Walked in with this, walked out with that. Skin fade in Hershey. Book on our profile. <em>#barber #skinfade #hersheypa</em></div>
           </div>
           <div class="plats">
@@ -617,7 +608,7 @@ window.fetch = function (url) {
       </div>
       <div class="island"></div><div class="home"></div>
     </div>
-    <div class="cap"><h2 data-par="-0.1"><span class="grad">Post it.</span></h2><p data-par="-0.16">Instagram, TikTok, Facebook and YouTube in one tap. Every video ends on your Book button.</p></div>
+    <div class="cap"><h2 data-par="-0.1"><span class="grad">Post it.</span></h2><p data-par="-0.16">Instagram, TikTok, Facebook and YouTube in one tap. The caption tells them where to book.</p></div>
   </section>
 
   <!-- THE MAIN BOX (docs/WEBSITE-SOCIAL.md D2): the first video free, set up by a person. Mobile, shop,
