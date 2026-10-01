@@ -403,7 +403,23 @@
   .plats{display:grid;border-top:1px solid #ffffff17}
   .plat{display:flex;justify-content:space-between;align-items:center;padding:calc(var(--pw)*.021) 0;border-bottom:1px solid #ffffff17;font-size:calc(var(--pw)*.05);font-weight:700}
   .plat small{color:#c8cdd5;font-weight:600;font-size:calc(var(--pw)*.046)}
-  /* We edit it: the lock screen above, the video lands where the booking used to */
+  /* Get the app: the app's sign-in screen (snpz-app SCREENS.md 1), then the button and, on a computer, the scan code */
+  .signin{justify-content:center;text-align:center;gap:calc(var(--pw)*.05)}
+  .signin .spill{width:44%;height:auto;margin:0 auto calc(var(--pw)*.03)}
+  .shd{font-weight:900;font-size:calc(var(--pw)*.078);letter-spacing:-.02em;line-height:1.05}
+  .sfield{background:#161a22;border:1px solid #ffffff24;border-radius:calc(var(--pw)*.035);padding:calc(var(--pw)*.042);text-align:left;
+    color:#8f97a3;font-size:calc(var(--pw)*.05);font-weight:600}
+  .signin .ybtn{margin-top:0}
+  .snote{font-size:calc(var(--pw)*.042);color:#9aa1ad;font-weight:600;line-height:1.35}
+  .getapp{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:24px}
+  .qr{display:none}
+  @media (min-width:1000px){
+    .getapp{justify-content:flex-start}
+    .qr{display:flex;align-items:center;gap:12px}
+    .qrcode{width:99px;height:99px;border-radius:6px;box-shadow:0 0 0 1px #11111118}   /* 33 squares x 3px: crisp, so a camera reads it */
+    .qr span{font-size:14px;line-height:1.3;color:var(--muted);font-weight:700;max-width:13ch}
+  }
+  /* snpz edits it: the lock screen above, the video lands where the booking used to */
   .notif .sq.play i{background:var(--yellow);color:#111}
 
   /* ---------- Early access, the free-video box, the receptionist add-on ---------- */
@@ -451,6 +467,11 @@ window.fetch = function (url) {
   var body = ok ? {ok: true} : {error: 'Test copy: the demo call is switched off here. On snpz.ai this rings your phone.'};
   return Promise.resolve(new Response(JSON.stringify(body), {status: ok ? 200 : 400, headers: {'Content-Type': 'application/json'}}));
 };
+/* the app is not live yet: its links say so instead of opening a page that does not exist */
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[data-app]');
+  if (a) { e.preventDefault(); alert('Test copy: the snpz app is not live yet. On launch day this opens ' + a.href.replace(/\/$/, '')); }
+});
 </script>
 <div style="position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:90;background:#111;color:#fff;font:700 12.5px/1 Outfit,system-ui,sans-serif;letter-spacing:.02em;padding:9px 14px;border-radius:99px;box-shadow:0 8px 24px rgba(0,0,0,.25);white-space:nowrap">Test copy &middot; not on snpz.ai &middot; nothing sends</div>
 
@@ -476,6 +497,7 @@ window.fetch = function (url) {
     <nav>
       <a href="#pick" class="hide-sm">How it works</a>
       <a href="#receptionist" class="hide-sm">Receptionist</a>
+      <a href="#app" class="hide-sm">Get the app</a>
       <a href="/app" class="hide-sm">Sign in</a>
       <a class="callbtn" href="#account">Get a free video</a>
     </nav>
@@ -637,7 +659,7 @@ window.fetch = function (url) {
       </div>
       <div class="island"></div><div class="home"></div>
     </div>
-    <div class="cap"><h2 data-par="-0.1"><span class="grad">We edit it.</span></h2><p data-par="-0.16">Drop in your clips. You get it back edited for you, just like the one you picked.</p></div>
+    <div class="cap"><h2 data-par="-0.1"><span class="grad">snpz edits it.</span></h2><p data-par="-0.16">Drop in your clips. You get it back edited for you, just like the one you picked.</p></div>
   </section>
 
   <section class="stage" id="post">
@@ -652,11 +674,9 @@ window.fetch = function (url) {
             <div class="capbox">Walked in with this, walked out with that. Skin fade in Hershey. Book on our profile. <em>#barber #skinfade #hersheypa</em></div>
           </div>
           <div class="plats">
-            <div class="plat">Instagram<span class="sw on"></span></div>
-            <div class="plat">TikTok<span class="sw on"></span></div>
-            <div class="plat">Facebook<span class="sw on"></span></div>
-            <div class="plat">YouTube<span class="sw on"></span></div>
+            <div class="plat">Instagram<small>@yourshop</small></div>
             <div class="plat">Location<small>Hershey, PA</small></div>
+            <div class="plat">Collaborator<small>@yourbarber</small></div>
           </div>
           <div class="ybtn">Post</div>
         </div>
@@ -664,7 +684,33 @@ window.fetch = function (url) {
       </div>
       <div class="island"></div><div class="home"></div>
     </div>
-    <div class="cap"><h2 data-par="-0.1"><span class="grad">Post it.</span></h2><p data-par="-0.16">Instagram, TikTok, Facebook and YouTube in one tap. The caption tells them where to book.</p></div>
+    <div class="cap"><h2 data-par="-0.1"><span class="grad">Post it.</span></h2><p data-par="-0.16">One tap and it&rsquo;s on your Instagram. The caption tells them where to book.</p></div>
+  </section>
+
+  <!-- GET THE APP (William, 10-01: "we're going to need to say something about like getting our app ... I want it to be
+       on the website ready for launch"). The snpz app is a web app first (snpz-app PLAN.md A3, app.snpz.ai at Step 12):
+       nothing to download. The phone is its sign-in screen as SCREENS.md 1 has it (an email, one button, a link, no
+       password). Every data-app link and the scan code's data-qr are the one address server/selfcheck-site.js holds as
+       APP_URL; scripts/site-social.ps1 -Launch refuses while that address does not answer. -->
+  <section class="stage" id="app">
+    <div class="iphone" data-spin="1">
+      <span class="btn act"></span><span class="btn vup"></span><span class="btn vdn"></span><span class="btn pwr"></span>
+      <div class="screen">
+        <div class="status"><span>9:41</span><span class="ic"><span class="bars"><i></i><i></i><i></i><i></i></span><span class="batt"></span></span></div>
+        <div class="ui signin">
+          <img class="spill" src="img/snpz-pill-400.webp" width="400" height="209" alt="">
+          <div class="shd">Sign in to snpz</div>
+          <div class="sfield">you@yourshop.com</div>
+          <div class="ybtn">Email me a link</div>
+          <div class="snote">No password. Tap the link in your email and you&rsquo;re in.</div>
+        </div>
+        <div class="sheen"></div><div class="vig"></div>
+      </div>
+      <div class="island"></div><div class="home"></div>
+    </div>
+    <div class="cap"><h2 data-par="-0.1"><span class="grad">Get the app.</span></h2><p data-par="-0.16">snpz runs on your phone, nothing to download. Put in your email, tap the link, and pick your first video.</p>
+      <div class="getapp" data-par="-0.16"><a class="btn-a" data-app href="https://app.snpz.ai/">Open the app</a>
+        <div class="qr"><svg class="qrcode" data-qr="https://app.snpz.ai/" viewBox="0 0 33 33" role="img" aria-label="Scan to open the snpz app on your phone" shape-rendering="crispEdges"><rect width="33" height="33" fill="#fff"/><path fill="#111" d="M4 4h7v1h-7zM12 4h1v1h-1zM14 4h1v1h-1zM17 4h4v1h-4zM22 4h7v1h-7zM4 5h1v1h-1zM10 5h1v1h-1zM15 5h1v1h-1zM17 5h2v1h-2zM22 5h1v1h-1zM28 5h1v1h-1zM4 6h1v1h-1zM6 6h3v1h-3zM10 6h1v1h-1zM15 6h1v1h-1zM18 6h1v1h-1zM22 6h1v1h-1zM24 6h3v1h-3zM28 6h1v1h-1zM4 7h1v1h-1zM6 7h3v1h-3zM10 7h1v1h-1zM12 7h2v1h-2zM16 7h3v1h-3zM20 7h1v1h-1zM22 7h1v1h-1zM24 7h3v1h-3zM28 7h1v1h-1zM4 8h1v1h-1zM6 8h3v1h-3zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM18 8h2v1h-2zM22 8h1v1h-1zM24 8h3v1h-3zM28 8h1v1h-1zM4 9h1v1h-1zM10 9h1v1h-1zM12 9h1v1h-1zM17 9h2v1h-2zM22 9h1v1h-1zM28 9h1v1h-1zM4 10h7v1h-7zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h7v1h-7zM12 11h2v1h-2zM16 11h1v1h-1zM18 11h1v1h-1zM20 11h1v1h-1zM4 12h1v1h-1zM8 12h1v1h-1zM10 12h4v1h-4zM18 12h8v1h-8zM28 12h1v1h-1zM8 13h2v1h-2zM12 13h1v1h-1zM14 13h1v1h-1zM18 13h4v1h-4zM24 13h2v1h-2zM27 13h1v1h-1zM6 14h1v1h-1zM8 14h1v1h-1zM10 14h2v1h-2zM14 14h8v1h-8zM23 14h1v1h-1zM25 14h2v1h-2zM14 15h1v1h-1zM18 15h4v1h-4zM26 15h2v1h-2zM7 16h5v1h-5zM13 16h1v1h-1zM15 16h1v1h-1zM17 16h2v1h-2zM20 16h4v1h-4zM25 16h4v1h-4zM4 17h2v1h-2zM7 17h1v1h-1zM12 17h2v1h-2zM16 17h1v1h-1zM18 17h4v1h-4zM24 17h1v1h-1zM27 17h1v1h-1zM6 18h1v1h-1zM10 18h1v1h-1zM12 18h1v1h-1zM15 18h7v1h-7zM23 18h4v1h-4zM6 19h1v1h-1zM8 19h2v1h-2zM12 19h4v1h-4zM17 19h1v1h-1zM21 19h1v1h-1zM23 19h2v1h-2zM26 19h2v1h-2zM4 20h2v1h-2zM7 20h1v1h-1zM9 20h4v1h-4zM14 20h1v1h-1zM16 20h2v1h-2zM19 20h8v1h-8zM12 21h2v1h-2zM17 21h2v1h-2zM20 21h1v1h-1zM24 21h1v1h-1zM4 22h7v1h-7zM12 22h1v1h-1zM20 22h1v1h-1zM22 22h1v1h-1zM24 22h1v1h-1zM4 23h1v1h-1zM10 23h1v1h-1zM16 23h1v1h-1zM18 23h1v1h-1zM20 23h1v1h-1zM24 23h4v1h-4zM4 24h1v1h-1zM6 24h3v1h-3zM10 24h1v1h-1zM12 24h1v1h-1zM14 24h2v1h-2zM17 24h2v1h-2zM20 24h9v1h-9zM4 25h1v1h-1zM6 25h3v1h-3zM10 25h1v1h-1zM13 25h1v1h-1zM16 25h1v1h-1zM19 25h2v1h-2zM22 25h2v1h-2zM26 25h3v1h-3zM4 26h1v1h-1zM6 26h3v1h-3zM10 26h1v1h-1zM13 26h1v1h-1zM15 26h8v1h-8zM25 26h1v1h-1zM27 26h1v1h-1zM4 27h1v1h-1zM10 27h1v1h-1zM15 27h1v1h-1zM17 27h1v1h-1zM22 27h6v1h-6zM4 28h7v1h-7zM12 28h1v1h-1zM14 28h1v1h-1zM16 28h2v1h-2zM19 28h1v1h-1zM26 28h3v1h-3z"/></svg><span>Or scan it with your phone&rsquo;s camera</span></div></div></div>
   </section>
 
   <!-- THE MAIN BOX (docs/WEBSITE-SOCIAL.md D2): the first video free, set up by a person. Mobile, shop,
@@ -676,7 +722,7 @@ window.fetch = function (url) {
       <div>
         <h2 data-par="-0.08"><span class="grad">Get your first video free.</span></h2>
         <p class="sub" data-par="-0.12">Tell us your shop. We&rsquo;ll set up your first shoot with you and send it back edited, ready to post.</p>
-        <p class="alt" data-par="-0.14">Already a customer? <a href="/app">Sign in</a></p>
+        <p class="alt" data-par="-0.14">Already a customer? <a data-app href="https://app.snpz.ai/">Open the app</a></p>
       </div>
       <div>
         <form class="card f" id="videoform" novalidate>
@@ -744,6 +790,7 @@ window.fetch = function (url) {
         <a href="/privacy#cookies">Cookies</a>
         <a href="/privacy#texting">Texting</a>
         <a href="/start">How the receptionist works</a>
+        <a data-app href="https://app.snpz.ai/">The snpz app</a>
         <a href="/app">Sign in</a>
       </div>
       <p style="margin:10px 0 0;font-weight:700">snpz &middot; Mount Joy, PA</p>
@@ -911,7 +958,7 @@ window.fetch = function (url) {
      landing, so the tail of the gesture cannot fire a second jump. Reduced motion: none of this. */
   if (!reduce){
     var snaps = [document.querySelector('header.top'), document.getElementById('pick'), document.getElementById('film'),
-                 landed, document.getElementById('post'), document.getElementById('account')].filter(Boolean);
+                 landed, document.getElementById('post'), document.getElementById('app'), document.getElementById('account')].filter(Boolean);
     var anim = null, lockUntil = 0, acc = 0, accAt = 0, ty = null, lastAt = 0, armed = true;
     function tops(){ return snaps.map(function(s, i){ return i === 0 ? 0 : Math.round(s.getBoundingClientRect().top + window.scrollY); }); }
     function nearest(){ var y = window.scrollY, T = tops(), best = 0;
