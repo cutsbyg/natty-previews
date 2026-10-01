@@ -508,7 +508,7 @@ document.addEventListener('click', function (e) {
 <div class="wrap">
   <header class="top">
     <div class="hero-text">
-      <p class="eyebrow" data-par="0.05">For barbershops <span class="early">Early access</span></p>
+      <p class="eyebrow" data-par="0.05">Built by a barber, for barbers <span class="early">Early access</span></p>
       <h1 data-par="0.12">Your next client is scrolling right now.</h1>
       <p class="lede" data-par="0.2">Pick a video that&rsquo;s already working for other barbers. Film it in a few clips. Get it back edited for you, ready to post.</p>
       <p style="margin:0" data-par="0.26"><span class="lockup"><img class="pillmark" src="img/snpz-pill-400.webp" width="400" height="209" alt="snpz"><span class="plus"></span><img class="sqlogo" src="img/logo-square-black.svg" width="88" height="22" alt="Square"></span></p>
@@ -538,8 +538,10 @@ document.addEventListener('click', function (e) {
       <span class="btn act"></span><span class="btn vup"></span><span class="btn vdn"></span><span class="btn pwr"></span>
       <div class="screen">
         <div class="status"><span>9:41</span><span class="ic"><span class="bars"><i></i><i></i><i></i><i></i></span><span class="batt"></span></span></div>
-        <!-- the feed, four of the seven live formats (engine/formats: shots, film_minutes, difficulty), swiping
-             itself every few seconds (js/reels.js); the hook on each is that format's own text overlay -->
+        <!-- the feed, three of the seven live formats (engine/formats: shots, film_minutes, difficulty), swiping
+             itself every few seconds (js/reels.js); the hook on each is that format's own text overlay. A different
+             client in each card's clip, the barber may repeat (William, 10-01: "they should have different people.
+             Except for the barber can stay the same"). -->
         <div class="feed" data-feed>
           <div class="slide">
             <div class="footage cool"><i class="cape"></i><i class="head"></i><i class="hair"></i></div>
@@ -554,20 +556,8 @@ document.addEventListener('click', function (e) {
             </div>
           </div>
           <div class="slide">
-            <div class="footage"><i class="cape"></i><i class="head"></i><i class="hair"></i></div>
-            <video class="reel" data-reel="feed-2" muted playsinline loop preload="none" aria-hidden="true"></video>
-            <div class="oncap">HE ASKED FOR<br>A TAPER</div>
-            <div class="panel">
-              <div class="fname">He asked for&hellip;</div>
-              <div class="fmeta">You film 3 clips &middot; about 2 minutes</div>
-              <div class="lvl"><i class="on"></i><i></i><i></i>&nbsp;Easy</div>
-              <div class="make">Make this one</div>
-              <div class="orig">See the original &#8599;</div>
-            </div>
-          </div>
-          <div class="slide">
             <div class="footage cool"><i class="cape"></i><i class="head"></i><i class="hair"></i></div>
-            <video class="reel" data-reel="feed-3" muted playsinline loop preload="none" aria-hidden="true"></video>
+            <video class="reel" data-reel="feed-2" muted playsinline loop preload="none" aria-hidden="true"></video>
             <div class="oncap">WHEN WAS YOUR<br>LAST CUT?</div>
             <div class="panel">
               <div class="fname">Consultation to reveal</div>
@@ -579,7 +569,7 @@ document.addEventListener('click', function (e) {
           </div>
           <div class="slide">
             <div class="footage"><i class="cape"></i><i class="head"></i><i class="hair"></i></div>
-            <video class="reel" data-reel="feed-4" muted playsinline loop preload="none" aria-hidden="true"></video>
+            <video class="reel" data-reel="feed-3" muted playsinline loop preload="none" aria-hidden="true"></video>
             <div class="oncap">&ldquo;JUST CLEAN<br>IT UP&rdquo;</div>
             <div class="panel">
               <div class="fname">Quote to reveal loop</div>
@@ -591,7 +581,7 @@ document.addEventListener('click', function (e) {
           </div>
         </div>
         <div class="ftop"><span>Videos</span><em>For you</em></div>
-        <div class="pager"><i class="on"></i><i></i><i></i><i></i></div>
+        <div class="pager"><i class="on"></i><i></i><i></i></div>
         <div class="sheen"></div><div class="vig"></div>
       </div>
       <div class="island"></div><div class="home"></div>

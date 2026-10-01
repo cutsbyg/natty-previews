@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>New Site To-Do</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#fbf4ea;--card:#fffdf8;--ink:#111;--muted:#5a5652;--line:#1111141a;--yellow:#ffc629;--cyan:#5bc8e8;--tag:#111;--tagtext:#fff}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141311;--card:#1d1c1a;--ink:#f3efe8;--muted:#b4ada4;--line:#ffffff1f;--tag:#ffc629;--tagtext:#111}}
+  :root[data-theme="dark"]{--bg:#141311;--card:#1d1c1a;--ink:#f3efe8;--muted:#b4ada4;--line:#ffffff1f;--tag:#ffc629;--tagtext:#111}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:500 17px/1.5 Outfit,system-ui,-apple-system,sans-serif}
+  main{max-width:760px;margin:0 auto;padding:40px 16px 56px}
+  .kick{font-weight:800;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+  h1{font-weight:900;font-size:clamp(32px,6vw,48px);line-height:1;letter-spacing:-.03em;margin:0 0 14px}
+  h1 span{background:linear-gradient(90deg,#b97a00,#e9a800 40%,#2b93c9 70%,#155d92);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--muted);font-size:18px;margin:0 0 28px;max-width:56ch}
+  ol{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:n}
+  li{counter-increment:n;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px 16px 62px;position:relative}
+  li::before{content:counter(n);position:absolute;left:16px;top:15px;width:32px;height:32px;border-radius:50%;background:var(--yellow);color:#111;
+    display:grid;place-items:center;font-weight:900;font-size:16px}
+  li b{display:block;font-weight:800;font-size:18px;line-height:1.3;margin-bottom:4px}
+  li p{margin:0;color:var(--muted);font-size:15.5px}
+  .who{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:99px;background:var(--tag);color:var(--tagtext);font-size:11px;font-weight:800;
+    letter-spacing:.12em;text-transform:uppercase;vertical-align:3px}
+  blockquote{margin:10px 0 0;padding:10px 12px;border-left:3px solid var(--yellow);background:#ffc6291a;border-radius:0 10px 10px 0;font-size:14.5px;color:var(--ink)}
+  a{color:inherit;text-decoration-color:var(--cyan);text-decoration-thickness:2px;text-underline-offset:3px}
+  .foot{margin-top:28px;color:var(--muted);font-size:15px}
+</style>
+</head>
+<body>
+<main>
+  <p class="kick">snpz.ai &middot; the new video-first site &middot; Oct 1</p>
+  <h1>Before the new site <span>goes live</span></h1>
+  <p class="lede">The new site is built, tested and one command from live. These are the things only we can do. Any of us can take any of them, except the first, which needs Grady&rsquo;s yes.</p>
+  <ol>
+    <li><b>Say yes, or give new words, to the texting sentence <span class="who">Grady</span></b>
+      <p>It sits under the &ldquo;Get my free video&rdquo; button. It is the permission to text the barber, so a person has to approve it.</p>
+      <blockquote>Tapping Get my free video lets snpz (Reisinger Media LLC) text this number about setting up your free video. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase.</blockquote></li>
+    <li><b>Film the footage for the phones</b>
+      <p>Three short vertical clips of real cuts, with a different client in each (the same barber is fine), plus one before/after. Everyone who appears signs a release that says snpz can use it on snpz.ai and in ads. A card that only covers the shop&rsquo;s own posts is not enough. Tomorrow&rsquo;s test clips or the Oct 6 shoot work if the card says that.</p></li>
+    <li><b>Book the free legal hour</b>
+      <p>Dickinson Law&rsquo;s clinic: terms and privacy for the clips we receive, edit and post for shops.</p></li>
+    <li><b>Decide what the app does on day one</b>
+      <p>And whether any barber can sign up from the website on their own. Right now the site says they can: &ldquo;Put in your email, tap the link, and pick your first video.&rdquo;</p></li>
+    <li><b>Confirm the app&rsquo;s address</b>
+      <p>The site is built for app.snpz.ai. If it will be anything else, say so. The launch refuses until that address answers.</p></li>
+    <li><b>Say which system the reps call from on launch day</b>
+      <p>Free-video requests from the site have to land wherever the reps are calling from.</p></li>
+    <li><b>Scroll the test page once on an iPhone</b>
+      <p><a href="https://cutsbyg.github.io/natty-previews/show/snpz-video-site-test-0930/">The test page</a> (the phones show drawn stand-ins here; real video goes in once the footage is cleared).</p></li>
+    <li><b>Give the go-ahead, and pick a time after calls</b>
+      <p>Launching is one command, and so is putting the old page back.</p></li>
+  </ol>
+  <p class="foot">When one is done, tell William&rsquo;s Claude. It keeps the list (section 10 of docs/WEBSITE-SOCIAL.md in the hub repo).</p>
+</main>
+</body>
+</html>
