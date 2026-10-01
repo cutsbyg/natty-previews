@@ -61,8 +61,11 @@
     filter:blur(16px) saturate(1.3);will-change:opacity}
   @media (max-width:860px){ .glow{inset:-22px;border-width:26px;filter:blur(12px) saturate(1.3)} }
 
-  /* ---------- top bar ---------- */
-  .tbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
+  /* ---------- top bar ----------
+     Sticks at the very top and grows under the status bar by the safe-area inset: newer iPhone Safari draws the
+     page under the status bar, and a bar stuck BELOW it (top:env(...)) left a strip of page scrolling past the
+     clock (William, 10-01: "this gap where the header bar is ... and the top of the screen"). */
+  .tbar{position:sticky;top:0;padding-top:env(safe-area-inset-top,0px);z-index:50;
     background:#fbf4eacc;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #11111114}
   .tbar .in{max-width:1400px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:20px}
   .tbar .mark{height:32px;width:auto;display:block}
@@ -249,7 +252,7 @@
      scrolling thing on the mobile website... make it free range to scroll, don't make it jump to
      each section"). The flick engine below is desktop-only. The padding is for the Pricing link:
      the sticky bar must not cover the section it jumps to. */
-  @media (max-width:999px){ html{scroll-padding-top:56px} }
+  @media (max-width:999px){ html{scroll-padding-top:calc(56px + env(safe-area-inset-top,0px))} }
 
   /* ---------- desktop: full screen, zigzag left and right, the words alongside ---------- */
   @media (min-width:1000px){
@@ -418,7 +421,7 @@
     /* a fixed slight turn, as the old hero phone had: no data-spin, so the tilt engine leaves it alone */
     .addon .iphone{transform:rotateY(14deg) rotateX(3deg) rotateZ(-2deg)}
     /* a jump here (the bar's Receptionist, every other page's Try the AI) lands below the sticky bar: without
-       it the Add-on pill sat 14px under the bar (browser test, 10-01). Phones get the same from scroll-padding-top. */
+       it the section's pill sat 14px under the bar (browser test, 10-01). Phones get the same from scroll-padding-top. */
     #receptionist{scroll-margin-top:56px}
   }
 
@@ -437,7 +440,6 @@
 </style>
 </head>
 <body>
-
 <script>
 /* TEST COPY: nothing leaves this page. The free-video box shows its done state; Call me says it is off here. */
 window.fetch = function (url) {
@@ -644,7 +646,9 @@ window.fetch = function (url) {
   </section>
 
   <!-- THE RECEPTIONIST, NOW AN ADD-ON (William, 09-30: "we still want our AI receptionist to be on the
-       website, but just more of like an add-on"). The Call me box below is the 09-28 box WORD FOR WORD:
+       website, but just more of like an add-on"); the pill reads "Our other services", not "Add-on" (William, 10-01:
+       "it should say something like check out our other services ... And then it can talk about the AI receptionist").
+       The Call me box below is the 09-28 box WORD FOR WORD:
        no price, no account, no email, no texting consent: the tap is the consent for ONE call, and the
        grey line under the button says so in the exact words try-agent.js CALL_ONLY_TEXT stores. Below
        #account, so the scroll here is free on every screen. -->
@@ -666,7 +670,7 @@ window.fetch = function (url) {
         <div class="island"></div><div class="home"></div>
       </div>
       <div class="copy">
-        <p class="tagpill">Add-on</p>
+        <p class="tagpill">Our other services</p>
         <h2><span class="grad">It answers the phone too.</span></h2>
         <p class="sub">Our AI receptionist picks up while you cut and books straight into Square.</p>
         <h3>Have our AI call you.</h3>
