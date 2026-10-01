@@ -628,7 +628,7 @@ window.fetch = function (url) {
           <label>Your shop&rsquo;s name<input type="text" name="shop" id="v-shop" autocomplete="organization" maxlength="120" required placeholder="Fades on Main, Hershey"></label>
           <label><span>Your Instagram <span class="opt">(optional)</span></span><input type="text" name="instagram" id="v-ig" autocapitalize="off" autocomplete="off" spellcheck="false" maxlength="120" placeholder="@yourshop"></label>
           <button type="submit" id="v-go">Get my free video</button>
-          <p class="fine-line">Tapping Get my free video lets snpz (Reisinger Media LLC) text this number about setting up your free video. Msg &amp; data rates may apply. Reply STOP to opt out.</p>
+          <p class="fine-line">Tapping Get my free video lets snpz (Reisinger Media LLC) text this number about setting up your free video. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase.</p>
           <p class="msg" id="v-msg" role="status" aria-live="polite"></p>
         </form>
         <div class="card done" id="v-done" role="status" hidden><h3>Got it.</h3><p>We&rsquo;ll text you to set up your first shoot.</p></div>
@@ -1014,7 +1014,7 @@ window.fetch = function (url) {
   /* ---------- Get my free video (server/routes-video-lead.js, API.md 67) ----------
      Three boxes, one promise: a person from snpz texts to set up the first shoot. The line under the
      button is the consent and goes back word for word; the server refuses any other sentence. */
-  var VIDEO_ONLY = 'Tapping Get my free video lets snpz (Reisinger Media LLC) text this number about setting up your free video. Msg & data rates may apply. Reply STOP to opt out.';
+  var VIDEO_ONLY = 'Tapping Get my free video lets snpz (Reisinger Media LLC) text this number about setting up your free video. Message frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase.';
   var vform = document.getElementById('videoform'), vmsg = document.getElementById('v-msg'), vgo = document.getElementById('v-go');
   function vsay(text, bad){ vmsg.textContent = text; vmsg.className = 'msg ' + (bad ? 'bad' : 'ok'); }
   vform.addEventListener('submit', function(ev){
