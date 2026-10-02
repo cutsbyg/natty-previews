@@ -149,14 +149,6 @@
   .notif .sq i{width:calc(var(--pw)*.05);height:calc(var(--pw)*.05);border-radius:50%;background:#2ecc71;display:grid;place-items:center;font-style:normal;color:#04351a;font-size:calc(var(--pw)*.036);font-weight:900}
   .lock .older{width:92%;margin-top:calc(var(--pw)*.03);height:calc(var(--pw)*.12);border-radius:calc(var(--pw)*.06);background:#ffffff14;border:1px solid #ffffff1a}
 
-  /* ---------- the Square lockup ---------- */
-  .lockup{display:inline-flex;align-items:center;gap:12px}
-  .lockup .pillmark{height:26px;width:auto;display:block}
-  .lockup .plus{width:16px;height:16px;position:relative;flex:none;opacity:.7}
-  .lockup .plus::before,.lockup .plus::after{content:"";position:absolute;background:#111;border-radius:2px}
-  .lockup .plus::before{left:50%;top:0;width:2.6px;height:100%;transform:translateX(-50%)}
-  .lockup .plus::after{top:50%;left:0;height:2.6px;width:100%;transform:translateY(-50%)}
-  .lockup .sqlogo{height:22px;width:auto;display:block}
 
   /* ---------- type ----------
      Apple's headline move: the gradient is three times wider than the words and half of it is ink.
@@ -499,7 +491,6 @@ document.addEventListener('click', function (e) {
       <p class="eyebrow" data-par="0.05">Built by a barber, for barbers <span class="early">Early access</span></p>
       <h1 data-par="0.12">Your next client is scrolling right now.</h1>
       <p class="lede" data-par="0.2">Pick a video that&rsquo;s already working for other barbers. Film it in a few clips. Get it back edited for you, ready to post.</p>
-      <p style="margin:0" data-par="0.26"><span class="lockup"><img class="pillmark" src="img/snpz-pill-400.webp" width="400" height="209" alt="snpz"><span class="plus"></span><img class="sqlogo" src="img/logo-square-black.svg" width="88" height="22" alt="Square"></span></p>
     </div>
     <!-- the finished video, playing: the whole pitch on one screen (desktop only, see the css) -->
     <div class="iphone" aria-hidden="true">
@@ -1065,7 +1056,7 @@ document.addEventListener('click', function (e) {
     (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function(){ setTimeout(land, 80); });
   })();
 
-  /* ---------- Get my free video (server/routes-video-lead.js, API.md 67) ----------
+  /* ---------- Get my free video (server/routes-video-lead.js, API.md 68) ----------
      Three boxes, one promise: a person from snpz texts to set up the first shoot. The line under the
      button is the consent and goes back word for word; the server refuses any other sentence. */
   var VIDEO_ONLY = 'Tapping Get my free video lets snpz (Reisinger Media LLC) text this number about setting up your free video. Message frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase.';
@@ -1226,10 +1217,10 @@ document.addEventListener('click', function (e) {
 })();
 </script>
 
-<button type="button" id="hl-try" style="position:fixed;left:50%;bottom:calc(58px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:90;background:#ffc629;color:#111;border:0;font:800 13px/1 Outfit,system-ui,sans-serif;padding:11px 16px;border-radius:99px;box-shadow:0 8px 24px rgba(0,0,0,.25);white-space:nowrap;cursor:pointer">Try another headline &#9656; 1 of 5</button>
+<button type="button" id="hl-try" style="position:fixed;left:50%;bottom:calc(58px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:90;background:#ffc629;color:#111;border:0;font:800 13px/1 Outfit,system-ui,sans-serif;padding:11px 16px;border-radius:99px;box-shadow:0 8px 24px rgba(0,0,0,.25);white-space:nowrap;cursor:pointer">Try another headline &#9656; 1 of 6</button>
 <script>
 (function () {
-  var H = ["Videos as good as your cuts.", "Post like the top barbers do.", "Film the cut. We\u2019ll make it a video.", "Copy what\u2019s working. Make it yours.", "Your next client is scrolling right now."], i = 0, b = document.getElementById('hl-try'), h = document.querySelector('header.top h1');
+  var H = ["Post every week without the hassle.", "Never skip a week of posting.", "Consistent posting, finally made easy.", "Skipped posts cost you clients.", "Your feed, posted every week.", "Videos as good as your cuts."], i = 0, b = document.getElementById('hl-try'), h = document.querySelector('header.top h1');
   if (!h) return;
   h.textContent = H[0];
   b.addEventListener('click', function () {
