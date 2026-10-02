@@ -168,6 +168,7 @@
   .eyebrow{font-weight:800;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#7a5b00;margin:0 0 16px}
   h1{color:#000;font-weight:900;letter-spacing:-.045em;line-height:.93;font-size:clamp(38px,7vw,76px);margin:0 auto 18px;max-width:15ch;text-wrap:balance}
   .lede{font-size:clamp(16px,2.1vw,20px);color:var(--muted);max-width:44ch;margin:0 auto 24px;font-weight:500}
+  header.top h1{margin-bottom:6px}   /* "(with AI)" sits right under the headline (William, 10-02: "a little bit higher") */
   .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:26px 0 0}
   .btn-a{background:var(--ink);color:#fff;font-weight:800;font-size:16px;text-decoration:none;padding:15px 28px;border-radius:99px;display:inline-block;letter-spacing:-.01em;border:2px solid var(--ink)}
   .btn-a:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
@@ -491,7 +492,7 @@ document.addEventListener('click', function (e) {
       <p class="eyebrow" data-par="0.05">Built by a barber, for barbers <span class="early">Early access</span></p>
       <h1 data-par="0.12">Your next client is scrolling right now.</h1>
       <!-- William, 10-02: the paragraph under the headline is just "(with AI)" (he lifted his 09-30 "never say AI edits") -->
-      <p class="lede" data-par="0.2">(with AI)</p>
+      <p class="lede" data-par="0.12">(with AI)</p>   <!-- rides with the headline, so the two never drift apart -->
     </div>
     <!-- the finished video, playing: the whole pitch on one screen (desktop only, see the css) -->
     <div class="iphone" aria-hidden="true">
