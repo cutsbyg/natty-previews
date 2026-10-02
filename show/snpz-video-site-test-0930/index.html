@@ -372,6 +372,8 @@
   .make{margin-top:calc(var(--pw)*.05)}
   .wbtn{background:#fff}
   .ybtn,.wbtn{margin-top:auto}
+  .igbtn{display:flex;align-items:center;justify-content:center;gap:calc(var(--pw)*.03)}
+  .igbtn svg{width:calc(var(--pw)*.068);height:calc(var(--pw)*.068);flex:none}
   .orig{font-size:calc(var(--pw)*.042);color:#b9bec7;text-align:center;margin-top:calc(var(--pw)*.03);font-weight:600}
   /* the post screen (SCREENS.md 9) and the template grid share these */
   .ui{position:absolute;inset:0;z-index:3;padding:calc(var(--pw)*.155) 7% calc(var(--pw)*.095);display:flex;flex-direction:column;
@@ -639,7 +641,8 @@ document.addEventListener('click', function (e) {
             <div class="plat">Location<small>Hershey, PA</small></div>
             <div class="plat">Collaborator<small>@yourbarber</small></div>
           </div>
-          <div class="ybtn">Post</div>
+          <!-- one button that says where it goes (William and the group, 10-01: "a post to Instagram button") -->
+          <div class="ybtn igbtn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.4" cy="6.6" r="1.4" fill="currentColor"/></svg>Post to Instagram</div>
         </div>
         <div class="sheen"></div><div class="vig"></div>
       </div>
@@ -1220,6 +1223,20 @@ document.addEventListener('click', function (e) {
     });
   }
   if (document.readyState === 'complete') go(); else window.addEventListener('load', go);
+})();
+</script>
+
+<button type="button" id="hl-try" style="position:fixed;left:50%;bottom:calc(58px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:90;background:#ffc629;color:#111;border:0;font:800 13px/1 Outfit,system-ui,sans-serif;padding:11px 16px;border-radius:99px;box-shadow:0 8px 24px rgba(0,0,0,.25);white-space:nowrap;cursor:pointer">Try another headline &#9656; 1 of 5</button>
+<script>
+(function () {
+  var H = ["Videos as good as your cuts.", "Post like the top barbers do.", "Film the cut. We\u2019ll make it a video.", "Copy what\u2019s working. Make it yours.", "Your next client is scrolling right now."], i = 0, b = document.getElementById('hl-try'), h = document.querySelector('header.top h1');
+  if (!h) return;
+  h.textContent = H[0];
+  b.addEventListener('click', function () {
+    i = (i + 1) % H.length; h.textContent = H[i];
+    b.innerHTML = 'Try another headline &#9656; ' + (i + 1) + ' of ' + H.length;
+    h.scrollIntoView({behavior: 'smooth', block: 'center'});
+  });
 })();
 </script>
 
