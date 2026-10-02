@@ -268,6 +268,7 @@
     .stage{min-height:100vh;padding-block:64px 8px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0;
       max-width:1400px;margin:0 auto;padding-left:5vw;padding-right:5vw;perspective:1800px}
     .stage .iphone{justify-self:center}
+    .stage .duo{justify-self:center}
     .stage .cap{text-align:left;max-width:min(38vw,600px);justify-self:start}
     .stage:nth-of-type(even) .iphone{order:2}
     .stage:nth-of-type(even) .cap{order:1;justify-self:end;text-align:right}
@@ -372,27 +373,9 @@
   .wbtn{background:#fff}
   .ybtn,.wbtn{margin-top:auto}
   .orig{font-size:calc(var(--pw)*.042);color:#b9bec7;text-align:center;margin-top:calc(var(--pw)*.03);font-weight:600}
-  /* Film it: the shot card (SCREENS.md 4). Post it: the post screen (SCREENS.md 8). */
+  /* the post screen (SCREENS.md 9) and the template grid share these */
   .ui{position:absolute;inset:0;z-index:3;padding:calc(var(--pw)*.155) 7% calc(var(--pw)*.095);display:flex;flex-direction:column;
     gap:calc(var(--pw)*.038);background:#0c0e13;color:#fff}
-  .hdr{display:flex;justify-content:space-between;font-size:calc(var(--pw)*.047);color:#aeb4bf;font-weight:700}
-  .hdr b{color:#fff}
-  .segs{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--pw)*.018)}
-  .segs i{height:3px;border-radius:2px;background:#ffffff2a} .segs i.on{background:var(--yellow)}
-  .diag{background:#161a22;border:1px solid #ffffff14;border-radius:calc(var(--pw)*.06);padding:calc(var(--pw)*.03) calc(var(--pw)*.03) calc(var(--pw)*.025)}
-  .diag svg{display:block;width:100%;height:auto;font-family:var(--font)}
-  .dcap{font-size:calc(var(--pw)*.046);font-weight:800;text-align:center;margin-top:calc(var(--pw)*.012)}
-  .secs{display:flex;align-items:baseline;gap:calc(var(--pw)*.02)}
-  .secs b{font-size:calc(var(--pw)*.12);font-weight:900;color:var(--yellow);line-height:.9}
-  .secs span{font-weight:700;color:#c8cdd5;font-size:calc(var(--pw)*.05)}
-  .rws{display:grid;gap:calc(var(--pw)*.026)}
-  .rw{display:grid;grid-template-columns:calc(var(--pw)*.2) minmax(0,1fr);gap:calc(var(--pw)*.02);align-items:baseline;font-size:calc(var(--pw)*.049);font-weight:700}
-  .rw small{color:#8f97a3;font-weight:800;font-size:calc(var(--pw)*.037);text-transform:uppercase;letter-spacing:.07em}
-  .tog{display:flex;justify-content:space-between;align-items:center;font-size:calc(var(--pw)*.047);font-weight:700;color:#dfe3ea;
-    padding-top:calc(var(--pw)*.03);border-top:1px solid #ffffff17}
-  .sw{width:calc(var(--pw)*.14);height:calc(var(--pw)*.08);border-radius:99px;background:#ffffff2e;position:relative;flex:none}
-  .sw::after{content:"";position:absolute;top:calc(var(--pw)*.01);left:calc(var(--pw)*.01);width:calc(var(--pw)*.06);height:calc(var(--pw)*.06);border-radius:50%;background:#fff}
-  .sw.on{background:var(--cyan)} .sw.on::after{left:auto;right:calc(var(--pw)*.01)}
   .ph{display:flex;align-items:center;gap:calc(var(--pw)*.03);font-weight:800;font-size:calc(var(--pw)*.062)}
   .ph span{color:#8f97a3;font-size:calc(var(--pw)*.08);line-height:.8}
   .comp{display:grid;grid-template-columns:34% minmax(0,1fr);gap:calc(var(--pw)*.035);align-items:start}
@@ -403,22 +386,26 @@
   .plats{display:grid;border-top:1px solid #ffffff17}
   .plat{display:flex;justify-content:space-between;align-items:center;padding:calc(var(--pw)*.021) 0;border-bottom:1px solid #ffffff17;font-size:calc(var(--pw)*.05);font-weight:700}
   .plat small{color:#c8cdd5;font-weight:600;font-size:calc(var(--pw)*.046)}
-  /* Get the app: the app's sign-in screen (snpz-app SCREENS.md 1), then the button and, on a computer, the scan code */
-  .signin{justify-content:center;text-align:center;gap:calc(var(--pw)*.05)}
-  .signin .spill{width:44%;height:auto;margin:0 auto calc(var(--pw)*.03)}
-  .shd{font-weight:900;font-size:calc(var(--pw)*.078);letter-spacing:-.02em;line-height:1.05}
-  .sfield{background:#161a22;border:1px solid #ffffff24;border-radius:calc(var(--pw)*.035);padding:calc(var(--pw)*.042);text-align:left;
-    color:#8f97a3;font-size:calc(var(--pw)*.05);font-weight:600}
-  .signin .ybtn{margin-top:0}
-  .snote{font-size:calc(var(--pw)*.042);color:#9aa1ad;font-weight:600;line-height:1.35}
-  .getapp{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:24px}
-  .qr{display:none}
+  /* Pick a template: two phones side by side, the grid of templates turned a little behind the feed (William and the
+     group, 10-01). The pair turns as one in the tilt engine (data-spin on .duo); the grid keeps its own fixed angle. */
+  .duo{position:relative;display:flex;align-items:center;justify-content:center;perspective:1600px;flex:none}
+  .duo .gridph{transform:rotateY(24deg) rotateZ(-3deg) scale(.9);margin-right:calc(var(--pw)*-.34);z-index:0}
+  .duo .feedph{z-index:1}
+  @media (max-width:999px){ .duo{--pw:min(212px,56vw)} }
   @media (min-width:1000px){
-    .getapp{justify-content:flex-start}
-    .qr{display:flex;align-items:center;gap:12px}
-    .qrcode{width:99px;height:99px;border-radius:6px;box-shadow:0 0 0 1px #11111118}   /* 33 squares x 3px: crisp, so a camera reads it */
-    .qr span{font-size:14px;line-height:1.3;color:var(--muted);font-weight:700;max-width:13ch}
+    .duo .gridph{margin-right:calc(var(--pw)*-.26)}   /* more of the grid shows where there is room */
+    #pick .cap h2{margin-bottom:28px}                 /* the p of "template." hangs below the line */
   }
+  .tgrid{gap:calc(var(--pw)*.03);padding-bottom:0}
+  .thd{font-weight:900;font-size:calc(var(--pw)*.072);letter-spacing:-.02em}
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--pw)*.025)}
+  .tile{position:relative;aspect-ratio:9/16;border-radius:calc(var(--pw)*.03);overflow:hidden;background:#161a22}
+  .tile img.still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0;transition:opacity .35s}
+  .tile img.still.on{opacity:1}
+  .tile .hk{position:absolute;left:6%;right:6%;top:18%;z-index:2;font-style:normal;text-align:center;font-weight:900;
+    font-size:calc(var(--pw)*.045);line-height:1;color:var(--yellow);text-shadow:0 1px 0 rgba(0,0,0,.5),0 3px 8px rgba(0,0,0,.6)}
+  .tile span{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:calc(var(--pw)*.09) 7% calc(var(--pw)*.03);color:#fff;
+    font-weight:800;font-size:calc(var(--pw)*.04);line-height:1.1;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.8))}
   /* snpz edits it: the lock screen above, the video lands where the booking used to */
   .notif .sq.play i{background:var(--yellow);color:#111}
 
@@ -497,7 +484,6 @@ document.addEventListener('click', function (e) {
     <nav>
       <a href="#pick" class="hide-sm">How it works</a>
       <a href="#receptionist" class="hide-sm">Receptionist</a>
-      <a href="#app" class="hide-sm">Get the app</a>
       <a href="/app" class="hide-sm">Sign in</a>
       <a class="callbtn" href="#account">Get a free video</a>
     </nav>
@@ -532,9 +518,33 @@ document.addEventListener('click', function (e) {
 
   <!-- THE APP, ONE STEP A SECTION (William, 09-30: "the phones will showcase more of like what our app is
        going to look like"; docs/WEBSITE-SOCIAL.md). Odd sections put the phone left on a desktop, even ones
-       right: the zigzag he kept ("I kind of like the zigzag look for computer"). Phones stack and scroll free. -->
+       right: the zigzag he kept ("I kind of like the zigzag look for computer"). Phones stack and scroll free.
+       Three steps since 10-01 evening (William and the group: "less phones"): Pick a template (two phones), snpz
+       edits it, Post it. Film it and Get the app are gone; the app comes back once there are accounts. -->
   <section class="stage" id="pick">
-    <div class="iphone" data-spin="1">
+    <div class="duo" data-spin="1">
+      <!-- the grid of templates, turned a little behind the feed: six of the seven live formats, the first four
+           showing a still of their clip once footage is cleared (js/reels.js), the last row cut off by the screen -->
+      <div class="iphone gridph" aria-hidden="true">
+        <span class="btn act"></span><span class="btn vup"></span><span class="btn vdn"></span><span class="btn pwr"></span>
+        <div class="screen">
+          <div class="status"><span>9:41</span><span class="ic"><span class="bars"><i></i><i></i><i></i><i></i></span><span class="batt"></span></span></div>
+          <div class="ui tgrid">
+            <div class="thd">Templates</div>
+            <div class="tiles">
+            <div class="tile"><div class="footage cool"><i class="cape"></i><i class="head"></i><i class="hair"></i></div><img class="still" data-reel="feed-1" alt=""><i class="hk">DID I SAVE HIM?</i><span>Rescue transformation</span></div>
+            <div class="tile"><div class="footage"><i class="cape"></i><i class="head"></i><i class="hair"></i></div><img class="still" data-reel="feed-2" alt=""><i class="hk">WHEN WAS YOUR LAST CUT?</i><span>Consultation to reveal</span></div>
+            <div class="tile"><div class="footage"><i class="cape"></i><i class="head"></i><i class="hair"></i></div><img class="still" data-reel="feed-3" alt=""><i class="hk">&ldquo;JUST CLEAN IT UP&rdquo;</i><span>Quote to reveal loop</span></div>
+            <div class="tile"><div class="footage cool"><i class="cape"></i><i class="head"></i><i class="hair"></i></div><img class="still" data-reel="hero" alt=""><i class="hk">HE ASKED FOR A TAPER</i><span>He asked for&hellip;</span></div>
+            <div class="tile"><div class="footage cool"><i class="cape"></i><i class="head"></i><i class="hair"></i></div><i class="hk">SKIN FADE</i><span>ASMR fade</span></div>
+            <div class="tile"><div class="footage"><i class="cape"></i><i class="head"></i><i class="hair"></i></div><i class="hk">WHAT DO YOU HATE ABOUT YOUR HAIR?</i><span>Open on a question</span></div>
+            </div>
+          </div>
+          <div class="sheen"></div><div class="vig"></div>
+        </div>
+        <div class="island"></div><div class="home"></div>
+      </div>
+      <div class="iphone feedph">
       <span class="btn act"></span><span class="btn vup"></span><span class="btn vdn"></span><span class="btn pwr"></span>
       <div class="screen">
         <div class="status"><span>9:41</span><span class="ic"><span class="bars"><i></i><i></i><i></i><i></i></span><span class="batt"></span></span></div>
@@ -584,49 +594,10 @@ document.addEventListener('click', function (e) {
         <div class="pager"><i class="on"></i><i></i><i></i></div>
         <div class="sheen"></div><div class="vig"></div>
       </div>
-      <div class="island"></div><div class="home"></div>
-    </div>
-    <div class="cap"><h2 data-par="-0.1"><span class="grad">Pick one.</span></h2><p data-par="-0.16">Scroll videos that are already working for other barbers. Tap the one you want to make.</p></div>
-  </section>
-
-  <section class="stage" id="film">
-    <div class="iphone" data-spin="-1">
-      <span class="btn act"></span><span class="btn vup"></span><span class="btn vdn"></span><span class="btn pwr"></span>
-      <div class="screen">
-        <div class="status"><span>10:15</span><span class="ic"><span class="bars"><i></i><i></i><i></i><i></i></span><span class="batt"></span></span></div>
-        <div class="ui">
-          <div class="hdr"><b>The Rescue</b><span>Shot 1 of 3</span></div>
-          <div class="segs"><i class="on"></i><i></i><i></i></div>
-          <div class="diag">
-            <svg viewBox="0 0 200 124" aria-hidden="true">
-              <rect x="30" y="4" width="140" height="7" rx="3.5" fill="#5bc8e8" fill-opacity=".55"/>
-              <text x="100" y="22" font-size="8" font-weight="800" fill="#8f97a3" text-anchor="middle" letter-spacing="1.5">MIRROR</text>
-              <circle cx="152" cy="40" r="9" fill="#4b5262"/>
-              <text x="152" y="59" font-size="7.5" font-weight="800" fill="#8f97a3" text-anchor="middle" letter-spacing="1">YOU</text>
-              <rect x="62" y="40" width="10" height="38" rx="5" fill="#2f3440"/>
-              <rect x="128" y="40" width="10" height="38" rx="5" fill="#2f3440"/>
-              <rect x="70" y="34" width="60" height="52" rx="14" fill="#262a33" stroke="#3a3f4b"/>
-              <circle cx="100" cy="50" r="13" fill="#9a7458"/>
-              <path d="M87 50a13 13 0 0 1 26 0z" fill="#1a1310"/>
-              <path d="M100 98 L72 46 L128 46 Z" fill="#ffc629" fill-opacity=".1" stroke="#ffc629" stroke-opacity=".75" stroke-dasharray="3 3"/>
-              <rect x="92" y="98" width="16" height="23" rx="3.5" fill="#ffc629"/>
-              <rect x="97" y="100.5" width="6" height="1.6" rx=".8" fill="#111"/>
-            </svg>
-            <div class="dcap">In front of the chair, chest high</div>
-          </div>
-          <div class="secs"><b>5</b><span>seconds</span></div>
-          <div class="rws">
-            <div class="rw"><small>Say</small><span>&ldquo;What are we fixing today?&rdquo;</span></div>
-            <div class="rw"><small>Client</small><span>Points at the problem</span></div>
-          </div>
-          <div class="tog"><span>Hair only, no face</span><span class="sw"></span></div>
-          <div class="wbtn">Next shot</div>
-        </div>
-        <div class="sheen"></div><div class="vig"></div>
+        <div class="island"></div><div class="home"></div>
       </div>
-      <div class="island"></div><div class="home"></div>
     </div>
-    <div class="cap"><h2 data-par="-0.1"><span class="grad">Film it.</span></h2><p data-par="-0.16">A card for every shot: where your phone goes, how long to film, and what to say.</p></div>
+    <div class="cap"><h2 data-par="-0.1"><span class="grad">Pick a template.</span></h2><p data-par="-0.16">Every template is a video already working for other barbers. Scroll through them or see them all, and tap the one you want to make.</p></div>
   </section>
 
   <section class="stage" id="edit">
@@ -677,32 +648,6 @@ document.addEventListener('click', function (e) {
     <div class="cap"><h2 data-par="-0.1"><span class="grad">Post it.</span></h2><p data-par="-0.16">One tap and it&rsquo;s on your Instagram. The caption tells them where to book.</p></div>
   </section>
 
-  <!-- GET THE APP (William, 10-01: "we're going to need to say something about like getting our app ... I want it to be
-       on the website ready for launch"). The snpz app is a web app first (snpz-app PLAN.md A3, app.snpz.ai at Step 12):
-       nothing to download. The phone is its sign-in screen as SCREENS.md 1 has it (an email, one button, a link, no
-       password). Every data-app link and the scan code's data-qr are the one address server/selfcheck-site.js holds as
-       APP_URL; scripts/site-social.ps1 -Launch refuses while that address does not answer. -->
-  <section class="stage" id="app">
-    <div class="iphone" data-spin="1">
-      <span class="btn act"></span><span class="btn vup"></span><span class="btn vdn"></span><span class="btn pwr"></span>
-      <div class="screen">
-        <div class="status"><span>9:41</span><span class="ic"><span class="bars"><i></i><i></i><i></i><i></i></span><span class="batt"></span></span></div>
-        <div class="ui signin">
-          <img class="spill" src="img/snpz-pill-400.webp" width="400" height="209" alt="">
-          <div class="shd">Sign in to snpz</div>
-          <div class="sfield">you@yourshop.com</div>
-          <div class="ybtn">Email me a link</div>
-          <div class="snote">No password. Tap the link in your email and you&rsquo;re in.</div>
-        </div>
-        <div class="sheen"></div><div class="vig"></div>
-      </div>
-      <div class="island"></div><div class="home"></div>
-    </div>
-    <div class="cap"><h2 data-par="-0.1"><span class="grad">Get the app.</span></h2><p data-par="-0.16">snpz runs on your phone, nothing to download. Put in your email, tap the link, and pick your first video.</p>
-      <div class="getapp" data-par="-0.16"><a class="btn-a" data-app href="https://app.snpz.ai/">Open the app</a>
-        <div class="qr"><svg class="qrcode" data-qr="https://app.snpz.ai/" viewBox="0 0 33 33" role="img" aria-label="Scan to open the snpz app on your phone" shape-rendering="crispEdges"><rect width="33" height="33" fill="#fff"/><path fill="#111" d="M4 4h7v1h-7zM12 4h1v1h-1zM14 4h1v1h-1zM17 4h4v1h-4zM22 4h7v1h-7zM4 5h1v1h-1zM10 5h1v1h-1zM15 5h1v1h-1zM17 5h2v1h-2zM22 5h1v1h-1zM28 5h1v1h-1zM4 6h1v1h-1zM6 6h3v1h-3zM10 6h1v1h-1zM15 6h1v1h-1zM18 6h1v1h-1zM22 6h1v1h-1zM24 6h3v1h-3zM28 6h1v1h-1zM4 7h1v1h-1zM6 7h3v1h-3zM10 7h1v1h-1zM12 7h2v1h-2zM16 7h3v1h-3zM20 7h1v1h-1zM22 7h1v1h-1zM24 7h3v1h-3zM28 7h1v1h-1zM4 8h1v1h-1zM6 8h3v1h-3zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM18 8h2v1h-2zM22 8h1v1h-1zM24 8h3v1h-3zM28 8h1v1h-1zM4 9h1v1h-1zM10 9h1v1h-1zM12 9h1v1h-1zM17 9h2v1h-2zM22 9h1v1h-1zM28 9h1v1h-1zM4 10h7v1h-7zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h7v1h-7zM12 11h2v1h-2zM16 11h1v1h-1zM18 11h1v1h-1zM20 11h1v1h-1zM4 12h1v1h-1zM8 12h1v1h-1zM10 12h4v1h-4zM18 12h8v1h-8zM28 12h1v1h-1zM8 13h2v1h-2zM12 13h1v1h-1zM14 13h1v1h-1zM18 13h4v1h-4zM24 13h2v1h-2zM27 13h1v1h-1zM6 14h1v1h-1zM8 14h1v1h-1zM10 14h2v1h-2zM14 14h8v1h-8zM23 14h1v1h-1zM25 14h2v1h-2zM14 15h1v1h-1zM18 15h4v1h-4zM26 15h2v1h-2zM7 16h5v1h-5zM13 16h1v1h-1zM15 16h1v1h-1zM17 16h2v1h-2zM20 16h4v1h-4zM25 16h4v1h-4zM4 17h2v1h-2zM7 17h1v1h-1zM12 17h2v1h-2zM16 17h1v1h-1zM18 17h4v1h-4zM24 17h1v1h-1zM27 17h1v1h-1zM6 18h1v1h-1zM10 18h1v1h-1zM12 18h1v1h-1zM15 18h7v1h-7zM23 18h4v1h-4zM6 19h1v1h-1zM8 19h2v1h-2zM12 19h4v1h-4zM17 19h1v1h-1zM21 19h1v1h-1zM23 19h2v1h-2zM26 19h2v1h-2zM4 20h2v1h-2zM7 20h1v1h-1zM9 20h4v1h-4zM14 20h1v1h-1zM16 20h2v1h-2zM19 20h8v1h-8zM12 21h2v1h-2zM17 21h2v1h-2zM20 21h1v1h-1zM24 21h1v1h-1zM4 22h7v1h-7zM12 22h1v1h-1zM20 22h1v1h-1zM22 22h1v1h-1zM24 22h1v1h-1zM4 23h1v1h-1zM10 23h1v1h-1zM16 23h1v1h-1zM18 23h1v1h-1zM20 23h1v1h-1zM24 23h4v1h-4zM4 24h1v1h-1zM6 24h3v1h-3zM10 24h1v1h-1zM12 24h1v1h-1zM14 24h2v1h-2zM17 24h2v1h-2zM20 24h9v1h-9zM4 25h1v1h-1zM6 25h3v1h-3zM10 25h1v1h-1zM13 25h1v1h-1zM16 25h1v1h-1zM19 25h2v1h-2zM22 25h2v1h-2zM26 25h3v1h-3zM4 26h1v1h-1zM6 26h3v1h-3zM10 26h1v1h-1zM13 26h1v1h-1zM15 26h8v1h-8zM25 26h1v1h-1zM27 26h1v1h-1zM4 27h1v1h-1zM10 27h1v1h-1zM15 27h1v1h-1zM17 27h1v1h-1zM22 27h6v1h-6zM4 28h7v1h-7zM12 28h1v1h-1zM14 28h1v1h-1zM16 28h2v1h-2zM19 28h1v1h-1zM26 28h3v1h-3z"/></svg><span>Or scan it with your phone&rsquo;s camera</span></div></div></div>
-  </section>
-
   <!-- THE MAIN BOX (docs/WEBSITE-SOCIAL.md D2): the first video free, set up by a person. Mobile, shop,
        Instagram if they have one; no price, no checkbox. The grey line under the button is the consent
        for a person to text about the shoot, word for word routes-video-lead.js VIDEO_CONSENT_TEXT, and
@@ -712,7 +657,7 @@ document.addEventListener('click', function (e) {
       <div>
         <h2 data-par="-0.08"><span class="grad">Get your first video free.</span></h2>
         <p class="sub" data-par="-0.12">Tell us your shop. We&rsquo;ll set up your first shoot with you and send it back edited, ready to post.</p>
-        <p class="alt" data-par="-0.14">Already a customer? <a data-app href="https://app.snpz.ai/">Open the app</a></p>
+        <p class="alt" data-par="-0.14">Already a customer? <a href="/app">Sign in</a></p>
       </div>
       <div>
         <form class="card f" id="videoform" novalidate>
@@ -780,7 +725,6 @@ document.addEventListener('click', function (e) {
         <a href="/privacy#cookies">Cookies</a>
         <a href="/privacy#texting">Texting</a>
         <a href="/start">How the receptionist works</a>
-        <a data-app href="https://app.snpz.ai/">The snpz app</a>
         <a href="/app">Sign in</a>
       </div>
       <p style="margin:10px 0 0;font-weight:700">snpz &middot; Mount Joy, PA</p>
@@ -814,7 +758,7 @@ document.addEventListener('click', function (e) {
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var blobs  = [].slice.call(document.querySelectorAll('.blob'));
-  var phones = [].slice.call(document.querySelectorAll('.iphone[data-spin]'));
+  var phones = [].slice.call(document.querySelectorAll('.iphone[data-spin], .duo[data-spin]'));   // the template pair turns as one
   var pars   = [].slice.call(document.querySelectorAll('[data-par]'));
   var grads  = [].slice.call(document.querySelectorAll('.grad'));
   var glow   = document.getElementById('glow');
@@ -947,8 +891,8 @@ document.addEventListener('click', function (e) {
      trap: a burst of small deltas is treated as ONE flick, and nothing counts for a moment after
      landing, so the tail of the gesture cannot fire a second jump. Reduced motion: none of this. */
   if (!reduce){
-    var snaps = [document.querySelector('header.top'), document.getElementById('pick'), document.getElementById('film'),
-                 landed, document.getElementById('post'), document.getElementById('app'), document.getElementById('account')].filter(Boolean);
+    var snaps = [document.querySelector('header.top'), document.getElementById('pick'),
+                 landed, document.getElementById('post'), document.getElementById('account')].filter(Boolean);
     var anim = null, lockUntil = 0, acc = 0, accAt = 0, ty = null, lastAt = 0, armed = true;
     function tops(){ return snaps.map(function(s, i){ return i === 0 ? 0 : Math.round(s.getBoundingClientRect().top + window.scrollY); }); }
     function nearest(){ var y = window.scrollY, T = tops(), best = 0;
@@ -1141,9 +1085,10 @@ document.addEventListener('click', function (e) {
 /* marketing/js/reels.js — the front page's phones play real video (William, 10-01: "we want it, the phones to like
    play actual videos, like they're swiping through"). No framework, no build.
 
-   The feed phone (#pick) is four format cards that swipe themselves every few seconds, like a real feed; the hero
+   The feed phone (#pick) is three format cards that swipe themselves every few seconds, like a real feed; the hero
    and the post screen's cover play the finished edit. Each <video class="reel" data-reel="NAME"> plays
-   /video/NAME.mp4 and shows /video/NAME.webp first.
+   /video/NAME.mp4 and shows /video/NAME.webp first. The template grid beside the feed shows the same stills
+   (<img class="still" data-reel="NAME">), never video.
 
    FOOTAGE STAYS OFF UNTIL IT IS CLEARED. REELS is the footage version in marketing/video ('' = none): empty, the
    phones keep their drawn stand-ins and nothing is fetched (the feed still swipes). A file goes in marketing/video
@@ -1177,6 +1122,12 @@ document.addEventListener('click', function (e) {
     if (p && p.catch) p.catch(function () {});   // a browser that refuses autoplay keeps the still
   }
   function stop(v) { if (v && v.getAttribute('data-armed') && !v.paused) v.pause(); }
+  function showStill(img) {   // a grid tile: the clip's still, shown once it has loaded (also with reduced motion)
+    if (!REELS || img.getAttribute('data-armed')) return;
+    img.setAttribute('data-armed', '1');
+    img.onload = function () { img.classList.add('on'); };
+    img.src = url(img, 'webp');
+  }
 
   /* ---- the feed: slide k sits (k - i) cards below the one showing, wrapped so the card before is just above ---- */
   var feed = document.querySelector('[data-feed]');
@@ -1245,6 +1196,7 @@ document.addEventListener('click', function (e) {
           if (v.parentNode.querySelector('.capseq')) syncCaptions(v);
           arm(v);
         });
+        [].forEach.call(e.target.querySelectorAll('img.still'), showStill);
       });
     }, { rootMargin: '400px 0px' });
     var seen = new IntersectionObserver(function (es) {
@@ -1254,7 +1206,7 @@ document.addEventListener('click', function (e) {
       });
     }, { threshold: 0.2 });
     phones.forEach(function (p) {
-      if (!p.querySelector('video.reel') && !isFeed(p)) return;
+      if (!p.querySelector('video.reel, img.still') && !isFeed(p)) return;
       near.observe(p); seen.observe(p);
     });
     // a video armed after its phone came into view starts once it can
